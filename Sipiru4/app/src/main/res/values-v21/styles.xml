@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="AppTheme" parent="AppBaseTheme">
+                <item name="android:colorPrimary">@color/color_head</item>
+                <item name="android:colorPrimaryDark">@color/color_head</item>
+                <item name="android:statusBarColor">@android:color/transparent</item>
+                <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+                <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        </style>
+</resources>
