@@ -48,8 +48,8 @@ public  class CariRuanganController extends Fragment
         mTabsAdapter = new TabsAdapter(getActivity(),mTabHost, mViewPager );
 
         // Here we load the content for each tab.
-        mTabsAdapter.addTab(mTabHost.newTabSpec("one").setIndicator("One"), TopRatedController.class, null);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("two").setIndicator("Two"), GamesController.class, null);
+        mTabsAdapter.addTab(mTabHost.newTabSpec("Ruangan").setIndicator("Ruangan"), TopRatedController.class, null);
+        mTabsAdapter.addTab(mTabHost.newTabSpec("Waktu").setIndicator("Waktu"), GamesController.class, null);
 
         return v;
     }

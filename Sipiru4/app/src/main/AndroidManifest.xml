@@ -8,13 +8,6 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
-    <android:uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -30,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".DetailPesanController"
             android:label="@string/title_activity_display_message"
@@ -38,10 +32,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivityController" />
         </activity>
-        <!--
-        activity android:name=".DetailPesan"
-        android:label="Detail pESAN"></activity
-        -->
 
         <activity
             android:name=".admin_ui"
@@ -66,6 +56,10 @@
         <activity
             android:name=".retrive_table_admin"
             android:label="@string/title_activity_retrive_table_admin" >
+        </activity>
+        <activity
+            android:name=".pop_up"
+            android:label="@string/title_activity_pop_up" >
         </activity>
     </application>
 
