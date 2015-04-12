@@ -38,7 +38,8 @@
             android:layout_alignRight="@+id/editTextDec"
             android:layout_alignEnd="@+id/editTextDec"
             android:layout_marginTop="10dp"
-            android:background="#ff83aae5" />
+            android:background="#ff83aae5"
+            android:textSize="20dp" />
 
 
     </RelativeLayout>

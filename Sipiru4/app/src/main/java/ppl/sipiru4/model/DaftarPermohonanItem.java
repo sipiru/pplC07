@@ -2,9 +2,7 @@ package ppl.sipiru4.model;
 
 import android.graphics.drawable.Drawable;
 
-/**
- * Created by Gina on 4/8/2015.
- */
+
 public class DaftarPermohonanItem {
 
     public final Drawable icon;

@@ -194,7 +194,7 @@
             android:layout_alignRight="@+id/editText7"
             android:layout_alignEnd="@+id/editText7"
             android:background="#ff83aae5"
-            android:textSize="30dp" />
+            android:textSize="20dp" />
 
 
 

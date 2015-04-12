@@ -17,7 +17,7 @@ public class DetailPesanController extends FragmentActivity {
                              Bundle savedInstanceState) {
 
 
-        View rootView = inflater.inflate(R.layout.detail_pesan, container, false);
+        View rootView = inflater.inflate(R.layout.pesan_ui, container, false);
 
 
         return rootView;

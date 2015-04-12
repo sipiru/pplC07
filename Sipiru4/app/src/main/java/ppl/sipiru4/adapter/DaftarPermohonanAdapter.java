@@ -13,9 +13,7 @@ import java.util.List;
 import ppl.sipiru4.R;
 import ppl.sipiru4.model.DaftarPermohonanItem;
 
-/**
- * Created by Gina on 4/8/2015.
- */
+
 public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> {
 
     public DaftarPermohonanAdapter(Context context, List<DaftarPermohonanItem> items) {

@@ -1,8 +1,6 @@
 package ppl.sipiru4.model;
 
-/**
- * Created by Gina on 4/2/2015.
- */
+
 import android.graphics.drawable.Drawable;
 
 public class DaftarPesanItem {
