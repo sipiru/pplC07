@@ -52,7 +52,7 @@ public class LoginActivity extends Activity {
             Toast.makeText(getApplicationContext(), "Hello admin!",
 
                     Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivityAdminController.class));
+            startActivity(new Intent(this, MainActivityAdmin.class));
 
         }
         //login as peminjam
@@ -63,9 +63,30 @@ public class LoginActivity extends Activity {
             Toast.makeText(getApplicationContext(), "Hello Peminjam!",
 
                     Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivityPeminjamController.class));
+            startActivity(new Intent(this, MainActivityPeminjam.class));
 
         }
+        else if (username.getText().toString().equals("Manager Ruangan") &&
+
+                password.getText().toString().equals("Ruangan Ruangan")) {
+
+            Toast.makeText(getApplicationContext(), "Hello Manager Ruangan!",
+
+                    Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainActivityPeminjam.class));
+
+        }
+        else if (username.getText().toString().equals("fasumitf") &&
+
+                password.getText().toString().equals("fasumitf")) {
+
+            Toast.makeText(getApplicationContext(), "Hello FasumITF!",
+
+                    Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainActivityPeminjam.class));
+
+        }
+
         else {
 
             Toast.makeText(getApplicationContext(), "Seems like you 're not admin!",

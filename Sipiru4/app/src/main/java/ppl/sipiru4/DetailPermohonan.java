@@ -1,24 +1,28 @@
 package ppl.sipiru4;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ppl.sipiru4.R;
+public class DetailPermohonan extends Activity {
 
-public class LogoutController extends Fragment {
 
-    public LogoutController() {
+
+    public DetailPermohonan() {
     }
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.logout_ui, container, false);
+
+        View rootView = inflater.inflate(R.layout.validasi_mr, container, false);
+
+
         return rootView;
     }
 }
+
+

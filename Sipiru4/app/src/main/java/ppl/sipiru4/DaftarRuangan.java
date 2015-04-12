@@ -9,7 +9,7 @@ import android.widget.Button;
 /**
  * Created by Gina on 4/12/2015.
  */
-public class DaftarRuanganController extends Activity{
+public class DaftarRuangan extends Activity{
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class DaftarRuanganController extends Activity{
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent(getApplicationContext(),FormPeminjamanController.class));
+                startActivity(new Intent(getApplicationContext(),FormPeminjaman.class));
             }
         });
 

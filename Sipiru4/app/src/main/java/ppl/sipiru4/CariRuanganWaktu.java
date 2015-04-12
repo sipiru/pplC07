@@ -13,11 +13,11 @@ import android.widget.Button;
 /**
  * Created by Gina on 4/9/2015.
  */
-public class CariRuanganWaktuController extends Fragment {
+public class CariRuanganWaktu extends Fragment {
 
     Button btnCari;
 
-    public CariRuanganWaktuController() {
+    public CariRuanganWaktu() {
         // TODO Auto-generated constructor stub
     }
 
@@ -41,7 +41,7 @@ public class CariRuanganWaktuController extends Fragment {
     }
     public void goToAttract(View v)
     {
-        Intent intent = new Intent(getActivity(), DaftarRuanganController.class);
+        Intent intent = new Intent(getActivity(), DaftarRuangan.class);
         startActivity(intent);
     }
     public View result(LayoutInflater inflater, ViewGroup container,

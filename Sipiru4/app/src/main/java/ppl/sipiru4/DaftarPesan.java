@@ -12,19 +12,33 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ppl.sipiru4.adapter.DaftarPermohonanAdapter;
 import ppl.sipiru4.adapter.DaftarPesanDemoAdapter;
+import ppl.sipiru4.model.DaftarPermohonanItem;
 import ppl.sipiru4.model.DaftarPesanItem;
 
-public class DaftarPesanController extends Fragment {
+public class DaftarPesan extends Fragment {
+    DaftarPesanDemoAdapter adapter;
+    ListView lv;
+    private ArrayList<DaftarPesanItem> mItems;
 
-    public  DaftarPesanController(){}
+    public DaftarPesan(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.daftar_pesan_ui, container, false);
+        lv = (ListView) rootView.findViewById(R.id.list);
 
+
+        mItems = new ArrayList<DaftarPesanItem>();
+        Resources resources = getResources();
+//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
+//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
+        mItems.add(new DaftarPesanItem(getString(R.string.hello_world) , getString(R.string.hello_world), resources.getDrawable(R.drawable.abc_ic_clear_mtrl_alpha)));
+        mItems.add(new DaftarPesanItem(getString(R.string.hello_world) , getString(R.string.hello_world),resources.getDrawable(R.drawable.abc_ic_clear_mtrl_alpha)));
+        adapter = new DaftarPesanDemoAdapter(getActivity().getApplicationContext(),mItems);
+        lv.setAdapter(adapter);
         return rootView;
     }
 /*    private List<DaftarPesanItem> mItems; // ListView items list

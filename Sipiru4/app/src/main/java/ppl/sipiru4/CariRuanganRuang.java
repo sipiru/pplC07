@@ -12,9 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CariRuanganRuangController extends Fragment {
+public class CariRuanganRuang extends Fragment {
 
-    public CariRuanganRuangController() {
+    public CariRuanganRuang() {
         // TODO Auto-generated constructor stub
     }
 

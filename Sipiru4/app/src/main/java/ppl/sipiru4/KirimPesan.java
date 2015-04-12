@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class KirimPesanController extends Fragment {
+public class KirimPesan extends Fragment {
 	
-	public KirimPesanController(){}
+	public KirimPesan(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.kirim_pesan_ui, container, false);
-        Button button = (Button) rootView.findViewById(R.id.buttonCari);
+        Button button = (Button) rootView.findViewById(R.id.buttonKirim);
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override

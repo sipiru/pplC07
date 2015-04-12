@@ -55,7 +55,9 @@
                 android:layout_alignTop="@+id/textView2"
                 android:layout_alignBottom="@+id/textView2"
                 android:layout_toRightOf="@+id/textView3"
-                android:layout_toEndOf="@+id/textView3" />
+                android:layout_toEndOf="@+id/textView3"
+                android:entries="@array/manager"
+                />
 
             <EditText
                 android:layout_width="wrap_content"

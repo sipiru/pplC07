@@ -22,30 +22,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <!--activity
             android:name=".DetailPermohonanController"
             android:label="@string/title_activity_display_message"
             android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
-        </activity>
-        <activity android:name=".MainActivityAdminController">
+        </activity-->
+        <activity android:name=".MainActivityAdmin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityPeminjamController">
+        <activity android:name=".MainActivityPeminjam">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
-        <activity android:name=".DaftarRuanganController">
+        <activity android:name=".DaftarRuangan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
-        <activity android:name=".FormPeminjamanController">
+        <activity android:name=".FormPeminjaman">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN2" />
+        </intent-filter>
+    </activity>
+        <activity android:name=".DetailPermohonan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>

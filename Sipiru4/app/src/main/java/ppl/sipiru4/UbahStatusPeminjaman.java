@@ -1,54 +1,51 @@
 package ppl.sipiru4;
 
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ppl.sipiru4.adapter.DaftarPermohonanAdapter;
 import ppl.sipiru4.adapter.UbahStatusPeminjamanAdapter;
 import ppl.sipiru4.model.UbahStatusPermohonanItem;
 
-public class UbahStatusPeminjamanController extends ListFragment  {
+public class UbahStatusPeminjaman extends Fragment  {
 
-    public UbahStatusPeminjamanController(){}
+    public UbahStatusPeminjaman(){}
+    private ArrayList<UbahStatusPermohonanItem> mItems;
+    UbahStatusPeminjamanAdapter adapter;
+    ListView lv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.ubah_status_peminjaman, container, false);
+        lv = (ListView) rootView.findViewById(R.id.list);
 
-        return rootView;
-    }
-    private List<UbahStatusPermohonanItem> mItems; // ListView items list
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // initialize the items list
         mItems = new ArrayList<UbahStatusPermohonanItem>();
-        Resources resources = getResources();
-        mItems.add(new UbahStatusPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman)) );
-        mItems.add(new UbahStatusPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman)) );
+        //Resources resources = getResources();
+        mItems.add(new UbahStatusPermohonanItem(getString(R.string.hello_world), (Button)rootView.findViewById(R.id.selesai)) );
+        mItems.add(new UbahStatusPermohonanItem(getString(R.string.hello_world), (Button)rootView.findViewById(R.id.selesai)) );
 
         // initialize and set the list adapter
-        setListAdapter(new UbahStatusPeminjamanAdapter(getActivity(), mItems));
+        adapter = new UbahStatusPeminjamanAdapter(getActivity().getApplicationContext(),mItems);
+        lv.setAdapter(adapter);
+        return rootView;
     }
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        // remove the dividers from the ListView of the ListFragment
-        getListView().setDivider(null);
-    }
+   // ListView items list
 
-    @Override
+
+
+
     public void onListItemClick(ListView l, View v, int position, long id) {
         // retrieve theListView item
 /*        UbahStatusPermohonanItem item = mItems.get(position);

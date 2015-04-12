@@ -13,15 +13,16 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ppl.sipiru4.adapter.DaftarPeminjamanAdapter;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapter;
-import ppl.sipiru4.model.DaftarPermohonanItem;
+import ppl.sipiru4.model.DaftarPeminjamanItem;
 
-public class DaftarPermohonanController extends Fragment {
+public class DaftarPeminjaman extends Fragment {
     ListView lv;
 
-    DaftarPermohonanAdapter adapter;
-    private ArrayList<DaftarPermohonanItem> mItems;
-    public DaftarPermohonanController(){}
+    DaftarPeminjamanAdapter adapter;
+    private ArrayList<DaftarPeminjamanItem> mItems;
+    public DaftarPeminjaman(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
 
@@ -31,29 +32,20 @@ public class DaftarPermohonanController extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.daftar_permohonan_ui, container, false);
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
-        
 
-        mItems = new ArrayList<DaftarPermohonanItem>();
+
+        mItems = new ArrayList<DaftarPeminjamanItem>();
         Resources resources = getResources();
 //        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
 //        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
-        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
-        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
-        adapter = new DaftarPermohonanAdapter(getActivity().getApplicationContext(),mItems);
+        mItems.add(new DaftarPeminjamanItem(getString(R.string.hello_world)));
+        mItems.add(new DaftarPeminjamanItem(getString(R.string.hello_world)));
+        adapter = new DaftarPeminjamanAdapter(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         return rootView;
     }
 
     private void onListItemClick(ListView l, View v, int position, long id) {
         // retrieve theListView item
-        DaftarPermohonanItem item = mItems.get(position);
-
-
-
-    }
-    public void goToAttract(View v)
-    {
-        Intent intent = new Intent(getActivity(), DaftarRuanganController.class);
-
     }
 }

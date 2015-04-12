@@ -19,7 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class MainActivityPeminjamController extends FragmentActivity {
+public class MainActivityPeminjam extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -166,16 +166,16 @@ public class MainActivityPeminjamController extends FragmentActivity {
                 fragment = new CariRuanganController();
                 break;
             case 1:
-                fragment = new DaftarPermohonanController();
+                fragment = new DaftarPermohonan();
                 break;
             case 2:
-                fragment = new DaftarPesanController();
+                fragment = new DaftarPesan();
                 break;
             case 3:
-                fragment = new KirimPesanController();
+                fragment = new KirimPesan();
                 break;
             case 4:
-                fragment = new LogoutController();
+                fragment = new Logout();
                 break;
             default:
                 break;

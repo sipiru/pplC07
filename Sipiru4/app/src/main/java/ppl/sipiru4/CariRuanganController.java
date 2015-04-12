@@ -48,8 +48,8 @@ public  class CariRuanganController extends Fragment
         mTabsAdapter = new TabsAdapter(getActivity(),mTabHost, mViewPager );
 
         // Here we load the content for each tab.
-        mTabsAdapter.addTab(mTabHost.newTabSpec("one").setIndicator("One"), CariRuanganRuangController.class, null);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("two").setIndicator("Two"), CariRuanganWaktuController.class, null);
+        mTabsAdapter.addTab(mTabHost.newTabSpec("one").setIndicator("One"), CariRuanganRuang.class, null);
+        mTabsAdapter.addTab(mTabHost.newTabSpec("two").setIndicator("Two"), CariRuanganWaktu.class, null);
 
         return v;
     }
@@ -129,13 +129,13 @@ public  class CariRuanganController extends Fragment
             Bundle args = new Bundle();
             if(position==0)
             {
-                fragment = new CariRuanganRuangController();
+                fragment = new CariRuanganRuang();
                 args.putString("text", "This is TAB0");
                 fragment.setArguments(args);
             }
             else if(position==1)
             {
-                fragment = new CariRuanganWaktuController();
+                fragment = new CariRuanganWaktu();
                 args.putString("text", "This is TAB1");
                 fragment.setArguments(args);
             }

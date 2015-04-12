@@ -11,6 +11,8 @@ import android.content.Context;
 import java.util.List;
 import ppl.sipiru4.R;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,11 +28,12 @@ public class DaftarPesanDemoAdapter extends ArrayAdapter<DaftarPesanItem> {
         if(convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.pesan_list_item_ui, parent, false);
+            convertView = inflater.inflate(R.layout.daftar_pesan_ui, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.ikon);
-            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
+            viewHolder.judulPesan = (TextView) convertView.findViewById(R.id.label);
+            viewHolder.potonganPesan = (TextView) convertView.findViewById(R.id.label);
+            viewHolder.hapus = (ImageButton) convertView.findViewById(R.id.buttonDelPesan);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -38,8 +41,8 @@ public class DaftarPesanDemoAdapter extends ArrayAdapter<DaftarPesanItem> {
         }
         // update the item view
         DaftarPesanItem item = getItem(position);
-        viewHolder.ivIcon.setImageDrawable(item.icon);
-        viewHolder.tvTitle.setText(item.title);
+        viewHolder.judulPesan.setText(item.judulPesan);
+        viewHolder.potonganPesan.setText(item.potonganPesan);
         return convertView;
     }
     /**
@@ -49,7 +52,8 @@ public class DaftarPesanDemoAdapter extends ArrayAdapter<DaftarPesanItem> {
      * @see ://developer.android.com/training/improving-layouts/smooth-scrolling.html#ViewHolder
      */
     private static class ViewHolder {
-        ImageView ivIcon;
-        TextView tvTitle;
+        TextView judulPesan;
+        TextView potonganPesan;
+        ImageButton hapus;
     }
 }

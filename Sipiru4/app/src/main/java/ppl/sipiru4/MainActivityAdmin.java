@@ -19,7 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class MainActivityAdminController extends FragmentActivity {
+public class MainActivityAdmin extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -169,22 +169,22 @@ public class MainActivityAdminController extends FragmentActivity {
                 fragment = new CariRuanganController();
                 break;
             case 1:
-                fragment = new DaftarPermohonanController();
+                fragment = new DaftarPermohonan();
                 break;
             case 2:
-                fragment = new DaftarPeminjamanController();
+                fragment = new DaftarPeminjaman();
                 break;
             case 3:
-                fragment = new UbahStatusPeminjamanController();
+                fragment = new UbahStatusPeminjaman();
                 break;
             case 4:
-                fragment = new DaftarPesanController();
+                fragment = new DaftarPesan();
                 break;
             case 5:
-                fragment = new KirimPesanController();
+                fragment = new KirimPesan();
                 break;
             case 6:
-                fragment = new LogoutController();
+                fragment = new Logout();
                 break;
             default:
                 break;

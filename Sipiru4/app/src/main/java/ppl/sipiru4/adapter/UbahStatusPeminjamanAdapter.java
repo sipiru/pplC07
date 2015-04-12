@@ -17,7 +17,7 @@ import ppl.sipiru4.model.UbahStatusPermohonanItem;
 public class UbahStatusPeminjamanAdapter extends ArrayAdapter<UbahStatusPermohonanItem> {
 
     public UbahStatusPeminjamanAdapter(Context context, List<UbahStatusPermohonanItem> items) {
-        super(context, R.layout.daftar_ubah_status_peminjaman_ui, items);
+        super(context, R.layout.ubah_status_peminjaman, items);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class UbahStatusPeminjamanAdapter extends ArrayAdapter<UbahStatusPermohon
             // initialize the view holder
             viewHolder = new ViewHolder();
 
-            viewHolder.ivIcon = (Button) convertView.findViewById(R.id.setuju);
+            viewHolder.ivIcon = (Button) convertView.findViewById(R.id.selesai);
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
             convertView.setTag(viewHolder);
         } else {
@@ -50,6 +50,6 @@ public class UbahStatusPeminjamanAdapter extends ArrayAdapter<UbahStatusPermohon
      */
     private static class ViewHolder {
         Button ivIcon;
-        TextView tvTitle;
-    }
+    TextView tvTitle;
+}
 }

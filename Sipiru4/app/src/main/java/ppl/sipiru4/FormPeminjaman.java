@@ -10,7 +10,7 @@ import android.widget.Toast;
 /**
  * Created by Gina on 4/12/2015.
  */
-public class FormPeminjamanController extends Activity {
+public class FormPeminjaman extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
