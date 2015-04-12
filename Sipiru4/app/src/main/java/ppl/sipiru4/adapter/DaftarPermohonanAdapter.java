@@ -14,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> {
 
@@ -35,9 +37,29 @@ public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> 
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            //viewHolder.ivIcon = (Button) convertView.findViewById(R.id.setuju);
-            //viewHolder.ivIcon = (Button) convertView.findViewById(R.id.tolak);
-            //viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
+            viewHolder.btnSetuju = (Button) convertView.findViewById(R.id.setuju);
+            final View finalConvertView = convertView;
+            viewHolder.btnSetuju.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    //try to hide textview or something it may help
+                    Toast.makeText(finalConvertView.getContext(),
+                            "Permohonan telah berhasil disetujui", Toast.LENGTH_LONG).show();
+                }
+            });
+            viewHolder.tolak = (Button) convertView.findViewById(R.id.tolak);
+            final View finalConvertView1 = convertView;
+            viewHolder.tolak.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    //try to hide textview or something it may help
+                    Toast.makeText(finalConvertView1.getContext(),
+                            "Permohonan telah berhasil ditolak", Toast.LENGTH_LONG).show();
+                }
+            });
+            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
 
             convertView.setTag(viewHolder);
         } else {
@@ -57,11 +79,14 @@ public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> 
      *
      * @see ://developer.android.com/training/improving-layouts/smooth-scrolling.html#ViewHolder
      */
+
     private static class ViewHolder {
         TextView tvTitle;
+        Button btnSetuju;
+        Button tolak;
     }
 
-/*    public DaftarPermohonanAdapter(Context context, ArrayList<DaftarPermohonanItem> navDrawerItems){
+/*   public DaftarPermohonanAdapter(Context context, ArrayList<DaftarPermohonanItem> navDrawerItems){
         super(context, R.layout.daftar_permohonan_ui, navDrawerItems);
         this.context = context;
         this.navDrawerItems = navDrawerItems;
@@ -90,8 +115,10 @@ public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> 
             convertView = mInflater.inflate(R.layout.ui_tiap_list_permohonan, null);
         }
 
-        TextView txtTitle = (TextView) convertView.findViewById(R.id.textView1);
+        TextView txtTitle = (TextView) convertView.findViewById(R.id.label);
         txtTitle.setText(navDrawerItems.get(position).getTitle());
+        Button btnSetuju = (Button) convertView.findViewById(R.id.setuju);
+        Button btnTolak =(Button) convertView.findViewById(R.id.tolak);
         return convertView;
     }*/
 
