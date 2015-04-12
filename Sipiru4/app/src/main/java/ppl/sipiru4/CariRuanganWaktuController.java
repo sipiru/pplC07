@@ -1,31 +1,57 @@
 package ppl.sipiru4;
 
-/**
- * Created by Gina on 4/9/2015.
- */
-
 import android.app.Activity;
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-public class TopRatedController extends Fragment {
+/**
+ * Created by Gina on 4/9/2015.
+ */
+public class CariRuanganWaktuController extends Fragment {
 
-    public TopRatedController() {
+    Button btnCari;
+
+    public CariRuanganWaktuController() {
         // TODO Auto-generated constructor stub
     }
 
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
+        View rootView = inflater.inflate(R.layout.cari_ruangan_waktu_ui, container, false);
+        Button button = (Button) rootView.findViewById(R.id.buttonCari);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                goToAttract(v);
+            }
+        });
+        return rootView;
+
+    }
+    public void goToAttract(View v)
+    {
+        Intent intent = new Intent(getActivity(), DaftarRuanganController.class);
+        startActivity(intent);
+    }
+    public View result(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.daftar_pesan_ui, container, false);
 
         return rootView;
     }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {

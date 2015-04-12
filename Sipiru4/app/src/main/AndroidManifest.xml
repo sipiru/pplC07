@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivityController"
+            android:name=".LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,15 +23,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailPesanController"
+            android:name=".DetailPermohonanController"
             android:label="@string/title_activity_display_message"
-            android:parentActivityName=".MainActivityController" >
+            android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivityController" />
+                android:value=".LoginActivity" />
         </activity>
-    <!--activity android:name=".DetailPesan"
-        android:label="Detail pESAN"></activity-->
+        <activity android:name=".MainActivityAdminController">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivityPeminjamController">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DaftarRuanganController">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FormPeminjamanController">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+
 
 </application>
 

@@ -19,6 +19,7 @@
         <item >Daftar Pesan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
+        <item >Menu Admin</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -32,7 +33,13 @@
         <item>@drawable/tulis_pesan</item>
         <item>@drawable/logout2</item>
     </array>
-    <string-array name="country_arrays">
+<string-array name="manager">
+    <item>Manager Ruangan</item>
+    <item>Manager Kemahasiswaan</item>
+    <item>Fasum/ITF</item>
+
+</string-array>
+    <string-array name="ruang">
         <item>Manager Ruangan</item>
         <item>Manager Kemahasiswaan</item>
         <item>Fasum/ITF</item>

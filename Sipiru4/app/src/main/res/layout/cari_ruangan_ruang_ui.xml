@@ -16,7 +16,8 @@
         android:id="@+id/editView1" android:layout_gravity="center_horizontal"
         android:background="#D3F0D2" android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" android:layout_toLeftOf="@+id/btnsearch"
-        android:layout_toStartOf="@+id/btnsearch" />
+        android:layout_toStartOf="@+id/btnsearch"
+        android:entries="@array/ruang"/>
 
     <ImageButton android:layout_width="50dp" android:layout_height="50dp"
         android:id="@+id/btnsearch" android:layout_gravity="center_horizontal"

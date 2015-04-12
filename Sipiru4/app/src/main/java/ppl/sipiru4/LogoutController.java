@@ -19,13 +19,6 @@ public class LogoutController extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.logout_ui, container, false);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(rootView);
         return rootView;
-        /*        LayoutInflater inflate = getLayoutInflater();
-        View dialoglayout = inflater.inflate(R.layout.logout_ui, null);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(dialoglayout);
-        builder.show();*/
     }
 }

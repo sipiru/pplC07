@@ -53,7 +53,7 @@
             android:textAlignment="center"
             android:background="#ffdcffdc"
             android:textColor="#41000000"
-            android:text="username"
+            android:hint="username"
             android:id="@+id/editText1"
             android:textSize="30dp" />
 

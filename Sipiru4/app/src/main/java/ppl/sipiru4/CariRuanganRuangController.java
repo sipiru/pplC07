@@ -1,28 +1,28 @@
 package ppl.sipiru4;
 
+/**
+ * Created by Gina on 4/9/2015.
+ */
+
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Gina on 4/9/2015.
- */
-public class GamesController extends Fragment {
+public class CariRuanganRuangController extends Fragment {
 
-    public GamesController() {
+    public CariRuanganRuangController() {
         // TODO Auto-generated constructor stub
     }
 
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.cari_ruangan_waktu_ui, container, false);
+        View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
 
         return rootView;
     }

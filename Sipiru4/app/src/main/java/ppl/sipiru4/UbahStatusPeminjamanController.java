@@ -1,6 +1,6 @@
 package ppl.sipiru4;
 
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import java.util.List;
 import ppl.sipiru4.adapter.UbahStatusPeminjamanAdapter;
 import ppl.sipiru4.model.UbahStatusPermohonanItem;
 
-public class UbahStatusPeminjamanController extends Fragment  {
+public class UbahStatusPeminjamanController extends ListFragment  {
 
     public UbahStatusPeminjamanController(){}
 
@@ -27,7 +27,7 @@ public class UbahStatusPeminjamanController extends Fragment  {
 
         return rootView;
     }
-    /*private List<UbahStatusPermohonanItem> mItems; // ListView items list
+    private List<UbahStatusPermohonanItem> mItems; // ListView items list
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,13 +51,13 @@ public class UbahStatusPeminjamanController extends Fragment  {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // retrieve theListView item
-        UbahStatusPermohonanItem item = mItems.get(position);
+/*        UbahStatusPermohonanItem item = mItems.get(position);
 
 
         Intent intent = new Intent(getActivity().getApplicationContext(), DetailPesanController.class);
-        startActivity((Intent) intent);
+        startActivity((Intent) intent);*/
 
-    }*/
+    }
 
 }
 
