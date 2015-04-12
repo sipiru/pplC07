@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="Ruang   :"
             android:textSize="35dp"
-            android:id="@+id/textView3"
+            android:id="@+id/textView1"
             android:textColor="#ff000000"
             android:layout_marginTop="10dp"
             android:layout_alignParentLeft="true"
@@ -30,9 +30,9 @@
             android:background="#D3F0D2"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/textView3"
-            android:layout_toRightOf="@+id/textView3"
-            android:layout_toEndOf="@+id/textView3"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_toRightOf="@+id/textView1"
+            android:layout_toEndOf="@+id/textView1"
             android:layout_marginLeft="10dp" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:textSize="30dp"
             android:id="@+id/textView2"
             android:textColor="#ff000000"
-            android:layout_below="@+id/textView3"
+            android:layout_below="@+id/textView1"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp" />

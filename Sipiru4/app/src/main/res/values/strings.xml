@@ -41,5 +41,11 @@
     
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_admin_ui">admin_ui</string>
+    <string name="title_activity_create_table_admin">create_table_admin</string>
+    <string name="title_activity_update_table_admin">update_table_admin</string>
+    <string name="title_activity_delete_table_admin">delete_table_admin</string>
+    <string name="title_activity_update_akun">update_akun</string>
+    <string name="title_activity_retrive_table_admin">retrive_table_admin</string>
 
 </resources>

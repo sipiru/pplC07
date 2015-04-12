@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fasilitas   :"
-                android:id="@+id/textView3"
+                android:id="@+id/textView1"
                 android:textColor="#ff000000"
                 android:textSize="25dp"
                 android:layout_alignBottom="@+id/editText3"
