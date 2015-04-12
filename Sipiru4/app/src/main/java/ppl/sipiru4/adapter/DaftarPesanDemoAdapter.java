@@ -1,8 +1,6 @@
 package ppl.sipiru4.adapter;
 
-/**
- * Created by Gina on 4/2/2015.
- */
+
 
 import ppl.sipiru4.model.DaftarPesanItem;
 

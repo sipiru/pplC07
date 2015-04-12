@@ -18,6 +18,10 @@ public class DetailPesanController extends FragmentActivity {
 
 
         View rootView = inflater.inflate(R.layout.pesan_ui, container, false);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 779af381ca32309b67787b0b0c8a0f937101e526
 
         return rootView;
     }

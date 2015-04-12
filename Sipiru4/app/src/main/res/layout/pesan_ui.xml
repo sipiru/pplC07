@@ -1,7 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:id="@+id/layoutScroll"
     android:background="#B1D9E7">
@@ -21,68 +20,68 @@
 
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="From      :"
-                android:textSize="25dp"
-                android:id="@+id/textView2"
-                android:textColor="#ff000000"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From  :"
+            android:textSize="30dp"
+            android:id="@+id/textView2"
+            android:textColor="#ff000000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-            <AutoCompleteTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/editText3"
-                android:text="Balas"
-                android:background="#D3F0D2"
-                android:layout_above="@+id/buttonKirim"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/editText1"
-                android:layout_alignEnd="@+id/editText1" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="Balas"
+            android:ems="10"
+            android:id="@+id/editText3"
+            android:background="#D3F0D2"
+            android:layout_marginTop="100dp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignRight="@+id/editText2"
+            android:layout_alignEnd="@+id/editText2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kirim"
-                android:id="@+id/buttonKirim"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="116dp"
-                android:layout_alignRight="@+id/editText2"
-                android:layout_alignEnd="@+id/editText2" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kirim"
+            android:id="@+id/buttonKirim"
+            android:layout_below="@+id/editText3"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#ff83aae5" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/editText2"
-                android:background="#ffd3f0d2"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/textView2"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/editText1"
-                android:layout_alignEnd="@+id/editText1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:background="#D3F0D2"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/editText2"
+            android:layout_alignEnd="@+id/editText2" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText1"
-                android:layout_alignTop="@+id/textView2"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:background="#D3F0D2"
-                android:layout_marginTop="10dp" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:background="#D3F0D2"
+            android:layout_alignTop="@+id/textView2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
 
     </RelativeLayout>
 </ScrollView>

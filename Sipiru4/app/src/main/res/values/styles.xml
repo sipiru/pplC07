@@ -15,11 +15,7 @@
 
     <!-- Application theme. -->
 
-        <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
-            <item name="android:colorAccent">@color/color_head</item>
-            <item name="android:colorPrimaryDark">@color/color_head</item>
-            <item name="android:colorPrimary">@color/color_head</item>
-        </style>
+
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
 

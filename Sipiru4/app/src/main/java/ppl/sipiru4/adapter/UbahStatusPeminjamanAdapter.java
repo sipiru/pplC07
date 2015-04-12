@@ -13,9 +13,7 @@ import java.util.List;
 import ppl.sipiru4.R;
 import ppl.sipiru4.model.UbahStatusPermohonanItem;
 
-/**
- * Created by Gina on 4/8/2015.
- */
+
 public class UbahStatusPeminjamanAdapter extends ArrayAdapter<UbahStatusPermohonanItem> {
 
     public UbahStatusPeminjamanAdapter(Context context, List<UbahStatusPermohonanItem> items) {
