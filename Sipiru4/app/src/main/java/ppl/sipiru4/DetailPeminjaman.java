@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class DetailPermohonan extends Activity {
+public class DetailPeminjaman extends Activity {
 
 
 
@@ -15,7 +15,7 @@ public class DetailPermohonan extends Activity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.validasi_mr);
+        setContentView(R.layout.detail_peminjaman_mr);
 
     }
 }

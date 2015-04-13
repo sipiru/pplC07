@@ -55,6 +55,21 @@
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
+        <activity android:name=".DetailPesan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPeminjaman">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailRuangan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
 
 
 </application>

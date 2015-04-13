@@ -44,13 +44,6 @@ public class CariRuanganWaktu extends Fragment {
         Intent intent = new Intent(getActivity(), DaftarRuangan.class);
         startActivity(intent);
     }
-    public View result(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.daftar_pesan_ui, container, false);
-
-        return rootView;
-    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -39,6 +40,18 @@ public class DaftarPesan extends Fragment {
         mItems.add(new DaftarPesanItem(getString(R.string.hello_world) , getString(R.string.hello_world),resources.getDrawable(R.drawable.abc_ic_clear_mtrl_alpha)));
         adapter = new DaftarPesanDemoAdapter(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+
+                // Sending image id to FullScreenActivity
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPesan.class);
+                // passing array index
+                i.putExtra("id", position);
+                startActivity(i);
+            }
+        });
         return rootView;
     }
 /*    private List<DaftarPesanItem> mItems; // ListView items list

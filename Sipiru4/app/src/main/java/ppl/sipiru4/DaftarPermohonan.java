@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -40,6 +41,18 @@ public class DaftarPermohonan extends Fragment {
         mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
         adapter = new DaftarPermohonanAdapter(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+
+                // Sending image id to FullScreenActivity
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonan.class);
+                // passing array index
+                i.putExtra("id", position);
+                startActivity(i);
+            }
+        });
         return rootView;
     }
 

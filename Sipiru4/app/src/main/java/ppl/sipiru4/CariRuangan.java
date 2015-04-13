@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public  class CariRuanganController extends Fragment
+public  class CariRuangan extends Fragment
 {
 
 
@@ -26,7 +26,7 @@ public  class CariRuanganController extends Fragment
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
 
-    public CariRuanganController() {
+    public CariRuangan() {
     }
 
     @Override

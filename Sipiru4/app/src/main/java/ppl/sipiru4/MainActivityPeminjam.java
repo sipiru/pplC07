@@ -5,6 +5,10 @@ import ppl.sipiru4.model.NavDrawerItem;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -30,6 +34,7 @@ public class MainActivityPeminjam extends FragmentActivity {
 
     // used to store app title
     private CharSequence mTitle;
+    final Context context = this;
 
     // slide menu items
     private String[] navMenuTitles;
@@ -163,7 +168,7 @@ public class MainActivityPeminjam extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new CariRuanganController();
+                fragment = new CariRuangan();
                 break;
             case 1:
                 fragment = new DaftarPermohonan();
@@ -175,8 +180,37 @@ public class MainActivityPeminjam extends FragmentActivity {
                 fragment = new KirimPesan();
                 break;
             case 4:
-                fragment = new Logout();
-                break;
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        context);
+                // set title
+                alertDialogBuilder.setTitle("Your Title");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Click yes to exit!")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, close
+                                // current activity
+                                MainActivityPeminjam.this.finish();
+                            }
+                        })
+                        .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
             default:
                 break;
         }

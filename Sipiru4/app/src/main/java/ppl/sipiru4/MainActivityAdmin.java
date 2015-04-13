@@ -166,7 +166,7 @@ public class MainActivityAdmin extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new CariRuanganController();
+                fragment = new CariRuangan();
                 break;
             case 1:
                 fragment = new DaftarPermohonan();

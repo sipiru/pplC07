@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -41,6 +42,18 @@ public class DaftarPeminjaman extends Fragment {
         mItems.add(new DaftarPeminjamanItem(getString(R.string.hello_world)));
         adapter = new DaftarPeminjamanAdapter(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+
+                // Sending image id to FullScreenActivity
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPeminjaman.class);
+                // passing array index
+                i.putExtra("id", position);
+                startActivity(i);
+            }
+        });
         return rootView;
     }
 
