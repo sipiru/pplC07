@@ -53,6 +53,7 @@ public class TopRatedController extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         Log.d("MyTag", "TabFragment0--onDestroyView");
+
     }
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {

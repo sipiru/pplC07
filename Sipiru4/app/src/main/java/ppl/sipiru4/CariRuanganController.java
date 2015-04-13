@@ -1,6 +1,8 @@
 package ppl.sipiru4;
 
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -132,6 +134,7 @@ public  class CariRuanganController extends Fragment
                 fragment = new TopRatedController();
                 args.putString("text", "This is TAB0");
                 fragment.setArguments(args);
+
             }
             else if(position==1)
             {
@@ -168,6 +171,7 @@ public  class CariRuanganController extends Fragment
             // ViewPager.
             TabWidget widget = mTabHost.getTabWidget();
             int oldFocusability = widget.getDescendantFocusability();
+            mTabHost.setBackgroundColor(Color.argb(225,140,180,240));
             widget.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
             mTabHost.setCurrentTab(position);
             widget.setDescendantFocusability(oldFocusability);
@@ -186,12 +190,13 @@ public  class CariRuanganController extends Fragment
         public void removeAll()
         {
             Iterator iterator = integerFragmentMap.entrySet().iterator();
-            while (iterator.hasNext())
-            {
-                Map.Entry entry = (Map.Entry)iterator.next();
+            while (iterator.hasNext()) {
+                Map.Entry entry = (Map.Entry) iterator.next();
                 Fragment fragment = (Fragment) entry.getValue();
                 fragment.onDestroyView();//Trigger inner fragment's DestroyView() method !
-            }
-        }
+            }}
+
+
+
     }
 }

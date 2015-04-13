@@ -19,7 +19,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
         android:layout_marginTop="20dp"
-        android:id="@+id/layoutLogin2">
+        android:id="@+id/layoutLogin2"
+        android:weightSum="1">
 
         <TextView
             android:layout_height="30dp"
@@ -27,24 +28,25 @@
             android:layout_marginLeft="10dp"
             android:text= "Selamat Datang !"
             android:layout_marginTop="20dp"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:id="@+id/textView1" />
 
         <TextView
-            android:layout_height="20dp"
-            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_marginLeft="10dp"
             android:text= "Silahkan login untuk dapat menggunkan Sipiru "
             android:textStyle="italic"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:layout_marginTop="8dp"
-            android:id="@+id/textView2" />
+            android:id="@+id/textView2"
+            android:layout_weight="0.14" />
 
 
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:maxLines="1"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -55,11 +57,11 @@
             android:textColor="#41000000"
             android:text="username"
             android:id="@+id/editText1"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:maxLines="1"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
@@ -70,7 +72,7 @@
             android:textColor="#41000000"
             android:hint="@string/prompt_password"
             android:id="@+id/editText3"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
 
 
 
@@ -104,7 +106,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:id="@+id/imageHeader"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"

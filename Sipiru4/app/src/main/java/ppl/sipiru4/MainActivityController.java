@@ -5,6 +5,7 @@ import ppl.sipiru4.model.NavDrawerItem;
 
 import java.util.ArrayList;
 
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -23,7 +24,6 @@ public class MainActivityController extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-
 
     // nav drawer title
     private CharSequence mDrawerTitle;

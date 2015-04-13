@@ -1,11 +1,7 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
-    android:layout_height="fill_parent"
-    android:gravity="center_horizontal"
-    android:id="@+id/layoutScroll"
-    android:background="#B1D9E7">
 
-    <RelativeLayout
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -19,68 +15,12 @@
         android:id="@+id/layoutDftRuang1">
 
 
-
-
-            <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:id="@+id/imageButton1"
-                android:src="@drawable/lingkaran"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-        <ImageButton
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/imageButton2"
-            android:src="@drawable/lingkaran"
-            android:layout_alignParentTop="true"
-            android:layout_alignRight="@+id/button2"
-            android:layout_alignEnd="@+id/button2"
-            android:layout_marginRight="5dp" />
-
-        <ImageButton
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/imageButton3"
-            android:src="@drawable/lingkaran"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pinjam"
-                android:id="@+id/button1"
-                android:layout_below="@+id/imageButton1"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/imageButton1"
-                android:layout_alignEnd="@+id/imageButton1" />
-
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pinjam"
-                android:id="@+id/button2"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/button3"
-            android:layout_toStartOf="@+id/button3"
-            android:layout_marginRight="20dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="pinjam"
-            android:id="@+id/button3"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/imageButton3"
-            android:layout_alignStart="@+id/imageButton3" />
-
-
-    </RelativeLayout>
-</ScrollView>
+    <GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gridView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:choiceMode="multipleChoice"
+        android:numColumns="auto_fit" />
+</RelativeLayout>

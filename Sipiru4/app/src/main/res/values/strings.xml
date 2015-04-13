@@ -30,6 +30,7 @@
         <item>@drawable/update_status</item>
         <item>@drawable/daftar_pesan</item>
         <item>@drawable/tulis_pesan</item>
+
         <item>@drawable/logout</item>
     </array>
     <string-array name="country_arrays">
@@ -48,5 +49,6 @@
     <string name="title_activity_update_akun">update_akun</string>
     <string name="title_activity_retrive_table_admin">retrive_table_admin</string>
     <string name="title_activity_pop_up">pop_up</string>
+    <string name="title_activity_daftar_pesan_grid">daftar_pesan_grid</string>
 
 </resources>
