@@ -1,7 +1,7 @@
 package ppl.sipiru4;
 
+//import android.app.Fragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,48 +15,44 @@ import java.util.List;
 
 import ppl.sipiru4.adapter.DaftarPermohonanAdapter;
 import ppl.sipiru4.model.DaftarPermohonanItem;
+import ppl.sipiru4.model.DetailPermohonan;
 
 public class DaftarPermohonanController extends Fragment {
+    ListView lv;
 
+    DaftarPermohonanAdapter adapter;
+    private ArrayList<DaftarPermohonanItem> mItems;
     public DaftarPermohonanController(){}
+    //private DaftarPermohonanItem mItems; // ListView items list
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.daftar_permohonan_ui, container, false);
+        lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
-        return rootView;
-    }
-    /*private List<DaftarPermohonanItem> mItems; // ListView items list
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // initialize the items list
         mItems = new ArrayList<DaftarPermohonanItem>();
         Resources resources = getResources();
+//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
+//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
         mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
         mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
-
-        setListAdapter(new DaftarPermohonanAdapter(getActivity(), mItems));
-    }
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        // remove the dividers from the ListView of the ListFragment
-        getListView().setDivider(null);
+        adapter = new DaftarPermohonanAdapter(getActivity().getApplicationContext(),mItems);
+        lv.setAdapter(adapter);
+        return rootView;
     }
 
+    private void onListItemClick(ListView l, View v, int position, long id) {
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        // retrieve theListView item
         DaftarPermohonanItem item = mItems.get(position);
 
-        Intent intent = new Intent(getActivity().getApplicationContext(), DetailPesanController.class);
-        startActivity((Intent) intent);
+    }
+    public void goToAttract(View v)
+    {
+        Intent intent = new Intent(getActivity(), DetailPermohonan.class);
 
     }
-*/
 }

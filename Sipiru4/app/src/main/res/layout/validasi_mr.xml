@@ -1,11 +1,21 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:gravity="center_horizontal"
-    android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:id="@+id/layoutScroll"
+    android:background="#B1D9E7">
+
+<RelativeLayout android:layout_width="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     android:background="#B1D9E7"
     android:id="@+id/layoutForm1">
 
@@ -186,42 +196,43 @@
 
 
     <Button
+        android:layout_width="198dp"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:id="@+id/button2"
+        android:background="#ff83aae5"
+        android:textSize="15dp"
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/editText7"
+        android:layout_alignStart="@+id/editText7"
+        android:layout_marginTop="5dp" />
+
+    <Button
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:text="Teruskan"
+        android:id="@+id/button"
+        android:background="#ff83aae5"
+        android:textSize="25dp"
+        android:layout_below="@+id/editText8"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_marginTop="20dp" />
+
+    <Button
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:text="Tolak"
             android:id="@+id/button1"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="false"
         android:background="#ff83aae5"
         android:textSize="15dp"
-        android:layout_toLeftOf="@+id/editText7"
-        android:layout_toStartOf="@+id/editText7" />
-
-        <Button
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
-            android:text="Update"
-            android:id="@+id/button2"
-            android:background="#ff83aae5"
-            android:textSize="15dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <Button
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
-            android:text="Teruskan"
-            android:id="@+id/button"
-            android:layout_above="@+id/button1"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:background="#ff83aae5"
-            android:textSize="25dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="5dp" />
-
+        android:layout_below="@+id/button"
+        android:layout_toStartOf="@+id/button2"
+        android:layout_marginTop="5dp"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_alignEnd="@+id/textView1" />
 
 </RelativeLayout>
+</ScrollView>
