@@ -15,11 +15,44 @@
         <item >Cari Ruangan</item>
         <item >Daftar Permohonan</item>
         <item >Daftar Peminjamann</item>
-        <item >Ubah Status Peminjaman</item>
         <item >Daftar Pesan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
         <item >Menu Admin</item>
+    </string-array>
+    <string-array name="nav_drawer_items_peminjam">
+        <item >Cari Ruangan</item>
+        <item >Daftar Permohonan</item>
+        <item >Daftar Peminjamann</item>
+        <item >Daftar Pesan</item>
+        <item >Tulis Pesan</item>
+        <item >Logout</item>
+    </string-array>
+    <string-array name="nav_drawer_items_mr">
+        <item >Cari Ruangan</item>
+        <item >Daftar Permohonan</item>
+        <item >Daftar Peminjamann</item>
+        <item >Daftar Pesan</item>
+        <item >Tulis Pesan</item>
+        <item >Logout</item>
+    </string-array>
+    <string-array name="nav_drawer_items_mk">
+        <item >Cari Ruangan</item>
+        <item >Daftar Permohonan</item>
+        <item >Daftar Pesan</item>
+        <item >Tulis Pesan</item>
+        <item >Logout</item>
+    </string-array>
+    <string-array name="nav_drawer_items_fasumitf">
+        <item >Cari Ruangan</item>
+        <item >Daftar Permohonan</item>
+        <item >Daftar Peminjamann</item>
+        <item >Daftar Pesan</item>
+        <item >Tulis Pesan</item>
+        <item >Logout</item>
+    </string-array>
+    <string-array name="nav_drawer_items_admin">
+        <item >MenuAdmin</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->

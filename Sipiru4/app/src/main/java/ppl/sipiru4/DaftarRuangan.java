@@ -1,5 +1,6 @@
 package ppl.sipiru4;
 
+//import android.app.Fragment;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -11,12 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import ppl.sipiru4.adapter.DaftarPeminjamanAdapter;
-import ppl.sipiru4.adapter.DaftarPermohonanAdapter;
 import ppl.sipiru4.adapter.DaftarRuanganAdapter;
-import ppl.sipiru4.model.DaftarPeminjamanItem;
 import ppl.sipiru4.model.DaftarRuanganItem;
 
 public class DaftarRuangan extends Fragment {
@@ -25,22 +22,22 @@ public class DaftarRuangan extends Fragment {
     DaftarRuanganAdapter adapter;
     private ArrayList<DaftarRuanganItem> mItems;
     public DaftarRuangan(){}
-    //private DaftarPermohonanItem mItems; // ListView items list
+    //private DaftarRuanganItem mItems; // ListView items list
 
 
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.daftar_permohonan_ui, container, false);
-        lv = (ListView) rootView.findViewById(R.id.listPermohonan);
+        View rootView = inflater.inflate(R.layout.list_daftar_ruangan, container, false);
+        lv = (ListView) rootView.findViewById(R.id.list);
 
 
         mItems = new ArrayList<DaftarRuanganItem>();
         Resources resources = getResources();
-//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
-//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
-        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world)));
+//        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world) ));
+//        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world) ));
+        //TODO : ambil kode ruangan, masukin list
+        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world) ));
         mItems.add(new DaftarRuanganItem(getString(R.string.hello_world)));
         adapter = new DaftarRuanganAdapter(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
@@ -48,7 +45,7 @@ public class DaftarRuangan extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-
+                //TODO : get detail informasi suatu ruangan yang diklik
                 // Sending image id to FullScreenActivity
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailRuangan.class);
                 // passing array index
@@ -57,9 +54,5 @@ public class DaftarRuangan extends Fragment {
             }
         });
         return rootView;
-    }
-
-    private void onListItemClick(ListView l, View v, int position, long id) {
-        // retrieve theListView item
     }
 }

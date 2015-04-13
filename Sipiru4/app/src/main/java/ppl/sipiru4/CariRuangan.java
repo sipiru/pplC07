@@ -48,8 +48,8 @@ public  class CariRuangan extends Fragment
         mTabsAdapter = new TabsAdapter(getActivity(),mTabHost, mViewPager );
 
         // Here we load the content for each tab.
-        mTabsAdapter.addTab(mTabHost.newTabSpec("one").setIndicator("One"), CariRuanganRuang.class, null);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("two").setIndicator("Two"), CariRuanganWaktu.class, null);
+        mTabsAdapter.addTab(mTabHost.newTabSpec("Ruangan").setIndicator("Ruangan"), CariRuanganRuang.class, null);
+        mTabsAdapter.addTab(mTabHost.newTabSpec("WaktuPinjam").setIndicator("WaktuPinjam"), CariRuanganWaktu.class, null);
 
         return v;
     }

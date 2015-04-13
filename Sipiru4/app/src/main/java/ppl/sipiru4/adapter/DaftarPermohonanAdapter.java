@@ -2,20 +2,16 @@ package ppl.sipiru4.adapter;
 
 import ppl.sipiru4.R;
 import ppl.sipiru4.model.DaftarPermohonanItem;
-import ppl.sipiru4.model.NavDrawerItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +21,7 @@ public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> 
     private ArrayList<DaftarPermohonanItem> navDrawerItems;
 
     public DaftarPermohonanAdapter(Context context, List<DaftarPermohonanItem> items) {
-        super(context, R.layout.daftar_permohonan_ui, items );
+        super(context, R.layout.list_permohonan, items );
     }
 
     @Override
@@ -87,7 +83,7 @@ public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> 
     }
 
 /*   public DaftarPermohonanAdapter(Context context, ArrayList<DaftarPermohonanItem> navDrawerItems){
-        super(context, R.layout.daftar_permohonan_ui, navDrawerItems);
+        super(context, R.layout.list_permohonan, navDrawerItems);
         this.context = context;
         this.navDrawerItems = navDrawerItems;
     }

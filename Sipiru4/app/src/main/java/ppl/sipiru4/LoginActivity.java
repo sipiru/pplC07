@@ -45,68 +45,55 @@ public class LoginActivity extends Activity {
 
     public void authenticateLogin(View view) {
         //login as admin
-        if (username.getText().toString().equals("admin") &&
-
-                password.getText().toString().equals("admin")) {
-
-            Toast.makeText(getApplicationContext(), "Hello admin!",
-
-                    Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivityAdmin.class));
-
+        //TODO : periksa apakah username dan password terdaftar sebagai salah satu role
+        if ((username.getText().toString().equals("p") &&
+                password.getText().toString().equals("p"))
+){
+            Toast.makeText(getApplicationContext(), "Hello peminjam!",Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), MainActivityP.class);
+            // passing array index
+            i.putExtra("id", "peminjam");
+            startActivity(i);
         }
-        //login as peminjam
-        else if (username.getText().toString().equals("peminjam") &&
-
-                password.getText().toString().equals("peminjam")) {
-
-            Toast.makeText(getApplicationContext(), "Hello Peminjam!",
-
-                    Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivityPeminjam.class));
-
+        else if(username.getText().toString().equals("mr") &&
+                password.getText().toString().equals("mr")){
+            Toast.makeText(getApplicationContext(), "Hello manager ruangan!",Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), MainActivityMR.class);
+            // passing array index
+            i.putExtra("id", "manager ruangan");
+            startActivity(i);
         }
-        else if (username.getText().toString().equals("Manager Ruangan") &&
-
-                password.getText().toString().equals("Ruangan Ruangan")) {
-
-            Toast.makeText(getApplicationContext(), "Hello Manager Ruangan!",
-
-                    Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivityPeminjam.class));
-
+        else if(username.getText().toString().equals("mk") &&
+                password.getText().toString().equals("mk")){
+            Toast.makeText(getApplicationContext(), "Hello manager kemahasiswaan!",Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), MainActivityK.class);
+            // passing array index
+            i.putExtra("id", "manager kemahasiswaan");
+            startActivity(i);
         }
-        else if (username.getText().toString().equals("fasumitf") &&
-
-                password.getText().toString().equals("fasumitf")) {
-
-            Toast.makeText(getApplicationContext(), "Hello FasumITF!",
-
-                    Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivityPeminjam.class));
-
+        else if(username.getText().toString().equals("itf") &&
+                password.getText().toString().equals("itf")){
+            Toast.makeText(getApplicationContext(), "Hello fasum itf!",Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), MainActivityP.class);
+            // passing array index
+            i.putExtra("id", "fasum itf");
+            startActivity(i);
         }
-
-        else {
-
+        else if(username.getText().toString().equals("adm") &&
+                password.getText().toString().equals("adm")){
+            Toast.makeText(getApplicationContext(), "Hello admin!",Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), MainActivityP.class);
+            // passing array index
+            i.putExtra("id", "admin");
+            startActivity(i);
+        }else {
             Toast.makeText(getApplicationContext(), "Seems like you 're not admin!",
-
                     Toast.LENGTH_SHORT).show();
 
             numberOfRemainingLoginAttempts--;
-
-
-
-
-
             if (numberOfRemainingLoginAttempts == 0) {
-
                 login.setEnabled(false);
-
-
-
             }
-
         }
 
     }
@@ -117,7 +104,7 @@ public class LoginActivity extends Activity {
 
         username = (EditText) findViewById(R.id.editText1);
 
-        password = (EditText) findViewById(R.id.editText3);
+        password = (EditText) findViewById(R.id.editRuang);
 
         login = (Button) findViewById(R.id.buttonLogin);
         login.setOnClickListener(new View.OnClickListener() {

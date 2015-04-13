@@ -1,25 +1,25 @@
 package ppl.sipiru4.adapter;
 
-
-
-import ppl.sipiru4.model.DaftarPesanItem;
-
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.content.Context;
-import java.util.List;
-import ppl.sipiru4.R;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DaftarPesanDemoAdapter extends ArrayAdapter<DaftarPesanItem> {
+import java.util.ArrayList;
+import java.util.List;
 
-    public DaftarPesanDemoAdapter(Context context, List<DaftarPesanItem> items) {
-        super(context, R.layout.daftar_pesan_ui, items);
+import ppl.sipiru4.R;
+import ppl.sipiru4.model.JamTersediaItem;
+
+public class JamTersediaAdapter extends ArrayAdapter<JamTersediaItem> {
+
+    private Context context;
+    private ArrayList<JamTersediaItem> navDrawerItems;
+
+    public JamTersediaAdapter(Context context, List<JamTersediaItem> items) {
+        super(context, R.layout.list, items );
     }
 
     @Override
@@ -28,21 +28,21 @@ public class DaftarPesanDemoAdapter extends ArrayAdapter<DaftarPesanItem> {
         if(convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.daftar_pesan_ui, parent, false);
+            convertView = inflater.inflate(R.layout.ui_tiap_list_jamtersedia, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.judulPesan = (TextView) convertView.findViewById(R.id.label);
-            viewHolder.potonganPesan = (TextView) convertView.findViewById(R.id.label);
-            viewHolder.hapus = (ImageButton) convertView.findViewById(R.id.buttonDelPesan);
+            viewHolder.jamMulai = (TextView) convertView.findViewById(R.id.jamMulai);
+            viewHolder.jamSelesai = (TextView) convertView.findViewById(R.id.jamSelesai);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // update the item view
-        DaftarPesanItem item = getItem(position);
-        viewHolder.judulPesan.setText(item.judulPesan);
-        viewHolder.potonganPesan.setText(item.potonganPesan);
+        JamTersediaItem item = getItem(position);
+
+//        viewHolder.tvTitle.setText(item.title);
+
         return convertView;
     }
     /**
@@ -51,9 +51,10 @@ public class DaftarPesanDemoAdapter extends ArrayAdapter<DaftarPesanItem> {
      *
      * @see ://developer.android.com/training/improving-layouts/smooth-scrolling.html#ViewHolder
      */
+
     private static class ViewHolder {
-        TextView judulPesan;
-        TextView potonganPesan;
-        ImageButton hapus;
+        TextView jamMulai;
+        TextView jamSelesai;
     }
+
 }

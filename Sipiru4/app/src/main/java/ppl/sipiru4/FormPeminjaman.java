@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 /**
@@ -12,9 +13,18 @@ import android.widget.Toast;
  */
 public class FormPeminjaman extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_peminjaman_ui);
+        //TODO : semua isian disimpan ke database
+        EditText editRuang = (EditText)findViewById(R.id.editRuang);
+        EditText editNama = (EditText)findViewById(R.id.editNama);
+        EditText editNPM = (EditText)findViewById(R.id.editNPM);
+        EditText editPrihal = (EditText)findViewById(R.id.editPrihal);
+        //TODO : get tanggal peminjaman dari jadwal tersedia yang dipilih
+        EditText editTgl = (EditText)findViewById(R.id.editTgl);
+        //TODO : get jam peminjaman dari jadwal tersedia yang dipilih
+        EditText editJam = (EditText)findViewById(R.id.editJam);
+
         Button btnSubmit = (Button)findViewById(R.id.button1);
         btnSubmit.setOnClickListener(new View.OnClickListener()
         {

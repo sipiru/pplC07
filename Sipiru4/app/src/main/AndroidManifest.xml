@@ -30,12 +30,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity-->
-        <activity android:name=".MainActivityAdmin">
+        <activity android:name=".MainActivityP">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityPeminjam">
+        <activity android:name=".MainActivityK">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivityMR">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
@@ -50,17 +55,42 @@
             <action android:name="android.intent.action.MAIN2" />
         </intent-filter>
     </activity>
-        <activity android:name=".DetailPermohonan">
+        <activity android:name=".DetailPermohonanP">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPesan">
+        <activity android:name=".DetailPermohonanMR">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPeminjaman">
+        <activity android:name=".DetailPermohonanK">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPesanP">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPesanK">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPeminjamanP">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPeminjamanK">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPeminjamanMR">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
@@ -70,6 +100,7 @@
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
+
 
 
 </application>

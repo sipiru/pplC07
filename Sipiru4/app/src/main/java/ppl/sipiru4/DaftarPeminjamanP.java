@@ -11,18 +11,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ppl.sipiru4.adapter.DaftarPeminjamanAdapter;
-import ppl.sipiru4.adapter.DaftarPermohonanAdapter;
 import ppl.sipiru4.model.DaftarPeminjamanItem;
 
-public class DaftarPeminjaman extends Fragment {
+public class DaftarPeminjamanP extends Fragment {
     ListView lv;
 
     DaftarPeminjamanAdapter adapter;
     private ArrayList<DaftarPeminjamanItem> mItems;
-    public DaftarPeminjaman(){}
+    public DaftarPeminjamanP(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
 
@@ -30,7 +28,7 @@ public class DaftarPeminjaman extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.daftar_permohonan_ui, container, false);
+        View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
 
@@ -48,7 +46,7 @@ public class DaftarPeminjaman extends Fragment {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getActivity().getApplicationContext(), DetailPeminjaman.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPeminjamanP.class);
                 // passing array index
                 i.putExtra("id", position);
                 startActivity(i);

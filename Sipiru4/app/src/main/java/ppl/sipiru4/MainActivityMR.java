@@ -1,15 +1,14 @@
 package ppl.sipiru4;
 
-import ppl.sipiru4.adapter.NavDrawerListAdapter;
-import ppl.sipiru4.model.NavDrawerItem;
-
-import java.util.ArrayList;
-
-import android.support.v4.app.Fragment;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -19,7 +18,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class MainActivityAdmin extends FragmentActivity {
+import java.util.ArrayList;
+
+import ppl.sipiru4.adapter.NavDrawerListAdapter;
+import ppl.sipiru4.model.NavDrawerItem;
+
+public class MainActivityMR extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -28,11 +32,15 @@ public class MainActivityAdmin extends FragmentActivity {
     // nav drawer title
     private CharSequence mDrawerTitle;
 
+
     // used to store app title
     private CharSequence mTitle;
+    final Context context = this;
+    Intent i;
 
     // slide menu items
-    private String[] navMenuTitles;
+    private String[] menuPeminjam;
+
     private TypedArray navMenuIcons;
 
     private ArrayList<NavDrawerItem> navDrawerItems;
@@ -46,7 +54,7 @@ public class MainActivityAdmin extends FragmentActivity {
         mTitle = mDrawerTitle = getTitle();
 
         // load slide menu items
-        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+        menuPeminjam = getResources().getStringArray(R.array.nav_drawer_items_peminjam);
 
         // nav drawer icons from resources
         navMenuIcons = getResources()
@@ -57,21 +65,21 @@ public class MainActivityAdmin extends FragmentActivity {
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
-        // adding nav drawer items to array
-        // Cari Ruangan
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-        // Daftar Permohonan
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-        //Daftar Peminjaman
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-        // Daftar Pesan
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-        // Pesan Baru
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        // Ubah Status Permohonan
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-        // Logout
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+
+            // adding nav drawer items to array
+            // Cari Ruangan
+            navDrawerItems.add(new NavDrawerItem(menuPeminjam[0], navMenuIcons.getResourceId(0, -1)));
+            // Daftar Permohonan
+            navDrawerItems.add(new NavDrawerItem(menuPeminjam[1], navMenuIcons.getResourceId(1, -1)));
+            // Daftar Peminjaman
+            navDrawerItems.add(new NavDrawerItem(menuPeminjam[2], navMenuIcons.getResourceId(2, -2)));
+            // Daftar Pesan
+            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
+            // PesanBaru
+            navDrawerItems.add(new NavDrawerItem(menuPeminjam[4], navMenuIcons.getResourceId(4, -1)));
+            // Logout
+            navDrawerItems.add(new NavDrawerItem(menuPeminjam[5], navMenuIcons.getResourceId(5, -1)));
+
 
 
         // Recycle the typed array
@@ -169,23 +177,49 @@ public class MainActivityAdmin extends FragmentActivity {
                 fragment = new CariRuangan();
                 break;
             case 1:
-                fragment = new DaftarPermohonan();
+                fragment = new DaftarPermohonanMR();
                 break;
             case 2:
-                fragment = new DaftarPeminjaman();
+                fragment = new DaftarPeminjamanMR();
                 break;
             case 3:
-                fragment = new UbahStatusPeminjaman();
+                fragment = new DaftarPesanMR();
                 break;
             case 4:
-                fragment = new DaftarPesan();
-                break;
-            case 5:
                 fragment = new KirimPesan();
                 break;
-            case 6:
-                fragment = new Logout();
-                break;
+            case 5:
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        context);
+                // set title
+                alertDialogBuilder.setTitle("Apakah anda yakin untuk keluar dari SIPIRU ?");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Tekan Ya untuk keluar!")
+                        .setCancelable(false)
+                        .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, close
+                                // current activity
+                                MainActivityMR.this.finish();
+                            }
+                        })
+                        .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
             default:
                 break;
         }
@@ -200,7 +234,9 @@ public class MainActivityAdmin extends FragmentActivity {
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
-            setTitle(navMenuTitles[position]);
+                setTitle(menuPeminjam[position]);
+
+
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {
             // error in creating fragment

@@ -1,10 +1,11 @@
 package ppl.sipiru4;
 
 //import android.app.Fragment;
-import android.support.v4.app.Fragment;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,12 @@ import java.util.ArrayList;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapter;
 import ppl.sipiru4.model.DaftarPermohonanItem;
 
-public class DaftarPermohonan extends Fragment {
+public class DaftarPermohonanK extends Fragment {
     ListView lv;
 
     DaftarPermohonanAdapter adapter;
     private ArrayList<DaftarPermohonanItem> mItems;
-    public DaftarPermohonan(){}
+    public DaftarPermohonanK(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
 
@@ -29,7 +30,7 @@ public class DaftarPermohonan extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.daftar_permohonan_ui, container, false);
+        View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
 
@@ -47,7 +48,7 @@ public class DaftarPermohonan extends Fragment {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonan.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanP.class);
                 // passing array index
                 i.putExtra("id", position);
                 startActivity(i);
@@ -60,7 +61,7 @@ public class DaftarPermohonan extends Fragment {
         // retrieve theListView item
         DaftarPermohonanItem item = mItems.get(position);
 
-        Intent exampleIntent = new Intent(getActivity().getApplicationContext(), DetailPermohonan.class);
+        Intent exampleIntent = new Intent(getActivity().getApplicationContext(), DetailPermohonanP.class);
         exampleIntent.putExtra("ARGS", item.setTitle());
         startActivity(exampleIntent);
 
