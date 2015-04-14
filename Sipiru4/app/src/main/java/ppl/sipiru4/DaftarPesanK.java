@@ -14,13 +14,15 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ppl.sipiru4.adapter.DaftarPesanAdapter;
+import ppl.sipiru4.DetailPesan;
+import ppl.sipiru4.R;
+import ppl.sipiru4.adapter.DaftarPesanAdapterK;
 import ppl.sipiru4.model.DaftarPesanItem;
 
 public class DaftarPesanK extends Fragment {
     ListView lv;
 
-    DaftarPesanAdapter adapter;
+    DaftarPesanAdapterK adapter;
     private ArrayList<DaftarPesanItem> mItems;
     public DaftarPesanK(){}
     //private DaftarPesanItem mItems; // ListView items list
@@ -36,9 +38,10 @@ public class DaftarPesanK extends Fragment {
 
         mItems = new ArrayList<DaftarPesanItem>();
         Resources resources = getResources();
-        mItems.add(new DaftarPesanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman) ));
-        mItems.add(new DaftarPesanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman)));
-        adapter = new DaftarPesanAdapter(getActivity().getApplicationContext(),mItems);
+        //TODO : get daftar pesan manager kemahasiswaan dan masukkan ke arraylist mItems beberapa potongan pesannya saja
+        mItems.add(new DaftarPesanItem(("Pesan MK"), resources.getDrawable(R.drawable.status_pinjaman) ));
+        mItems.add(new DaftarPesanItem(("Pesan MK"), resources.getDrawable(R.drawable.status_pinjaman)));
+        adapter = new DaftarPesanAdapterK(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -46,7 +49,8 @@ public class DaftarPesanK extends Fragment {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getActivity().getApplicationContext(), DetailPesanP.class);
+                //TODO : get detail pesan dari manager kemahasiswaan yang diklik
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPesan.class);
                 // passing array index
                 i.putExtra("id", position);
                 startActivity(i);

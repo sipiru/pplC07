@@ -67,12 +67,12 @@ public class MainActivityK extends FragmentActivity {
 
 
             // adding nav drawer items to array
-            // Cari Ruangan
-            navDrawerItems.add(new NavDrawerItem(menuK[0], navMenuIcons.getResourceId(0, -1)));
             // Daftar Permohonan
+            navDrawerItems.add(new NavDrawerItem(menuK[0], navMenuIcons.getResourceId(0, -1)));
+            // Daftar Peminjaman
             navDrawerItems.add(new NavDrawerItem(menuK[1], navMenuIcons.getResourceId(1, -1)));
             // Daftar Pesan
-            navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -2)));
             // PesanBaru
             navDrawerItems.add(new NavDrawerItem(menuK[3], navMenuIcons.getResourceId(3, -1)));
             // Logout
@@ -172,13 +172,13 @@ public class MainActivityK extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new CariRuangan();
+                fragment = new DaftarPermohonanK();
                 break;
             case 1:
-                fragment = new DaftarPermohonanP();
+                fragment = new DaftarPeminjamanK();
                 break;
             case 2:
-                fragment = new DaftarPesanP();
+                fragment = new DaftarPesanK();
                 break;
             case 3:
                 fragment = new KirimPesan();

@@ -9,6 +9,9 @@
     android:background="#B1D9E7"
     android:id="@+id/layoutForm1">
 
+
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,7 +113,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tgl       :"
+        android:text="Hari       :"
         android:textSize="30dp"
         android:id="@+id/textView6"
         android:textColor="#ff000000"
@@ -173,12 +176,24 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/permintaanlain"
+        android:id="@+id/permintaanLain"
         android:layout_below="@+id/textView8"
         android:layout_alignRight="@+id/jam"
         android:layout_alignEnd="@+id/jam"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="#D3F0D2" />
+
+
+    <Button
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:text="SELESAI"
+        android:id="@+id/btnSelesai"
+        android:background="#ff83aae5"
+        android:textSize="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

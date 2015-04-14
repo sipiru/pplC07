@@ -38,8 +38,7 @@ public class CariRuanganWaktu extends Fragment {
             @Override
             public void onClick(View v)
             {
-                //TODO : simpan tgl mulai, tgl selesai, jam mulai, dan jam selesai untuk ditampilkan nanti didaftar peminjaman
-
+                //TODO : get daftar ruangan yang bisa dipinjam sesuai dengan tgl mulai ...dst yang diinput pengguna
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan());
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);

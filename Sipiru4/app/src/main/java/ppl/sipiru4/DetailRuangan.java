@@ -31,11 +31,11 @@ public class DetailRuangan extends Activity {
         //TODO : get kapasitas ruangan
         kapasitas.setText("40");
         TextView fasilitas = (TextView)findViewById(R.id.fasilitas);
-        //TODO :get fasilitas suatu ruangan
+        //TODO :get fasilitas ruangan
         fasilitas.setText("mikrofon");
         lv = (ListView)findViewById(R.id.listJam);
         mItems = new ArrayList<JamTersediaItem>();
-        //TODO: ambil jam mulai dan jam selesai jadwal suatu raungan, masukin ke ArrayList
+        //TODO: menampilkan kapan saja suatu ruangan bisa dipinjam
         mItems.add(new JamTersediaItem("07.00", "08.00"));
         mItems.add(new JamTersediaItem("05.00", "08.00"));
         adapter = new JamTersediaAdapter(getApplicationContext(),mItems);
@@ -44,7 +44,7 @@ public class DetailRuangan extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                //TODO : load data jam mulai dan jam selesai raungan tadi ke dalam Form
+                //TODO : menampilkan form yang jamMulai, jamSelesai, tglMulai, dan tglSelesai sesuai dengan masukan pengguna
                 // Sending image id to FullScreenActivity
                 Intent i = new Intent(getApplicationContext(), FormPeminjaman.class);
                 // passing array index

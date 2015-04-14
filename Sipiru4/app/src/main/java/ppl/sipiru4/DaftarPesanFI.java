@@ -14,15 +14,16 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ppl.sipiru4.adapter.DaftarPesanAdapterP;
+import ppl.sipiru4.adapter.DaftarPesanAdapterFI;
+import ppl.sipiru4.adapter.DaftarPesanAdapterK;
 import ppl.sipiru4.model.DaftarPesanItem;
 
-public class DaftarPesanMR extends Fragment {
+public class DaftarPesanFI extends Fragment {
     ListView lv;
 
-    DaftarPesanAdapterP adapter;
+    DaftarPesanAdapterFI adapter;
     private ArrayList<DaftarPesanItem> mItems;
-    public DaftarPesanMR(){}
+    public DaftarPesanFI(){}
     //private DaftarPesanItem mItems; // ListView items list
 
 
@@ -36,10 +37,10 @@ public class DaftarPesanMR extends Fragment {
 
         mItems = new ArrayList<DaftarPesanItem>();
         Resources resources = getResources();
-        //TODO : get data daftar pesan milik manager ruangan dan simpan di ArrayList beberapa potongan pesannya saja
-        mItems.add(new DaftarPesanItem(("Pesan MR 1"), resources.getDrawable(R.drawable.status_pinjaman) ));
-        mItems.add(new DaftarPesanItem(("Pesan MR 2"), resources.getDrawable(R.drawable.status_pinjaman)));
-        adapter = new DaftarPesanAdapterP(getActivity().getApplicationContext(),mItems);
+        //TODO : get daftar pesan FASUM ITF dan masukkan ke arraylist mItems
+        mItems.add(new DaftarPesanItem(("Pesan FI"), resources.getDrawable(R.drawable.status_pinjaman) ));
+        mItems.add(new DaftarPesanItem(("Pesan FI"), resources.getDrawable(R.drawable.status_pinjaman)));
+        adapter = new DaftarPesanAdapterFI(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -47,6 +48,7 @@ public class DaftarPesanMR extends Fragment {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
+                //TODO : get detail pesan dari manager kemahasiswaan yang diklik
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailPesan.class);
                 // passing array index
                 i.putExtra("id", position);

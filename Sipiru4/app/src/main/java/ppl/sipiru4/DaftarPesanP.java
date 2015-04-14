@@ -14,13 +14,13 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ppl.sipiru4.adapter.DaftarPesanAdapter;
+import ppl.sipiru4.adapter.DaftarPesanAdapterP;
 import ppl.sipiru4.model.DaftarPesanItem;
 
 public class DaftarPesanP extends Fragment {
     ListView lv;
 
-    DaftarPesanAdapter adapter;
+    DaftarPesanAdapterP adapter;
     private ArrayList<DaftarPesanItem> mItems;
     public DaftarPesanP(){}
     //private DaftarPesanItem mItems; // ListView items list
@@ -36,10 +36,10 @@ public class DaftarPesanP extends Fragment {
 
         mItems = new ArrayList<DaftarPesanItem>();
         Resources resources = getResources();
-        //TODO : get daftar pesan peminjam dan masukkan ke arraylist mItems
+        //TODO : get daftar pesan peminjam dan masukkan ke arraylist mItems beberapa potongan pesannya saja
         mItems.add(new DaftarPesanItem(("Pesan 1"), resources.getDrawable(R.drawable.status_pinjaman) ));
         mItems.add(new DaftarPesanItem(("Pesan 2"), resources.getDrawable(R.drawable.status_pinjaman)));
-        adapter = new DaftarPesanAdapter(getActivity().getApplicationContext(),mItems);
+        adapter = new DaftarPesanAdapterP(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -47,7 +47,7 @@ public class DaftarPesanP extends Fragment {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getActivity().getApplicationContext(), DetailPesanP.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPesan.class);
                 // passing array index
                 i.putExtra("id", position);
                 startActivity(i);

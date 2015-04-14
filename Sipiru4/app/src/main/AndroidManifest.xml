@@ -45,6 +45,11 @@
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivityFI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
         <activity android:name=".DaftarRuangan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
@@ -70,12 +75,12 @@
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPesanP">
+        <activity android:name=".DetailPermohonanFI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPesanK">
+        <activity android:name=".DetailPesan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>
@@ -91,6 +96,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailPeminjamanMR">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN2" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPeminjamanFI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
             </intent-filter>

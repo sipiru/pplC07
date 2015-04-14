@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DetailPesanP extends Activity {
+public class DetailPesan extends Activity {
 
 
 
@@ -16,9 +16,10 @@ public class DetailPesanP extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_pesan_p);
+        //TODO menampilkan pengirim dan isi pesan
         EditText dari = (EditText)findViewById(R.id.editDari);
         TextView isi = (TextView)findViewById(R.id.editIsi);
-        EditText balas = (EditText)findViewById(R.id.editIsiPesan);
+        EditText balas = (EditText)findViewById(R.id.balas);
         Button kirim = (Button)findViewById(R.id.buttonKirim);
         kirim.setOnClickListener(new View.OnClickListener() {
             @Override

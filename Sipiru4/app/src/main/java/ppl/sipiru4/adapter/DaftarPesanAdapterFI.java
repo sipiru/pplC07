@@ -15,12 +15,12 @@ import java.util.List;
 import ppl.sipiru4.R;
 import ppl.sipiru4.model.DaftarPesanItem;
 
-public class DaftarPesanAdapter extends ArrayAdapter<DaftarPesanItem> {
+public class DaftarPesanAdapterFI extends ArrayAdapter<DaftarPesanItem> {
 
     private Context context;
     private ArrayList<DaftarPesanItem> navDrawerItems;
 
-    public DaftarPesanAdapter(Context context, List<DaftarPesanItem> items) {
+    public DaftarPesanAdapterFI(Context context, List<DaftarPesanItem> items) {
         super(context, R.layout.list_daftarpesan, items );
     }
 
@@ -68,41 +68,4 @@ public class DaftarPesanAdapter extends ArrayAdapter<DaftarPesanItem> {
         TextView tvTitle;
         Button hapus;
     }
-
-/*   public DaftarPesanAdapter(Context context, ArrayList<DaftarPesanItem> navDrawerItems){
-        super(context, R.layout.list_Pesan, navDrawerItems);
-        this.context = context;
-        this.navDrawerItems = navDrawerItems;
-    }
-
-    @Override
-    public int getCount() {
-        return navDrawerItems.size();
-    }
-
-*//*    @Override
-    public Object getItem(int position) {
-        return navDrawerItems.get(position);
-    }*//*
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            LayoutInflater mInflater = (LayoutInflater)
-                    context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.ui_tiap_list_Pesan, null);
-        }
-
-        TextView txtTitle = (TextView) convertView.findViewById(R.id.label);
-        txtTitle.setText(navDrawerItems.get(position).getTitle());
-        Button btnSetuju = (Button) convertView.findViewById(R.id.setuju);
-        Button btnTolak =(Button) convertView.findViewById(R.id.tolak);
-        return convertView;
-    }*/
-
 }

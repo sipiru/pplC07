@@ -1,4 +1,4 @@
-package ppl.sipiru4;
+package ppl.sipiru4.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DetailPermohonanMR extends Activity {
+import ppl.sipiru4.R;
+
+public class DetailPermohonanK extends Activity {
     final Context context = this;
 
 
@@ -18,7 +20,7 @@ public class DetailPermohonanMR extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.validasi_mr);
-        //TODO : menampilkan data permohonan yang diterima oleh manager ruangan
+        //TODO : generate dari data permohonan
         TextView ruang = (TextView)findViewById(R.id.ruang);
         TextView nama = (TextView)findViewById(R.id.nama);
         TextView npm = (TextView)findViewById(R.id.npm);
@@ -33,7 +35,7 @@ public class DetailPermohonanMR extends Activity {
         btnTeruskan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : send data permohonan ke manager kemahasiswaan
+                //TODO : send data ke manager kemahasiswaan
                 Toast.makeText(getApplicationContext(), "Data permohonan berhasil di teruskan ke Manager Kemahasiswaan",
                         Toast.LENGTH_SHORT).show();
             }
@@ -51,6 +53,7 @@ public class DetailPermohonanMR extends Activity {
         btnTolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO : update data permohonan
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         context);

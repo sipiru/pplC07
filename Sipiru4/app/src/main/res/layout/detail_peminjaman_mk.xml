@@ -173,7 +173,7 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/permintaanlain"
+        android:id="@+id/permintaanLain"
         android:layout_below="@+id/textView8"
         android:layout_alignRight="@+id/jam"
         android:layout_alignEnd="@+id/jam"

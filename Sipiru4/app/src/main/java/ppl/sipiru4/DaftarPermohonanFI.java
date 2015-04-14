@@ -1,5 +1,7 @@
 package ppl.sipiru4;
 
+//import android.app.Fragment;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -12,15 +14,17 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ppl.sipiru4.adapter.DaftarPeminjamanAdapterMR;
-import ppl.sipiru4.model.DaftarPeminjamanItemMR;
+import ppl.sipiru4.adapter.DaftarPermohonanAdapterFI;
+import ppl.sipiru4.adapter.DaftarPermohonanAdapterK;
+import ppl.sipiru4.model.DaftarPermohonanItemFI;
+import ppl.sipiru4.model.DaftarPermohonanItemK;
 
-public class DaftarPeminjamanMR extends Fragment {
+public class DaftarPermohonanFI extends Fragment {
     ListView lv;
 
-    DaftarPeminjamanAdapterMR adapter;
-    private ArrayList<DaftarPeminjamanItemMR> mItems;
-    public DaftarPeminjamanMR(){}
+    DaftarPermohonanAdapterFI adapter;
+    private ArrayList<DaftarPermohonanItemFI> mItems;
+    public DaftarPermohonanFI(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
 
@@ -28,18 +32,16 @@ public class DaftarPeminjamanMR extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
-        lv = (ListView) rootView.findViewById(R.id.listPermohonan);
+        View rootView = inflater.inflate(R.layout.list, container, false);
+        lv = (ListView) rootView.findViewById(R.id.list);
 
 
-        mItems = new ArrayList<DaftarPeminjamanItemMR>();
+        mItems = new ArrayList<DaftarPermohonanItemFI>();
         Resources resources = getResources();
-        //TODO get daftar peminjaman yang dimiliki oleh manager ruangan dan masukkan npm peminjam dan
-        // kode ruangan peminjam ke dalam ArrayList mItems untuk ditampilkan di Daftar peminjaman Manager ruangan
-
-        mItems.add(new DaftarPeminjamanItemMR(("1106022654"), ("3113")));
-        mItems.add(new DaftarPeminjamanItemMR(("1106022452"), ("3304")));
-        adapter = new DaftarPeminjamanAdapterMR(getActivity().getApplicationContext(),mItems);
+        //TODO : get data daftar permohonan di FasumITF (npm peminjam dan ruangan yang dipinjam) dan masukkan ke arraylist
+        mItems.add(new DaftarPermohonanItemFI(("1106022654FI"), ("3113")));
+        mItems.add(new DaftarPermohonanItemFI(("1106022452FI"), ("3304")));
+        adapter = new DaftarPermohonanAdapterFI(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -47,7 +49,7 @@ public class DaftarPeminjamanMR extends Fragment {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getActivity().getApplicationContext(), DetailPeminjamanMR.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanFI.class);
                 // passing array index
                 i.putExtra("id", position);
                 startActivity(i);

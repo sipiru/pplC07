@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.model.NavDrawerItem;
 
-public class MainActivityMR extends FragmentActivity {
+public class MainActivityFI extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -39,7 +39,7 @@ public class MainActivityMR extends FragmentActivity {
     Intent i;
 
     // slide menu items
-    private String[] menuMR;
+    private String[] menuFI;
 
     private TypedArray navMenuIcons;
 
@@ -54,7 +54,7 @@ public class MainActivityMR extends FragmentActivity {
         mTitle = mDrawerTitle = getTitle();
 
         // load slide menu items
-        menuMR = getResources().getStringArray(R.array.nav_drawer_items_mr);
+        menuFI = getResources().getStringArray(R.array.nav_drawer_items_fasumitf);
 
         // nav drawer icons from resources
         navMenuIcons = getResources()
@@ -68,15 +68,15 @@ public class MainActivityMR extends FragmentActivity {
 
             // adding nav drawer items to array
             // Daftar Permohonan
-            navDrawerItems.add(new NavDrawerItem(menuMR[0], navMenuIcons.getResourceId(0, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuFI[0], navMenuIcons.getResourceId(0, -1)));
             // Daftar Peminjaman
-            navDrawerItems.add(new NavDrawerItem(menuMR[1], navMenuIcons.getResourceId(1, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuFI[1], navMenuIcons.getResourceId(1, -1)));
             // Daftar Pesan
-            navDrawerItems.add(new NavDrawerItem(menuMR[2], navMenuIcons.getResourceId(2, -2)));
+            navDrawerItems.add(new NavDrawerItem(menuFI[2], navMenuIcons.getResourceId(2, -2)));
             // PesanBaru
-            navDrawerItems.add(new NavDrawerItem(menuMR[3], navMenuIcons.getResourceId(3, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuFI[3], navMenuIcons.getResourceId(3, -1)));
             // Logout
-            navDrawerItems.add(new NavDrawerItem(menuMR[4], navMenuIcons.getResourceId(4, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuFI[4], navMenuIcons.getResourceId(4, -1)));
 
 
 
@@ -172,13 +172,13 @@ public class MainActivityMR extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new DaftarPermohonanMR();
+                fragment = new DaftarPermohonanFI();
                 break;
             case 1:
-                fragment = new DaftarPeminjamanMR();
+                fragment = new DaftarPeminjamanFI();
                 break;
             case 2:
-                fragment = new DaftarPesanMR();
+                fragment = new DaftarPesanFI();
                 break;
             case 3:
                 fragment = new KirimPesan();
@@ -197,7 +197,7 @@ public class MainActivityMR extends FragmentActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, close
                                 // current activity
-                                MainActivityMR.this.finish();
+                                MainActivityFI.this.finish();
                             }
                         })
                         .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
@@ -229,7 +229,7 @@ public class MainActivityMR extends FragmentActivity {
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
-                setTitle(menuMR[position]);
+                setTitle(menuFI[position]);
 
 
             mDrawerLayout.closeDrawer(mDrawerList);

@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:id="@+id/Ruang"
+        android:id="@+id/ruang"
         android:layout_gravity="center_vertical"
         android:background="#D3F0D2"
         android:layout_alignParentRight="true"
@@ -48,14 +48,14 @@
     <TextView
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:id="@+id/Nama"
+        android:id="@+id/nama"
         android:layout_gravity="center_vertical"
         android:background="#D3F0D2"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/Ruang"
-        android:layout_alignStart="@+id/Ruang"
-        android:layout_alignRight="@+id/Ruang"
-        android:layout_alignEnd="@+id/Ruang"
+        android:layout_alignLeft="@+id/ruang"
+        android:layout_alignStart="@+id/ruang"
+        android:layout_alignRight="@+id/ruang"
+        android:layout_alignEnd="@+id/ruang"
         android:layout_marginTop="10dp" />
 
     <TextView
@@ -73,14 +73,14 @@
     <TextView
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:id="@+id/NPM"
+        android:id="@+id/npm"
         android:layout_gravity="center_vertical"
         android:background="#D3F0D2"
         android:layout_alignTop="@+id/textView4"
-        android:layout_alignLeft="@+id/Nama"
-        android:layout_alignStart="@+id/Nama"
-        android:layout_alignRight="@+id/Nama"
-        android:layout_alignEnd="@+id/Nama" />
+        android:layout_alignLeft="@+id/nama"
+        android:layout_alignStart="@+id/nama"
+        android:layout_alignRight="@+id/nama"
+        android:layout_alignEnd="@+id/nama" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -97,15 +97,15 @@
     <TextView
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:id="@+id/Prihal"
+        android:id="@+id/prihal"
         android:layout_gravity="center_vertical"
         android:background="#D3F0D2"
         android:layout_alignTop="@+id/textView5"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@+id/textView5"
-        android:layout_alignLeft="@+id/NPM"
-        android:layout_alignStart="@+id/NPM" />
+        android:layout_alignLeft="@+id/npm"
+        android:layout_alignStart="@+id/npm" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -122,14 +122,14 @@
     <TextView
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:id="@+id/Tgl"
+        android:id="@+id/tgl"
         android:layout_gravity="center_vertical"
         android:background="#D3F0D2"
-        android:layout_below="@+id/Prihal"
-        android:layout_alignLeft="@+id/Prihal"
-        android:layout_alignStart="@+id/Prihal"
-        android:layout_alignRight="@+id/Prihal"
-        android:layout_alignEnd="@+id/Prihal"
+        android:layout_below="@+id/prihal"
+        android:layout_alignLeft="@+id/prihal"
+        android:layout_alignStart="@+id/prihal"
+        android:layout_alignRight="@+id/prihal"
+        android:layout_alignEnd="@+id/prihal"
         android:layout_marginTop="10dp" />
 
     <TextView
@@ -147,15 +147,15 @@
     <TextView
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:id="@+id/Jam"
+        android:id="@+id/jam"
         android:layout_gravity="center_vertical"
         android:background="#D3F0D2"
         android:layout_alignTop="@+id/textView7"
-        android:layout_alignRight="@+id/Tgl"
-        android:layout_alignEnd="@+id/Tgl"
+        android:layout_alignRight="@+id/tgl"
+        android:layout_alignEnd="@+id/tgl"
         android:layout_alignBottom="@+id/textView7"
-        android:layout_alignLeft="@+id/Tgl"
-        android:layout_alignStart="@+id/Tgl" />
+        android:layout_alignLeft="@+id/tgl"
+        android:layout_alignStart="@+id/tgl" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -175,8 +175,8 @@
         android:ems="10"
         android:id="@+id/permintaanlain"
         android:layout_below="@+id/textView8"
-        android:layout_alignRight="@+id/Jam"
-        android:layout_alignEnd="@+id/Jam"
+        android:layout_alignRight="@+id/jam"
+        android:layout_alignEnd="@+id/jam"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="#D3F0D2" />

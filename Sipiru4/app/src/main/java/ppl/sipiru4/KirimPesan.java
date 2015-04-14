@@ -1,7 +1,5 @@
 package ppl.sipiru4;
 
-import android.content.Intent;
-import android.preference.EditTextPreference;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,9 +19,11 @@ public class KirimPesan extends Fragment {
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.kirim_pesan_ui, container, false);
+
         Spinner penerima = (Spinner)rootView.findViewById(R.id.penerima);
-        EditText isiPesan =(EditText)rootView.findViewById(R.id.editIsiPesan);
+        EditText isiPesan =(EditText)rootView.findViewById(R.id.ruang);
         Button button = (Button) rootView.findViewById(R.id.buttonKirim);
+
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override

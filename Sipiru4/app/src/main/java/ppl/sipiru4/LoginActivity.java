@@ -74,7 +74,7 @@ public class LoginActivity extends Activity {
         else if(username.getText().toString().equals("itf") &&
                 password.getText().toString().equals("itf")){
             Toast.makeText(getApplicationContext(), "Hello fasum itf!",Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(getApplicationContext(), MainActivityP.class);
+            Intent i = new Intent(getApplicationContext(), MainActivityFI.class);
             // passing array index
             i.putExtra("id", "fasum itf");
             startActivity(i);
@@ -104,7 +104,7 @@ public class LoginActivity extends Activity {
 
         username = (EditText) findViewById(R.id.editText1);
 
-        password = (EditText) findViewById(R.id.editIsiPesan);
+        password = (EditText) findViewById(R.id.ruang);
 
         login = (Button) findViewById(R.id.buttonLogin);
         login.setOnClickListener(new View.OnClickListener() {

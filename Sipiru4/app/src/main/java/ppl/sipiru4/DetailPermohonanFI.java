@@ -10,15 +10,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DetailPermohonanMR extends Activity {
+import ppl.sipiru4.R;
+
+public class DetailPermohonanFI extends Activity {
     final Context context = this;
 
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.validasi_mr);
-        //TODO : menampilkan data permohonan yang diterima oleh manager ruangan
+        setContentView(R.layout.detail_permohonan_mk);
+        //TODO : generate dari deskripsi suatu permohonan yang diterima oleh Fasum
         TextView ruang = (TextView)findViewById(R.id.ruang);
         TextView nama = (TextView)findViewById(R.id.nama);
         TextView npm = (TextView)findViewById(R.id.npm);
@@ -29,21 +31,13 @@ public class DetailPermohonanMR extends Activity {
         TextView jamSelesai = (TextView)findViewById(R.id.jamSelesai);
         TextView permintaanLain = (TextView)findViewById(R.id.permintaanLain);
 
-        Button btnTeruskan = (Button)findViewById(R.id.btnteruskan);
-        btnTeruskan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO : send data permohonan ke manager kemahasiswaan
-                Toast.makeText(getApplicationContext(), "Data permohonan berhasil di teruskan ke Manager Kemahasiswaan",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-        Button btnUpdate = (Button)findViewById(R.id.btnSetuju);
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
+
+        Button btnSetuju = (Button)findViewById(R.id.btnSetuju);
+        btnSetuju.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO : update data permohonan
-                Toast.makeText(getApplicationContext(), "Data permohonan berhasil di update",
+                Toast.makeText(getApplicationContext(), "Data permohonan berhasil di disetujui",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -51,6 +45,7 @@ public class DetailPermohonanMR extends Activity {
         btnTolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO : update data permohonan
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         context);
@@ -63,7 +58,7 @@ public class DetailPermohonanMR extends Activity {
                         .setCancelable(false)
                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
-                                //TODO : kirim pesan penolakan ke peminjam
+                                //TODO : kirim pesan penolakan ke peminjam bahwa permohonan ditolak oleh FASUM/ITF
                                 //TODO : hapus data permohonan
                                 //TODO : panggil fragment daftar permohonan --UI
                             }

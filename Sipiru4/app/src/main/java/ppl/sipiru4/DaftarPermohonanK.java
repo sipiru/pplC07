@@ -1,9 +1,11 @@
 package ppl.sipiru4;
 
-import android.support.v4.app.Fragment;
+//import android.app.Fragment;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +14,16 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ppl.sipiru4.adapter.DaftarPeminjamanAdapterP;
-import ppl.sipiru4.model.DaftarPeminjamanItemP;
+import ppl.sipiru4.adapter.DaftarPermohonanAdapterK;
+import ppl.sipiru4.model.DaftarPeminjamanItemMR;
+import ppl.sipiru4.model.DaftarPermohonanItemK;
 
-public class DaftarPeminjamanP extends Fragment {
+public class DaftarPermohonanK extends Fragment {
     ListView lv;
 
-    DaftarPeminjamanAdapterP adapter;
-    private ArrayList<DaftarPeminjamanItemP> mItems;
-
-    public DaftarPeminjamanP(){}
+    DaftarPermohonanAdapterK adapter;
+    private ArrayList<DaftarPermohonanItemK> mItems;
+    public DaftarPermohonanK(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
 
@@ -33,12 +35,12 @@ public class DaftarPeminjamanP extends Fragment {
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
 
-        mItems = new ArrayList<DaftarPeminjamanItemP>();
+        mItems = new ArrayList<DaftarPermohonanItemK>();
         Resources resources = getResources();
-        //TODO : get data nama ruangan yang dipinjam dan status peminjaman seorang peminjam, masukkin array mItems
-        mItems.add(new DaftarPeminjamanItemP(("2304"), ("closed")));
-        mItems.add(new DaftarPeminjamanItemP(("2303"), ("closed")));
-        adapter = new DaftarPeminjamanAdapterP(getActivity().getApplicationContext(),mItems);
+        //TODO : get data daftar permohonan di manager kemahasiswaan (npm peminjam dan ruangan yang dipinjam) dan masukkan ke arraylist
+        mItems.add(new DaftarPermohonanItemK(("1106022654"), ("3113")));
+        mItems.add(new DaftarPermohonanItemK(("1106022452"), ("3304")));
+        adapter = new DaftarPermohonanAdapterK(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -46,7 +48,7 @@ public class DaftarPeminjamanP extends Fragment {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getActivity().getApplicationContext(), DetailPeminjamanP.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanK.class);
                 // passing array index
                 i.putExtra("id", position);
                 startActivity(i);

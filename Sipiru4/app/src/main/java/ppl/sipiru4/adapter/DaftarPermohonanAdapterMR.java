@@ -1,7 +1,7 @@
 package ppl.sipiru4.adapter;
 
 import ppl.sipiru4.R;
-import ppl.sipiru4.model.DaftarPermohonanItem;
+import ppl.sipiru4.model.DaftarPermohonanItemMR;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +15,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> {
+public class DaftarPermohonanAdapterMR extends ArrayAdapter<DaftarPermohonanItemMR> {
 
     private Context context;
-    private ArrayList<DaftarPermohonanItem> navDrawerItems;
+    private ArrayList<DaftarPermohonanItemMR> navDrawerItems;
 
-    public DaftarPermohonanAdapter(Context context, List<DaftarPermohonanItem> items) {
+    public DaftarPermohonanAdapterMR(Context context, List<DaftarPermohonanItemMR> items) {
         super(context, R.layout.list_permohonan, items );
     }
 
@@ -62,7 +62,7 @@ public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> 
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // update the item view
-        DaftarPermohonanItem item = getItem(position);
+        DaftarPermohonanItemMR item = getItem(position);
 
         viewHolder.tvTitle.setText(item.title);
 

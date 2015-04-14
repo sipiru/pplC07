@@ -14,14 +14,14 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ppl.sipiru4.adapter.DaftarPermohonanAdapter;
-import ppl.sipiru4.model.DaftarPermohonanItem;
+import ppl.sipiru4.adapter.DaftarPermohonanAdapterMR;
+import ppl.sipiru4.model.DaftarPermohonanItemMR;
 
 public class DaftarPermohonanMR extends Fragment {
     ListView lv;
 
-    DaftarPermohonanAdapter adapter;
-    private ArrayList<DaftarPermohonanItem> mItems;
+    DaftarPermohonanAdapterMR adapter;
+    private ArrayList<DaftarPermohonanItemMR> mItems;
     public DaftarPermohonanMR(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
@@ -34,13 +34,12 @@ public class DaftarPermohonanMR extends Fragment {
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
 
-        mItems = new ArrayList<DaftarPermohonanItem>();
+        mItems = new ArrayList<DaftarPermohonanItemMR>();
         Resources resources = getResources();
-//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
-//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
-        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
-        mItems.add(new DaftarPermohonanItem("jkjk", resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
-        adapter = new DaftarPermohonanAdapter(getActivity().getApplicationContext(),mItems);
+        //TODO get data permohonan di manager ruangan
+        mItems.add(new DaftarPermohonanItemMR(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
+        mItems.add(new DaftarPermohonanItemMR("jkjk", resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
+        adapter = new DaftarPermohonanAdapterMR(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

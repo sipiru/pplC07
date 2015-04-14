@@ -21,10 +21,9 @@ public class DaftarRuangan extends Fragment {
 
     DaftarRuanganAdapter adapter;
     private ArrayList<DaftarRuanganItem> mItems;
-    public DaftarRuangan(){}
-    //private DaftarRuanganItem mItems; // ListView items list
+    public DaftarRuangan(){
 
-
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,9 +33,8 @@ public class DaftarRuangan extends Fragment {
 
         mItems = new ArrayList<DaftarRuanganItem>();
         Resources resources = getResources();
-//        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world) ));
-//        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world) ));
-        //TODO : ambil kode ruangan, masukin list
+        //TODO : menampilkan daftar ruangan yang bisa dipinjam
+        //TODO : ambil kode ruangan, masukin list (yang ditampilkan kode ruangannya saja)
         mItems.add(new DaftarRuanganItem("2305" ));
         mItems.add(new DaftarRuanganItem("2304"));
         adapter = new DaftarRuanganAdapter(getActivity().getApplicationContext(),mItems);
@@ -45,7 +43,7 @@ public class DaftarRuangan extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                //TODO : get detail informasi suatu ruangan yang diklik
+                //TODO : get detail informasi suatu ruangan yang diklik, ditampilkan dikelas DetailRuangan
                 // Sending image id to FullScreenActivity
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailRuangan.class);
                 // passing array index
