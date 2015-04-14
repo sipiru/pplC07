@@ -41,7 +41,8 @@ public class JamTersediaAdapter extends ArrayAdapter<JamTersediaItem> {
         // update the item view
         JamTersediaItem item = getItem(position);
 
-//        viewHolder.tvTitle.setText(item.title);
+        viewHolder.jamMulai.setText(item.jamMulai);
+        viewHolder.jamSelesai.setText(item.jamSelesai);
 
         return convertView;
     }

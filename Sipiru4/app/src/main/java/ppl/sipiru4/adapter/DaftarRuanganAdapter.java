@@ -41,7 +41,7 @@ public class DaftarRuanganAdapter extends ArrayAdapter<DaftarRuanganItem> {
         // update the item view
         DaftarRuanganItem item = getItem(position);
 
-//        viewHolder.tvTitle.setText(item.title);
+       viewHolder.tvTitle.setText(item.title);
 
         return convertView;
     }

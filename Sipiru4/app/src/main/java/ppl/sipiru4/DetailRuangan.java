@@ -36,8 +36,8 @@ public class DetailRuangan extends Activity {
         lv = (ListView)findViewById(R.id.listJam);
         mItems = new ArrayList<JamTersediaItem>();
         //TODO: ambil jam mulai dan jam selesai jadwal suatu raungan, masukin ke ArrayList
-        mItems.add(new JamTersediaItem(getString(R.string.hello_world), getString(R.string.hello_world)));
-        mItems.add(new JamTersediaItem(getString(R.string.hello_world), getString(R.string.hello_world)));
+        mItems.add(new JamTersediaItem("07.00", "08.00"));
+        mItems.add(new JamTersediaItem("05.00", "08.00"));
         adapter = new JamTersediaAdapter(getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -37,8 +37,8 @@ public class DaftarRuangan extends Fragment {
 //        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world) ));
 //        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world) ));
         //TODO : ambil kode ruangan, masukin list
-        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world) ));
-        mItems.add(new DaftarRuanganItem(getString(R.string.hello_world)));
+        mItems.add(new DaftarRuanganItem("2305" ));
+        mItems.add(new DaftarRuanganItem("2304"));
         adapter = new DaftarRuanganAdapter(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
