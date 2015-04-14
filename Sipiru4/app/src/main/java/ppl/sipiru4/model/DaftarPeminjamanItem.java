@@ -8,7 +8,7 @@ public class DaftarPeminjamanItem {
     public final String title;
 
     // the text for the ListView item title
-    public DaftarPeminjamanItem(String title) {
+    public DaftarPeminjamanItem(String title ) {
 
         this.title = title;
     }
@@ -21,4 +21,5 @@ public class DaftarPeminjamanItem {
     public String setTitle() {
         return title;
     }
+
 }

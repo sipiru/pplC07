@@ -1,6 +1,6 @@
 package ppl.sipiru4;
 
-//import android.app.Fragment;
+
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -13,17 +13,16 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ppl.sipiru4.adapter.DaftarPermohonanAdapter;
-import ppl.sipiru4.model.DaftarPermohonanItem;
+import ppl.sipiru4.adapter.DaftarPermohonanAdapterP;
+import ppl.sipiru4.model.DaftarPermohonanItemP;
 
 public class DaftarPermohonanP extends Fragment {
     ListView lv;
 
-    DaftarPermohonanAdapter adapter;
-    private ArrayList<DaftarPermohonanItem> mItems;
+    DaftarPermohonanAdapterP adapter;
+    private ArrayList<DaftarPermohonanItemP> mItems;
     public DaftarPermohonanP(){}
     //private DaftarPermohonanItem mItems; // ListView items list
-
 
 
     @Override
@@ -33,13 +32,15 @@ public class DaftarPermohonanP extends Fragment {
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
 
-        mItems = new ArrayList<DaftarPermohonanItem>();
+        mItems = new ArrayList<DaftarPermohonanItemP>();
         Resources resources = getResources();
 //        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
 //        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
-        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
-        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
-        adapter = new DaftarPermohonanAdapter(getActivity().getApplicationContext(),mItems);
+        //TODO : get daftar permohonan peminjam, masukkan nama ruangan yang dipinjam dan statusnya ke ArrayList
+        mItems.add(new DaftarPermohonanItemP("2304","2"));
+        mItems.add(new DaftarPermohonanItemP("2404","1"));
+
+        adapter = new DaftarPermohonanAdapterP(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -47,6 +48,7 @@ public class DaftarPermohonanP extends Fragment {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
+                //TODO : menampilkan detail permohonan yang diklik
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanP.class);
                 // passing array index
                 i.putExtra("id", position);
@@ -54,16 +56,5 @@ public class DaftarPermohonanP extends Fragment {
             }
         });
         return rootView;
-    }
-
-    private void onListItemClick(ListView l, View v, int position, long id) {
-        // retrieve theListView item
-        DaftarPermohonanItem item = mItems.get(position);
-
-        Intent exampleIntent = new Intent(getActivity().getApplicationContext(), DetailPermohonanP.class);
-        exampleIntent.putExtra("ARGS", item.setTitle());
-        startActivity(exampleIntent);
-
-
     }
 }

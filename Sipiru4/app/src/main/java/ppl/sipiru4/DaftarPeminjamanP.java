@@ -12,14 +12,15 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ppl.sipiru4.adapter.DaftarPeminjamanAdapter;
-import ppl.sipiru4.model.DaftarPeminjamanItem;
+import ppl.sipiru4.adapter.DaftarPeminjamanAdapterP;
+import ppl.sipiru4.model.DaftarPeminjamanItemP;
 
 public class DaftarPeminjamanP extends Fragment {
     ListView lv;
 
-    DaftarPeminjamanAdapter adapter;
-    private ArrayList<DaftarPeminjamanItem> mItems;
+    DaftarPeminjamanAdapterP adapter;
+    private ArrayList<DaftarPeminjamanItemP> mItems;
+
     public DaftarPeminjamanP(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
@@ -32,13 +33,12 @@ public class DaftarPeminjamanP extends Fragment {
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
 
-        mItems = new ArrayList<DaftarPeminjamanItem>();
+        mItems = new ArrayList<DaftarPeminjamanItemP>();
         Resources resources = getResources();
-//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
-//        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
-        mItems.add(new DaftarPeminjamanItem(getString(R.string.hello_world)));
-        mItems.add(new DaftarPeminjamanItem(getString(R.string.hello_world)));
-        adapter = new DaftarPeminjamanAdapter(getActivity().getApplicationContext(),mItems);
+        //TODO : get data nama ruangan dan status peminjaman dari data peminjaman, masukkin array mItems
+        mItems.add(new DaftarPeminjamanItemP(("2304"), ("closed")));
+        mItems.add(new DaftarPeminjamanItemP(("2303"), ("closed")));
+        adapter = new DaftarPeminjamanAdapterP(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -53,9 +53,5 @@ public class DaftarPeminjamanP extends Fragment {
             }
         });
         return rootView;
-    }
-
-    private void onListItemClick(ListView l, View v, int position, long id) {
-        // retrieve theListView item
     }
 }

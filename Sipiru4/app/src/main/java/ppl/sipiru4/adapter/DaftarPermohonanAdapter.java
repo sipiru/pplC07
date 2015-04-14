@@ -56,7 +56,6 @@ public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> 
                 }
             });
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
-
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -65,7 +64,7 @@ public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> 
         // update the item view
         DaftarPermohonanItem item = getItem(position);
 
-//        viewHolder.tvTitle.setText(item.title);
+        viewHolder.tvTitle.setText(item.title);
 
         return convertView;
     }
@@ -81,6 +80,7 @@ public class DaftarPermohonanAdapter extends ArrayAdapter<DaftarPermohonanItem> 
         Button btnSetuju;
         Button tolak;
     }
+
 
 /*   public DaftarPermohonanAdapter(Context context, ArrayList<DaftarPermohonanItem> navDrawerItems){
         super(context, R.layout.list_permohonan, navDrawerItems);

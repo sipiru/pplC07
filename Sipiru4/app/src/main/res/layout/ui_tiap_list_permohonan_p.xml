@@ -11,25 +11,19 @@
         android:padding="10dip"
         android:textSize="16dip"
         android:textStyle="bold"
-        android:text="permohonan"
         android:layout_weight="0.91"
         android:layout_marginLeft="20dp">
     </TextView>
-   <Button
-        android:id="@+id/setuju"
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/status"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:padding="10dip"
+        android:textSize="16dip"
+        android:textStyle="bold"
+        android:layout_weight="0.91"
+        android:layout_marginLeft="20dp">
+    </TextView>
 
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        />
-    <Button
-        android:id="@+id/tolak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/tolak_pinjaman"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        />
 
 </LinearLayout>

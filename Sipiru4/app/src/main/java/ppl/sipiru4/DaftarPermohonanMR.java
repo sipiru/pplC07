@@ -39,7 +39,7 @@ public class DaftarPermohonanMR extends Fragment {
 //        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
 //        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
         mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
-        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
+        mItems.add(new DaftarPermohonanItem("jkjk", resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
         adapter = new DaftarPermohonanAdapter(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -55,16 +55,5 @@ public class DaftarPermohonanMR extends Fragment {
             }
         });
         return rootView;
-    }
-
-    private void onListItemClick(ListView l, View v, int position, long id) {
-        // retrieve theListView item
-        DaftarPermohonanItem item = mItems.get(position);
-
-        Intent exampleIntent = new Intent(getActivity().getApplicationContext(), DetailPermohonanMR.class);
-        exampleIntent.putExtra("ARGS", item.setTitle());
-        startActivity(exampleIntent);
-
-
     }
 }

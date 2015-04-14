@@ -17,7 +17,7 @@ public class DetailPeminjamanP extends Activity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.detail_peminjaman_mr);
+        setContentView(R.layout.detail_permohonan_p);
 
     }
 }

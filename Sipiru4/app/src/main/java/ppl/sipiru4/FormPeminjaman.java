@@ -1,7 +1,6 @@
 package ppl.sipiru4;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +15,7 @@ public class FormPeminjaman extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_peminjaman_ui);
         //TODO : semua isian disimpan ke database
-        EditText editRuang = (EditText)findViewById(R.id.editRuang);
+        EditText editRuang = (EditText)findViewById(R.id.editIsiPesan);
         EditText editNama = (EditText)findViewById(R.id.editNama);
         EditText editNPM = (EditText)findViewById(R.id.editNPM);
         EditText editPrihal = (EditText)findViewById(R.id.editPrihal);
@@ -31,6 +30,7 @@ public class FormPeminjaman extends Activity {
             @Override
             public void onClick(View v)
             {
+                //TODO : kembali ke halaman cariruangan
                 Toast.makeText(getApplicationContext(),
                         "Permohonan telah dikirim", Toast.LENGTH_LONG).show();
             }

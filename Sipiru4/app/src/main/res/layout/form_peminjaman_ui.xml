@@ -25,7 +25,7 @@
         <EditText
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:id="@+id/editRuang"
+            android:id="@+id/editIsiPesan"
             android:layout_gravity="center_vertical"
             android:background="#D3F0D2"
             android:layout_alignParentRight="true"
@@ -54,10 +54,10 @@
             android:layout_gravity="center_vertical"
             android:background="#D3F0D2"
             android:layout_alignBottom="@+id/textView2"
-            android:layout_alignLeft="@+id/editRuang"
-            android:layout_alignStart="@+id/editRuang"
-            android:layout_alignRight="@+id/editRuang"
-            android:layout_alignEnd="@+id/editRuang"
+            android:layout_alignLeft="@+id/editIsiPesan"
+            android:layout_alignStart="@+id/editIsiPesan"
+            android:layout_alignRight="@+id/editIsiPesan"
+            android:layout_alignEnd="@+id/editIsiPesan"
             android:layout_marginTop="10dp" />
 
         <TextView

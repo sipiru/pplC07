@@ -104,7 +104,7 @@ public class LoginActivity extends Activity {
 
         username = (EditText) findViewById(R.id.editText1);
 
-        password = (EditText) findViewById(R.id.editRuang);
+        password = (EditText) findViewById(R.id.editIsiPesan);
 
         login = (Button) findViewById(R.id.buttonLogin);
         login.setOnClickListener(new View.OnClickListener() {

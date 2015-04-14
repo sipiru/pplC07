@@ -5,23 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ppl.sipiru4.R;
-import ppl.sipiru4.model.DaftarPesanItem;
+import ppl.sipiru4.model.DaftarPermohonanItemP;
 
-public class DaftarPesanAdapter extends ArrayAdapter<DaftarPesanItem> {
+public class DaftarPermohonanAdapterP extends ArrayAdapter<DaftarPermohonanItemP> {
 
     private Context context;
-    private ArrayList<DaftarPesanItem> navDrawerItems;
+    private ArrayList<DaftarPermohonanItemP> navDrawerItems;
 
-    public DaftarPesanAdapter(Context context, List<DaftarPesanItem> items) {
-        super(context, R.layout.list_daftarpesan, items );
+    public DaftarPermohonanAdapterP(Context context, List<DaftarPermohonanItemP> items) {
+        super(context, R.layout.list, items );
     }
 
     @Override
@@ -30,31 +28,25 @@ public class DaftarPesanAdapter extends ArrayAdapter<DaftarPesanItem> {
         if(convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.ui_tiap_list_daftarpesan, parent, false);
+            convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan_p, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.hapus = (Button) convertView.findViewById(R.id.hapus);
-            final View finalConvertView = convertView;
+            //TODO : get nama ruangan yang dipinjam
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
-            viewHolder.hapus.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-                    //TODO mengahpus data pesan
-                    //TODO memanggil kembali fragment DaftarPesan
-                    Toast.makeText(finalConvertView.getContext(),
-                            "Pesan sudah berhasil dihapusi", Toast.LENGTH_LONG).show();
-                }
-            });
+            //TODO : get status ruangan yang dipinjam
+            viewHolder.status = (TextView) convertView.findViewById(R.id.status);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // update the item view
-        DaftarPesanItem item = getItem(position);
+        DaftarPermohonanItemP item = getItem(position);
 
-        viewHolder.tvTitle.setText(item.title);
+        viewHolder.tvTitle.setText(item.ruangan);
+        viewHolder.status.setText(item.status);
+
+
         return convertView;
     }
     /**
@@ -66,11 +58,11 @@ public class DaftarPesanAdapter extends ArrayAdapter<DaftarPesanItem> {
 
     private static class ViewHolder {
         TextView tvTitle;
-        Button hapus;
+        TextView status;
     }
 
-/*   public DaftarPesanAdapter(Context context, ArrayList<DaftarPesanItem> navDrawerItems){
-        super(context, R.layout.list_Pesan, navDrawerItems);
+/*   public DaftarPermohonanAdapter(Context context, ArrayList<DaftarPermohonanItem> navDrawerItems){
+        super(context, R.layout.list_permohonan, navDrawerItems);
         this.context = context;
         this.navDrawerItems = navDrawerItems;
     }
@@ -95,7 +87,7 @@ public class DaftarPesanAdapter extends ArrayAdapter<DaftarPesanItem> {
         if (convertView == null) {
             LayoutInflater mInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.ui_tiap_list_Pesan, null);
+            convertView = mInflater.inflate(R.layout.ui_tiap_list_permohonan, null);
         }
 
         TextView txtTitle = (TextView) convertView.findViewById(R.id.label);

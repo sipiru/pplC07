@@ -36,8 +36,9 @@ public class DaftarPesanP extends Fragment {
 
         mItems = new ArrayList<DaftarPesanItem>();
         Resources resources = getResources();
-        mItems.add(new DaftarPesanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman) ));
-        mItems.add(new DaftarPesanItem(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman)));
+        //TODO : get daftar pesan peminjam dan masukkan ke arraylist mItems
+        mItems.add(new DaftarPesanItem(("Pesan 1"), resources.getDrawable(R.drawable.status_pinjaman) ));
+        mItems.add(new DaftarPesanItem(("Pesan 2"), resources.getDrawable(R.drawable.status_pinjaman)));
         adapter = new DaftarPesanAdapter(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

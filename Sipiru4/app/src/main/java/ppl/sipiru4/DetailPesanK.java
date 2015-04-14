@@ -10,7 +10,7 @@ public class DetailPesanK extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pesan_ui);
+        setContentView(R.layout.detail_pesan_p);
     }
 }
 
