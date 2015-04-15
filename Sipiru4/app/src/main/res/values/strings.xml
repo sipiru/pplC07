@@ -15,10 +15,42 @@
         <item >Cari Ruangan</item>
         <item >Daftar Permohonan</item>
         <item >Daftar Peminjamann</item>
-        <item >Ubah Status Peminjaman</item>
         <item >Daftar Pesan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
+        <item >Menu Admin</item>
+    </string-array>
+    <string-array name="nav_drawer_items_peminjam">
+        <item >Cari Ruangan</item>
+        <item >Daftar Permohonan</item>
+        <item >Daftar Peminjamann</item>
+        <item >Daftar Pesan</item>
+        <item >Tulis Pesan</item>
+        <item >Logout</item>
+    </string-array>
+    <string-array name="nav_drawer_items_mr">
+        <item >Daftar Permohonan</item>
+        <item >Daftar Peminjamann</item>
+        <item >Daftar Pesan</item>
+        <item >Tulis Pesan</item>
+        <item >Logout</item>
+    </string-array>
+    <string-array name="nav_drawer_items_mk">
+        <item >Daftar Permohonan</item>
+        <item >Daftar Peminjamann</item>
+        <item >Daftar Pesan</item>
+        <item >Tulis Pesan</item>
+        <item >Logout</item>
+    </string-array>
+    <string-array name="nav_drawer_items_fasumitf">
+        <item >Daftar Permohonan</item>
+        <item >Daftar Peminjamann</item>
+        <item >Daftar Pesan</item>
+        <item >Tulis Pesan</item>
+        <item >Logout</item>
+    </string-array>
+    <string-array name="nav_drawer_items_admin">
+        <item >MenuAdmin</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -32,14 +64,21 @@
         <item>@drawable/tulis_pesan</item>
         <item>@drawable/logout2</item>
     </array>
-    <string-array name="country_arrays">
-        <item>Manager Ruangan</item>
-        <item>Manager Kemahasiswaan</item>
-        <item>Fasum/ITF</item>
+<string-array name="manager">
+    <item>Manager Ruangan</item>
+    <item>Manager Kemahasiswaan</item>
+    <item>Fasum/ITF</item>
+
+</string-array>
+    <string-array name="ruang">
+        <item>2304</item>
+        <item>2303</item>
+        <item>2602</item>
 
     </string-array>
     
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_nyoba_json">NyobaJSON</string>
 
 </resources>

@@ -15,27 +15,15 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 
-
-
     private EditText username;
-
     private EditText password;
-
     private Button login;
-
-
     int numberOfRemainingLoginAttempts = 3;
 
-
-
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.login_ui);
-
 
         setupVariables();
 
@@ -95,7 +83,6 @@ public class LoginActivity extends Activity {
                 login.setEnabled(false);
             }
         }
-
     }
 
 
@@ -103,7 +90,6 @@ public class LoginActivity extends Activity {
     private void setupVariables() {
 
         username = (EditText) findViewById(R.id.editText1);
-
         password = (EditText) findViewById(R.id.ruang);
 
         login = (Button) findViewById(R.id.buttonLogin);
@@ -113,10 +99,5 @@ public class LoginActivity extends Activity {
                 authenticateLogin(v);
             }
         });
-
-
     }
-
-
-
 }

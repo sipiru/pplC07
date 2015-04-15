@@ -1,0 +1,21 @@
+
+<resources>
+
+
+    <style name="AppBaseTheme" parent="android:Theme.DeviceDefault.Light">
+
+
+    </style>
+
+
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:colorAccent">@color/color_head</item>
+        <item name="android:colorPrimaryDark">@color/color_head</item>
+        <item name="android:colorPrimary">#992416</item>
+    </style>
+
+    <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+
+
+</resources>

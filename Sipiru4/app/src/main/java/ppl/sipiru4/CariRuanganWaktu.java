@@ -25,9 +25,7 @@ public class CariRuanganWaktu extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.cari_ruangan_waktu_ui, container, false);
-
         //TODO : get daftar ruangan berdasarkan masukkan pengguna dan simpan
-
         EditText tglMulai = (EditText)rootView.findViewById(R.id.TglMulai);
         EditText tglSelesai = (EditText)rootView.findViewById(R.id.TglSelesai);
         EditText jamMulai = (EditText)rootView.findViewById(R.id.jamMulai);
@@ -47,7 +45,6 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
         return rootView;
-
     }
 
     @Override

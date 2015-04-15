@@ -20,8 +20,6 @@ import java.util.Map;
 
 public  class CariRuangan extends Fragment
 {
-
-
     private TabHost mTabHost;
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;

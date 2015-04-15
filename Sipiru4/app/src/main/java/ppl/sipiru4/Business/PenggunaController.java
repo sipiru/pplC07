@@ -1,10 +1,10 @@
 package ppl.sipiru4.Business;
 
-import com.grupc07.sipiru.Constants;
-import com.grupc07.sipiru.Entities.ConnectionErrorException;
-import com.grupc07.sipiru.Entities.JSONHelper;
-import com.grupc07.sipiru.Entities.ParseErrorException;
-import com.grupc07.sipiru.Entities.User;
+import ppl.sipiru4.Constants;
+import ppl.sipiru4.Entities.ConnectionErrorException;
+import ppl.sipiru4.Entities.JSONHelper;
+import ppl.sipiru4.Entities.ParseErrorException;
+import ppl.sipiru4.Entities.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,8 +38,8 @@ public class PenggunaController {
             throw new ParseErrorException();
         }
         try {
-            currentPengguna = new User(jsonObject.getString("\"username"\"),
-                    jsonObject.getString("\"kodeidentitas"\"),jsonObject.getString("\"nama_role"\"));
+            currentPengguna = new User(jsonObject.getString("username"),
+                    jsonObject.getString("kodeidentitas"),jsonObject.getString("nama_role"));
         } catch (JSONException e) {
             throw new ParseErrorException();
         }

@@ -20,11 +20,9 @@ public class DetailRuangan extends Activity {
 
     public DetailRuangan(){}
 
-
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.deskripsi_ruangan);
 
         TextView kapasitas = (TextView)findViewById(R.id.kapasitas);
@@ -54,5 +52,3 @@ public class DetailRuangan extends Activity {
         });
     }
 }
-
-

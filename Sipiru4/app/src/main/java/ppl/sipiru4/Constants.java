@@ -5,7 +5,7 @@ package ppl.sipiru4;
  */
 public class Constants {
 
-    public static final String SVR_ADDR = "http://ppl-c07.cs.ui.ac.id/";
+    public static final String SVR_ADDR = "http://ppl-c07.cs.ui.ac.id/connect/";
     public static final String PESAN_ADDR = "http://ppl-c07.cs.ui.ac.id/pesan";
     public static final String RUANG_ADDR = "http://ppl-c07.cs.ui.ac.id/ruang";
     public static final String NOTIF_ADDR = "http://ppl-c07.cs.ui.ac.id/notif";

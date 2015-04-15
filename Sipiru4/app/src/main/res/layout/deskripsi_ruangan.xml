@@ -1,11 +1,5 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:id="@+id/layoutScroll"
-    android:background="#B1D9E7">
-
-    <RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -17,8 +11,6 @@
         tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
         android:background="#B1D9E7"
         android:id="@+id/layoutDecRuang1">
-
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -37,24 +29,24 @@
                 android:id="@+id/textView3"
                 android:textColor="#ff000000"
                 android:textSize="25dp"
-                android:layout_alignBottom="@+id/editText3"
+                android:layout_alignBottom="@+id/ruang"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/editText1"
                 android:layout_alignEnd="@+id/editText1" />
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="15dp"
-                android:id="@+id/editText1"
+                android:id="@+id/kapasitas"
                 android:layout_alignTop="@+id/textView2"
                 android:layout_toRightOf="@+id/textView2"
                 android:layout_alignBottom="@+id/textView2" />
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText3"
+                android:id="@+id/fasilitas"
                 android:layout_below="@+id/editText1"
                 android:layout_alignLeft="@+id/editText1"
                 android:layout_alignStart="@+id/editText1"
@@ -87,8 +79,8 @@
 
 
 
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>
+
 
 
 
