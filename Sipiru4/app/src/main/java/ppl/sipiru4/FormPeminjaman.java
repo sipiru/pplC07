@@ -32,13 +32,17 @@ public class FormPeminjaman extends Activity {
             public void onClick(View v)
             {
                 //TODO : semua isian disimpan ke database
-                /*android.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+/*                android.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan());
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();*/
                 Toast.makeText(getApplicationContext(),
                         "Permohonan telah dikirim", Toast.LENGTH_LONG).show();
+                finish();
+                finish();
+                finish();
+                finish();
             }
         });
 

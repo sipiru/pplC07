@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 
 public class CariRuanganRuang extends Fragment {
 
@@ -23,7 +24,8 @@ public class CariRuanganRuang extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
-
+        Spinner ruang = (Spinner)rootView.findViewById(R.id.ruang);
+        //TODO get semua jadwal ruang yang click
         return rootView;
     }
     @Override

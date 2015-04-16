@@ -1,3 +1,12 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:id="@+id/layoutScroll"
+    android:background="#B1D9E7">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:gravity="center_horizontal"
@@ -33,18 +42,38 @@
             android:textColor="#ff000000"
             />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mulai"
+            android:id="@+id/btnTglMulai"
+            android:layout_gravity="right"
+            android:background="#ff83aae5"
+            android:textSize="30dp"
+            android:layout_below="@+id/layoutCariRuang3"
+            android:layout_centerHorizontal="true" />
+
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="187dp"
             android:layout_height="40dp"
             android:id="@+id/TglMulai"
-            android:layout_gravity="center_horizontal"
             android:background="#D3F0D2"
             android:layout_marginTop="10dp"
             android:textSize="30dp"
             android:hint="mulai" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELESAI"
+            android:id="@+id/btnTglSelesai"
+            android:layout_gravity="right"
+            android:layout_marginTop="20dp"
+            android:background="#ff83aae5"
+            android:textSize="30dp" />
+
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="191dp"
             android:layout_height="40dp"
             android:id="@+id/TglSelesai"
             android:background="#D3F0D2"
@@ -61,20 +90,39 @@
             android:textSize="30dp"
             android:textColor="#ff000000" />
 
+        <Button
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:text="mulai"
+            android:id="@+id/btnjamMulai"
+            android:layout_marginTop="20dp"
+            android:background="#ff83aae5"
+            android:textSize="30dp"
+            android:layout_gravity="right" />
+
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="191dp"
             android:layout_height="40dp"
-            android:id="@+id/jamMulai"
-            android:layout_gravity="center_horizontal"
+            android:id="@+id/mulai"
             android:background="#D3F0D2"
             android:layout_marginTop="10dp"
             android:hint="mulai"
             android:textSize="30dp" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="selesai"
+            android:id="@+id/btnJamSelesai"
+            android:layout_marginTop="20dp"
+            android:background="#ff83aae5"
+            android:textSize="30dp"
+            android:layout_gravity="right" />
+
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="198dp"
             android:layout_height="40dp"
-            android:id="@+id/jamSelesai"
+            android:id="@+id/selesai"
             android:background="#D3F0D2"
             android:layout_marginTop="10dp"
             android:hint="selesai"
@@ -85,11 +133,10 @@
             android:layout_height="wrap_content"
             android:text="Cari"
             android:id="@+id/buttonCari"
-            android:layout_gravity="center_horizontal|bottom"
             android:layout_marginTop="20dp"
             android:background="#ff83aae5"
             android:textSize="30dp" />
-
     </LinearLayout>
 
 </RelativeLayout>
+    </ScrollView>

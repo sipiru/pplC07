@@ -163,7 +163,7 @@
         <EditText
             android:layout_width="150dp"
             android:layout_height="30dp"
-            android:id="@+id/jamMulai"
+            android:id="@+id/mulai"
             android:layout_gravity="center_vertical"
             android:background="#D3F0D2"
             android:hint="mulai"
@@ -171,8 +171,8 @@
             android:layout_alignBottom="@+id/textView7"
             android:layout_alignLeft="@+id/tglMulai"
             android:layout_alignStart="@+id/tglMulai"
-            android:layout_toLeftOf="@+id/jamSelesai"
-            android:layout_toStartOf="@+id/jamSelesai"
+            android:layout_toLeftOf="@+id/selesai"
+            android:layout_toStartOf="@+id/selesai"
             android:layout_marginRight="1dp"
             android:textAlignment="center" />
 
@@ -240,11 +240,11 @@
         <EditText
             android:layout_width="150dp"
             android:layout_height="30dp"
-            android:id="@+id/jamSelesai"
+            android:id="@+id/selesai"
             android:hint="selesai"
             android:layout_gravity="center_vertical"
             android:background="#D3F0D2"
-            android:layout_alignTop="@+id/jamMulai"
+            android:layout_alignTop="@+id/mulai"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignLeft="@+id/tglSelesai"

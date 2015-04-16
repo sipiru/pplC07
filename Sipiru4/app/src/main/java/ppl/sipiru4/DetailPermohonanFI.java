@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import ppl.sipiru4.R;
-
 public class DetailPermohonanFI extends Activity {
     final Context context = this;
 
@@ -27,8 +25,8 @@ public class DetailPermohonanFI extends Activity {
         TextView prihal = (TextView)findViewById(R.id.prihal);
         TextView tglMulai = (TextView)findViewById(R.id.tglMulai);
         TextView tglSelesai = (TextView)findViewById(R.id.tglSelesai);
-        TextView jamMulai = (TextView)findViewById(R.id.jamMulai);
-        TextView jamSelesai = (TextView)findViewById(R.id.jamSelesai);
+        TextView jamMulai = (TextView)findViewById(R.id.mulai);
+        TextView jamSelesai = (TextView)findViewById(R.id.selesai);
         TextView permintaanLain = (TextView)findViewById(R.id.permintaanLain);
 
 

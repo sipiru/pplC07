@@ -8,6 +8,7 @@
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="title_activity_display_message">My Message</string>
     <string name="Login">login</string>
+    <string name="set_date">login</string>
     <string name="prompt_password">Password (optional)</string>
 
     <!-- Nav Drawer Menu Items -->
