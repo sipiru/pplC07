@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class DetailPeminjamanFI extends Activity {
     final Context context = this;
@@ -25,7 +24,7 @@ public class DetailPeminjamanFI extends Activity {
         TextView tgl = (TextView) findViewById(R.id.tgl);
         TextView jam = (TextView) findViewById(R.id.jam);
         TextView permintaanLain = (TextView) findViewById(R.id.permintaanLain);
-        Button selesai = (Button) findViewById(R.id.btnSelesai);
+        Button selesai = (Button) findViewById(R.id.selesai);
 
                             selesai.setOnClickListener(new View.OnClickListener() {
                                 @Override

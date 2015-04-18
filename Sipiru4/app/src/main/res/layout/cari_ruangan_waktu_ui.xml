@@ -1,3 +1,12 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:id="@+id/layoutScroll"
+    android:background="#B1D9E7">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:gravity="center_horizontal"
@@ -11,7 +20,7 @@
 
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -27,69 +36,134 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Masukan Tanggal :"
+            android:text="Masukan tanggal :"
             android:id="@+id/textView2"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:textColor="#ff000000"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/TglMulai"
-            android:layout_gravity="center_horizontal"
-            android:background="#D3F0D2"
             android:layout_marginTop="10dp"
-            android:textSize="30dp"
-            android:hint="mulai" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="mulai"
+            android:id="@+id/btnTglMulai"
+            android:layout_gravity="left"
+            android:background="#ff83aae5"
+            android:textSize="22dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="190dp"
+            android:layout_height="35dp"
+            android:id="@+id/TglMulai"
+            android:background="#D3F0D2"
+            android:textSize="26dp"
+            android:textIsSelectable="false"
+            android:editable="false"
+            android:hint="mulai"
+            android:layout_above="@+id/btnTglSelesai"
+            android:layout_toRightOf="@+id/btnTglSelesai"
+            android:layout_toEndOf="@+id/btnTglSelesai" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text=" selesai "
+            android:id="@+id/btnTglSelesai"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:background="#ff83aae5"
+            android:textSize="22dp"
+            android:layout_below="@+id/btnTglMulai" />
+
+        <EditText
+            android:layout_width="190dp"
+            android:layout_height="35dp"
             android:id="@+id/TglSelesai"
             android:background="#D3F0D2"
-            android:layout_marginTop="10dp"
             android:hint="selesai"
-            android:textSize="30dp" />
+            android:textIsSelectable="false"
+            android:editable="false"
+            android:textSize="26dp"
+            android:layout_alignTop="@+id/btnTglSelesai"
+            android:layout_toRightOf="@+id/btnTglSelesai"
+            android:layout_toEndOf="@+id/btnTglSelesai" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Masukan Jam :"
+            android:text="Masukan jam :"
             android:id="@+id/textView4"
             android:layout_marginTop="20dp"
-            android:textSize="30dp"
-            android:textColor="#ff000000" />
+            android:textSize="25dp"
+            android:textColor="#ff000000"
+            android:layout_below="@+id/btnTglSelesai"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="mulai"
+            android:id="@+id/btnJamMulai"
+            android:background="#ff83aae5"
+            android:textSize="22dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="left"
+            android:layout_below="@+id/textView4"/>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/jamMulai"
-            android:layout_gravity="center_horizontal"
+            android:layout_width="190dp"
+            android:layout_height="35dp"
+            android:id="@+id/mulai"
             android:background="#D3F0D2"
-            android:layout_marginTop="10dp"
             android:hint="mulai"
-            android:textSize="30dp" />
+            android:textIsSelectable="false"
+            android:editable="false"
+            android:textSize="26dp"
+            android:layout_above="@+id/btnJamSelesai"
+            android:layout_toRightOf="@+id/btnJamSelesai"
+            android:layout_toEndOf="@+id/btnJamSelesai" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text=" selesai "
+            android:id="@+id/btnJamSelesai"
+            android:layout_marginTop="10dp"
+            android:background="#ff83aae5"
+            android:textSize="22dp"
+            android:layout_gravity="left"
+            android:layout_below="@+id/btnJamMulai"/>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/jamSelesai"
+            android:layout_width="190dp"
+            android:layout_height="35dp"
+            android:id="@+id/selesai"
             android:background="#D3F0D2"
-            android:layout_marginTop="10dp"
             android:hint="selesai"
-            android:textSize="30dp" />
+            android:textIsSelectable="false"
+            android:editable="false"
+            android:textSize="26dp"
+            android:layout_alignTop="@+id/btnJamSelesai"
+            android:layout_toRightOf="@+id/btnJamSelesai"
+            android:layout_toEndOf="@+id/btnJamSelesai" />
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cari"
+            android:layout_height="40dp"
+            android:text="Cari ruangan"
             android:id="@+id/buttonCari"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginTop="20dp"
             android:background="#ff83aae5"
-            android:textSize="30dp" />
-
-    </LinearLayout>
+            android:textSize="28dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/btnJamSelesai"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
 </RelativeLayout>
+    </ScrollView>

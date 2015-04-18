@@ -7,8 +7,9 @@
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="title_activity_display_message">My Message</string>
-    <string name="Login">login</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="Login">LOGIN</string>
+    <string name="set_date">login</string>
+    <string name="prompt_password">password</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
@@ -71,9 +72,36 @@
 
 </string-array>
     <string-array name="ruang">
-        <item>2304</item>
+        <item>2301</item>
+        <item>2302</item>>
         <item>2303</item>
+        <item>2304-5</item>
+        <item>2306</item>
+        <item>2307</item>
+        <item>2401</item>
+        <item>2402-3</item>
+        <item>2404</item>
+        <item>2405</item>
+        <item>2406</item>
+        <item>2502</item>
         <item>2602</item>
+        <item>2603</item>
+        <item>2604</item>
+        <item>3111</item>
+        <item>3112</item>
+        <item>3113</item>
+        <item>3114</item>
+        <item>3313</item>
+        <item>1221</item>
+        <item>Aula(2102)</item>
+        <item>Lab2601</item>
+        <item>Lab1101</item>
+        <item>Lab1103</item>
+        <item>Lab1105</item>
+        <item>Lab1106</item>
+        <item>Lab1107</item>
+        <item>Lab1109</item>
+        <item>Lab1225</item>
 
     </string-array>
     

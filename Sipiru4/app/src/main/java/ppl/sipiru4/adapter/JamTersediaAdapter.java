@@ -31,8 +31,8 @@ public class JamTersediaAdapter extends ArrayAdapter<JamTersediaItem> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_jamtersedia, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.jamMulai = (TextView) convertView.findViewById(R.id.jamMulai);
-            viewHolder.jamSelesai = (TextView) convertView.findViewById(R.id.jamSelesai);
+            viewHolder.jamMulai = (TextView) convertView.findViewById(R.id.mulai);
+            viewHolder.jamSelesai = (TextView) convertView.findViewById(R.id.selesai);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view

@@ -3,6 +3,7 @@ package ppl.sipiru4;
 import android.app.Activity;
 import android.content.Intent;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.View;
@@ -14,18 +15,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
-
-
-
+    private EditText welcome;
     private EditText username;
-
     private EditText password;
-
     private Button login;
 
-
-    int numberOfRemainingLoginAttempts = 3;
-
+    int numberOfRemainingLoginAttempts = 5;
 
 
     @Override
@@ -46,6 +41,7 @@ public class LoginActivity extends Activity {
     public void authenticateLogin(View view) {
         //login as admin
         //TODO : periksa apakah username dan password terdaftar sebagai salah satu role
+
         if ((username.getText().toString().equals("p") &&
                 password.getText().toString().equals("p"))
 ){
@@ -102,11 +98,13 @@ public class LoginActivity extends Activity {
 
     private void setupVariables() {
 
+
         username = (EditText) findViewById(R.id.editText1);
 
         password = (EditText) findViewById(R.id.ruang);
 
         login = (Button) findViewById(R.id.buttonLogin);
+        login.setBackgroundColor(Color.BLUE);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
