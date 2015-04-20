@@ -5,24 +5,21 @@ import android.graphics.drawable.Drawable;
 
 public class DaftarPermohonanItemMR {
 
-    public final String title;
-    public final Drawable icon;
-    public final Drawable icon2;
+    public final String username;
+    public final String ruangan;
 
     // the text for the ListView item title
-    public DaftarPermohonanItemMR(String title, Drawable icon, Drawable icon2) {
-
-        this.title = title;
-        this.icon = icon;
-        this.icon2 = icon2;
+    public DaftarPermohonanItemMR(String username, String ruangan) {
+        this.username = username;
+        this.ruangan = ruangan;
     }
 
     public String getTitle() {
-        return this.title;
-
+        return this.username;
     }
 
-    public String setTitle() {
-        return title;
+    public String getRuangan() {
+        return this.ruangan;
     }
 }
+

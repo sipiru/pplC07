@@ -36,8 +36,8 @@ public class DaftarPeminjamanFI extends Fragment {
         Resources resources = getResources();
         /*TODO : get data peminjaman (yang sudah disetujui oleh Fasum) dan masukkan NPM dan kode ruangan yang dipinjam kedalam ArrayList mItems untuk ditampilkan di daftar peminjaman Fasum/ITF
         */
-        mItems.add(new DaftarPeminjamanItemFI(("1106022654FI"), ("3113")));
-        mItems.add(new DaftarPeminjamanItemFI(("1106022452FI"), ("3304")));
+        mItems.add(new DaftarPeminjamanItemFI(("adit.murda"), ("3113")));
+        mItems.add(new DaftarPeminjamanItemFI(("rauhil"), ("3304")));
         adapter = new DaftarPeminjamanAdapterFI(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

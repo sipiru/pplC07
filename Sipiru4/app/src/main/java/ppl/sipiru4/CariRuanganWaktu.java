@@ -53,10 +53,8 @@ public class CariRuanganWaktu extends Fragment {
 
             @Override
             public void onClick(View arg0) {
-
                 DialogFragment newFragment = new SelectTglMulai();
                 newFragment.show(getFragmentManager(),"");
-
             }
         });
         ambilTglSelesai = (Button)rootView.findViewById(R.id.btnTglSelesai);
@@ -78,10 +76,11 @@ public class CariRuanganWaktu extends Fragment {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan());
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.addToBackStack("text");
                 fragmentTransaction.commit();
             }
         });
+
         ambilJamMulai = (Button)rootView.findViewById(R.id.btnJamMulai);
         ambilJamMulai.setOnClickListener(new View.OnClickListener() {
 
@@ -165,6 +164,7 @@ public class CariRuanganWaktu extends Fragment {
             if (month<10) {monthOutput = "0" + month;}
             if (day<10) {dayOutput = "0" + day;}
             tglMulai.setText(yearOutput + "-" + monthOutput + "-" + dayOutput);
+
         }
 
     }
@@ -182,6 +182,7 @@ public class CariRuanganWaktu extends Fragment {
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
             populateSetDate(yy, mm+1, dd);
         }
+
         public void populateSetDate(int year, int month, int day) {
             String yearOutput = ""+year;
             String monthOutput = ""+month;

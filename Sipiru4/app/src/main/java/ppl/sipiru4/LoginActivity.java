@@ -24,7 +24,7 @@ public class LoginActivity extends Activity {
     private EditText password;
     private Button login;
     private static final String user = "user"; //konstanta untuk menyimpan username menggunakan SharedPreferences
-    private SharedPreferences settings;
+    SharedPreferences settings;
     int numberOfRemainingLoginAttempts = 5;
 
     protected void onCreate(Bundle savedInstanceState) {

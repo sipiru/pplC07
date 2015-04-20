@@ -36,8 +36,8 @@ public class DaftarPermohonanFI extends Fragment {
         mItems = new ArrayList<DaftarPermohonanItemFI>();
         Resources resources = getResources();
         //TODO : get data daftar permohonan di FasumITF (npm peminjam dan ruangan yang dipinjam) dan masukkan ke arraylist
-        mItems.add(new DaftarPermohonanItemFI(("1106022654FI"), ("3113")));
-        mItems.add(new DaftarPermohonanItemFI(("1106022452FI"), ("3304")));
+        mItems.add(new DaftarPermohonanItemFI(("rafi.devandra"), ("2301")));
+        mItems.add(new DaftarPermohonanItemFI(("gina"), ("Aula")));
         adapter = new DaftarPermohonanAdapterFI(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

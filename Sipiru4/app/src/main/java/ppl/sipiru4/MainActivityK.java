@@ -71,12 +71,12 @@ public class MainActivityK extends FragmentActivity {
             navDrawerItems.add(new NavDrawerItem(menuK[0], navMenuIcons.getResourceId(0, -1)));
             // Daftar Peminjaman
             navDrawerItems.add(new NavDrawerItem(menuK[1], navMenuIcons.getResourceId(1, -1)));
-            // Daftar Pesan
-            navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -2)));
+//            // Daftar Pesan
+//            navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -2)));
             // PesanBaru
-            navDrawerItems.add(new NavDrawerItem(menuK[3], navMenuIcons.getResourceId(3, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -1)));
             // Logout
-            navDrawerItems.add(new NavDrawerItem(menuK[4], navMenuIcons.getResourceId(4, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuK[3], navMenuIcons.getResourceId(3, -1)));
 
 
 
@@ -176,13 +176,13 @@ public class MainActivityK extends FragmentActivity {
             case 1:
                 fragment = new DaftarPeminjamanK();
                 break;
+//            case 2:
+//                fragment = new DaftarPesanK();
+//                break; //ga jadi pake ini
             case 2:
-                fragment = new DaftarPesanK();
-                break;
-            case 3:
                 fragment = new KirimPesan();
                 break;
-            case 4:
+            case 3:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         context);
                 // set title

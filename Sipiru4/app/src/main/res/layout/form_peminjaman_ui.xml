@@ -203,7 +203,7 @@
             android:layout_alignStart="@+id/textView6"
             android:layout_alignRight="@+id/jam"
             android:layout_alignEnd="@+id/jam"
-            android:background="#959596"
+            android:background="#ff008688"
             android:textSize="20dp" />
 
 

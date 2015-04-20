@@ -33,30 +33,10 @@ public class DaftarPermohonanAdapterMR extends ArrayAdapter<DaftarPermohonanItem
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.btnSetuju = (Button) convertView.findViewById(R.id.setuju);
-            final View finalConvertView = convertView;
-            viewHolder.btnSetuju.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-                    //try to hide textview or something it may help
-                    Toast.makeText(finalConvertView.getContext(),
-                            "Permohonan telah berhasil disetujui", Toast.LENGTH_LONG).show();
-                }
-            });
-            viewHolder.tolak = (Button) convertView.findViewById(R.id.tolak);
-            final View finalConvertView1 = convertView;
-            viewHolder.tolak.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-                    //try to hide textview or something it may help
-                    Toast.makeText(finalConvertView1.getContext(),
-                            "Permohonan telah berhasil ditolak", Toast.LENGTH_LONG).show();
-                }
-            });
-            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
+            viewHolder.username = (TextView) convertView.findViewById(R.id.label);
+            viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
             convertView.setTag(viewHolder);
+
         } else {
             // recycle the already inflated view
             viewHolder = (ViewHolder) convertView.getTag();
@@ -64,8 +44,8 @@ public class DaftarPermohonanAdapterMR extends ArrayAdapter<DaftarPermohonanItem
         // update the item view
         DaftarPermohonanItemMR item = getItem(position);
 
-        viewHolder.tvTitle.setText(item.title);
-
+        viewHolder.username.setText(item.username);
+        viewHolder.ruangan.setText(item.ruangan);
         return convertView;
     }
     /**
@@ -76,9 +56,10 @@ public class DaftarPermohonanAdapterMR extends ArrayAdapter<DaftarPermohonanItem
      */
 
     private static class ViewHolder {
-        TextView tvTitle;
-        Button btnSetuju;
-        Button tolak;
+        TextView username;
+        TextView ruangan;
+//        Button btnSetuju;
+//        Button tolak;
     }
 
 

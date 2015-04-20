@@ -35,8 +35,8 @@ public class DaftarPermohonanMR extends Fragment {
         mItems = new ArrayList<DaftarPermohonanItemMR>();
         Resources resources = getResources();
         //TODO get data permohonan di manager ruangan
-        mItems.add(new DaftarPermohonanItemMR(getString(R.string.hello_world), resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
-        mItems.add(new DaftarPermohonanItemMR("jkjk", resources.getDrawable(R.drawable.status_pinjaman), resources.getDrawable(R.drawable.tolak_pinjaman) ));
+        mItems.add(new DaftarPermohonanItemMR(("rauhil"),("2303")));
+        mItems.add(new DaftarPermohonanItemMR(("gina"),("2302")));
         adapter = new DaftarPermohonanAdapterMR(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

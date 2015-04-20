@@ -37,8 +37,8 @@ public class DaftarPeminjamanMR extends Fragment {
         //TODO get daftar peminjaman yang dimiliki oleh manager ruangan dan masukkan npm peminjam dan
         // kode ruangan peminjam ke dalam ArrayList mItems untuk ditampilkan di Daftar peminjaman Manager ruangan
 
-        mItems.add(new DaftarPeminjamanItemMR(("1106022654"), ("3113")));
-        mItems.add(new DaftarPeminjamanItemMR(("1106022452"), ("3304")));
+        mItems.add(new DaftarPeminjamanItemMR(("adit.murda"), ("2304")));
+        mItems.add(new DaftarPeminjamanItemMR(("rafi.devandra"), ("3301")));
         adapter = new DaftarPeminjamanAdapterMR(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

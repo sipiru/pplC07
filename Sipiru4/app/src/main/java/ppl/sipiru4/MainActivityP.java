@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivityP extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
@@ -33,6 +35,7 @@ public class MainActivityP extends FragmentActivity {
     private TypedArray navMenuIcons;
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
+//    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +60,13 @@ public class MainActivityP extends FragmentActivity {
             // Daftar Permohonan
             navDrawerItems.add(new NavDrawerItem(menuPeminjam[1], navMenuIcons.getResourceId(1, -1)));
             // Daftar Peminjaman
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[2], navMenuIcons.getResourceId(2, -2)));
-            // Daftar Pesan
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuPeminjam[2], navMenuIcons.getResourceId(2, -1)));
+//            // Daftar Pesan
+//            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
             // PesanBaru
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[4], navMenuIcons.getResourceId(4, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
             // Logout
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[5], navMenuIcons.getResourceId(5, -1)));
-
+            navDrawerItems.add(new NavDrawerItem(menuPeminjam[4], navMenuIcons.getResourceId(4, -1)));
 
 
         // Recycle the typed array
@@ -160,20 +162,28 @@ public class MainActivityP extends FragmentActivity {
         switch (position) {
             case 0:
                 fragment = new CariRuangan();
+//                Toast.makeText(getApplicationContext(),"Hello, "+settings.getString("user",""),
+//                        Toast.LENGTH_SHORT).show();
                 break;
             case 1:
                 fragment = new DaftarPermohonanP();
+//                Toast.makeText(getApplicationContext(),"Hello, "+settings.getString("user",""),
+//                        Toast.LENGTH_SHORT).show();
                 break;
             case 2:
                 fragment = new DaftarPeminjamanP();
+//                Toast.makeText(getApplicationContext(),"Hello, "+settings.getString("user",""),
+//                        Toast.LENGTH_SHORT).show();
                 break;
+//            case 3:
+//                fragment = new DaftarPesanP();
+//                break; // ga jadi pake ini
             case 3:
-                fragment = new DaftarPesanP();
+                fragment = new KirimPesan();
+//                Toast.makeText(getApplicationContext(),"Hello, "+settings.getString("user",""),
+//                        Toast.LENGTH_SHORT).show();
                 break;
             case 4:
-                fragment = new KirimPesan();
-                break;
-            case 5:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         context);
                 // set title
@@ -217,8 +227,7 @@ public class MainActivityP extends FragmentActivity {
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
-                setTitle(menuPeminjam[position]);
-
+            setTitle(menuPeminjam[position]);
 
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {

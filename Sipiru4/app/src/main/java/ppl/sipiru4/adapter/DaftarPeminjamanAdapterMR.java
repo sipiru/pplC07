@@ -42,7 +42,7 @@ public class DaftarPeminjamanAdapterMR extends ArrayAdapter<DaftarPeminjamanItem
         // update the item view
         DaftarPeminjamanItemMR item = getItem(position);
 
-       viewHolder.npmPeminjam.setText(item.npmPeminjam);
+       viewHolder.npmPeminjam.setText(item.username);
        viewHolder.ruangan.setText(item.ruangan);
 
         return convertView;

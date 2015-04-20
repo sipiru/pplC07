@@ -39,8 +39,8 @@ public class DaftarPeminjamanK extends Fragment {
         mItems = new ArrayList<DaftarPeminjamanItemK>();
         Resources resources = getResources();
         //TODO : get data daftar permohonan yang diterima manager kemahasiswaan (npm peminjam dan ruangan yang dipinjam) dan masukkan ke arraylist untuk ditampilkan
-        mItems.add(new DaftarPeminjamanItemK(("1106022654"), ("3113")));
-        mItems.add(new DaftarPeminjamanItemK(("1106022452"), ("3304")));
+        mItems.add(new DaftarPeminjamanItemK(("rauhil"), ("3113")));
+        mItems.add(new DaftarPeminjamanItemK(("gina"), ("3304")));
         adapter = new DaftarPeminjamanAdapterK(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
