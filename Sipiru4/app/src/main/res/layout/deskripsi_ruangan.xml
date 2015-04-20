@@ -20,25 +20,27 @@
                 android:layout_alignParentStart="true"
                 android:id="@+id/textView2"
                 android:textColor="#ff000000"
-                android:textSize="25dp" />
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fasilitas   :"
+                android:text="Fasilitas    :"
                 android:id="@+id/textView3"
                 android:textColor="#ff000000"
-                android:textSize="25dp"
-                android:layout_alignBottom="@+id/ruang"
+                android:textSize="22dp"
+                android:layout_below="@+id/textView2"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/editText1"
-                android:layout_alignEnd="@+id/editText1" />
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="15dp"
                 android:id="@+id/kapasitas"
+                android:text="kapasitas"
+                android:textColor="#ff000000"
+                android:textSize="22dp"
+                android:layout_marginLeft="6dp"
                 android:layout_alignTop="@+id/textView2"
                 android:layout_toRightOf="@+id/textView2"
                 android:layout_alignBottom="@+id/textView2" />
@@ -47,23 +49,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/fasilitas"
-                android:layout_below="@+id/editText1"
-                android:layout_alignLeft="@+id/editText1"
-                android:layout_alignStart="@+id/editText1"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:text="fasilitas"
+                android:textColor="#ff000000"
+                android:textSize="22dp"
+                android:layout_below="@+id/kapasitas"
+                android:layout_alignLeft="@+id/kapasitas"
+                android:layout_alignStart="@+id/kapasitas" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tersedia untuk jam :"
+                android:text="Tidak tersedia untuk jam :"
                 android:id="@+id/textView4"
                 android:textColor="#ff000000"
-                android:textSize="25dp"
+                android:textSize="22dp"
                 android:layout_below="@+id/editText1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="66dp" />
+                android:layout_marginTop="80dp" />
 
             <ListView
                 android:layout_width="wrap_content"
@@ -72,6 +75,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/textView4"
                 android:longClickable="false"
+                android:layout_marginTop="3dp"
                 android:nestedScrollingEnabled="false"
                 android:clickable="true"
                 android:layout_alignParentBottom="false"

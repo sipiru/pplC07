@@ -37,24 +37,20 @@
             android:ems="10"
             android:id="@+id/balas"
             android:background="#D3F0D2"
-            android:layout_marginTop="100dp"
-            android:layout_below="@+id/textView2"
-            android:layout_alignRight="@+id/editDari"
-            android:layout_alignEnd="@+id/editDari"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kirim"
             android:id="@+id/buttonKirim"
-            android:layout_below="@+id/ruang"
             android:textSize="20dp"
-            android:layout_marginTop="10dp"
+            android:background="#959596"
+            android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="#ff83aae5" />
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"

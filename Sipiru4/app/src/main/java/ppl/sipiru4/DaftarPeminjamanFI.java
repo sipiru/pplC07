@@ -25,8 +25,6 @@ public class DaftarPeminjamanFI extends Fragment {
     public DaftarPeminjamanFI(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

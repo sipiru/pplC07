@@ -10,10 +10,7 @@ import android.widget.Toast;
 
 public class DetailPesan extends Activity {
 
-
-
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_pesan_p);
         //TODO menampilkan pengirim dan isi pesan

@@ -45,12 +45,12 @@
             android:layout_alignParentStart="true"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="35dp"
-            android:text="mulai"
+            android:text="Mulai"
             android:id="@+id/btnTglMulai"
             android:layout_gravity="left"
-            android:background="#ff83aae5"
+            android:background="#ff008688"
             android:textSize="22dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/textView2"
@@ -59,38 +59,40 @@
             android:layout_alignParentStart="true"/>
 
         <EditText
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="35dp"
             android:id="@+id/TglMulai"
             android:background="#D3F0D2"
-            android:textSize="26dp"
+            android:textSize="17dp"
+            android:layout_marginLeft="4dp"
             android:textIsSelectable="false"
             android:editable="false"
-            android:hint="mulai"
+            android:hint=" tekan tombol di samping"
             android:layout_above="@+id/btnTglSelesai"
             android:layout_toRightOf="@+id/btnTglSelesai"
             android:layout_toEndOf="@+id/btnTglSelesai" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="35dp"
-            android:text=" selesai "
+            android:text="Selesai"
             android:id="@+id/btnTglSelesai"
             android:layout_gravity="left"
             android:layout_marginTop="10dp"
-            android:background="#ff83aae5"
+            android:background="#ff008688"
             android:textSize="22dp"
             android:layout_below="@+id/btnTglMulai" />
 
         <EditText
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="35dp"
             android:id="@+id/TglSelesai"
             android:background="#D3F0D2"
-            android:hint="selesai"
+            android:hint=" tekan tombol di samping"
             android:textIsSelectable="false"
             android:editable="false"
-            android:textSize="26dp"
+            android:textSize="17dp"
+            android:layout_marginLeft="4dp"
             android:layout_alignTop="@+id/btnTglSelesai"
             android:layout_toRightOf="@+id/btnTglSelesai"
             android:layout_toEndOf="@+id/btnTglSelesai" />
@@ -106,60 +108,62 @@
             android:layout_below="@+id/btnTglSelesai"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="35dp"
-            android:text="mulai"
+            android:text="Mulai"
             android:id="@+id/btnJamMulai"
-            android:background="#ff83aae5"
+            android:background="#ff008688"
             android:textSize="22dp"
             android:layout_marginTop="10dp"
             android:layout_gravity="left"
             android:layout_below="@+id/textView4"/>
 
         <EditText
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="35dp"
             android:id="@+id/mulai"
             android:background="#D3F0D2"
-            android:hint="mulai"
+            android:hint=" tekan tombol di samping"
             android:textIsSelectable="false"
             android:editable="false"
-            android:textSize="26dp"
+            android:textSize="17dp"
+            android:layout_marginLeft="4dp"
             android:layout_above="@+id/btnJamSelesai"
             android:layout_toRightOf="@+id/btnJamSelesai"
             android:layout_toEndOf="@+id/btnJamSelesai" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="35dp"
-            android:text=" selesai "
+            android:text="Selesai"
             android:id="@+id/btnJamSelesai"
             android:layout_marginTop="10dp"
-            android:background="#ff83aae5"
+            android:background="#ff008688"
             android:textSize="22dp"
             android:layout_gravity="left"
             android:layout_below="@+id/btnJamMulai"/>
 
         <EditText
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="35dp"
             android:id="@+id/selesai"
             android:background="#D3F0D2"
-            android:hint="selesai"
+            android:hint=" tekan tombol di samping"
             android:textIsSelectable="false"
             android:editable="false"
-            android:textSize="26dp"
+            android:textSize="17dp"
+            android:layout_marginLeft="4dp"
             android:layout_alignTop="@+id/btnJamSelesai"
             android:layout_toRightOf="@+id/btnJamSelesai"
             android:layout_toEndOf="@+id/btnJamSelesai" />
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="170dp"
             android:layout_height="40dp"
-            android:text="Cari ruangan"
+            android:text="Cari Ruangan"
             android:id="@+id/buttonCari"
-            android:background="#ff83aae5"
-            android:textSize="28dp"
+            android:background="#ff008688"
+            android:textSize="22dp"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/btnJamSelesai"
             android:layout_centerHorizontal="true" />

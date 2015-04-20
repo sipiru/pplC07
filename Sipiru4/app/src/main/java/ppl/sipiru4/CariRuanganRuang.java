@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class CariRuanganRuang extends Fragment {
+    Button btnSearch;
 
     public CariRuanganRuang() {
         // TODO Auto-generated constructor stub
@@ -25,6 +27,7 @@ public class CariRuanganRuang extends Fragment {
 
         View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
         Spinner ruang = (Spinner)rootView.findViewById(R.id.ruang);
+        btnSearch = (Button)rootView.findViewById(R.id.btnTglMulai);
         //TODO get semua jadwal ruang yang click
         return rootView;
     }

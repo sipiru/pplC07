@@ -19,20 +19,18 @@ import ppl.sipiru4.model.DaftarPermohonanItemMR;
 
 public class DaftarPermohonanMR extends Fragment {
     ListView lv;
-
     DaftarPermohonanAdapterMR adapter;
     private ArrayList<DaftarPermohonanItemMR> mItems;
-    public DaftarPermohonanMR(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
-
+    public DaftarPermohonanMR(){
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
-
 
         mItems = new ArrayList<DaftarPermohonanItemMR>();
         Resources resources = getResources();

@@ -31,7 +31,7 @@ public class DetailPermohonanK extends Activity {
         TextView jamSelesai = (TextView)findViewById(R.id.selesai);
         TextView permintaanLain = (TextView)findViewById(R.id.permintaanLain);
 
-        Button btnTeruskan = (Button)findViewById(R.id.btnteruskan);
+        Button btnTeruskan = (Button)findViewById(R.id.btnTeruskan);
         btnTeruskan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

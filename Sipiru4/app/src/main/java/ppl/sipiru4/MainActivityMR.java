@@ -58,13 +58,12 @@ public class MainActivityMR extends FragmentActivity {
 
         // nav drawer icons from resources
         navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);
+                .obtainTypedArray(R.array.nav_drawer_icons_mgr);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
-
 
             // adding nav drawer items to array
             // Daftar Permohonan
@@ -77,8 +76,6 @@ public class MainActivityMR extends FragmentActivity {
             navDrawerItems.add(new NavDrawerItem(menuMR[3], navMenuIcons.getResourceId(3, -1)));
             // Logout
             navDrawerItems.add(new NavDrawerItem(menuMR[4], navMenuIcons.getResourceId(4, -1)));
-
-
 
         // Recycle the typed array
         navMenuIcons.recycle();

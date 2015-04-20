@@ -70,12 +70,10 @@ public class CariRuanganWaktu extends Fragment {
 
             }
         });
-        Button button = (Button) rootView.findViewById(R.id.buttonCari);
-        button.setOnClickListener(new View.OnClickListener()
-        {
+        btnCari = (Button) rootView.findViewById(R.id.buttonCari);
+        btnCari.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 //TODO : get daftar ruangan yang bisa dipinjam sesuai dengan tgl mulai ...dst yang diinput pengguna
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan());
@@ -96,7 +94,6 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
         ambilJamSelesai = (Button)rootView.findViewById(R.id.btnJamSelesai);
-        
         ambilJamSelesai.setOnClickListener(new View.OnClickListener() {
 
             @Override

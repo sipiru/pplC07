@@ -27,14 +27,11 @@ public class DaftarPermohonanFI extends Fragment {
     public DaftarPermohonanFI(){}
     //private DaftarPermohonanItem mItems; // ListView items list
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
         lv = (ListView) rootView.findViewById(R.id.list);
-
 
         mItems = new ArrayList<DaftarPermohonanItemFI>();
         Resources resources = getResources();

@@ -49,7 +49,7 @@ public  class CariRuangan extends Fragment
 
         // Here we load the content for each tab.
         mTabsAdapter.addTab(mTabHost.newTabSpec("Ruangan").setIndicator("Ruangan"), CariRuanganRuang.class, null);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("Waktu Pinjam").setIndicator("WaktuPinjam"), CariRuanganWaktu.class, null);
+        mTabsAdapter.addTab(mTabHost.newTabSpec("Waktu Pinjam").setIndicator("Waktu Pinjam"), CariRuanganWaktu.class, null);
 
         return v;
     }

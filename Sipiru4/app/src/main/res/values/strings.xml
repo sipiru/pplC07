@@ -23,29 +23,29 @@
     </string-array>
     <string-array name="nav_drawer_items_peminjam">
         <item >Cari Ruangan</item>
-        <item >Daftar Permohonan</item>
-        <item >Daftar Peminjamann</item>
+        <item >Daftar Pending</item>
+        <item >Daftar Disetujui</item>
         <item >Daftar Pesan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_mr">
-        <item >Daftar Permohonan</item>
-        <item >Daftar Peminjamann</item>
+        <item >Daftar Pending</item>
+        <item >Daftar Disetujui</item>
         <item >Daftar Pesan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_mk">
-        <item >Daftar Permohonan</item>
-        <item >Daftar Peminjamann</item>
+        <item >Daftar Pending</item>
+        <item >Daftar Disetujui</item>
         <item >Daftar Pesan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_fasumitf">
-        <item >Daftar Permohonan</item>
-        <item >Daftar Peminjamann</item>
+        <item >Daftar Pending</item>
+        <item >Daftar Disetujui</item>
         <item >Daftar Pesan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
@@ -56,11 +56,20 @@
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
+    <!--bikin yang banyak untuk masing masing pengguna-->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_cariruangan</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/update_status</item>
+        <!--<item>@drawable/update_status</item>-->
+        <item>@drawable/daftar_pesan</item>
+        <item>@drawable/tulis_pesan</item>
+        <item>@drawable/logout2</item>
+    </array>
+    <array name="nav_drawer_icons_mgr">
+        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/ic_daftarpermohonan</item>
+        <!--<item>@drawable/update_status</item>-->
         <item>@drawable/daftar_pesan</item>
         <item>@drawable/tulis_pesan</item>
         <item>@drawable/logout2</item>

@@ -29,37 +29,77 @@ public class DetailPermohonanMR extends Activity {
         TextView jamSelesai = (TextView)findViewById(R.id.selesai);
         TextView permintaanLain = (TextView)findViewById(R.id.permintaanLain);
 
-        Button btnTeruskan = (Button)findViewById(R.id.btnteruskan);
+        Button btnTeruskan = (Button)findViewById(R.id.btnTeruskan);
         btnTeruskan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO : send data permohonan ke manager kemahasiswaan
-                Toast.makeText(getApplicationContext(), "Data permohonan berhasil di teruskan ke Manager Kemahasiswaan",
-                        Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                // set title
+                alertDialogBuilder.setTitle("Apakah anda yakin untuk menyetujui permohonan ini?");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Tekan Ya untuk menyetujui")
+                        .setCancelable(false)
+                        .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+
+                                Toast.makeText(getApplicationContext(), "Data permohonan berhasil disetujui",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        });
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
-        Button btnUpdate = (Button)findViewById(R.id.btnSetuju);
+        Button btnUpdate = (Button)findViewById(R.id.btnUpdate);
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : update data permohonan
-                Toast.makeText(getApplicationContext(), "Data permohonan berhasil di update",
-                        Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                // set title
+                alertDialogBuilder.setTitle("Apakah anda yakin untuk mengupdate permohonan ini?");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Tekan Ya untuk mengupdate")
+                        .setCancelable(false)
+                        .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                //TODO : update data permohonan
+
+                                Toast.makeText(getApplicationContext(), "Data permohonan berhasil di update",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        });
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
         Button btnTolak = (Button)findViewById(R.id.btnTolak);
         btnTolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 // set title
                 alertDialogBuilder.setTitle("Apakah anda yakin untuk menolak permohonan ini?");
 
                 // set dialog message
                 alertDialogBuilder
-                        .setMessage("Tekan Ya untuk menolak!")
+                        .setMessage("Tekan Ya untuk menolak")
                         .setCancelable(false)
                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
@@ -70,17 +110,11 @@ public class DetailPermohonanMR extends Activity {
                         })
                         .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
                                 dialog.cancel();
                             }
                         });
-
-
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
                 alertDialog.show();
             }
         });

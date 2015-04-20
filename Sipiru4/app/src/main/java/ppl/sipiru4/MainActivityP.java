@@ -2,9 +2,7 @@ package ppl.sipiru4;
 
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.model.NavDrawerItem;
-
 import java.util.ArrayList;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,22 +25,12 @@ public class MainActivityP extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-
-
-    // nav drawer title
-    private CharSequence mDrawerTitle;
-
-
-    // used to store app title
-    private CharSequence mTitle;
+    private CharSequence mDrawerTitle; // nav drawer title
+    private CharSequence mTitle; // used to store app title
     final Context context = this;
     Intent i;
-
-    // slide menu items
-    private String[] menuPeminjam;
-
+    private String[] menuPeminjam; // slide menu items
     private TypedArray navMenuIcons;
-
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
@@ -50,21 +38,18 @@ public class MainActivityP extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mTitle = mDrawerTitle = getTitle();
 
         // load slide menu items
         menuPeminjam = getResources().getStringArray(R.array.nav_drawer_items_peminjam);
 
         // nav drawer icons from resources
-        navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);
+        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
-
 
             // adding nav drawer items to array
             // Cari Ruangan
@@ -216,8 +201,6 @@ public class MainActivityP extends FragmentActivity {
 
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
                 alertDialog.show();
 
             default:

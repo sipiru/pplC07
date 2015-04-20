@@ -10,9 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import ppl.sipiru4.Entity.JSONHelper;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapterP;
 import ppl.sipiru4.model.DaftarPermohonanItemP;
 
@@ -31,12 +41,12 @@ public class DaftarPermohonanP extends Fragment {
         View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
-
         mItems = new ArrayList<DaftarPermohonanItemP>();
         Resources resources = getResources();
 //        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
 //        mItems.add(new DaftarPermohonanItem(getString(R.string.hello_world) ));
         //TODO : get daftar permohonan peminjam, masukkan nama ruangan yang dipinjam dan statusnya ke ArrayList
+
         mItems.add(new DaftarPermohonanItemP("2304","2"));
         mItems.add(new DaftarPermohonanItemP("2404","1"));
 

@@ -18,7 +18,7 @@ public class DetailPeminjamanP extends Activity {
 
         super.onCreate(savedInstanceState);
         //TODO menampilkan data peminjaman seorang peminjam yang sudah disetujui semua manager dan sedang berlangsung
-        setContentView(R.layout.detail_permohonan_p);
+        setContentView(R.layout.detail_peminjaman_p);
         TextView ruang = (TextView)findViewById(R.id.ruang);
         TextView nama = (TextView)findViewById(R.id.nama);
         TextView npm = (TextView)findViewById(R.id.npm);

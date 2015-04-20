@@ -43,9 +43,7 @@ public class DaftarPeminjamanMR extends Fragment {
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
+            public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
                 // Sending image id to FullScreenActivity
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailPeminjamanMR.class);
                 // passing array index

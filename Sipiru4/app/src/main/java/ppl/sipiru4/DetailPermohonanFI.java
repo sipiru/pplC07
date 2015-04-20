@@ -34,9 +34,32 @@ public class DetailPermohonanFI extends Activity {
         btnSetuju.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : update data permohonan
-                Toast.makeText(getApplicationContext(), "Data permohonan berhasil di disetujui",
-                        Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                // set title
+                alertDialogBuilder.setTitle("Apakah anda yakin untuk menyetujui permohonan ini?");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Tekan Ya untuk menyetujui")
+                        .setCancelable(false)
+                        .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                //TODO : update data permohonan
+                                Toast.makeText(getApplicationContext(), "Data permohonan berhasil disetujui",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
         Button btnTolak = (Button)findViewById(R.id.btnTolak);
@@ -45,8 +68,7 @@ public class DetailPermohonanFI extends Activity {
             public void onClick(View v) {
                 //TODO : update data permohonan
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 // set title
                 alertDialogBuilder.setTitle("Apakah anda yakin untuk menolak permohonan ini?");
 
@@ -59,6 +81,9 @@ public class DetailPermohonanFI extends Activity {
                                 //TODO : kirim pesan penolakan ke peminjam bahwa permohonan ditolak oleh FASUM/ITF
                                 //TODO : hapus data permohonan
                                 //TODO : panggil fragment daftar permohonan --UI
+
+                                Toast.makeText(getApplicationContext(), "Data permohonan berhasil ditolak",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         })
                         .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
@@ -68,12 +93,8 @@ public class DetailPermohonanFI extends Activity {
                                 dialog.cancel();
                             }
                         });
-
-
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
                 alertDialog.show();
             }
         });

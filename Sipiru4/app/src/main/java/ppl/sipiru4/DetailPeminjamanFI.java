@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailPeminjamanFI extends Activity {
     final Context context = this;
@@ -26,25 +27,28 @@ public class DetailPeminjamanFI extends Activity {
         TextView permintaanLain = (TextView) findViewById(R.id.permintaanLain);
         Button selesai = (Button) findViewById(R.id.selesai);
 
-                            selesai.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
+            selesai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                                            context);
-                                    // set title
-                                    alertDialogBuilder.setTitle("Apakah anda yakin peminjam sudah mengembalikan semua peralatan ?");
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        context);
+                // set title
+                alertDialogBuilder.setTitle("Apakah semua peralatan sudah dikembalikan?");
 
-                                    // set dialog message
-                                    alertDialogBuilder
-                                            .setMessage("Tekan Ya untuk keluar!")
-                                            .setCancelable(false)
-                                            .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int id) {
-                                                    // if this button is clicked, close
-                                                    // current activity
-                                                    //TODO : hapus semua data peminjaman ini disemua daftar peminjaman Role
-                                                }
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Tekan Ya untuk konfirmasi")
+                        .setCancelable(false)
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, close
+                                // current activity
+                                //TODO : hapus semua data peminjaman ini disemua daftar peminjaman Role
+
+                                Toast.makeText(getApplicationContext(), "Peminjaman sudah selesai",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         })
                         .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -53,17 +57,11 @@ public class DetailPeminjamanFI extends Activity {
                                 dialog.cancel();
                             }
                         });
-
-
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
                 alertDialog.show();
-
             }
         });
-
     }
 }
 

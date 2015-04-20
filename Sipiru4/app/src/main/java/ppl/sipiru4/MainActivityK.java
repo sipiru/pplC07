@@ -58,7 +58,7 @@ public class MainActivityK extends FragmentActivity {
 
         // nav drawer icons from resources
         navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);
+                .obtainTypedArray(R.array.nav_drawer_icons_mgr);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
