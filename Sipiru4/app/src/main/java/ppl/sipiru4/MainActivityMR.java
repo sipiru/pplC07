@@ -177,7 +177,10 @@ public class MainActivityMR extends FragmentActivity {
 //                fragment = new DaftarPesanMR();
 //                break; // ga jadi pake ini
             case 2:
-                fragment = new KirimPesan();
+                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
+                // passing array index
+                i.putExtra("id", "peminjam");
+                startActivity(i);
                 break;
             case 3:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(

@@ -34,7 +34,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ruang"
             android:hint="Nama ruangan"
@@ -59,7 +59,7 @@
             android:layout_marginTop="10dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nama"
             android:hint="Nama peminjam"
@@ -85,7 +85,7 @@
             android:layout_marginTop="8dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/npm"
             android:hint="NPM peminjam"
@@ -110,7 +110,7 @@
             android:layout_marginTop="10dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/prihal"
             android:hint="Perihal"
