@@ -4,7 +4,7 @@ import ppl.sipiru4.Constants;
 import ppl.sipiru4.Entities.ConnectionErrorException;
 import ppl.sipiru4.Entities.DaftarPeminjaman;
 import ppl.sipiru4.Entities.JSONHelper;
-import ppl.sipiru4.Entities.ParseErrorException;
+import ppl.sipiru4.Business.ParseErrorException;
 import ppl.sipiru4.Entities.Peminjaman;
 import ppl.sipiru4.Entities.User;
 
@@ -24,10 +24,10 @@ public class PeminjamanController {
 
     public static boolean tambahPeminjaman(Peminjaman peminjaman) {
         String strPeminjaman = "{";
-        strPeminjaman += "\"peminjam:\"" + peminjaman.getPeminjam().getUsername() + '&' + "\"mulai:\"" +
+        strPeminjaman += "peminjam:" + peminjaman.getPeminjam().getUsername() + '&' + "mulai:" +
                 peminjaman.getMulai().toString() + '&' +
-                "\"selesai:\"" + peminjaman.getSelesai().toString() + '&' +
-                "\"ruangan:\"" + peminjaman.getRuangan().getKode() + "\"status:\"" +peminjaman.getStatus();
+                "selesai:" + peminjaman.getSelesai().toString() + '&' +
+                "ruangan:" + peminjaman.getRuangan().getKode() + "status:" +peminjaman.getStatus();
         strPeminjaman += '}';
 
         try {
@@ -46,7 +46,7 @@ public class PeminjamanController {
 
         try {
             jsonArray = JSONHelper.getArrayFromUrl(Constants.PEMINJAMAN_ADDR + '&' +
-                    "\"pengguna:\"" + pengguna.getUsername());
+                    "pengguna:" + pengguna.getUsername());
         } catch (IOException|JSONException e) {
             throw new ConnectionErrorException();
         }
@@ -58,15 +58,15 @@ public class PeminjamanController {
             } catch (JSONException e) {
                 throw new ParseErrorException();
             }
-            Peminjaman peminjaman;
-            try {
-                peminjaman = new Peminjaman(pengguna,
-                        new GregorianCalendar(object.getString("\"mulai\"")),
-                        new GregorianCalendar(object.getString("\"selesai\"")),
-                        RuanganController.cariRuangan(object.getString("\"koderuangan\"")));
-            } catch (JSONException e) {
-                throw new ParseErrorException();
-            }
+            Peminjaman peminjaman = null;
+//            try {
+//                peminjaman = new Peminjaman(pengguna,
+//                        new GregorianCalendar(object.getString("mulai")),
+//                        new GregorianCalendar(object.getString("selesai")),
+//                        RuanganController.cariRuangan(object.getString("koderuangan")));
+//            } catch (JSONException e) {
+//                throw new ParseErrorException();
+//            }
             daftarPeminjaman.tambahPeminjaman(peminjaman);
         }
     }

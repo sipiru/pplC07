@@ -8,22 +8,19 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
-    <android:uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
     <application
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@drawable/ic"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivityController"
-            android:label="@string/app_name" >
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:process=":sync">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,42 +28,103 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailPesanController"
+            android:label="@string/app_name"
+            android:name=".KirimPesan" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <!--activity
+            android:name=".DetailPermohonanController"
             android:label="@string/title_activity_display_message"
-            android:parentActivityName=".MainActivityController" >
+            android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivityController" />
+                android:value=".LoginActivity" />
+        </activity-->
+        <activity android:name=".MainActivityP">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
         </activity>
-        <!--
-        activity android:name=".DetailPesan"
-        android:label="Detail pESAN"></activity
-        -->
+        <activity android:name=".MainActivityK">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivityMR">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivityFI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DaftarRuangan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FormPeminjaman">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+        </intent-filter>
+    </activity>
+        <activity android:name=".DetailPermohonanP">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPermohonanMR">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPermohonanK">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPermohonanFI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPesan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPeminjamanP">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPeminjamanK">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPeminjamanMR">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPeminjamanFI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailRuangan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
 
-        <activity
-            android:name=".admin_ui"
-            android:label="@string/title_activity_admin_ui" >
-        </activity>
-        <activity
-            android:name=".create_table_admin"
-            android:label="@string/title_activity_create_table_admin" >
-        </activity>
-        <activity
-            android:name=".update_table_admin"
-            android:label="@string/title_activity_update_table_admin" >
-        </activity>
-        <activity
-            android:name=".delete_table_admin"
-            android:label="@string/title_activity_delete_table_admin" >
-        </activity>
-        <activity
-            android:name=".update_akun"
-            android:label="@string/title_activity_update_akun" >
-        </activity>
-        <activity
-            android:name=".retrive_table_admin"
-            android:label="@string/title_activity_retrive_table_admin" >
-        </activity>
-    </application>
+
+
+</application>
 
 </manifest>

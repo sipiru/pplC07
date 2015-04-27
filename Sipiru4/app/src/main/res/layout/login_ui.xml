@@ -1,3 +1,12 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:id="@+id/layoutScroll"
+    android:background="#B1D9E7">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:gravity="center_horizontal"
@@ -18,33 +27,35 @@
         android:layout_below="@+id/imageHeader"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/layoutLogin2">
 
         <TextView
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text= "Selamat Datang !"
-            android:layout_marginTop="20dp"
-            android:textSize="30dp"
-            android:id="@+id/textView1" />
+            android:text= "Selamat Datang!"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp"
+            android:id="@+id/textView1"
+            android:textColor="@color/primary_text_default_material_light"/>
 
         <TextView
-            android:layout_height="20dp"
-            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text= "Silahkan login untuk dapat menggunkan Sipiru "
+            android:text= "Silahkan login terlebih dahulu"
             android:textStyle="italic"
-            android:textSize="20dp"
-            android:layout_marginTop="8dp"
-            android:id="@+id/textView2" />
+            android:textSize="18dp"
+            android:layout_marginTop="6dp"
+            android:id="@+id/textView2"
+            android:textColor="@color/primary_text_default_material_light"/>
 
 
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:maxLines="1"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -53,39 +64,39 @@
             android:textAlignment="center"
             android:background="#ffdcffdc"
             android:textColor="#41000000"
-            android:text="username"
+            android:hint="username"
             android:id="@+id/editText1"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:maxLines="1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="#ffdcffdc"
             android:textAlignment="center"
+            android:password="true"
             android:textStyle="italic"
             android:textColor="#41000000"
             android:hint="@string/prompt_password"
-            android:id="@+id/editText3"
-            android:textSize="30dp" />
+            android:id="@+id/ruang"
+            android:textSize="25dp" />
 
 
 
         <Button android:id="@+id/buttonLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
             android:text="@string/Login"
-            android:textStyle ="bold"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:textSize="20dp"
-            android:background="#ff83aae5" />
-
+            android:background="#ff008688"
+            android:layout_gravity="left"/>
 
 
         <TextView
@@ -94,21 +105,23 @@
             android:layout_marginRight="10dp"
             android:text="Atau tempelkan KTM"
             android:textSize="20dp"
-            android:id="@+id/textView1"
+            android:id="@+id/textView3"
             android:layout_marginTop="0dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="30dp"
-            android:layout_weight="0.00" />
+            android:layout_weight="0.00"
+            android:textColor="@color/primary_text_default_material_light"/>
 
     </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         android:id="@+id/imageHeader"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/headerlog" />
+        android:src="@drawable/headerlog"/>
 
 </RelativeLayout>
+    </ScrollView>
 
