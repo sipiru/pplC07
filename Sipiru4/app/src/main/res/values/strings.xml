@@ -7,77 +7,141 @@
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="title_activity_display_message">My Message</string>
-    <string name="Login">login</string>
+    <string name="Login">LOGIN</string>
     <string name="set_date">login</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_password">password</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
         <item >Cari Ruangan</item>
         <item >Daftar Permohonan</item>
         <item >Daftar Peminjamann</item>
-        <item >Daftar Pesan</item>
+        <!--<item >Daftar Pesan</item>-->
         <item >Tulis Pesan</item>
         <item >Logout</item>
         <item >Menu Admin</item>
     </string-array>
     <string-array name="nav_drawer_items_peminjam">
         <item >Cari Ruangan</item>
-        <item >Daftar Permohonan</item>
-        <item >Daftar Peminjamann</item>
-        <item >Daftar Pesan</item>
+        <item >Lihat Jadwal Ruangan</item>
+        <item >Daftar Pending</item>
+        <item >Daftar Disetujui</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_mr">
-        <item >Daftar Permohonan</item>
-        <item >Daftar Peminjamann</item>
-        <item >Daftar Pesan</item>
+        <item >Daftar Pending</item>
+        <item >Daftar Disetujui</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_mk">
-        <item >Daftar Permohonan</item>
-        <item >Daftar Peminjamann</item>
-        <item >Daftar Pesan</item>
+        <item >Daftar Pending</item>
+        <item >Daftar Disetujui</item>
+        <!--<item >Daftar Pesan</item>-->
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_fasumitf">
-        <item >Daftar Permohonan</item>
-        <item >Daftar Peminjamann</item>
-        <item >Daftar Pesan</item>
+        <item >Daftar Pending</item>
+        <item >Daftar Pengembalian Alat</item>
+        <item >Daftar History</item>
+        <!--<item >Daftar Pesan</item>-->
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_admin">
-        <item >MenuAdmin</item>
+        <item >Buat Tabel Baru</item>
+        <item >Update Tabel</item>
+        <item >Hapus Tabel</item>
+        <item >Update Role</item>
+        <item >Logout</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
+    <!--bikin yang banyak untuk masing masing pengguna-->
     <array name="nav_drawer_icons">
+        <item>@drawable/ic_cariruangan</item>
         <item>@drawable/ic_cariruangan</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/update_status</item>
-        <item>@drawable/daftar_pesan</item>
+        <!--<item>@drawable/update_status</item>-->
+        <!--<item>@drawable/daftar_pesan</item>-->
         <item>@drawable/tulis_pesan</item>
         <item>@drawable/logout2</item>
     </array>
-<string-array name="manager">
-    <item>Manager Ruangan</item>
-    <item>Manager Kemahasiswaan</item>
-    <item>Fasum/ITF</item>
-
-</string-array>
+    <array name="nav_drawer_icons_mgr">
+        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/ic_daftarpermohonan</item>
+        <!--<item>@drawable/update_status</item>-->
+        <!--<item>@drawable/daftar_pesan</item>-->
+        <item>@drawable/tulis_pesan</item>
+        <item>@drawable/logout2</item>
+    </array>
+    <array name="nav_drawer_icons_ITF">
+        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/ic_daftarpermohonan</item>
+        <!--<item>@drawable/update_status</item>-->
+        <!--<item>@drawable/daftar_pesan</item>-->
+        <item>@drawable/tulis_pesan</item>
+        <item>@drawable/logout2</item>
+    </array>
+    <array name="nav_drawer_icons_admin">
+        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/logout2</item>
+    </array>
+    <string-array name="manager">
+        <item>Manager Ruangan</item>
+        <item>Manager Kemahasiswaan</item>
+        <item>Fasum/ITF</item>
+    </string-array>
+    <string-array name="role">
+        <item>Peminjam</item>
+        <item>Manajer Ruangan</item>
+        <item>Manajer Kemahasiswaan</item>
+        <item>Manajer Umum</item>
+        <item>ITF</item>
+        <item>Admin</item>
+    </string-array>
     <string-array name="ruang">
-        <item>2304</item>
+        <item>2301</item>
+        <item>2302</item>>
         <item>2303</item>
+        <item>2304-5</item>
+        <item>2306</item>
+        <item>2307</item>
+        <item>2401</item>
+        <item>2402-3</item>
+        <item>2404</item>
+        <item>2405</item>
+        <item>2406</item>
+        <item>2502</item>
         <item>2602</item>
+        <item>2603</item>
+        <item>2604</item>
+        <item>3111</item>
+        <item>3112</item>
+        <item>3113</item>
+        <item>3114</item>
+        <item>3313</item>
+        <item>1221</item>
+        <item>Aula(2102)</item>
+        <item>Lab2601</item>
+        <item>Lab1101</item>
+        <item>Lab1103</item>
+        <item>Lab1105</item>
+        <item>Lab1106</item>
+        <item>Lab1107</item>
+        <item>Lab1109</item>
+        <item>Lab1225</item>
 
     </string-array>
-    
+
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
 

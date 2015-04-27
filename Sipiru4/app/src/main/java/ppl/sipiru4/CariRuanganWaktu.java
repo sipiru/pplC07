@@ -27,14 +27,13 @@ import java.util.Calendar;
 public class CariRuanganWaktu extends Fragment {
 
     Button btnCari;
-    Button ambilTglMulai;
-    Button ambilTglSelesai;
-    Button ambilJamMulai;
-    Button ambilJamSelesai;
-    static EditText tglMulai;
-    static EditText tglSelesai;
-    static EditText jamMulai;
-    static EditText jamSelesai;
+    static EditText ambilTglMulai;
+    static EditText ambilTglSelesai;
+    static EditText ambilJamMulai;
+    static EditText ambilJamSelesai;
+    public CariRuanganWaktu(){
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -44,22 +43,16 @@ public class CariRuanganWaktu extends Fragment {
 
         //TODO : get daftar ruangan berdasarkan masukkan pengguna dan simpan
 
-        tglMulai = (EditText)rootView.findViewById(R.id.TglMulai);
-        tglSelesai = (EditText)rootView.findViewById(R.id.TglSelesai);
-        jamMulai = (EditText)rootView.findViewById(R.id.mulai);
-        jamSelesai = (EditText)rootView.findViewById(R.id.selesai);
-        ambilTglMulai = (Button)rootView.findViewById(R.id.btnTglMulai);
+        ambilTglMulai = (EditText)rootView.findViewById(R.id.btnTglMulai);
         ambilTglMulai.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-
                 DialogFragment newFragment = new SelectTglMulai();
                 newFragment.show(getFragmentManager(),"");
-
             }
         });
-        ambilTglSelesai = (Button)rootView.findViewById(R.id.btnTglSelesai);
+        ambilTglSelesai = (EditText)rootView.findViewById(R.id.btnTglSelesai);
         ambilTglSelesai.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -70,21 +63,20 @@ public class CariRuanganWaktu extends Fragment {
 
             }
         });
-        Button button = (Button) rootView.findViewById(R.id.buttonCari);
-        button.setOnClickListener(new View.OnClickListener()
-        {
+        btnCari = (Button) rootView.findViewById(R.id.buttonCari);
+        btnCari.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 //TODO : get daftar ruangan yang bisa dipinjam sesuai dengan tgl mulai ...dst yang diinput pengguna
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan());
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.addToBackStack("text");
                 fragmentTransaction.commit();
             }
         });
-        ambilJamMulai = (Button)rootView.findViewById(R.id.btnjamMulai);
+
+        ambilJamMulai = (EditText)rootView.findViewById(R.id.btnJamMulai);
         ambilJamMulai.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -95,8 +87,7 @@ public class CariRuanganWaktu extends Fragment {
 
             }
         });
-        ambilJamSelesai = (Button)rootView.findViewById(R.id.btnJamSelesai);
-        
+        ambilJamSelesai = (EditText)rootView.findViewById(R.id.btnJamSelesai);
         ambilJamSelesai.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -162,7 +153,13 @@ public class CariRuanganWaktu extends Fragment {
             populateSetDate(yy, mm+1, dd);
         }
         public void populateSetDate(int year, int month, int day) {
-            tglMulai.setText(month + "/" + day + "/" + year);
+            String yearOutput = ""+year;
+            String monthOutput = ""+month;
+            String dayOutput = ""+day;
+            if (month<10) {monthOutput = "0" + month;}
+            if (day<10) {dayOutput = "0" + day;}
+            ambilTglMulai.setText(yearOutput + "-" + monthOutput + "-" + dayOutput);
+
         }
 
     }
@@ -180,8 +177,14 @@ public class CariRuanganWaktu extends Fragment {
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
             populateSetDate(yy, mm+1, dd);
         }
+
         public void populateSetDate(int year, int month, int day) {
-            tglSelesai.setText(month + "/" + day + "/" + year);
+            String yearOutput = ""+year;
+            String monthOutput = ""+month;
+            String dayOutput = ""+day;
+            if (month<10) {monthOutput = "0" + month;}
+            if (day<10) {dayOutput = "0" + day;}
+            ambilTglSelesai.setText(yearOutput + "-" + monthOutput + "-" + dayOutput);
         }
 
     }
@@ -196,7 +199,11 @@ public class CariRuanganWaktu extends Fragment {
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
-            jamMulai.setText(hour + "." + minutes);
+            String hourOutput = ""+hour;
+            String minutesOutput = ""+minutes;
+            if (hour<10) {hourOutput="0"+hour;}
+            if (minutes<10) {minutesOutput="0"+minutes;}
+            ambilJamMulai.setText(hourOutput + ":" + minutesOutput + ":00");
         }
 
     }
@@ -211,7 +218,11 @@ public class CariRuanganWaktu extends Fragment {
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
-            jamSelesai.setText(hour + "." + minutes);
+            String hourOutput = ""+hour;
+            String minutesOutput = ""+minutes;
+            if (hour<10) {hourOutput="0"+hour;}
+            if (minutes<10) {minutesOutput="0"+minutes;}
+            ambilJamSelesai.setText(hourOutput + ":" + minutesOutput + ":00");
         }
 
     }

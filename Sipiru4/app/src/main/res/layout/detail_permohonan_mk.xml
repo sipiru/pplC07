@@ -19,26 +19,25 @@
         android:background="#B1D9E7"
         android:id="@+id/layoutForm1">
 
-
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ruang   :"
-            android:textSize="25dp"
+            android:text="Ruangan  "
+            android:textSize="20dp"
             android:id="@+id/textView1"
             android:textColor="#ff000000"
             android:layout_marginTop="10dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="30dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/ruang"
+            android:hint="Nama ruangan"
+            android:textSize="20dp"
+            android:textColor="#ff000000"
             android:layout_gravity="center_vertical"
-            android:background="#D3F0D2"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignBottom="@+id/textView1"
@@ -49,8 +48,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama    :"
-            android:textSize="25dp"
+            android:text="Nama   "
+            android:textSize="20dp"
             android:id="@+id/textView2"
             android:textColor="#ff000000"
             android:layout_below="@+id/textView1"
@@ -58,61 +57,66 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp" />
 
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="30dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/nama"
             android:layout_gravity="center_vertical"
-            android:background="#D3F0D2"
+            android:hint="Nama peminjam"
+            android:textSize="20dp"
+            android:textColor="#ff000000"
             android:layout_alignBottom="@+id/textView2"
             android:layout_alignLeft="@+id/ruang"
             android:layout_alignStart="@+id/ruang"
             android:layout_alignRight="@+id/ruang"
-            android:layout_alignEnd="@+id/ruang"
-            android:layout_marginTop="10dp" />
+            android:layout_alignEnd="@+id/ruang"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NPM      :"
-            android:textSize="25dp"
+            android:text="NPM    "
+            android:textSize="20dp"
             android:id="@+id/textView4"
             android:textColor="#ff000000"
             android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp" />
-
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:id="@+id/npm"
-            android:layout_gravity="center_vertical"
-            android:background="#D3F0D2"
-            android:layout_alignTop="@+id/textView4"
-            android:layout_alignLeft="@+id/nama"
-            android:layout_alignStart="@+id/nama"
-            android:layout_alignRight="@+id/nama"
-            android:layout_alignEnd="@+id/nama" />
+            android:layout_marginTop="8dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prihal    :"
-            android:textSize="25dp"
+            android:id="@+id/npm"
+            android:hint="NPM peminjam"
+            android:textSize="20dp"
+            android:textColor="#ff000000"
+            android:layout_gravity="center_vertical"
+            android:layout_alignTop="@+id/textView4"
+            android:layout_alignLeft="@+id/nama"
+            android:layout_alignStart="@+id/nama"
+            android:layout_alignRight="@+id/nama"
+            android:layout_alignEnd="@+id/nama"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perihal    "
+            android:textSize="20dp"
             android:id="@+id/textView5"
             android:textColor="#ff000000"
             android:layout_below="@+id/textView4"
+            android:layout_marginTop="10dp"
             android:layout_alignRight="@+id/textView4"
-            android:layout_alignEnd="@+id/textView4"
-            android:layout_marginTop="10dp" />
+            android:layout_alignEnd="@+id/textView4" />
 
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="30dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/prihal"
+            android:hint="Perihal"
+            android:textSize="20dp"
+            android:textColor="#ff000000"
             android:layout_gravity="center_vertical"
-            android:background="#D3F0D2"
             android:layout_alignTop="@+id/textView5"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -123,8 +127,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tanggal:"
-            android:textSize="25dp"
+            android:text="Tanggal "
+            android:textSize="20dp"
             android:id="@+id/textView6"
             android:textColor="#ff000000"
             android:layout_below="@+id/textView5"
@@ -132,27 +136,25 @@
             android:layout_alignStart="@+id/textView5"
             android:layout_marginTop="10dp" />
 
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:id="@+id/tglMulai"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tanggal"
             android:layout_gravity="center_vertical"
-            android:background="#D3F0D2"
-            android:hint="mulai"
+            android:textSize="20dp"
+            android:textColor="#ff000000"
             android:layout_below="@+id/prihal"
             android:layout_alignLeft="@+id/prihal"
             android:layout_alignStart="@+id/prihal"
             android:layout_marginTop="10dp"
-            android:layout_alignRight="@+id/textView8"
-            android:layout_alignEnd="@+id/textView8"
-            android:layout_marginRight="1dp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:text="tanggal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jam       :"
-            android:textSize="25dp"
+            android:text="Jam     "
+            android:textSize="20dp"
             android:id="@+id/textView7"
             android:textColor="#ff000000"
             android:layout_below="@+id/textView6"
@@ -160,97 +162,72 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp" />
 
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:id="@+id/mulai"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jam"
             android:layout_gravity="center_vertical"
-            android:background="#D3F0D2"
-            android:hint="mulai"
-            android:layout_alignTop="@+id/textView7"
-            android:layout_alignBottom="@+id/textView7"
-            android:layout_alignLeft="@+id/tglMulai"
-            android:layout_alignStart="@+id/tglMulai"
-            android:layout_toLeftOf="@+id/selesai"
-            android:layout_toStartOf="@+id/selesai"
-            android:layout_marginRight="1dp"
-            android:textAlignment="center" />
+            android:textSize="20dp"
+            android:textColor="#ff000000"
+            android:textAlignment="center"
+            android:layout_alignLeft="@+id/tanggal"
+            android:layout_alignStart="@+id/tanggal"
+            android:layout_toStartOf="@+id/btnSetuju"
+            android:layout_above="@+id/textView8"
+            android:layout_alignRight="@+id/fasilitas"
+            android:layout_alignEnd="@+id/fasilitas"
+            android:text="masukkan jam" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Permintaan Lain :"
-            android:textSize="25dp"
+            android:text="Permintaan lain"
+            android:textSize="22dp"
             android:id="@+id/textView8"
             android:textColor="#ff000000"
+            android:layout_marginTop="12dp"
             android:layout_below="@+id/textView7"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/permintaanLain"
+            android:hint="Peralatan-peralatan"
+            android:textSize="20dp"
+            android:textColor="#ff000000"
+            android:id="@+id/fasilitas"
             android:layout_below="@+id/textView8"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="#D3F0D2" />
+            android:layout_alignParentStart="true" />
 
 
         <Button
-            android:layout_width="198dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:text="Setuju"
+            android:layout_marginLeft="10dp"
             android:id="@+id/btnSetuju"
-            android:background="#ff83aae5"
+            android:background="#ff008688"
             android:textSize="15dp"
             android:layout_alignTop="@+id/btnTolak"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
         <Button
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:text="Tolak"
+            android:layout_marginRight="10dp"
             android:id="@+id/btnTolak"
-            android:background="#ff83aae5"
+            android:background="#ff008688"
             android:textSize="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:layout_toLeftOf="@+id/btnSetuju"
             android:layout_toStartOf="@+id/btnSetuju"
-            android:layout_below="@+id/permintaanLain" />
-
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:id="@+id/tglSelesai"
-            android:hint="selesai"
-            android:layout_gravity="center_vertical"
-            android:background="#D3F0D2"
-            android:layout_alignTop="@+id/tglMulai"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/tglMulai"
-            android:layout_toEndOf="@+id/tglMulai"
-            android:layout_marginLeft="1dp"
-            android:textAlignment="center" />
-
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:id="@+id/selesai"
-            android:hint="selesai"
-            android:layout_gravity="center_vertical"
-            android:background="#D3F0D2"
-            android:layout_alignTop="@+id/mulai"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/tglSelesai"
-            android:layout_alignStart="@+id/tglSelesai"
-            android:layout_marginLeft="1dp"
-            android:textAlignment="center" />
+            android:layout_below="@+id/fasilitas" />
 
     </RelativeLayout>
 </ScrollView>

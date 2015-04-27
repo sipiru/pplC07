@@ -19,7 +19,7 @@ public class DaftarRuanganAdapter extends ArrayAdapter<DaftarRuanganItem> {
     private ArrayList<DaftarRuanganItem> navDrawerItems;
 
     public DaftarRuanganAdapter(Context context, List<DaftarRuanganItem> items) {
-        super(context, R.layout.list_daftar_ruangan, items );
+        super(context, R.layout.list, items );
     }
 
     @Override
@@ -31,7 +31,9 @@ public class DaftarRuanganAdapter extends ArrayAdapter<DaftarRuanganItem> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_daftarruangan, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
+            viewHolder.kode = (TextView) convertView.findViewById(R.id.kode);
+            viewHolder.kapasitas = (TextView) convertView.findViewById(R.id.kapasitas);
+            viewHolder.deskripsi= (TextView) convertView.findViewById(R.id.deskripsi);
 
             convertView.setTag(viewHolder);
         } else {
@@ -41,7 +43,9 @@ public class DaftarRuanganAdapter extends ArrayAdapter<DaftarRuanganItem> {
         // update the item view
         DaftarRuanganItem item = getItem(position);
 
-       viewHolder.tvTitle.setText(item.title);
+       viewHolder.kode.setText(item.kode);
+        viewHolder.kapasitas.setText(item.kapasitas);
+        viewHolder.deskripsi.setText(item.deskripsi);
 
         return convertView;
     }
@@ -53,7 +57,10 @@ public class DaftarRuanganAdapter extends ArrayAdapter<DaftarRuanganItem> {
      */
 
     private static class ViewHolder {
-        TextView tvTitle;
+        TextView kode;
+        TextView kapasitas;
+        TextView deskripsi;
+
     }
 
 }

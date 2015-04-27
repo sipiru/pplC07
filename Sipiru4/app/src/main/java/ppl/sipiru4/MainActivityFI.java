@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -28,10 +28,8 @@ public class MainActivityFI extends FragmentActivity {
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
-
     // nav drawer title
     private CharSequence mDrawerTitle;
-
 
     // used to store app title
     private CharSequence mTitle;
@@ -58,7 +56,7 @@ public class MainActivityFI extends FragmentActivity {
 
         // nav drawer icons from resources
         navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);
+                .obtainTypedArray(R.array.nav_drawer_icons_mgr);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
@@ -66,17 +64,19 @@ public class MainActivityFI extends FragmentActivity {
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
 
-            // adding nav drawer items to array
-            // Daftar Permohonan
-            navDrawerItems.add(new NavDrawerItem(menuFI[0], navMenuIcons.getResourceId(0, -1)));
-            // Daftar Peminjaman
-            navDrawerItems.add(new NavDrawerItem(menuFI[1], navMenuIcons.getResourceId(1, -1)));
-            // Daftar Pesan
-            navDrawerItems.add(new NavDrawerItem(menuFI[2], navMenuIcons.getResourceId(2, -2)));
-            // PesanBaru
-            navDrawerItems.add(new NavDrawerItem(menuFI[3], navMenuIcons.getResourceId(3, -1)));
-            // Logout
-            navDrawerItems.add(new NavDrawerItem(menuFI[4], navMenuIcons.getResourceId(4, -1)));
+        // adding nav drawer items to array
+        // Daftar Permohonan
+        navDrawerItems.add(new NavDrawerItem(menuFI[0], navMenuIcons.getResourceId(0, -1)));
+        // Daftar Pengembalian Alat
+        navDrawerItems.add(new NavDrawerItem(menuFI[1], navMenuIcons.getResourceId(1, -1)));
+        // Daftar Pengembalian Alat
+        navDrawerItems.add(new NavDrawerItem(menuFI[2], navMenuIcons.getResourceId(2, -1)));
+//      // Daftar Pesan
+//      navDrawerItems.add(new NavDrawerItem(menuFI[2], navMenuIcons.getResourceId(2, -2)));
+        // PesanBaru
+        navDrawerItems.add(new NavDrawerItem(menuFI[3], navMenuIcons.getResourceId(3, -1)));
+        // Logout
+        navDrawerItems.add(new NavDrawerItem(menuFI[4], navMenuIcons.getResourceId(4, -1)));
 
 
 
@@ -95,7 +95,6 @@ public class MainActivityFI extends FragmentActivity {
         getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_drawer, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
@@ -172,16 +171,22 @@ public class MainActivityFI extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new DaftarPermohonanFI();
+                fragment = new DaftarPendingFI();
                 break;
             case 1:
-                fragment = new DaftarPeminjamanFI();
+                fragment = new DaftarPengembalianAlatFI();
                 break;
             case 2:
-                fragment = new DaftarPesanFI();
+                fragment = new DaftarHistoryFI();
                 break;
+//            case 2:
+//                fragment = new DaftarPesanFI();
+//                break; // ga jadi pake ini
             case 3:
-                fragment = new KirimPesan();
+                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
+                // passing array index
+                i.putExtra("id", "peminjam");
+                startActivity(i);
                 break;
             case 4:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(

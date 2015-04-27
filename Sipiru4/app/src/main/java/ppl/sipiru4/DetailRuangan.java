@@ -5,17 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ppl.sipiru4.adapter.JamTersediaAdapter;
+import ppl.sipiru4.adapter.JamTidakTersediaAdapter;
 import ppl.sipiru4.model.JamTersediaItem;
 
 public class DetailRuangan extends Activity {
     ListView lv;
-    JamTersediaAdapter adapter;
+    JamTidakTersediaAdapter adapter;
+    Button pinjam;
     private ArrayList<JamTersediaItem> mItems;
 
     public DetailRuangan(){}
@@ -38,17 +40,16 @@ public class DetailRuangan extends Activity {
         //TODO: menampilkan kapan saja suatu ruangan bisa dipinjam
         mItems.add(new JamTersediaItem("07.00", "08.00"));
         mItems.add(new JamTersediaItem("05.00", "08.00"));
-        adapter = new JamTersediaAdapter(getApplicationContext(),mItems);
+        adapter = new JamTidakTersediaAdapter(getApplicationContext(),mItems);
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
+        pinjam = (Button)findViewById(R.id.btnPinjam);
+
+        pinjam.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
                 //TODO : menampilkan form yang jamMulai, jamSelesai, tglMulai, dan tglSelesai sesuai dengan masukan pengguna
                 // Sending image id to FullScreenActivity
                 Intent i = new Intent(getApplicationContext(), FormPeminjaman.class);
                 // passing array index
-                i.putExtra("id", position);
                 startActivity(i);
             }
         });

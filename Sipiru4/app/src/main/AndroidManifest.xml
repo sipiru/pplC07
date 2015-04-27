@@ -8,106 +8,105 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
     <application
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@drawable/ic"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/app_name" >
+            android:name=".MainActivityA"
+            android:label="@string/app_name"
+            android:process=":sync">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--activity
-            android:name=".DetailPermohonanController"
-            android:label="@string/title_activity_display_message"
-            android:parentActivityName=".LoginActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" />
-        </activity-->
+        <activity
+            android:label="@string/app_name"
+            android:name=".KirimPesan" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivityP">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityK">
+        <!--activity android:name=".MainActivityK">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
-        </activity>
-        <activity android:name=".MainActivityMR">
+        </activity-->
+        <!--activity android:name=".MainActivityMR">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
-        </activity>
-        <activity android:name=".MainActivityFI">
+        </activity-->
+        <!--activity android:name=".MainActivityFI">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
-        </activity>
+        </activity-->
         <activity android:name=".DaftarRuangan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity android:name=".FormPeminjaman">
         <intent-filter>
-            <action android:name="android.intent.action.MAIN2" />
+            <action android:name="android.intent.action.MAIN" />
         </intent-filter>
     </activity>
-        <activity android:name=".DetailPermohonanP">
+        <activity android:name=".DetailPendingP">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPermohonanMR">
+        <activity android:name=".DetailPendingMR">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPermohonanK">
+        <activity android:name=".DetailDisetujuiMR">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPermohonanFI">
+        <activity android:name=".DetailPendingK">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPesan">
+        <activity android:name=".DetailDisetujuiK">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPeminjamanP">
+        <activity android:name=".DetailPendingFI">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPeminjamanK">
+        <activity android:name=".DetailPengembalianAlatFI">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPeminjamanMR">
+        <activity android:name=".DetailHistoryFI">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".DetailPeminjamanFI">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity android:name=".DetailRuangan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN2" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 

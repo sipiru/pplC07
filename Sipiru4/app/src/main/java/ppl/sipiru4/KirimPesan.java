@@ -1,39 +1,51 @@
 package ppl.sipiru4;
 
-import android.support.v4.app.Fragment;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.telephony.SmsManager;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-public class KirimPesan extends Fragment {
-	
-	public KirimPesan(){}
-	
-	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
- 
-        View rootView = inflater.inflate(R.layout.kirim_pesan_ui, container, false);
+public class KirimPesan extends FragmentActivity{
+    Button buttonSend;
+    EditText textPhoneNo;
+    EditText textSMS;
 
-        Spinner penerima = (Spinner)rootView.findViewById(R.id.penerima);
-        EditText isiPesan =(EditText)rootView.findViewById(R.id.ruang);
-        Button button = (Button) rootView.findViewById(R.id.buttonKirim);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.kirim_pesan_ui);
 
-        button.setOnClickListener(new View.OnClickListener()
-        {
+        buttonSend = (Button) findViewById(R.id.buttonSend);
+        textPhoneNo = (EditText) findViewById(R.id.editTextPhoneNo);
+        textSMS = (EditText) findViewById(R.id.editTextSMS);
+
+        buttonSend.setOnClickListener(new OnClickListener() {
+
             @Override
-            public void onClick(View v)
-            {
-                //TODO : kirim pesan ke penerima
-                Toast.makeText(getActivity(),"Pesan sudah terkirim",Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+
+                String phoneNo = textPhoneNo.getText().toString();
+                String sms = textSMS.getText().toString();
+
+                try {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+                    Toast.makeText(getApplicationContext(), "SMS terkirim",
+                            Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(),
+                            "SMS gagal terkirim. coba lagi nanti",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
             }
         });
-        return rootView;
     }
-
 }

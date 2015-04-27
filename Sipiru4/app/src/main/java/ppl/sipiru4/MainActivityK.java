@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -58,7 +58,7 @@ public class MainActivityK extends FragmentActivity {
 
         // nav drawer icons from resources
         navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);
+                .obtainTypedArray(R.array.nav_drawer_icons_mgr);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
@@ -71,12 +71,12 @@ public class MainActivityK extends FragmentActivity {
             navDrawerItems.add(new NavDrawerItem(menuK[0], navMenuIcons.getResourceId(0, -1)));
             // Daftar Peminjaman
             navDrawerItems.add(new NavDrawerItem(menuK[1], navMenuIcons.getResourceId(1, -1)));
-            // Daftar Pesan
-            navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -2)));
+//            // Daftar Pesan
+//            navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -2)));
             // PesanBaru
-            navDrawerItems.add(new NavDrawerItem(menuK[3], navMenuIcons.getResourceId(3, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -1)));
             // Logout
-            navDrawerItems.add(new NavDrawerItem(menuK[4], navMenuIcons.getResourceId(4, -1)));
+            navDrawerItems.add(new NavDrawerItem(menuK[3], navMenuIcons.getResourceId(3, -1)));
 
 
 
@@ -95,7 +95,6 @@ public class MainActivityK extends FragmentActivity {
         getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_drawer, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
@@ -172,18 +171,21 @@ public class MainActivityK extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new DaftarPermohonanK();
+                fragment = new DaftarPendingK();
                 break;
             case 1:
-                fragment = new DaftarPeminjamanK();
+                fragment = new DaftarDisetujuiK();
                 break;
+//            case 2:
+//                fragment = new DaftarPesanK();
+//                break; //ga jadi pake ini
             case 2:
-                fragment = new DaftarPesanK();
+                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
+                // passing array index
+                i.putExtra("id", "peminjam");
+                startActivity(i);
                 break;
             case 3:
-                fragment = new KirimPesan();
-                break;
-            case 4:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         context);
                 // set title

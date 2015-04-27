@@ -27,9 +27,9 @@ import java.io.InputStreamReader;
  * Created by User on 11/04/2015.
  */
 public class JSONHelper {
-    private JSONHelper() {}
+    public JSONHelper() {}
 
-    public static JSONArray getArrayFromUrl(String url)
+    public JSONArray getArrayFromUrl(String url)
             throws IOException, JSONException {
         JSONArray jarray = null;
 
@@ -59,7 +59,7 @@ public class JSONHelper {
         return jarray;
     }
 
-    public static boolean post(String url, String object) throws IOException {
+    public boolean post(String url, String object) throws IOException {
 
         HttpParams httpParams = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(httpParams,Constants.TIMEOUT);

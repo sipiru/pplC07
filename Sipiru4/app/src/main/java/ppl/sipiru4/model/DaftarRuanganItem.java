@@ -5,20 +5,42 @@ import android.graphics.drawable.Drawable;
 
 public class DaftarRuanganItem {
 
-    public final String title;
+    public final String kode;
+    public final String kapasitas;
+    public final String deskripsi;
+
 
     // the text for the ListView item title
-    public DaftarRuanganItem(String title) {
+    public DaftarRuanganItem(String kode, String kapasitas, String deskripsi) {
 
-        this.title = title;
+        this.kode = kode;
+        this.kapasitas = kapasitas;
+        this.deskripsi = deskripsi;
     }
 
-    public String getTitle() {
-        return this.title;
+    public String getKode() {
+        return this.kode;
+
+    }
+    public String getKapasitas() {
+        return this.kapasitas;
+
+    }
+    public String getDeskripsi() {
+        return this.deskripsi;
 
     }
 
-    public String setTitle() {
-        return title;
+    public String setKode()
+    {
+        return kode;
+    }
+    public String setKapasitas()
+    {
+        return kapasitas;
+    }
+    public String setDeskripsi()
+    {
+        return deskripsi;
     }
 }

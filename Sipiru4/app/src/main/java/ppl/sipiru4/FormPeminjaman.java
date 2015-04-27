@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -16,15 +17,22 @@ public class FormPeminjaman extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_peminjaman_ui);
 
-        EditText editRuang = (EditText)findViewById(R.id.ruang);
-        EditText editNama = (EditText)findViewById(R.id.nama);
-        EditText editNPM = (EditText)findViewById(R.id.npm);
+        TextView editRuang = (TextView)findViewById(R.id.ruang);
+        editRuang.setText("R2303");
+        TextView editNama = (TextView)findViewById(R.id.nama);
+        editNama.setText("Gina Andriyani");
+        TextView editNPM = (TextView)findViewById(R.id.npm);
+        editNPM.setText("1106022654");
+        //TODO : isi sendiri
         EditText editPrihal = (EditText)findViewById(R.id.prihal);
         //TODO : get tanggal peminjaman dari jadwal tersedia yang dipilih
-        EditText editTgl = (EditText)findViewById(R.id.tgl);
+        TextView editTgl = (TextView)findViewById(R.id.tgl);
+        editTgl.setText("20 Maret 2015");
         //TODO : get jam peminjaman dari jadwal tersedia yang dipilih
-        EditText editJam = (EditText)findViewById(R.id.jam);
-
+        TextView editJam = (TextView)findViewById(R.id.jam);
+        editJam.setText("13.00 - 15.00");
+        TextView fasilitas = (TextView)findViewById(R.id.fasilitas);
+        fasilitas.setText("1 Proyektor");
         Button btnSubmit = (Button)findViewById(R.id.btnTolak);
         btnSubmit.setOnClickListener(new View.OnClickListener()
         {

@@ -2,9 +2,7 @@ package ppl.sipiru4;
 
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.model.NavDrawerItem;
-
 import java.util.ArrayList;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,7 +11,7 @@ import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -22,64 +20,54 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivityP extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-
-
-    // nav drawer title
-    private CharSequence mDrawerTitle;
-
-
-    // used to store app title
-    private CharSequence mTitle;
+    private CharSequence mDrawerTitle; // nav drawer title
+    private CharSequence mTitle; // used to store app title
     final Context context = this;
     Intent i;
-
-    // slide menu items
-    private String[] menuPeminjam;
-
+    private String[] menuPeminjam; // slide menu items
     private TypedArray navMenuIcons;
-
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
+//    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mTitle = mDrawerTitle = getTitle();
 
         // load slide menu items
         menuPeminjam = getResources().getStringArray(R.array.nav_drawer_items_peminjam);
 
         // nav drawer icons from resources
-        navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);
+        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
-
             // adding nav drawer items to array
-            // Cari Ruangan
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[0], navMenuIcons.getResourceId(0, -1)));
+            // Cari Ruangan Waktu
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[0], navMenuIcons.getResourceId(0, -1)));
+            // Lihat Jadwal Ruangan
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[1], navMenuIcons.getResourceId(1, -1)));
             // Daftar Permohonan
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[1], navMenuIcons.getResourceId(1, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[2], navMenuIcons.getResourceId(2, -1)));
             // Daftar Peminjaman
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[2], navMenuIcons.getResourceId(2, -2)));
-            // Daftar Pesan
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
+//            // Daftar Pesan
+//            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
             // PesanBaru
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[4], navMenuIcons.getResourceId(4, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[4], navMenuIcons.getResourceId(4, -1)));
             // Logout
-            navDrawerItems.add(new NavDrawerItem(menuPeminjam[5], navMenuIcons.getResourceId(5, -1)));
-
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[5], navMenuIcons.getResourceId(5, -1)));
 
 
         // Recycle the typed array
@@ -88,8 +76,7 @@ public class MainActivityP extends FragmentActivity {
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        adapter = new NavDrawerListAdapter(getApplicationContext(),
-                navDrawerItems);
+        adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
         mDrawerList.setAdapter(adapter);
 
         // enabling action bar app icon and behaving it as toggle button
@@ -97,7 +84,7 @@ public class MainActivityP extends FragmentActivity {
         getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_drawer, //nav menu toggle icon
+                 //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
@@ -124,11 +111,9 @@ public class MainActivityP extends FragmentActivity {
     /**
      * Slide menu item click listener
      * */
-    private class SlideMenuClickListener implements
-            ListView.OnItemClickListener {
+    private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
+        public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
             // display view for selected nav drawer item
             displayView(position);
         }
@@ -174,19 +159,30 @@ public class MainActivityP extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new CariRuangan();
+                fragment = new CariRuanganWaktu();
+                Toast.makeText(this,"cari ruangan", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
-                fragment = new DaftarPermohonanP();
+                fragment = new JadwalRuangan();
+                Toast.makeText(this,"lihat jadwal ruangan", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
-                fragment = new DaftarPeminjamanP();
+                fragment = new DaftarPendingP();
+                Toast.makeText(this,"daftar pending", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                fragment = new DaftarPesanP();
+                fragment = new DaftarDisetujuiP();
+                Toast.makeText(this,"daftar disetujui", Toast.LENGTH_SHORT).show();
                 break;
+//            case 3:
+//                fragment = new DaftarPesanP();
+//                break; // ga jadi pake ini
             case 4:
-                fragment = new KirimPesan();
+                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
+                // passing array index
+                i.putExtra("id", "peminjam");
+                startActivity(i);
+                Toast.makeText(this,"kirim pesan", Toast.LENGTH_SHORT).show();
                 break;
             case 5:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
@@ -213,11 +209,8 @@ public class MainActivityP extends FragmentActivity {
                             }
                         });
 
-
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
                 alertDialog.show();
 
             default:
@@ -225,17 +218,14 @@ public class MainActivityP extends FragmentActivity {
         }
 
         if (fragment != null) {
-
             //FragmentManager fragmentManager = getFragmentManager();
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
-                setTitle(menuPeminjam[position]);
-
+            setTitle(menuPeminjam[position]);
 
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {
