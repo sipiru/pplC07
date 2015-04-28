@@ -1,0 +1,167 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
+        android:background="#B1D9E7"
+        android:id="@+id/layoutDecRuang1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff008688"
+            android:text=" Nama"
+            android:id="@+id/textView"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/namaRuangan"
+            android:text="nama ruangan"
+            android:textColor="#424242"
+            android:textSize="20dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff008688"
+            android:text=" Kode "
+            android:id="@+id/textView1"
+            android:textSize="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_below="@+id/namaRuangan"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/kodeRuangan"
+            android:text="kode ruangan"
+            android:textColor="#424242"
+            android:textSize="20dp"
+            android:layout_below="@+id/textView1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff008688"
+            android:text=" Kapasitas "
+            android:id="@+id/textView2"
+            android:textSize="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_below="@+id/kodeRuangan"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff008688"
+            android:text=" Deskripsi"
+            android:id="@+id/textView3"
+            android:textSize="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_below="@+id/kapasitas"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/kapasitas"
+            android:text="kapasitas"
+            android:textColor="#424242"
+            android:textSize="20dp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deskripsi"
+            android:text="deskripsi"
+            android:textColor="#424242"
+            android:textSize="20dp"
+            android:layout_below="@+id/textView3"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_alignStart="@+id/textView3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="Tidak tersedia pada waktu"
+            android:id="@+id/textView5"
+            android:textColor="#ff000000"
+            android:textSize="20dp"
+            android:layout_marginTop="6dp"
+            android:layout_below="@+id/deskripsi"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="waktu awal"
+            android:id="@+id/textView6"
+            android:textColor="#424242"
+            android:textSize="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="waktu akhir"
+            android:id="@+id/textView7"
+            android:textColor="#424242"
+            android:textSize="16dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignTop="@+id/textView6"
+            android:layout_alignRight="@+id/listJam"
+            android:layout_alignEnd="@+id/listJam" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:id="@+id/listJam"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textView6"
+            android:layout_marginTop="3dp"
+            android:nestedScrollingEnabled="true"
+            android:background="#ff008688" />
+        <Button
+            android:layout_height="40dp"
+            android:layout_width="120dp"
+            android:id="@+id/buttonPinjam"
+            android:text="Pinjam"
+            android:textSize="22dp"
+            android:background="#ff008688"
+            android:layout_below="@+id/listJam"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</ScrollView>

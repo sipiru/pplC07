@@ -1,13 +1,13 @@
 package ppl.sipiru4;
 
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
+import ppl.sipiru4.controller.PenggunaController;
 import ppl.sipiru4.model.NavDrawerItem;
 import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -32,10 +32,7 @@ public class MainActivityP extends FragmentActivity {
     final Context context = this;
     Intent i;
     private String[] menuPeminjam; // slide menu items
-    private TypedArray navMenuIcons;
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
-//    SharedPreferences settings;
+    //    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +44,12 @@ public class MainActivityP extends FragmentActivity {
         menuPeminjam = getResources().getStringArray(R.array.nav_drawer_items_peminjam);
 
         // nav drawer icons from resources
-        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
-        navDrawerItems = new ArrayList<NavDrawerItem>();
+        ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<>();
 
             // adding nav drawer items to array
             // Cari Ruangan Waktu
@@ -77,7 +74,7 @@ public class MainActivityP extends FragmentActivity {
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
+        NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
         mDrawerList.setAdapter(adapter);
 
         // enabling action bar app icon and behaving it as toggle button
@@ -199,6 +196,8 @@ public class MainActivityP extends FragmentActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, close
                                 // current activity
+                                PenggunaController.loginPengguna(null);
+                                Log.e("pengguna", String.valueOf(PenggunaController.getCurrentPengguna()));
                                 MainActivityP.this.finish();
                             }
                         })

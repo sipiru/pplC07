@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
@@ -17,15 +19,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
-import java.sql.Time;
+import org.json.JSONArray;
 import java.util.Calendar;
+import ppl.sipiru4.Entity.JSONParser;
+import ppl.sipiru4.Entity.User;
 
-/**
- * Created by Gina on 4/9/2015.
- */
 public class CariRuanganWaktu extends Fragment {
-
     Button btnCari;
     Button ambilTglMulai;
     Button ambilTglSelesai;
@@ -35,14 +36,17 @@ public class CariRuanganWaktu extends Fragment {
     static EditText tglSelesai;
     static EditText jamMulai;
     static EditText jamSelesai;
+    boolean tglMulaiClicked;
+    boolean tglSelesaiClicked;
+    boolean jamMulaiClicked;
+    boolean jamSelesaiClicked;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_waktu_ui, container, false);
 
-        //TODO : get daftar ruangan berdasarkan masukkan pengguna dan simpan
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         tglMulai = (EditText)rootView.findViewById(R.id.TglMulai);
         tglSelesai = (EditText)rootView.findViewById(R.id.TglSelesai);
@@ -50,59 +54,69 @@ public class CariRuanganWaktu extends Fragment {
         jamSelesai = (EditText)rootView.findViewById(R.id.selesai);
         ambilTglMulai = (Button)rootView.findViewById(R.id.btnTglMulai);
         ambilTglMulai.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectTglMulai();
+//                ambilTglMulai.setText("");
                 newFragment.show(getFragmentManager(),"");
+                tglMulaiClicked=true;
             }
         });
+
         ambilTglSelesai = (Button)rootView.findViewById(R.id.btnTglSelesai);
         ambilTglSelesai.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
-
                 DialogFragment newFragment = new SelectTglSelesai();
                 newFragment.show(getFragmentManager(),"");
-
-            }
-        });
-        btnCari = (Button) rootView.findViewById(R.id.buttonCari);
-        btnCari.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO : get daftar ruangan yang bisa dipinjam sesuai dengan tgl mulai ...dst yang diinput pengguna
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan());
-                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                fragmentTransaction.addToBackStack("text");
-                fragmentTransaction.commit();
+                tglSelesaiClicked=true;
             }
         });
 
         ambilJamMulai = (Button)rootView.findViewById(R.id.btnJamMulai);
         ambilJamMulai.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
-
                 DialogFragment newFragment = new SelectJamMulai();
                 newFragment.show(getFragmentManager(),"");
-
+                jamMulaiClicked=true;
             }
         });
+
         ambilJamSelesai = (Button)rootView.findViewById(R.id.btnJamSelesai);
         ambilJamSelesai.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
-
                 DialogFragment newFragment = new SelectJamSelesai();
                 newFragment.show(getFragmentManager(),"");
-
+                jamSelesaiClicked=true;
             }
         });
+
+        btnCari = (Button) rootView.findViewById(R.id.buttonCari);
+        btnCari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tglMulaiClicked&&tglSelesaiClicked&&jamMulaiClicked&&jamSelesaiClicked) {
+                    JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
+                            +tglMulai.getText()+"%20"+jamMulai.getText()+"&"+tglSelesai.getText()+"%20"+jamSelesai.getText());
+
+                    // simpan ke Shared Preference User
+                    new User(getActivity(),tglMulai.getText()+" "+jamMulai.getText(),tglSelesai.getText()+" "+jamSelesai.getText());
+
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan(jArray));
+                    Toast.makeText(getActivity(),"daftar ruangan", Toast.LENGTH_SHORT).show();
+                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+                else {
+                    Toast.makeText(getActivity(),"mohon isi semua tangggal dan jam",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         return rootView;
     }
 
@@ -140,11 +154,8 @@ public class CariRuanganWaktu extends Fragment {
         Log.d("MyTag", "TabFragment0--onViewStateRestored");
     }
 
-    /**
-     * Created by Gina on 4/15/2015.
-     */
     public static class SelectTglMulai extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
@@ -164,12 +175,11 @@ public class CariRuanganWaktu extends Fragment {
             if (month<10) {monthOutput = "0" + month;}
             if (day<10) {dayOutput = "0" + day;}
             tglMulai.setText(yearOutput + "-" + monthOutput + "-" + dayOutput);
-
         }
-
     }
-    public static class SelectTglSelesai extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
+    public static class SelectTglSelesai extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
@@ -191,10 +201,10 @@ public class CariRuanganWaktu extends Fragment {
             if (day<10) {dayOutput = "0" + day;}
             tglSelesai.setText(yearOutput + "-" + monthOutput + "-" + dayOutput);
         }
-
     }
-    public static class SelectJamMulai extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
+    public static class SelectJamMulai extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar time = Calendar.getInstance();
@@ -210,10 +220,10 @@ public class CariRuanganWaktu extends Fragment {
             if (minutes<10) {minutesOutput="0"+minutes;}
             jamMulai.setText(hourOutput + ":" + minutesOutput + ":00");
         }
-
     }
-    public static class SelectJamSelesai extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
+    public static class SelectJamSelesai extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar time = Calendar.getInstance();
@@ -229,7 +239,5 @@ public class CariRuanganWaktu extends Fragment {
             if (minutes<10) {minutesOutput="0"+minutes;}
             jamSelesai.setText(hourOutput + ":" + minutesOutput + ":00");
         }
-
     }
-
 }

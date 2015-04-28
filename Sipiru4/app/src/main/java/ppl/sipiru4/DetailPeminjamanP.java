@@ -1,31 +1,45 @@
 package ppl.sipiru4;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import ppl.sipiru4.Entity.Peminjaman;
 
-import ppl.sipiru4.R;
+public class DetailPeminjamanP extends Fragment {
+    Peminjaman peminjaman;
 
-public class DetailPeminjamanP extends Activity {
+    public DetailPeminjamanP(Peminjaman peminjaman) {
+        this.peminjaman = peminjaman;
+    }
 
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.detail_peminjaman_p, container, false);
 
+        TextView ruang = (TextView)rootView.findViewById(R.id.ruang);
+        ruang.setText(peminjaman.getKodeRuangan());
 
-    protected void onCreate(Bundle savedInstanceState) {
+        TextView nama = (TextView)rootView.findViewById(R.id.nama);
+        nama.setText(peminjaman.getNamaP());
 
-        super.onCreate(savedInstanceState);
-        //TODO menampilkan data peminjaman seorang peminjam yang sudah disetujui semua manager dan sedang berlangsung
-        setContentView(R.layout.detail_peminjaman_p);
-        TextView ruang = (TextView)findViewById(R.id.ruang);
-        TextView nama = (TextView)findViewById(R.id.nama);
-        TextView npm = (TextView)findViewById(R.id.npm);
-        TextView prihal = (TextView)findViewById(R.id.prihal);
-        TextView tgl = (TextView)findViewById(R.id.tgl);
-        TextView jam = (TextView)findViewById(R.id.jam);
-        TextView permintaanLain = (TextView)findViewById(R.id.permintaanlain);
+        TextView username = (TextView)rootView.findViewById(R.id.username);
+        username.setText(peminjaman.getUsernameP());
+
+        TextView prihal = (TextView)rootView.findViewById(R.id.prihal);
+        prihal.setText(peminjaman.getPerihal());
+
+        TextView mulai = (TextView)rootView.findViewById(R.id.waktuMulai);
+        mulai.setText(peminjaman.getMulai());
+
+        TextView selesai = (TextView)rootView.findViewById(R.id.waktuSelesai);
+        selesai.setText(peminjaman.getSelesai());
+
+        TextView peralatan = (TextView)rootView.findViewById(R.id.permintaanlain);
+        peralatan.setText(peminjaman.getPeralatan());
+
+        return rootView;
     }
 }
 

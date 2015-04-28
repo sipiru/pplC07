@@ -1,5 +1,8 @@
 package ppl.sipiru4.Entity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by User on 11/04/2015.
  */

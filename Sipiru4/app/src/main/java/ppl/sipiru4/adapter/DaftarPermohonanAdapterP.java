@@ -6,19 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
-
+import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
-import ppl.sipiru4.model.DaftarPermohonanItemP;
 
-public class DaftarPermohonanAdapterP extends ArrayAdapter<DaftarPermohonanItemP> {
+public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
 
-    private Context context;
-    private ArrayList<DaftarPermohonanItemP> navDrawerItems;
-
-    public DaftarPermohonanAdapterP(Context context, List<DaftarPermohonanItemP> items) {
+    public DaftarPermohonanAdapterP(Context context, List<Peminjaman> items) {
         super(context, R.layout.list, items );
     }
 
@@ -31,9 +25,7 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<DaftarPermohonanItemP
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan_p, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            //TODO : get nama ruangan yang dipinjam
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
-            //TODO : get status ruangan yang dipinjam
             viewHolder.status = (TextView) convertView.findViewById(R.id.status);
             convertView.setTag(viewHolder);
         } else {
@@ -41,11 +33,18 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<DaftarPermohonanItemP
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // update the item view
-        DaftarPermohonanItemP item = getItem(position);
+        Peminjaman item = getItem(position);
 
-        viewHolder.tvTitle.setText(item.ruangan);
-        viewHolder.status.setText(item.status);
-
+        viewHolder.tvTitle.setText(item.getKodeRuangan());
+        if (item.getStatus()==0) {
+            viewHolder.status.setText("menunggu manajer ruangan");
+        }
+        else if (item.getStatus()==1) {
+            viewHolder.status.setText("menunggu manajer kemahasiswaan");
+        }
+        else {
+            viewHolder.status.setText("menunggu ITF atau Fasum");
+        }
 
         return convertView;
     }

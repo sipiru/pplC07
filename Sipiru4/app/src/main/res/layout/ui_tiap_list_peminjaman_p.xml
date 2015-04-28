@@ -10,8 +10,8 @@
         android:layout_height="fill_parent"
         android:padding="10dip"
         android:textSize="16dip"
-        android:textStyle="bold"
-        android:layout_weight="0.91"
+        android:textColor="#000"
+        android:layout_weight="0.45"
         android:layout_marginLeft="20dp">
     </TextView>
 
@@ -21,9 +21,9 @@
         android:layout_height="fill_parent"
         android:padding="10dip"
         android:textSize="16dip"
-        android:textStyle="bold"
-        android:layout_weight="0.91"
-        android:layout_marginLeft="20dp">
+        android:textColor="#000"
+        android:layout_weight="0.53"
+        android:layout_marginLeft="10dp">
     </TextView>
 
 

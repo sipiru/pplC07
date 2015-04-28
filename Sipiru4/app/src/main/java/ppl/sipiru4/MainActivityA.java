@@ -7,73 +7,64 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.model.NavDrawerItem;
 
-public class MainActivityMR extends FragmentActivity {
+public class MainActivityA extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-
-    // nav drawer title
-    private CharSequence mDrawerTitle;
-
-    // used to store app title
-    private CharSequence mTitle;
+    private CharSequence mDrawerTitle; // nav drawer title
+    private CharSequence mTitle; // used to store app title
     final Context context = this;
     Intent i;
-
-    // slide menu items
-    private String[] menuMR;
-
-    private TypedArray navMenuIcons;
-
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
+    private String[] menuAdmin; // slide menu items
+    //    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mTitle = mDrawerTitle = getTitle();
 
         // load slide menu items
-        menuMR = getResources().getStringArray(R.array.nav_drawer_items_mr);
+        menuAdmin = getResources().getStringArray(R.array.nav_drawer_items_admin);
 
         // nav drawer icons from resources
-        navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons_mgr);
+        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons_admin);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
-        navDrawerItems = new ArrayList<NavDrawerItem>();
+        ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<>();
 
             // adding nav drawer items to array
-            // Daftar Permohonan
-            navDrawerItems.add(new NavDrawerItem(menuMR[0], navMenuIcons.getResourceId(0, -1)));
-            // Daftar Peminjaman
-            navDrawerItems.add(new NavDrawerItem(menuMR[1], navMenuIcons.getResourceId(1, -1)));
-//            // Daftar Pesan
-//            navDrawerItems.add(new NavDrawerItem(menuMR[2], navMenuIcons.getResourceId(2, -2)));
-            // PesanBaru
-            navDrawerItems.add(new NavDrawerItem(menuMR[2], navMenuIcons.getResourceId(2, -1)));
+            // Buat Tabel Baru
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[0], navMenuIcons.getResourceId(0, -1)));
+            // Update Tabel
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
+            // Delete Tabel
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
+            // Update Role
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[3], navMenuIcons.getResourceId(3, -1)));
             // Logout
-            navDrawerItems.add(new NavDrawerItem(menuMR[3], navMenuIcons.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[4], navMenuIcons.getResourceId(4, -1)));
+
+
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -81,8 +72,7 @@ public class MainActivityMR extends FragmentActivity {
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        adapter = new NavDrawerListAdapter(getApplicationContext(),
-                navDrawerItems);
+        NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
         mDrawerList.setAdapter(adapter);
 
         // enabling action bar app icon and behaving it as toggle button
@@ -90,6 +80,7 @@ public class MainActivityMR extends FragmentActivity {
         getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                 //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
@@ -116,11 +107,9 @@ public class MainActivityMR extends FragmentActivity {
     /**
      * Slide menu item click listener
      * */
-    private class SlideMenuClickListener implements
-            ListView.OnItemClickListener {
+    private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
+        public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
             // display view for selected nav drawer item
             displayView(position);
         }
@@ -166,23 +155,23 @@ public class MainActivityMR extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new DaftarPermohonanMR();
+                fragment = new CreateTabel();
+                Toast.makeText(this,"create tabel", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
-                fragment = new DaftarPeminjamanMR();
+                fragment = new UpdateTabel();
+                Toast.makeText(this,"update tabel", Toast.LENGTH_SHORT).show();
                 break;
-//            case 2:
-//                fragment = new DaftarPesanMR();
-//                break; // ga jadi pake ini
             case 2:
-                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                // passing array index
-                i.putExtra("id", "peminjam");
-                startActivity(i);
+                fragment = new DeleteTabel();
+                Toast.makeText(this,"delete tabel", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
+                fragment = new UpdateRole();
+                Toast.makeText(this,"update role", Toast.LENGTH_SHORT).show();
+                break;
+            case 4:
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 // set title
                 alertDialogBuilder.setTitle("Apakah anda yakin untuk keluar dari SIPIRU ?");
 
@@ -194,7 +183,7 @@ public class MainActivityMR extends FragmentActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, close
                                 // current activity
-                                MainActivityMR.this.finish();
+                                MainActivityA.this.finish();
                             }
                         })
                         .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
@@ -207,7 +196,6 @@ public class MainActivityMR extends FragmentActivity {
 
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-                // show it
                 alertDialog.show();
 
             default:
@@ -215,7 +203,6 @@ public class MainActivityMR extends FragmentActivity {
         }
 
         if (fragment != null) {
-
             //FragmentManager fragmentManager = getFragmentManager();
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
@@ -223,7 +210,7 @@ public class MainActivityMR extends FragmentActivity {
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
-            setTitle(menuMR[position]);
+            setTitle(menuAdmin[position]);
 
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {

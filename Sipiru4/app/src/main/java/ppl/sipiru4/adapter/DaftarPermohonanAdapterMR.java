@@ -1,26 +1,18 @@
 package ppl.sipiru4.adapter;
 
+import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
-import ppl.sipiru4.model.DaftarPermohonanItemMR;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class DaftarPermohonanAdapterMR extends ArrayAdapter<DaftarPermohonanItemMR> {
+public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
 
-    private Context context;
-    private ArrayList<DaftarPermohonanItemMR> navDrawerItems;
-
-    public DaftarPermohonanAdapterMR(Context context, List<DaftarPermohonanItemMR> items) {
+    public DaftarPermohonanAdapterMR(Context context, List<Peminjaman> items) {
         super(context, R.layout.list_permohonan, items );
     }
 
@@ -42,10 +34,10 @@ public class DaftarPermohonanAdapterMR extends ArrayAdapter<DaftarPermohonanItem
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // update the item view
-        DaftarPermohonanItemMR item = getItem(position);
+        Peminjaman item = getItem(position);
 
-        viewHolder.username.setText(item.username);
-        viewHolder.ruangan.setText(item.ruangan);
+        viewHolder.username.setText(item.getUsernameP());
+        viewHolder.ruangan.setText(item.getKodeRuangan());
         return convertView;
     }
     /**

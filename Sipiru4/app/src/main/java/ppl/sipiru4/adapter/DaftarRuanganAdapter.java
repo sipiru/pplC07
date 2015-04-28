@@ -1,9 +1,10 @@
 package ppl.sipiru4.adapter;
 
+import ppl.sipiru4.Entity.Ruangan;
 import ppl.sipiru4.R;
-import ppl.sipiru4.model.DaftarRuanganItem;
-
-import java.util.ArrayList;
+//import ppl.sipiru4.model.DaftarRuanganItem;
+//
+//import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -13,12 +14,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class DaftarRuanganAdapter extends ArrayAdapter<DaftarRuanganItem> {
+public class DaftarRuanganAdapter extends ArrayAdapter<Ruangan> {
 
-    private Context context;
-    private ArrayList<DaftarRuanganItem> navDrawerItems;
+//    private Context context;
+//    private ArrayList<DaftarRuanganItem> navDrawerItems;
 
-    public DaftarRuanganAdapter(Context context, List<DaftarRuanganItem> items) {
+    public DaftarRuanganAdapter(Context context, List<Ruangan> items) {
         super(context, R.layout.list_daftar_ruangan, items );
     }
 
@@ -39,9 +40,9 @@ public class DaftarRuanganAdapter extends ArrayAdapter<DaftarRuanganItem> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // update the item view
-        DaftarRuanganItem item = getItem(position);
+        Ruangan item = getItem(position);
 
-       viewHolder.tvTitle.setText(item.title);
+        viewHolder.tvTitle.setText(item.getNama());
 
         return convertView;
     }

@@ -1,46 +1,64 @@
 package ppl.sipiru4;
 
-//import android.app.Fragment;
-
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.util.ArrayList;
-
+import ppl.sipiru4.Entity.JSONParser;
+import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapterK;
-import ppl.sipiru4.model.DaftarPeminjamanItemMR;
-import ppl.sipiru4.model.DaftarPermohonanItemK;
 
 public class DaftarPermohonanK extends Fragment {
     ListView lv;
 
     DaftarPermohonanAdapterK adapter;
-    private ArrayList<DaftarPermohonanItemK> mItems;
+
     public DaftarPermohonanK(){}
-    //private DaftarPermohonanItem mItems; // ListView items list
-
-
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
+        ArrayList<Peminjaman> mItems = new ArrayList<>();
 
-        mItems = new ArrayList<DaftarPermohonanItemK>();
-        Resources resources = getResources();
-        //TODO : get data daftar permohonan di manager kemahasiswaan (npm peminjam dan ruangan yang dipinjam) dan masukkan ke arraylist
-        mItems.add(new DaftarPermohonanItemK(("rafi.devandra"), ("3113")));
-        mItems.add(new DaftarPermohonanItemK(("adit.murda"), ("3304")));
-        adapter = new DaftarPermohonanAdapterK(getActivity().getApplicationContext(),mItems);
+        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/displayManajerKemahasiswaan/");
+
+        for (int i = 0; i < jArray.length(); i++) {
+            try {
+                JSONObject jPeminjaman = jArray.getJSONObject(i);
+                assert jPeminjaman != null;
+                int id = jPeminjaman.getInt("id");
+                String kodeRuangan = jPeminjaman.getString("kode_ruangan");
+                String namaP = jPeminjaman.getString("nama_peminjam");
+                String usernameP = jPeminjaman.getString("username_peminjam");
+                boolean statusPeminjam = jPeminjaman.getBoolean("status_peminjam");
+                String perihal = jPeminjaman.getString("perihal");
+                String mulai = jPeminjaman.getString("waktu_awal_pinjam");
+                String selesai = jPeminjaman.getString("waktu_akhir_pinjam");
+                String peralatan = jPeminjaman.getString("peralatan");
+                int status = jPeminjaman.getInt("status");
+
+                mItems.add(new Peminjaman(id, kodeRuangan, namaP, usernameP, statusPeminjam, perihal, mulai, selesai, peralatan, status));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        adapter = new DaftarPermohonanAdapterK(getActivity().getApplicationContext(), mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -1,56 +1,61 @@
 package ppl.sipiru4;
 
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
+import android.widget.Toast;
 import java.util.ArrayList;
-
+import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.adapter.DaftarPeminjamanAdapterMR;
-import ppl.sipiru4.model.DaftarPeminjamanItemMR;
 
 public class DaftarPeminjamanMR extends Fragment {
     ListView lv;
 
     DaftarPeminjamanAdapterMR adapter;
-    private ArrayList<DaftarPeminjamanItemMR> mItems;
+    private static ArrayList<Peminjaman> mItems;
+
     public DaftarPeminjamanMR(){}
-    //private DaftarPermohonanItem mItems; // ListView items list
-
-
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
+        mItems = new ArrayList<>();
 
-        mItems = new ArrayList<DaftarPeminjamanItemMR>();
-        Resources resources = getResources();
-        //TODO get daftar peminjaman yang dimiliki oleh manager ruangan dan masukkan npm peminjam dan
-        // kode ruangan peminjam ke dalam ArrayList mItems untuk ditampilkan di Daftar peminjaman Manager ruangan
-
-        mItems.add(new DaftarPeminjamanItemMR(("adit.murda"), ("2304")));
-        mItems.add(new DaftarPeminjamanItemMR(("rafi.devandra"), ("3301")));
         adapter = new DaftarPeminjamanAdapterMR(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
-                // Sending image id to FullScreenActivity
-                Intent i = new Intent(getActivity().getApplicationContext(), DetailPeminjamanMR.class);
-                // passing array index
-                i.putExtra("id", position);
-                startActivity(i);
+//                // Sending image id to FullScreenActivity
+//                Intent i = new Intent(getActivity().getApplicationContext(), DetailPeminjamanMR.class);
+//                // passing array index
+//                i.putExtra("id", position);
+//                startActivity(i);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame_container, new DetailPeminjamanMR(mItems.get(position)));
+                Toast.makeText(getActivity(), "detail peminjaman", Toast.LENGTH_SHORT).show();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
         return rootView;
     }
+
+    public static void addToHistory(Peminjaman peminjaman) {
+        mItems.add(peminjaman);
+    }
+
 }

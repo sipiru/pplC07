@@ -1,50 +1,68 @@
 package ppl.sipiru4.Entity;
 
-import java.util.GregorianCalendar;
-
-/**
- * Created by User on 11/04/2015.
- */
 public class Peminjaman {
-    private User peminjam;
-    private GregorianCalendar mulai;
-    private GregorianCalendar selesai;
-    private Ruangan ruangan;
-    private boolean status;
+    private int id;
+    private String usernameP;
+    private String namaP;
+    private boolean statusPeminjam;
+    private String mulai;
+    private String selesai;
+    private String perihal;
+    private String kodeRuangan;
+    private String peralatan;
+    private int status;
 
-    public Peminjaman(User peminjam, GregorianCalendar mulai, GregorianCalendar selesai, Ruangan ruangan) {
-        this.peminjam = peminjam;
+    public Peminjaman(int id,String kodeRuangan, String namaP, String usernameP, boolean statusPeminjam, String perihal, String mulai, String selesai, String peralatan, int status) {
+        this.id = id;
+        this.kodeRuangan = kodeRuangan;
+        this.namaP = namaP;
+        this.usernameP = usernameP;
+        this.statusPeminjam = statusPeminjam;
+        this.perihal = perihal;
         this.mulai = mulai;
         this.selesai = selesai;
-        this.ruangan = ruangan;
-        this.status = false;
-    }
-
-    public Peminjaman(User peminjam, GregorianCalendar mulai, GregorianCalendar selesai, Ruangan ruangan, boolean status) {
-        this.peminjam = peminjam;
-        this.mulai = mulai;
-        this.selesai = selesai;
-        this.ruangan = ruangan;
+        this.peralatan = peralatan;
         this.status = status;
     }
 
-    public User getPeminjam() {
-        return peminjam;
+    public int getId() {
+        return id;
     }
 
-    public GregorianCalendar getMulai() {
+    public String getNamaP() {
+        return namaP;
+    }
+
+    public String getUsernameP() {
+        return usernameP;
+    }
+
+    public boolean getStatusPeminjam() {
+        return statusPeminjam;
+    }
+
+    public String getMulai() {
         return mulai;
     }
 
-    public GregorianCalendar getSelesai() {
+    public String getSelesai() {
         return selesai;
     }
 
-    public Ruangan getRuangan() {
-        return ruangan;
+    public String getKodeRuangan() {
+        return kodeRuangan;
     }
 
-    public boolean getStatus() {return status;}
+    public String getPeralatan() {
+        return peralatan;
+    }
 
-    public void setujui() {status = true;}
+    public String getPerihal() {
+        return perihal;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
 }

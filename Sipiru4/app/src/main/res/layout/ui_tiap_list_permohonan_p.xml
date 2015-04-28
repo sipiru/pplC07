@@ -10,19 +10,18 @@
         android:layout_height="fill_parent"
         android:padding="10dip"
         android:textSize="16dip"
-        android:textStyle="bold"
-        android:layout_weight="0.91"
-        android:layout_marginLeft="20dp">
+        android:textColor="#000"
+        android:layout_weight="1.44"
+        android:layout_marginLeft="10dp">
     </TextView>
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/status"
-        android:layout_width="wrap_content"
+        android:layout_width="224dp"
         android:layout_height="fill_parent"
         android:padding="10dip"
         android:textSize="16dip"
-        android:textStyle="bold"
-        android:layout_weight="0.91"
-        android:layout_marginLeft="20dp">
+        android:textColor="#000"
+        android:layout_marginLeft="10dp">
     </TextView>
 
 
