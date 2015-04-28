@@ -22,7 +22,13 @@ import java.util.HashMap;
  * Created by Evan Octavius S on 4/6/2015.
  */
 public class JSONParser extends AsyncTask {
+    // TODO: buat method untuk POST juga
+    public String post(String msg) {
+        return "";
+    }
+
     static HttpClient httpclient;
+
     @Override
     protected Object doInBackground(Object[] url) {
         JSONArray temp = getJSONfromURL((String) url[0]);

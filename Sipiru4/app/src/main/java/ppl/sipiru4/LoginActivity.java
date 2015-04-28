@@ -71,6 +71,7 @@ public class LoginActivity extends Activity{
         JSONParser parser = new JSONParser();
         JSONArray hasil = parser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/"+uname+"&"+pass);
         JSONObject data = hasil.getJSONObject(0);
+        // TODO: jalankan fungsi login() untuk semua controller untuk mengambil semua data user
         int status = data.getInt("state");
         Log.e("satus", ""+status);
         String role = data.getString("nama_role");
@@ -85,10 +86,6 @@ public class LoginActivity extends Activity{
             else {
                 Log.e("asdsda","asdsda");
             }
-            //lakukan pengecekan terhadap manager
-//            if (role == "manager") {
-//
-//            }
         }
         else {
             Toast.makeText(getApplicationContext(), "akun tidak terdaftar", Toast.LENGTH_SHORT).show();
@@ -98,61 +95,5 @@ public class LoginActivity extends Activity{
                 login.setEnabled(false);
             }
         }
-
-//        Toast.makeText(getApplicationContext(), hasil + "wk", Toast.LENGTH_SHORT);
-//        if ((username.getText().toString().equals("p") &&
-//                password.getText().toString().equals("p"))
-//        ){
-//            SharedPreferences.Editor editor = settings.edit();
-//            editor.putString(user,""+uname);
-//            editor.commit();
-//
-//            Toast.makeText(getApplicationContext(), "Hello, "+settings.getString(user,"") ,Toast.LENGTH_SHORT).show();
-//            Intent i = new Intent(getApplicationContext(), MainActivityP.class);
-//            // passing array index
-//            i.putExtra("id", "peminjam");
-//            startActivity(i);
-//        }
-//        else if(username.getText().toString().equals("mr") &&
-//                password.getText().toString().equals("mr")){
-//            Toast.makeText(getApplicationContext(), "Hello, "+settings.getString(user,"") ,Toast.LENGTH_SHORT).show();
-//            Intent i = new Intent(getApplicationContext(), MainActivityMR.class);
-//            // passing array index
-//            i.putExtra("id", "manager ruangan");
-//            startActivity(i);
-//        }
-//        else if(username.getText().toString().equals("mk") &&
-//                password.getText().toString().equals("mk")){
-//            Toast.makeText(getApplicationContext(), "Hello, "+settings.getString(user,"") ,Toast.LENGTH_SHORT).show();
-//            Intent i = new Intent(getApplicationContext(), MainActivityK.class);
-//            // passing array index
-//            i.putExtra("id", "manager kemahasiswaan");
-//            startActivity(i);
-//        }
-//        else if(username.getText().toString().equals("itf") &&
-//                password.getText().toString().equals("itf")){
-//            Toast.makeText(getApplicationContext(), "Hello, "+settings.getString(user,"") ,Toast.LENGTH_SHORT).show();
-//            Intent i = new Intent(getApplicationContext(), MainActivityFI.class);
-//            // passing array index
-//            i.putExtra("id", "fasum itf");
-//            startActivity(i);
-//        }
-//        else if(username.getText().toString().equals("adm") &&
-//                password.getText().toString().equals("adm")){
-//            Toast.makeText(getApplicationContext(), "Hello, "+settings.getString(user,"") ,Toast.LENGTH_SHORT).show();
-//            Intent i = new Intent(getApplicationContext(), MainActivityP.class);
-//            // passing array index
-//            i.putExtra("id", "admin");
-//            startActivity(i);
-//        }
-//        else {
-//            Toast.makeText(getApplicationContext(), "akun tidak terdaftar", Toast.LENGTH_SHORT).show();
-//
-//            numberOfRemainingLoginAttempts--;
-//            if (numberOfRemainingLoginAttempts == 0) {
-//                login.setEnabled(false);
-//            }
-//        }
-
     }
 }

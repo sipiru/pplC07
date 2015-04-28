@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import ppl.sipiru4.Business.JSONParser;
 import ppl.sipiru4.Business.PenggunaController;
+import ppl.sipiru4.Business.PesanController;
 
 public class KirimPesan extends FragmentActivity{
     private Button btnKirimPesan;
@@ -30,8 +31,7 @@ public class KirimPesan extends FragmentActivity{
             @Override
             public void onClick(View v) {
                 String pesan = etPesan.getText().toString();
-                JSONParser.getJSONfromURL(Constants.PESAN_ADDR +
-                        PenggunaController.getCurrentPengguna());
+                PesanController.kirimPesan(pesan);
             }
         });
     }
