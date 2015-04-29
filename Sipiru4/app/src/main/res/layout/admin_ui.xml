@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:gravity="center_horizontal"
     android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
@@ -13,8 +13,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Table"
-        android:id="@+id/button1"
+        android:text="Tambah Ruangan"
+        android:id="@+id/btnTambahRuang"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -24,44 +24,46 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="update table"
-        android:id="@+id/button2"
-        android:layout_below="@+id/button1"
+        android:text="Update Ruangan"
+        android:id="@+id/btnUpdateRuang"
+        android:layout_below="@+id/btnTambahRuang"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/button1"
-        android:layout_alignEnd="@+id/button1" />
+        android:layout_alignRight="@+id/btnTambahRuang"
+        android:layout_alignEnd="@+id/btnTambahRuang" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lihat table"
-        android:id="@+id/button3"
-        android:layout_below="@+id/button2"
+        android:text="Hapus Ruangan"
+        android:id="@+id/btnHapusRuang"
+        android:layout_below="@+id/btnLihatRuang"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+        android:layout_alignRight="@+id/btnLihatRuang"
+        android:layout_alignEnd="@+id/btnLihatRuang"
+        android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="delete table"
-        android:id="@+id/button4"
-        android:layout_below="@+id/button3"
+        android:text="Lihat Daftar Ruangan"
+        android:id="@+id/btnLihatRuang"
+        android:layout_below="@+id/btnUpdateRuang"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/button3"
-        android:layout_alignEnd="@+id/button3" />
+        android:layout_alignRight="@+id/btnUpdateRuang"
+        android:layout_alignEnd="@+id/btnUpdateRuang" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="update akun"
-        android:id="@+id/button5"
-        android:layout_below="@+id/button4"
+        android:text="Update Role"
+        android:id="@+id/btnUpdateRole"
+        android:layout_below="@+id/btnHapusRuang"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-</RelativeLayout>
+
+</LinearLayout>
