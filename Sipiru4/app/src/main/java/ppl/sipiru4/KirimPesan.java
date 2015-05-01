@@ -1,8 +1,6 @@
 package ppl.sipiru4;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.telephony.SmsManager;
 import android.view.View;
@@ -44,8 +42,12 @@ public class KirimPesan extends FragmentActivity{
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
-
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

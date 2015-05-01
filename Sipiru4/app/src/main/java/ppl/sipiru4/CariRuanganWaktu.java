@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -20,11 +20,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import java.util.Calendar;
 import ppl.sipiru4.Entity.JSONParser;
-import ppl.sipiru4.Entity.User;
 
 public class CariRuanganWaktu extends Fragment {
     Button btnCari;
@@ -40,6 +38,8 @@ public class CariRuanganWaktu extends Fragment {
     boolean tglSelesaiClicked;
     boolean jamMulaiClicked;
     boolean jamSelesaiClicked;
+
+    public CariRuanganWaktu(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
@@ -101,15 +101,20 @@ public class CariRuanganWaktu extends Fragment {
                     JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
                             +tglMulai.getText()+"%20"+jamMulai.getText()+"&"+tglSelesai.getText()+"%20"+jamSelesai.getText());
 
-                    // simpan ke Shared Preference User
-                    new User(getActivity(),tglMulai.getText()+" "+jamMulai.getText(),tglSelesai.getText()+" "+jamSelesai.getText());
-
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan(jArray));
-                    Toast.makeText(getActivity(),"daftar ruangan", Toast.LENGTH_SHORT).show();
-                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+//                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                    fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan(jArray));
+//                    Toast.makeText(getActivity(),"daftar ruangan", Toast.LENGTH_SHORT).show();
+//                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                    fragmentTransaction.addToBackStack(null);
+//                    fragmentTransaction.commit();
+                    Intent i = new Intent(getActivity(), DaftarRuangan.class);
+                    //mengoper JSONArray ruangan ke DaftarRuangan.class
+                    i.putExtra("daftarRuangan", jArray.toString());
+                    Log.e("jArray cari ruangan", jArray+"");
+                    Log.e("jArray2 cari ruangan", jArray.toString());
+                    i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
+                    i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
+                    startActivity(i);
                 }
                 else {
                     Toast.makeText(getActivity(),"mohon isi semua tangggal dan jam",Toast.LENGTH_SHORT).show();

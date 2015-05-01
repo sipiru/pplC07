@@ -1,17 +1,16 @@
 package ppl.sipiru4;
 
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,17 +33,18 @@ public class DaftarPermohonanP extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        Bundle b;
+        User user;
+        b = getArguments();
+        user = b.getParcelable("user");
+        Log.e("user daftar permohonan",user.getUsername() + " " + user.getNama() + " " + user.getRole());
+
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
-//        Log.e("nama",p.getCurrentPengguna().getUsername());
-
         final ArrayList<Peminjaman> mItems = new ArrayList<>();
-//        Resources resources = getResources();
-
-//        User p = new User();
 
         JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/daftarPendingPeminjam/"
-                + User.getUsername(getActivity()));
+                + user.getUsername());
         for (int i = 0 ; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);
@@ -60,7 +60,7 @@ public class DaftarPermohonanP extends Fragment {
                 String peralatan = jPeminjaman.getString("peralatan");
                 int status = jPeminjaman.getInt("status");
 
-                mItems.add(new Peminjaman(id,kodeRuangan,namaP,usernameP,statusPeminjam,perihal,mulai,selesai,peralatan,status));
+                mItems.add(new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,peralatan,status));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -71,17 +71,17 @@ public class DaftarPermohonanP extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-//                // Sending image id to FullScreenActivity
-//                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanP.class);
-//                // passing array index
-//                i.putExtra("id", position);
-//                startActivity(i);
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frame_container, new DetailPermohonanP(mItems.get(position)));
-                Toast.makeText(getActivity(), "detail peminjaman", Toast.LENGTH_SHORT).show();
-                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                // Sending image id to FullScreenActivity
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanP.class);
+                // passing array index
+                i.putExtra("peminjaman", mItems.get(position));
+                startActivity(i);
+//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.frame_container, new DetailPermohonanP(mItems.get(position)));
+////                Toast.makeText(getActivity(), "detail peminjaman", Toast.LENGTH_SHORT).show();
+//                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
             }
         });
         return rootView;

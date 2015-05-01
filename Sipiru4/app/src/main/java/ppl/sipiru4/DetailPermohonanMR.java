@@ -51,16 +51,21 @@ public class DetailPermohonanMR extends Fragment {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
                 // set title
-                alertDialogBuilder.setTitle("Apakah anda yakin untuk menyetujui permohonan ini?");
+                alertDialogBuilder.setTitle("Apakah anda yakin untuk meneruskan permohonan ini?");
 
                 // set dialog message
                 alertDialogBuilder
-                        .setMessage("Tekan Ya untuk menyetujui")
+                        .setMessage("Tekan Ya untuk meneruskan")
                         .setCancelable(false)
                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerRuangan/"+ peminjaman.getId());
-                                Toast.makeText(getActivity(),notif,Toast.LENGTH_SHORT).show();
+                                if (notif.equals("sukses")){
+                                    Toast.makeText(getActivity(), "permohonan berhasil diteruskan", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(getActivity(), "permohonan sudah tidak ada", Toast.LENGTH_SHORT).show();
+                                }
                                 DaftarPeminjamanMR.addToHistory(peminjaman);
                             }
                         })

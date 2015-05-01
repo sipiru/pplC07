@@ -113,6 +113,6 @@ public class JSONParser extends AsyncTask {
 
         Log.e("log_tag", "gak kena error");
         Log.e("result",result);
-        return result;
+        return result.trim();
     }
 }

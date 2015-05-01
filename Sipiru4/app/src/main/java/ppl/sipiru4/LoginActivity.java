@@ -2,6 +2,7 @@ package ppl.sipiru4;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -15,18 +16,22 @@ import org.json.JSONObject;
 import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.User;
-import ppl.sipiru4.controller.PenggunaController;
 
 public class LoginActivity extends Activity{
+    static final String PREFS_NAME = "pref";
+    static final String KEY_USERNAME = "uname";
+    static final String KEY_NAMA = "name";
+    static final String KEY_ROLE = "role";
     private EditText username;
     private EditText password;
-    private Button login;
-    int numberOfRemainingLoginAttempts = 10;
+    static SharedPreferences setting;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_ui);
 
+        setting = getSharedPreferences(PREFS_NAME,0);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -36,7 +41,7 @@ public class LoginActivity extends Activity{
     private void setupVariables() {
         username = (EditText) findViewById(R.id.editText1);
         password = (EditText) findViewById(R.id.ruang);
-        login = (Button) findViewById(R.id.buttonLogin);
+        Button login = (Button) findViewById(R.id.buttonLogin);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,8 +60,9 @@ public class LoginActivity extends Activity{
         String pass = password.getText()+"";
 
         if (uname.equals("mr")&&pass.equals("mr")){
-            Intent i = new Intent(this, MainActivityMR.class);
+            Intent i = new Intent(getApplicationContext(), MainActivityMR.class);
             i.putExtra("id", "peminjam");
+
             startActivity(i);
         }
 
@@ -69,11 +75,21 @@ public class LoginActivity extends Activity{
         int status = data.getInt("state");
         String kodeIdentitas = data.getString("kodeidentitas");
 
+
         if (status == 1) {
             if (role.equals("mahasiswa")) {
+                SharedPreferences.Editor edit = setting.edit();
+                edit.putString(KEY_USERNAME, username);
+                edit.putString(KEY_NAMA, nama);
+                edit.putString(KEY_ROLE, role);
+                edit.apply();
+
                 Intent i = new Intent(getApplicationContext(), MainActivityP.class);
-                i.putExtra("id", "peminjam");
+                //mengoper data user ke MainActivityP.class
+                User user = new User(username,nama,kodeOrg,role,kodeIdentitas);
+                i.putExtra("user", user);
                 startActivity(i);
+//                finish();
             }
             else {
                 Log.e("warning","bukan mahasiswa atau manager");
@@ -82,16 +98,16 @@ public class LoginActivity extends Activity{
 //            if (role == "manager") {
 //
 //            }
-            PenggunaController.loginPengguna(new User(this,username,nama,kodeOrg,role,kodeIdentitas));
-            Log.e("pengguna", User.getNama(this));
+//            PenggunaController.loginPengguna(new User(this,username,nama,kodeOrg,role,kodeIdentitas));
+//            Log.e("pengguna", User.getNama(this));
         }
         else {
             Toast.makeText(getApplicationContext(), "akun tidak terdaftar", Toast.LENGTH_SHORT).show();
-            numberOfRemainingLoginAttempts--;
-            if (numberOfRemainingLoginAttempts == 0) {
-                Toast.makeText(getApplicationContext(), "Login dibekukan. silakan tutup aplikasi dan coba lagi nanti.", Toast.LENGTH_SHORT).show();
-                login.setEnabled(false);
-            }
+//            numberOfRemainingLoginAttempts--;
+//            if (numberOfRemainingLoginAttempts == 0) {
+//                Toast.makeText(getApplicationContext(), "Login dibekukan. silakan tutup aplikasi dan coba lagi nanti.", Toast.LENGTH_SHORT).show();
+//                login.setEnabled(false);
+//            }
         }
     }
 }

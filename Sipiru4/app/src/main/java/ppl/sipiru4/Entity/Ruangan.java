@@ -1,12 +1,9 @@
 package ppl.sipiru4.Entity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-/**
- * Created by User on 11/04/2015.
- */
-public class Ruangan {
+public class Ruangan implements Parcelable{
     private String kode;
     private String nama;
     private int kapasitas;
@@ -17,6 +14,13 @@ public class Ruangan {
         this.nama = nama;
         this.kapasitas = kapasitas;
         this.deskripsi = deskripsi;
+    }
+
+    public Ruangan(Parcel source) {
+        kode = source.readString();
+        nama = source.readString();
+        kapasitas = source.readInt();
+        deskripsi = source.readString();
     }
 
     public String getDeskripsi() {
@@ -50,4 +54,31 @@ public class Ruangan {
     public void setKode(String kode) {
         this.kode = kode;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(kode);
+        dest.writeString(nama);
+        dest.writeInt(kapasitas);
+        dest.writeString(deskripsi);
+    }
+
+    public static final Parcelable.Creator<Ruangan> CREATOR
+            = new Parcelable.Creator<Ruangan>() {
+
+        @Override
+        public Ruangan createFromParcel(Parcel source) {
+            return new Ruangan(source);
+        }
+
+        @Override
+        public Ruangan[] newArray(int size) {
+            return new Ruangan[size];
+        }
+    };
 }

@@ -1,12 +1,11 @@
 package ppl.sipiru4;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,44 +13,51 @@ import android.widget.Toast;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 
-public class DetailPermohonanP extends Fragment {
+public class DetailPermohonanP extends Activity {
     Peminjaman peminjaman;
+    Bundle b;
 
-    public DetailPermohonanP(Peminjaman peminjaman) {
-        this.peminjaman = peminjaman;
-    }
+//    public DetailPermohonanP(Peminjaman peminjaman) {
+//        this.peminjaman = peminjaman;
+//    }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.detail_permohonan_p, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.detail_permohonan_p);
 
-        TextView ruang = (TextView)rootView.findViewById(R.id.ruang);
+        // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanP.class
+        b = getIntent().getExtras();
+        peminjaman = b.getParcelable("peminjaman");
+        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
+
+        TextView ruang = (TextView)findViewById(R.id.ruang);
         ruang.setText(peminjaman.getKodeRuangan());
 
-        TextView nama = (TextView)rootView.findViewById(R.id.nama);
+        TextView nama = (TextView)findViewById(R.id.nama);
         nama.setText(peminjaman.getNamaP());
 
-        TextView username = (TextView)rootView.findViewById(R.id.username);
+        TextView username = (TextView)findViewById(R.id.username);
         username.setText(peminjaman.getUsernameP());
 
-        TextView prihal = (TextView)rootView.findViewById(R.id.prihal);
+        TextView prihal = (TextView)findViewById(R.id.prihal);
         prihal.setText(peminjaman.getPerihal());
 
-        TextView waktuMulai = (TextView)rootView.findViewById(R.id.waktuMulai);
+        TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
         waktuMulai.setText(peminjaman.getMulai());
 
-        TextView waktuSelesai = (TextView)rootView.findViewById(R.id.waktuSelesai);
+        TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
         waktuSelesai.setText(peminjaman.getSelesai());
 
-        TextView peralatan = (TextView)rootView.findViewById(R.id.permintaanlain);
+        TextView peralatan = (TextView)findViewById(R.id.permintaanlain);
         peralatan.setText(peminjaman.getPeralatan());
 
-        Button batal = (Button)rootView.findViewById(R.id.batal);
+        Button batal = (Button)findViewById(R.id.batal);
         batal.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
                 // set title
                 alertDialogBuilder.setTitle("Apakah anda yakin untuk membatalkan permohonan?");
 
@@ -61,12 +67,12 @@ public class DetailPermohonanP extends Fragment {
                         .setCancelable(false)
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                // if this button is clicked, close
-                                //TODO: hapus data permohonan yang diklik
-                                String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/"+peminjaman.getId());
-                                Toast.makeText(getActivity(),notif,Toast.LENGTH_SHORT).show();
-                                //TODO: pindah ke fragment DaftarPermohonanP
-
+                                String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/" + peminjaman.getId());
+                                if (notif.trim().equals("\"sukses\"")) {
+                                    Toast.makeText(getApplicationContext(), "permohonan berhasil dibatalkan", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "permohonan sudah tidak ada", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
                         .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -83,7 +89,11 @@ public class DetailPermohonanP extends Fragment {
                 alertDialog.show();
             }
         });
-    return rootView;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
 
