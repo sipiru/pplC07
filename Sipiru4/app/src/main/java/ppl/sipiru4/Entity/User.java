@@ -18,7 +18,7 @@ public class User {
         this.kodeIdentitas = kodeIdentitas;
     }
 
-    public String getUsername() {return username;}
+    public String getUsername() { return username; }
 
     public String getNama() {
         return nama;
