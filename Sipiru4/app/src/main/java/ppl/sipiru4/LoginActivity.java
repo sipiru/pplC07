@@ -59,13 +59,6 @@ public class LoginActivity extends Activity{
         String uname = username.getText()+"";
         String pass = password.getText()+"";
 
-        if (uname.equals("mr")&&pass.equals("mr")){
-            Intent i = new Intent(getApplicationContext(), MainActivityMR.class);
-            i.putExtra("id", "peminjam");
-
-            startActivity(i);
-        }
-
         JSONArray hasil = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/" + uname + "&" + pass);
         JSONObject data = hasil.getJSONObject(0);
         String username = data.getString("username");
@@ -74,7 +67,6 @@ public class LoginActivity extends Activity{
         String role = data.getString("nama_role");
         int status = data.getInt("state");
         String kodeIdentitas = data.getString("kodeidentitas");
-
 
         if (status == 1) {
             if (role.equals("mahasiswa")) {
@@ -100,6 +92,58 @@ public class LoginActivity extends Activity{
 //            }
 //            PenggunaController.loginPengguna(new User(this,username,nama,kodeOrg,role,kodeIdentitas));
 //            Log.e("pengguna", User.getNama(this));
+        }
+        else if (uname.equals("mr")&&pass.equals("mr")){
+            SharedPreferences.Editor edit = setting.edit();
+            edit.putString(KEY_USERNAME, "mr");
+            edit.putString(KEY_NAMA, "mr");
+            edit.putString(KEY_ROLE, "manager ruangan");
+            edit.apply();
+
+            Intent i = new Intent(getApplicationContext(), MainActivityMR.class);
+            User user = new User("mr","mr",null,"manager ruangan",null);
+            i.putExtra("user", user);
+
+            startActivity(i);
+        }
+        else if (uname.equals("mk")&&pass.equals("mk")){
+            SharedPreferences.Editor edit = setting.edit();
+            edit.putString(KEY_USERNAME, "mk");
+            edit.putString(KEY_NAMA, "mk");
+            edit.putString(KEY_ROLE, "manager kemahasiswaan");
+            edit.apply();
+
+            Intent i = new Intent(getApplicationContext(), MainActivityK.class);
+            User user = new User("mk","mk",null,"manager kemahasiswaan",null);
+            i.putExtra("user", user);
+
+            startActivity(i);
+        }
+        else if (uname.equals("itf")&&pass.equals("itf")){
+            SharedPreferences.Editor edit = setting.edit();
+            edit.putString(KEY_USERNAME, "itf");
+            edit.putString(KEY_NAMA, "itf");
+            edit.putString(KEY_ROLE, "FASUM/ITF");
+            edit.apply();
+
+            Intent i = new Intent(getApplicationContext(), MainActivityFI.class);
+            User user = new User("itf","itf",null,"FASUM/ITF",null);
+            i.putExtra("user", user);
+
+            startActivity(i);
+        }
+        else if (uname.equals("admin")&&pass.equals("admin")){
+            SharedPreferences.Editor edit = setting.edit();
+            edit.putString(KEY_USERNAME, "admin");
+            edit.putString(KEY_NAMA, "admin");
+            edit.putString(KEY_ROLE, "admin");
+            edit.apply();
+
+            Intent i = new Intent(getApplicationContext(), MainActivityA.class);
+            User user = new User("admin","admin",null,"admin",null);
+            i.putExtra("user", user);
+
+            startActivity(i);
         }
         else {
             Toast.makeText(getApplicationContext(), "akun tidak terdaftar", Toast.LENGTH_SHORT).show();

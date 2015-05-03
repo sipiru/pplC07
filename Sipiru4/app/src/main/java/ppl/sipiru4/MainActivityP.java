@@ -52,6 +52,8 @@ public class MainActivityP extends FragmentActivity {
         Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
 
         // simpan username, nama dan role ke SharedPreferences
+        // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
+        // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
         SharedPreferences.Editor edit = setting.edit();
         edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
         edit.putString(LoginActivity.KEY_NAMA, user.getNama());
@@ -235,9 +237,7 @@ public class MainActivityP extends FragmentActivity {
                 .setCancelable(false)
                 .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, close
-                        // current activity
-
+                        // if this button is clicked, close current activity
                         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
                         Log.e("sebelum logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
                                 + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
@@ -246,20 +246,13 @@ public class MainActivityP extends FragmentActivity {
                         edit.clear();
                         edit.apply();
 
-//                        Log.e("context sebelum logout", ""+session.get_context());
                         Log.e("setelah logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
                                 + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
-//                        Log.e("context setelah logout","" +session.get_context());
                         finish();
-//                                PenggunaController.loginPengguna(null);
-//                                Log.e("pengguna", String.valueOf(PenggunaController.getCurrentPengguna()));
-//                                MainActivityP.this.finish();
                     }
                 })
                 .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, just close
-                        // the dialog box and do nothing
                         dialog.cancel();
                     }
                 });

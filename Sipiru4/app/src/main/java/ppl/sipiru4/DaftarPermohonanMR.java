@@ -1,15 +1,14 @@
 package ppl.sipiru4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,8 +24,7 @@ public class DaftarPermohonanMR extends Fragment {
     DaftarPermohonanAdapterMR adapter;
     ArrayList<Peminjaman> mItems;
 
-    public DaftarPermohonanMR(){
-    }
+    public DaftarPermohonanMR(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,19 +64,18 @@ public class DaftarPermohonanMR extends Fragment {
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-//                // Sending image id to FullScreenActivity
-//                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanMR.class);
-//                // passing array index
-//                i.putExtra("id", position);
-//                startActivity(i);
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frame_container, new DetailPermohonanMR(mItems.get(position)));
-                Toast.makeText(getActivity(), "detail peminjaman", Toast.LENGTH_SHORT).show();
-                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                // Sending image id to FullScreenActivity
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanMR.class);
+                // passing array index
+                i.putExtra("peminjaman", mItems.get(position));
+                startActivity(i);
+//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.frame_container, new DetailPermohonanMR(mItems.get(position)));
+//                Toast.makeText(getActivity(), "detail peminjaman", Toast.LENGTH_SHORT).show();
+//                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
             }
         });
         return rootView;

@@ -87,11 +87,12 @@ public class FormPeminjaman extends Activity {
 //                    Toast.makeText(getApplicationContext(), notif + " length " + notif.length(), Toast.LENGTH_SHORT).show();
 //                    finish();
                     if (notif.trim().equals("\"sukses\"")){
-                        Toast.makeText(getApplicationContext(), "permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "ruangan tidak bisa dipinjam", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Maaf, ruangan tidak bisa dipinjam. Silakan cek jadwal ruangan",
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
             }

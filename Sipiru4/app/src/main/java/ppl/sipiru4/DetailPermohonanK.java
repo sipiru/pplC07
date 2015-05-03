@@ -5,22 +5,40 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ppl.sipiru4.Entity.Peminjaman;
+
 public class DetailPermohonanK extends Activity {
     final Context context = this;
+    Peminjaman peminjaman;
+    Bundle b;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_permohonan_mk);
-        //TODO : generate dari data permohonan
+
+        // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanMR.class
+        b = getIntent().getExtras();
+        peminjaman = b.getParcelable("peminjaman");
+        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
+
         TextView ruang = (TextView)findViewById(R.id.ruang);
+        ruang.setText(peminjaman.getKodeRuangan());
+
         TextView nama = (TextView)findViewById(R.id.nama);
-        TextView npm = (TextView)findViewById(R.id.npm);
+        nama.setText(peminjaman.getNamaP());
+
+        TextView username = (TextView)findViewById(R.id.npm);
+        username.setText(peminjaman.getUsernameP());
+
         TextView prihal = (TextView)findViewById(R.id.prihal);
+        prihal.setText(peminjaman.getPerihal());
+
         TextView tglMulai = (TextView)findViewById(R.id.tglMulai);
         TextView tglSelesai = (TextView)findViewById(R.id.tglSelesai);
         TextView jamMulai = (TextView)findViewById(R.id.mulai);
@@ -42,7 +60,6 @@ public class DetailPermohonanK extends Activity {
                         .setCancelable(false)
                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
-
                                 Toast.makeText(getApplicationContext(), "Data permohonan berhasil disetujui",Toast.LENGTH_SHORT).show();
                             }
                         })

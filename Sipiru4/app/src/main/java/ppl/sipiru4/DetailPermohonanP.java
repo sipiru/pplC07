@@ -2,6 +2,7 @@ package ppl.sipiru4;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 
 public class DetailPermohonanP extends Activity {
+    final Context context = this;
     Peminjaman peminjaman;
     Bundle b;
 
@@ -57,7 +59,8 @@ public class DetailPermohonanP extends Activity {
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
                 // set title
                 alertDialogBuilder.setTitle("Apakah anda yakin untuk membatalkan permohonan?");
 
@@ -69,10 +72,11 @@ public class DetailPermohonanP extends Activity {
                             public void onClick(DialogInterface dialog, int id) {
                                 String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/" + peminjaman.getId());
                                 if (notif.trim().equals("\"sukses\"")) {
-                                    Toast.makeText(getApplicationContext(), "permohonan berhasil dibatalkan", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Permohonan berhasil dibatalkan", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "permohonan sudah tidak ada", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Error. Permohonan sudah tidak ada", Toast.LENGTH_SHORT).show();
                                 }
+                                finish();
                             }
                         })
                         .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -82,7 +86,6 @@ public class DetailPermohonanP extends Activity {
                                 dialog.cancel();
                             }
                         });
-
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 // show it

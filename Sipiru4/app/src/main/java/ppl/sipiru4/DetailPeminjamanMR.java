@@ -2,60 +2,59 @@ package ppl.sipiru4;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.R;
 
-public class DetailPeminjamanMR extends Fragment {
+public class DetailPeminjamanMR extends Activity {
     Peminjaman peminjaman;
+    Bundle b;
 
-    public DetailPeminjamanMR(Peminjaman peminjaman) {
-        this.peminjaman = peminjaman;
-    }
+//    public DetailPeminjamanMR(Peminjaman peminjaman) {
+//        this.peminjaman = peminjaman;
+//    }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.detail_peminjaman_mr, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.detail_peminjaman_mr);
 
-        //TODO menampilkan data peminjaman yang sudah disetujui manager ruangan
-        TextView ruang = (TextView)rootView.findViewById(R.id.ruang);
+        // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanMR.class
+        b = getIntent().getExtras();
+        peminjaman = b.getParcelable("peminjaman");
+        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
+
+        TextView ruang = (TextView)findViewById(R.id.ruang);
         ruang.setText(peminjaman.getKodeRuangan());
 
-        TextView nama = (TextView)rootView.findViewById(R.id.nama);
+        TextView nama = (TextView)findViewById(R.id.nama);
         nama.setText(peminjaman.getNamaP());
 
-        TextView username = (TextView)rootView.findViewById(R.id.username);
+        TextView username = (TextView)findViewById(R.id.username);
         username.setText(peminjaman.getUsernameP());
 
-        TextView prihal = (TextView)rootView.findViewById(R.id.prihal);
+        TextView prihal = (TextView)findViewById(R.id.prihal);
         prihal.setText(peminjaman.getPerihal());
 
-        TextView waktuMulai = (TextView)rootView.findViewById(R.id.waktuMulai);
+        TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
         waktuMulai.setText(peminjaman.getMulai());
 
-        TextView waktuSelesai = (TextView)rootView.findViewById(R.id.waktuSelesai);
+        TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
         waktuSelesai.setText(peminjaman.getSelesai());
 
-        TextView peralatan = (TextView)rootView.findViewById(R.id.peralatan);
+        TextView peralatan = (TextView)findViewById(R.id.peralatan);
         peralatan.setText(peminjaman.getPeralatan());
 
-        Button download = (Button)rootView.findViewById(R.id.download);
+        Button download = (Button)findViewById(R.id.download);
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : mengunduh berkas peminjaman
-                Toast.makeText(getActivity(), "start downloading ....",
+                Toast.makeText(getApplicationContext(), "start downloading ....",
                         Toast.LENGTH_SHORT).show();
             }
         });
-
-    return rootView;
     }
 }
 

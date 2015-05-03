@@ -33,7 +33,7 @@
     <string-array name="nav_drawer_items_mr">
         <item >Daftar Pending</item>
         <item >Daftar Disetujui</item>
-        <!--<item >Daftar Pesan</item>-->
+        <item >Lihat Jadwal Ruangan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
@@ -76,6 +76,7 @@
     <array name="nav_drawer_icons_mgr">
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/ic_cariruangan</item>
         <!--<item>@drawable/update_status</item>-->
         <!--<item>@drawable/daftar_pesan</item>-->
         <item>@drawable/tulis_pesan</item>

@@ -19,8 +19,8 @@ import ppl.sipiru4.adapter.DaftarPermohonanAdapterK;
 
 public class DaftarPermohonanK extends Fragment {
     ListView lv;
-
     DaftarPermohonanAdapterK adapter;
+    ArrayList<Peminjaman> mItems;
 
     public DaftarPermohonanK(){}
 
@@ -33,7 +33,7 @@ public class DaftarPermohonanK extends Fragment {
 
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
-        ArrayList<Peminjaman> mItems = new ArrayList<>();
+        mItems = new ArrayList<>();
 
         JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/displayManajerKemahasiswaan/");
 
@@ -68,7 +68,7 @@ public class DaftarPermohonanK extends Fragment {
                 // Sending image id to FullScreenActivity
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanK.class);
                 // passing array index
-                i.putExtra("id", position);
+                i.putExtra("peminjaman", mItems.get(position));
                 startActivity(i);
             }
         });
