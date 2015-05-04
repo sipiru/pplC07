@@ -21,7 +21,11 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import org.json.JSONArray;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
 import ppl.sipiru4.Entity.JSONParser;
 
 public class CariRuanganWaktu extends Fragment {
@@ -57,7 +61,6 @@ public class CariRuanganWaktu extends Fragment {
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectTglMulai();
-//                ambilTglMulai.setText("");
                 newFragment.show(getFragmentManager(),"");
                 tglMulaiClicked=true;
             }
@@ -98,6 +101,12 @@ public class CariRuanganWaktu extends Fragment {
             @Override
             public void onClick(View v) {
                 if (tglMulaiClicked&&tglSelesaiClicked&&jamMulaiClicked&&jamSelesaiClicked) {
+                    String currentTimeString = new SimpleDateFormat("yy-MM-dd HH:mm").format(new Date());
+
+                    Log.e("waktu sekarang", currentTimeString);
+                    Log.e("waktu awal terpilih", tglMulai.getText() + " " + jamMulai.getText());
+                    Log.e("waktu akhir terpilih", tglSelesai.getText() + " " + jamSelesai.getText());
+
                     JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
                             +tglMulai.getText()+"%20"+jamMulai.getText()+"&"+tglSelesai.getText()+"%20"+jamSelesai.getText());
 
@@ -110,8 +119,6 @@ public class CariRuanganWaktu extends Fragment {
                     Intent i = new Intent(getActivity(), DaftarRuangan.class);
                     //mengoper JSONArray ruangan ke DaftarRuangan.class
                     i.putExtra("daftarRuangan", jArray.toString());
-                    Log.e("jArray cari ruangan", jArray+"");
-                    Log.e("jArray2 cari ruangan", jArray.toString());
                     i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
                     i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
                     startActivity(i);
@@ -137,27 +144,27 @@ public class CariRuanganWaktu extends Fragment {
         super.onAttach(activity);
     }
 
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-    }
-
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-    }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d("MyTag", "TabFragment0--onDestroyView");
-    }
-    @Override
-    public void onViewStateRestored(Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        Log.d("MyTag", "TabFragment0--onViewStateRestored");
-    }
+//    @Override
+//    public void onStart()
+//    {
+//        super.onStart();
+//    }
+//
+//    @Override
+//    public void onResume()
+//    {
+//        super.onResume();
+//    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        Log.d("MyTag", "TabFragment0--onDestroyView");
+//    }
+//    @Override
+//    public void onViewStateRestored(Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+//        Log.d("MyTag", "TabFragment0--onViewStateRestored");
+//    }
 
     public static class SelectTglMulai extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @NonNull
@@ -213,7 +220,7 @@ public class CariRuanganWaktu extends Fragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar time = Calendar.getInstance();
-            int hour = time.get(Calendar.HOUR);
+            int hour = time.get(Calendar.HOUR_OF_DAY);
             int minutes = time.get(Calendar.MINUTE);
             return new TimePickerDialog(getActivity(),this,hour, minutes, DateFormat.is24HourFormat(getActivity()));
         }
@@ -232,7 +239,7 @@ public class CariRuanganWaktu extends Fragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar time = Calendar.getInstance();
-            int hour = time.get(Calendar.HOUR);
+            int hour = time.get(Calendar.HOUR_OF_DAY);
             int minutes = time.get(Calendar.MINUTE);
             return new TimePickerDialog(getActivity(),this,hour, minutes, DateFormat.is24HourFormat(getActivity()));
         }

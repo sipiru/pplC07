@@ -12,9 +12,7 @@ import android.widget.ListView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapterMR;
@@ -22,7 +20,7 @@ import ppl.sipiru4.adapter.DaftarPermohonanAdapterMR;
 public class DaftarPermohonanMR extends Fragment {
     ListView lv;
     DaftarPermohonanAdapterMR adapter;
-    ArrayList<Peminjaman> mItems;
+    static ArrayList<Peminjaman> mItems = new ArrayList<>();
 
     public DaftarPermohonanMR(){}
 
@@ -35,10 +33,8 @@ public class DaftarPermohonanMR extends Fragment {
 
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
-        mItems = new ArrayList<>();
-
+        // mendapatkan data-data peminjaman dari webservice berbentuk JSON
         JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/displayManajerRuangan/");
-
         for (int i = 0; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);
@@ -54,7 +50,7 @@ public class DaftarPermohonanMR extends Fragment {
                 String peralatan = jPeminjaman.getString("peralatan");
                 int status = jPeminjaman.getInt("status");
 
-                mItems.add(new Peminjaman(id,kodeRuangan,namaP,usernameP,statusPeminjam,perihal,mulai,selesai,peralatan,status));
+                mItems.add(new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,peralatan,status));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -69,6 +65,7 @@ public class DaftarPermohonanMR extends Fragment {
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanMR.class);
                 // passing array index
                 i.putExtra("peminjaman", mItems.get(position));
+                i.putExtra("posisi",position);
                 startActivity(i);
 //                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 //                fragmentTransaction.replace(R.id.frame_container, new DetailPermohonanMR(mItems.get(position)));
@@ -79,5 +76,9 @@ public class DaftarPermohonanMR extends Fragment {
             }
         });
         return rootView;
+    }
+
+    public static void removeItem(int i) {
+        mItems.remove(i);
     }
 }

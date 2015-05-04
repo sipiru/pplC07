@@ -48,17 +48,23 @@ public class MainActivityP extends FragmentActivity {
         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
 
         b = getIntent().getExtras();
-        user = b.getParcelable("user");
-        Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
+        if(b!=null) {
+            user = b.getParcelable("user");
+            Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
+
+            SharedPreferences.Editor edit = setting.edit();
+            edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
+            edit.putString(LoginActivity.KEY_NAMA, user.getNama());
+            edit.putString(LoginActivity.KEY_KODE_ORG, user.getKodeOrg());
+            edit.putString(LoginActivity.KEY_ROLE, user.getRole());
+            edit.putString(LoginActivity.KEY_KODE_IDENTITAS, user.getKodeIdentitas());
+            edit.apply();
+        }
 
         // simpan username, nama dan role ke SharedPreferences
         // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
         // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
-        SharedPreferences.Editor edit = setting.edit();
-        edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
-        edit.putString(LoginActivity.KEY_NAMA, user.getNama());
-        edit.putString(LoginActivity.KEY_ROLE, user.getRole());
-        edit.apply();
+
 
         Log.e("mainAct P ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
@@ -193,13 +199,8 @@ public class MainActivityP extends FragmentActivity {
                 fragment = new DaftarPeminjamanP();
                 fragment.setArguments(b);
                 break;
-//            case 3:
-//                fragment = new DaftarPesanP();
-//                break; // ga jadi pake ini
             case 4:
                 Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                // passing array index
-//                i.putExtra("id", "peminjam");
                 startActivity(i);
                 break;
             case 5:
@@ -210,7 +211,6 @@ public class MainActivityP extends FragmentActivity {
         }
 
         if (fragment != null) {
-            //FragmentManager fragmentManager = getFragmentManager();
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
@@ -235,24 +235,30 @@ public class MainActivityP extends FragmentActivity {
         alertDialogBuilder
                 .setMessage("Tekan Ya untuk logout")
                 .setCancelable(false)
-                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, close current activity
-                        SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
-                        Log.e("sebelum logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
-                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
+//                        pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke
+//                        halaman Login dan mengakhiri semua proses yang ada di stack
+
+//                        Log.e("sebelum logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
+//                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
                         SharedPreferences.Editor edit = setting.edit();
                         edit.clear();
                         edit.apply();
 
-                        Log.e("setelah logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
-                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+//                        Log.e("setelah logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
+//                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(i);
+
                         finish();
                     }
                 })
-                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
                 });
@@ -289,6 +295,7 @@ public class MainActivityP extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        // saat user menekan tombol back, lakukan konfirmasi logout
         logout();
     }
 }

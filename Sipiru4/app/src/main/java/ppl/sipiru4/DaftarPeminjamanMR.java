@@ -49,8 +49,4 @@ public class DaftarPeminjamanMR extends Fragment {
         });
         return rootView;
     }
-
-    public static void addToHistory(Peminjaman peminjaman) {
-        mItems.add(peminjaman);
-    }
 }

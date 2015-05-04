@@ -11,6 +11,7 @@ import ppl.sipiru4.Entity.Peminjaman;
 
 public class DetailPeminjamanMR extends Activity {
     Peminjaman peminjaman;
+    int posisi;
     Bundle b;
 
 //    public DetailPeminjamanMR(Peminjaman peminjaman) {
@@ -24,7 +25,8 @@ public class DetailPeminjamanMR extends Activity {
         // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanMR.class
         b = getIntent().getExtras();
         peminjaman = b.getParcelable("peminjaman");
-        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
+        posisi = b.getInt("posisi");
+        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId() + " posisi " + posisi);
 
         TextView ruang = (TextView)findViewById(R.id.ruang);
         ruang.setText(peminjaman.getKodeRuangan());

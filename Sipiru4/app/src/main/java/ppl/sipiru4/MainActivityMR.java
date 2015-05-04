@@ -49,17 +49,19 @@ public class MainActivityMR extends FragmentActivity {
         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
 
         b = getIntent().getExtras();
-        user = b.getParcelable("user");
-        Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
+        if (b!=null){
+            user = b.getParcelable("user");
+            Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
 
-        // simpan username, nama dan role ke SharedPreferences
-        // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
-        // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
-        SharedPreferences.Editor edit = setting.edit();
-        edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
-        edit.putString(LoginActivity.KEY_NAMA, user.getNama());
-        edit.putString(LoginActivity.KEY_ROLE, user.getRole());
-        edit.apply();
+            // simpan username, nama dan role ke SharedPreferences
+            // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
+            // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
+            SharedPreferences.Editor edit = setting.edit();
+            edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
+            edit.putString(LoginActivity.KEY_NAMA, user.getNama());
+            edit.putString(LoginActivity.KEY_ROLE, user.getRole());
+            edit.apply();
+        }
 
         Log.e("mainAct MR ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
@@ -78,9 +80,9 @@ public class MainActivityMR extends FragmentActivity {
             // Lihat Jadwal Ruangan
             navDrawerItems.add(new NavDrawerItem(menuMR[2], navMenuIcons.getResourceId(2, -1)));
             // PesanBaru
-            navDrawerItems.add(new NavDrawerItem(menuMR[2], navMenuIcons.getResourceId(2, -1)));
-            // Logout
             navDrawerItems.add(new NavDrawerItem(menuMR[3], navMenuIcons.getResourceId(3, -1)));
+            // Logout
+            navDrawerItems.add(new NavDrawerItem(menuMR[4], navMenuIcons.getResourceId(4, -1)));
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -190,13 +192,11 @@ public class MainActivityMR extends FragmentActivity {
                 break;
             case 4:
                 logout();
-
             default:
                 break;
         }
 
         if (fragment != null) {
-            //FragmentManager fragmentManager = getFragmentManager();
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
@@ -223,7 +223,8 @@ public class MainActivityMR extends FragmentActivity {
                 .setCancelable(false)
                 .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, close current activity
+                        // pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke
+                        // halaman Login dan mengakhiri semua proses yang ada di stack
                         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
                         Log.e("sebelum logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
                                 + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
@@ -234,6 +235,10 @@ public class MainActivityMR extends FragmentActivity {
 
                         Log.e("setelah logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
                                 + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(i);
+
                         finish();
                     }
                 })
@@ -243,7 +248,7 @@ public class MainActivityMR extends FragmentActivity {
                     }
                 });
 
-        // create alert dialog
+        // memunculkan alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
@@ -275,6 +280,7 @@ public class MainActivityMR extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        // saat user menekan tombol back, lakukan konfirmasi logout
         logout();
     }
 }

@@ -23,6 +23,7 @@ import ppl.sipiru4.adapter.DaftarPermohonanAdapterP;
 public class DaftarPermohonanP extends Fragment {
     ListView lv;
     DaftarPermohonanAdapterP adapter;
+    User user;
 
     public DaftarPermohonanP(){}
 
@@ -34,10 +35,11 @@ public class DaftarPermohonanP extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         Bundle b;
-        User user;
         b = getArguments();
-        user = b.getParcelable("user");
-        Log.e("user daftar permohonan",user.getUsername() + " " + user.getNama() + " " + user.getRole());
+        if (b!=null) {
+            user = b.getParcelable("user");
+            Log.e("user daftar permohonan",user.getUsername() + " " + user.getNama() + " " + user.getRole());
+        }
 
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
