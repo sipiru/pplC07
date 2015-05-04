@@ -1,45 +1,80 @@
 package ppl.sipiru4.Entity;
 
-/**
- * Created by User on 11/04/2015.
- */
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
     private String username;
-    private String kodeIdentitas;
+    private String nama;
+    private String kodeOrg;
     private String role;
+    private String kodeIdentitas;
 
-    public User(String username, String kodeIdentitas, String role) {
+    public User(String username, String nama, String kodeOrg, String role, String kodeIdentitas) {
         this.username = username;
-        this.kodeIdentitas = kodeIdentitas;
+        this.nama = nama;
+        this.kodeOrg = kodeOrg;
         this.role = role;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getKodeIdentitas() {
-        return kodeIdentitas;
-    }
-
-    public void setKodeIdentitas(String kodeIdentitas) {
         this.kodeIdentitas = kodeIdentitas;
+    }
+
+    public User(Parcel source) {
+        username = source.readString();
+        nama = source.readString();
+        kodeOrg = source.readString();
+        role = source.readString();
+        kodeIdentitas = source.readString();
+    }
+
+
+    public String getUsername() {return username;}
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getKodeOrg() {
+        return kodeOrg;
     }
 
     public String getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public String getKodeIdentitas() {
+        return kodeIdentitas;
     }
 
     @Override
     public boolean equals(Object o) {
         return ((User)o).getUsername().compareTo(username) == 0;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(username);
+        dest.writeString(nama);
+        dest.writeString(kodeOrg);
+        dest.writeString(role);
+        dest.writeString(kodeIdentitas);
+    }
+
+    public static final Parcelable.Creator<User> CREATOR
+            = new Parcelable.Creator<User>() {
+
+        @Override
+        public User createFromParcel(Parcel source) {
+            return new User(source);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }

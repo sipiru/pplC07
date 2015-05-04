@@ -36,7 +36,6 @@
             android:id="@+id/ruang"
             android:hint="Nama ruangan"
             android:textSize="20dp"
-            android:textColor="#ff000000"
             android:layout_gravity="center_vertical"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -64,7 +63,6 @@
             android:layout_gravity="center_vertical"
             android:hint="Nama peminjam"
             android:textSize="20dp"
-            android:textColor="#ff000000"
             android:layout_alignBottom="@+id/textView2"
             android:layout_alignLeft="@+id/ruang"
             android:layout_alignStart="@+id/ruang"
@@ -89,7 +87,6 @@
             android:id="@+id/npm"
             android:hint="NPM peminjam"
             android:textSize="20dp"
-            android:textColor="#ff000000"
             android:layout_gravity="center_vertical"
             android:layout_alignTop="@+id/textView4"
             android:layout_alignLeft="@+id/nama"
@@ -105,9 +102,9 @@
             android:id="@+id/textView5"
             android:textColor="#ff000000"
             android:layout_below="@+id/textView4"
-            android:layout_marginTop="10dp"
             android:layout_alignRight="@+id/textView4"
-            android:layout_alignEnd="@+id/textView4" />
+            android:layout_alignEnd="@+id/textView4"
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -115,7 +112,6 @@
             android:id="@+id/prihal"
             android:hint="Perihal"
             android:textSize="20dp"
-            android:textColor="#ff000000"
             android:layout_gravity="center_vertical"
             android:layout_alignTop="@+id/textView5"
             android:layout_alignParentRight="true"
@@ -139,16 +135,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tanggal"
+            android:id="@+id/tglMulai"
             android:layout_gravity="center_vertical"
+            android:hint="mulai"
             android:textSize="20dp"
-            android:textColor="#ff000000"
             android:layout_below="@+id/prihal"
             android:layout_alignLeft="@+id/prihal"
             android:layout_alignStart="@+id/prihal"
             android:layout_marginTop="10dp"
-            android:textAlignment="center"
-            android:text="tanggal" />
+            android:layout_alignRight="@+id/textView8"
+            android:layout_alignEnd="@+id/textView8"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="sd"
+            android:textSize="20dp"
+            android:id="@+id/textView12"
+            android:layout_marginLeft="4dp"
+            android:layout_above="@+id/textView7"
+            android:layout_toRightOf="@+id/mulai"
+            android:layout_toEndOf="@+id/mulai" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -165,18 +173,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/jam"
+            android:id="@+id/mulai"
             android:layout_gravity="center_vertical"
+            android:hint="mulai"
             android:textSize="20dp"
-            android:textColor="#ff000000"
             android:textAlignment="center"
-            android:layout_alignLeft="@+id/tanggal"
-            android:layout_alignStart="@+id/tanggal"
-            android:layout_toStartOf="@+id/btnSetuju"
             android:layout_above="@+id/textView8"
-            android:layout_alignRight="@+id/fasilitas"
-            android:layout_alignEnd="@+id/fasilitas"
-            android:text="masukkan jam" />
+            android:layout_alignLeft="@+id/tglMulai"
+            android:layout_alignStart="@+id/tglMulai" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -197,8 +201,7 @@
             android:ems="10"
             android:hint="Peralatan-peralatan"
             android:textSize="20dp"
-            android:textColor="#ff000000"
-            android:id="@+id/fasilitas"
+            android:id="@+id/permintaanLain"
             android:layout_below="@+id/textView8"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -227,7 +230,45 @@
             android:layout_marginTop="15dp"
             android:layout_toLeftOf="@+id/btnSetuju"
             android:layout_toStartOf="@+id/btnSetuju"
-            android:layout_below="@+id/fasilitas" />
+            android:layout_below="@+id/permintaanLain" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tglSelesai"
+            android:hint="selesai"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical"
+            android:textAlignment="center"
+            android:layout_marginLeft="4dp"
+            android:layout_alignTop="@+id/textView12"
+            android:layout_toRightOf="@+id/textView12"
+            android:layout_toEndOf="@+id/textView12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/selesai"
+            android:hint="selesai"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_alignTop="@+id/mulai"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/tglSelesai"
+            android:layout_alignStart="@+id/tglSelesai"
+            android:layout_marginLeft="1dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="sd"
+            android:textSize="20dp"
+            android:id="@+id/textView11"
+            android:layout_alignTop="@+id/mulai"
+            android:layout_alignLeft="@+id/textView12"
+            android:layout_alignStart="@+id/textView12" />
 
     </RelativeLayout>
 </ScrollView>

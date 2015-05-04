@@ -1,39 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:weightSum="1">
+    <!--ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/kotak"
+        android:layout_gravity="center"
+        android:id="@+id/kotak"/-->
     <!--  Single List Item Design -->
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/kode"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:padding="10dip"
-        android:textSize="30dip"
-        android:textStyle="bold"
-        android:text="permohonan"
-        android:layout_weight="0.91"
-        android:layout_marginLeft="20dp">
-    </TextView>
+
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/nama"
+            android:background="@color/material_deep_teal_500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:textSize="30dip"
+            android:textColor="#ff000000"
+            android:textStyle="bold"
+            android:text="2302"
+            android:layout_weight="0.91"
+            android:layout_marginLeft="20dp">
+        </TextView>
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/kode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:textSize="16dip"
+            android:textColor="#ff000000"
+            android:textStyle="bold"
+            android:text="R2302"
+            android:layout_weight="0.91"
+            android:layout_marginLeft="20dp">
+        </TextView>
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/deskripsi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:textSize="16dip"
+            android:textColor="#ff000000"
+            android:textStyle="bold"
+            android:text="ruangan"
+            android:layout_weight="0.91"
+            android:layout_marginLeft="20dp">
+        </TextView>
+        </LinearLayout>
+
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/kapasitas"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:padding="10dip"
-        android:textSize="16dip"
+        android:textSize="40dip"
+        android:textColor="#ff000000"
         android:textStyle="bold"
-        android:text="permohonan"
-        android:layout_weight="0.91"
-        android:layout_marginLeft="20dp">
-    </TextView>
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/deskripsi"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:padding="10dip"
-        android:textSize="16dip"
-        android:textStyle="bold"
-        android:text="permohonan"
-        android:layout_marginLeft="20dp">
+        android:text="60"
+        android:layout_weight="1"
+        android:layout_marginLeft="50dp"
+        android:layout_gravity="center">
     </TextView>
 </LinearLayout>

@@ -5,25 +5,23 @@
     android:weightSum="1">
     <!--  Single List Item Design -->
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/jam"
+        android:id="@+id/mulai"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:padding="10dip"
-        android:textSize="16dip"
-        android:textStyle="bold"
+        android:textSize="18dp"
         android:text="permohonan"
-        android:layout_weight="0.91"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="10dp"
+        android:layout_weight="0.39">
     </TextView>
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/selesai"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:padding="10dip"
-        android:textSize="16dip"
-        android:textStyle="bold"
+        android:textSize="18dp"
         android:text="permohonan"
-        android:layout_weight="0.91"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="10dp"
+        android:layout_weight="0.44">
     </TextView>
 </LinearLayout>

@@ -1,6 +1,6 @@
 package ppl.sipiru4.adapter;
 
-import ppl.sipiru4.JadwalRuangan;
+import ppl.sipiru4.CariRuanganRuang;
 import ppl.sipiru4.CariRuanganWaktu;
 
 import android.support.v4.app.Fragment;
@@ -19,7 +19,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         switch (index) {
             case 0:
                 // Top Rated fragment activity
-                return new JadwalRuangan();
+                return new CariRuanganRuang();
             case 1:
                 // Games fragment activity
                 return new CariRuanganWaktu();

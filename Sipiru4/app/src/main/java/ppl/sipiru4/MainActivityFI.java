@@ -171,13 +171,13 @@ public class MainActivityFI extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new DaftarPendingFI();
+                fragment = new DaftarPermohonanFI();
                 break;
             case 1:
-                fragment = new DaftarPengembalianAlatFI();
+                fragment = new DaftarPeminjamanFI();
                 break;
             case 2:
-                fragment = new DaftarHistoryFI();
+                fragment = new DaftarPeminjamanFI();
                 break;
 //            case 2:
 //                fragment = new DaftarPesanFI();

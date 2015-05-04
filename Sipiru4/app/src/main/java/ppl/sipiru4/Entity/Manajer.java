@@ -1,11 +1,5 @@
 package ppl.sipiru4.Entity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-/**
- * Created by User on 12/04/2015.
- */
 public class Manajer {
     private String username;
     private String tipe;

@@ -2,9 +2,6 @@ package ppl.sipiru4.Entity;
 
 import java.util.ArrayList;
 
-/**
- * Created by User on 12/04/2015.
- */
 public class DaftarRuangan {
     private ArrayList<Ruangan> ruangan;
 

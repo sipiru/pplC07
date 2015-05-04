@@ -2,9 +2,6 @@ package ppl.sipiru4.Entity;
 
 import java.util.ArrayList;
 
-/**
- * Created by User on 11/04/2015.
- */
 public class DaftarPeminjaman {
     private User pengguna;
     private ArrayList<Peminjaman> peminjaman;

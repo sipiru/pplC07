@@ -28,10 +28,8 @@ public class MainActivityK extends FragmentActivity {
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
-
     // nav drawer title
     private CharSequence mDrawerTitle;
-
 
     // used to store app title
     private CharSequence mTitle;
@@ -40,11 +38,6 @@ public class MainActivityK extends FragmentActivity {
 
     // slide menu items
     private String[] menuK;
-
-    private TypedArray navMenuIcons;
-
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +50,13 @@ public class MainActivityK extends FragmentActivity {
         menuK = getResources().getStringArray(R.array.nav_drawer_items_mk);
 
         // nav drawer icons from resources
-        navMenuIcons = getResources()
+        TypedArray navMenuIcons = getResources()
                 .obtainTypedArray(R.array.nav_drawer_icons_mgr);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
-        navDrawerItems = new ArrayList<NavDrawerItem>();
-
+        ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<>();
 
             // adding nav drawer items to array
             // Daftar Permohonan
@@ -78,15 +70,13 @@ public class MainActivityK extends FragmentActivity {
             // Logout
             navDrawerItems.add(new NavDrawerItem(menuK[3], navMenuIcons.getResourceId(3, -1)));
 
-
-
         // Recycle the typed array
         navMenuIcons.recycle();
 
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        adapter = new NavDrawerListAdapter(getApplicationContext(),
+        NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(),
                 navDrawerItems);
         mDrawerList.setAdapter(adapter);
 
@@ -171,10 +161,10 @@ public class MainActivityK extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new DaftarPendingK();
+                fragment = new DaftarPermohonanK();
                 break;
             case 1:
-                fragment = new DaftarDisetujuiK();
+                fragment = new DaftarPeminjamanK();
                 break;
 //            case 2:
 //                fragment = new DaftarPesanK();
@@ -210,10 +200,8 @@ public class MainActivityK extends FragmentActivity {
                             }
                         });
 
-
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
                 // show it
                 alertDialog.show();
 

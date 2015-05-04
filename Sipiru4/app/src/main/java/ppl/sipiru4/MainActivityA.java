@@ -33,10 +33,7 @@ public class MainActivityA extends FragmentActivity {
     final Context context = this;
     Intent i;
     private String[] menuAdmin; // slide menu items
-    private TypedArray navMenuIcons;
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
-//    SharedPreferences settings;
+    //    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +45,12 @@ public class MainActivityA extends FragmentActivity {
         menuAdmin = getResources().getStringArray(R.array.nav_drawer_items_admin);
 
         // nav drawer icons from resources
-        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons_admin);
+        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons_admin);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
-        navDrawerItems = new ArrayList<NavDrawerItem>();
+        ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<>();
 
             // adding nav drawer items to array
             // Buat Tabel Baru
@@ -75,7 +72,7 @@ public class MainActivityA extends FragmentActivity {
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
+        NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
         mDrawerList.setAdapter(adapter);
 
         // enabling action bar app icon and behaving it as toggle button

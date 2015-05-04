@@ -1,50 +1,117 @@
 package ppl.sipiru4.Entity;
 
-import java.util.GregorianCalendar;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-/**
- * Created by User on 11/04/2015.
- */
-public class Peminjaman {
-    private User peminjam;
-    private GregorianCalendar mulai;
-    private GregorianCalendar selesai;
-    private Ruangan ruangan;
-    private boolean status;
+public class Peminjaman implements Parcelable{
+    private int id;
+    private String kodeRuangan;
+    private String usernameP;
+    private String namaP;
+    private boolean statusPeminjam;
+    private String mulai;
+    private String selesai;
+    private String perihal;
+    private String peralatan;
+    private int status;
 
-    public Peminjaman(User peminjam, GregorianCalendar mulai, GregorianCalendar selesai, Ruangan ruangan) {
-        this.peminjam = peminjam;
+    public Peminjaman(int id,String kodeRuangan, String usernameP, String namaP, boolean statusPeminjam, String mulai, String selesai, String perihal, String peralatan, int status) {
+        this.id = id;
+        this.kodeRuangan = kodeRuangan;
+        this.usernameP = usernameP;
+        this.namaP = namaP;
+        this.statusPeminjam = statusPeminjam;
         this.mulai = mulai;
         this.selesai = selesai;
-        this.ruangan = ruangan;
-        this.status = false;
-    }
-
-    public Peminjaman(User peminjam, GregorianCalendar mulai, GregorianCalendar selesai, Ruangan ruangan, boolean status) {
-        this.peminjam = peminjam;
-        this.mulai = mulai;
-        this.selesai = selesai;
-        this.ruangan = ruangan;
+        this.perihal = perihal;
+        this.peralatan = peralatan;
         this.status = status;
     }
 
-    public User getPeminjam() {
-        return peminjam;
+    public Peminjaman(Parcel source) {
+        id = source.readInt();
+        kodeRuangan = source.readString();
+        usernameP = source.readString();
+        namaP = source.readString();
+        statusPeminjam = source.readInt() == 1;
+        mulai = source.readString();
+        selesai = source.readString();
+        perihal = source.readString();
+        peralatan = source.readString();
+        status = source.readInt();
     }
 
-    public GregorianCalendar getMulai() {
+    public int getId() {
+        return id;
+    }
+
+    public String getNamaP() {
+        return namaP;
+    }
+
+    public String getUsernameP() {
+        return usernameP;
+    }
+
+    public boolean getStatusPeminjam() {
+        return statusPeminjam;
+    }
+
+    public String getMulai() {
         return mulai;
     }
 
-    public GregorianCalendar getSelesai() {
+    public String getSelesai() {
         return selesai;
     }
 
-    public Ruangan getRuangan() {
-        return ruangan;
+    public String getKodeRuangan() {
+        return kodeRuangan;
     }
 
-    public boolean getStatus() {return status;}
+    public String getPeralatan() {
+        return peralatan;
+    }
 
-    public void setujui() {status = true;}
+    public String getPerihal() {
+        return perihal;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(kodeRuangan);
+        dest.writeString(usernameP);
+        dest.writeString(namaP);
+        if (statusPeminjam) dest.writeInt(1);
+        else dest.writeInt(0);
+        dest.writeString(mulai);
+        dest.writeString(selesai);
+        dest.writeString(perihal);
+        dest.writeString(peralatan);
+        dest.writeInt(status);
+    }
+
+    public static final Parcelable.Creator<Peminjaman> CREATOR
+            = new Parcelable.Creator<Peminjaman>() {
+
+        @Override
+        public Peminjaman createFromParcel(Parcel source) {
+            return new Peminjaman(source);
+        }
+
+        @Override
+        public Peminjaman[] newArray(int size) {
+            return new Peminjaman[size];
+        }
+    };
 }

@@ -1,19 +1,27 @@
 package ppl.sipiru4.Entity;
 
-/**
- * Created by User on 11/04/2015.
- */
-public class Ruangan {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Ruangan implements Parcelable{
     private String kode;
     private String nama;
-    private int kapasitas;
+    private String kapasitas;
     private String deskripsi;
 
-    public Ruangan(String kode, String nama, int kapasitas, String deskripsi) {
+
+    public Ruangan(String kode, String nama, String kapasitas, String deskripsi) {
         this.kode = kode;
         this.nama = nama;
         this.kapasitas = kapasitas;
         this.deskripsi = deskripsi;
+    }
+
+    public Ruangan(Parcel source) {
+        kode = source.readString();
+        nama = source.readString();
+        kapasitas = "" + source.readInt();
+        deskripsi = source.readString();
     }
 
     public String getDeskripsi() {
@@ -24,11 +32,11 @@ public class Ruangan {
         this.deskripsi = deskripsi;
     }
 
-    public int getKapasitas() {
+    public String getKapasitas() {
         return kapasitas;
     }
 
-    public void setKapasitas(int kapasitas) {
+    public void setKapasitas(String kapasitas) {
         this.kapasitas = kapasitas;
     }
 
@@ -47,4 +55,31 @@ public class Ruangan {
     public void setKode(String kode) {
         this.kode = kode;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(kode);
+        dest.writeString(nama);
+        dest.writeString(kapasitas);
+        dest.writeString(deskripsi);
+    }
+
+    public static final Parcelable.Creator<Ruangan> CREATOR
+            = new Parcelable.Creator<Ruangan>() {
+
+        @Override
+        public Ruangan createFromParcel(Parcel source) {
+            return new Ruangan(source);
+        }
+
+        @Override
+        public Ruangan[] newArray(int size) {
+            return new Ruangan[size];
+        }
+    };
 }
