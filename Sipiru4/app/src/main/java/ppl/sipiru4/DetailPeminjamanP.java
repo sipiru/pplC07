@@ -33,6 +33,9 @@ public class DetailPeminjamanP extends Activity {
         TextView prihal = (TextView)findViewById(R.id.prihal);
         prihal.setText(peminjaman.getPerihal());
 
+        TextView kegiatan = (TextView)findViewById(R.id.kegiatan);
+        kegiatan.setText(peminjaman.getKegiatan());
+
         TextView mulai = (TextView)findViewById(R.id.waktuMulai);
         mulai.setText(peminjaman.getMulai());
 

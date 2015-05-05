@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -68,7 +67,6 @@ public class DetailPermohonanMR extends Activity {
                     // set dialog message
                     alertDialogBuilder
                             .setMessage("Tekan Ya untuk meneruskan")
-                            .setCancelable(false)
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
                                     String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerRuangan/"+ peminjaman.getId());
@@ -78,9 +76,6 @@ public class DetailPermohonanMR extends Activity {
                                     else {
                                         Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
                                     }
-                                    Intent i = new Intent(context, MainActivityMR.class);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(i);
                                     finish();
                                 }
                             })
@@ -106,7 +101,6 @@ public class DetailPermohonanMR extends Activity {
                     // set dialog message
                     alertDialogBuilder
                             .setMessage("Tekan Ya untuk menolak")
-                            .setCancelable(false)
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
                                     String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"+ peminjaman.getId());
@@ -115,7 +109,6 @@ public class DetailPermohonanMR extends Activity {
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
                                     }
-                                    DaftarPermohonanMR.removeItem(posisi);
                                     finish();
                                 }
                             })

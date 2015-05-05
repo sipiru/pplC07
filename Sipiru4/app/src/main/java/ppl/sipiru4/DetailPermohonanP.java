@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +44,9 @@ public class DetailPermohonanP extends Activity {
         TextView prihal = (TextView)findViewById(R.id.prihal);
         prihal.setText(peminjaman.getPerihal());
 
+        TextView kegiatan = (TextView) findViewById(R.id.kegiatan);
+        kegiatan.setText(peminjaman.getKegiatan());
+
         TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
         waktuMulai.setText(peminjaman.getMulai());
 
@@ -75,7 +79,10 @@ public class DetailPermohonanP extends Activity {
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Error. Permohonan sudah tidak ada", Toast.LENGTH_SHORT).show();
                                 }
-                                finish();
+                                Intent i = new Intent(getApplicationContext(),MainActivityP.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                i.putExtra("user",user);
+                                startActivity(i);
                             }
                         })
                         .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {

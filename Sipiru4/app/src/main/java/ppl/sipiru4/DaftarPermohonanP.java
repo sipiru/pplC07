@@ -57,12 +57,13 @@ public class DaftarPermohonanP extends Fragment {
                 String usernameP = jPeminjaman.getString("username_peminjam");
                 boolean statusPeminjam = jPeminjaman.getBoolean("status_peminjam");
                 String perihal = jPeminjaman.getString("perihal");
+                String kegiatan = jPeminjaman.getString("kegiatan");
                 String mulai = jPeminjaman.getString("waktu_awal_pinjam");
                 String selesai = jPeminjaman.getString("waktu_akhir_pinjam");
                 String peralatan = jPeminjaman.getString("peralatan");
                 int status = jPeminjaman.getInt("status");
 
-                mItems.add(new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,peralatan,status));
+                mItems.add(new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,kegiatan,peralatan,status));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

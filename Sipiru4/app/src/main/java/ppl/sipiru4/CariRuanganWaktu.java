@@ -11,7 +11,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import org.json.JSONArray;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -101,27 +101,39 @@ public class CariRuanganWaktu extends Fragment {
             @Override
             public void onClick(View v) {
                 if (tglMulaiClicked&&tglSelesaiClicked&&jamMulaiClicked&&jamSelesaiClicked) {
-                    String currentTimeString = new SimpleDateFormat("yy-MM-dd HH:mm").format(new Date());
+                    Date now = new Date();
+                    Date dateAwal;
+                    Date dateAkhir;
 
-                    Log.e("waktu sekarang", currentTimeString);
-                    Log.e("waktu awal terpilih", tglMulai.getText() + " " + jamMulai.getText());
-                    Log.e("waktu akhir terpilih", tglSelesai.getText() + " " + jamSelesai.getText());
+                    SimpleDateFormat formatter = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+                    try {
+                        dateAwal = formatter.parse(tglMulai.getText()+ " " + jamMulai.getText());
+                        dateAkhir = formatter.parse(tglSelesai.getText() + " " + jamSelesai.getText());
 
-                    JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
-                            +tglMulai.getText()+"%20"+jamMulai.getText()+"&"+tglSelesai.getText()+"%20"+jamSelesai.getText());
+                        // pengecekan validasi input tanggal
+                        if (dateAkhir.after(dateAwal) && dateAwal.after(now)) {
+                            JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
+                                    +tglMulai.getText()+"%20"+jamMulai.getText()+"&"+tglSelesai.getText()+"%20"+jamSelesai.getText());
 
-//                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                    fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan(jArray));
-//                    Toast.makeText(getActivity(),"daftar ruangan", Toast.LENGTH_SHORT).show();
-//                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                    fragmentTransaction.addToBackStack(null);
-//                    fragmentTransaction.commit();
-                    Intent i = new Intent(getActivity(), DaftarRuangan.class);
-                    //mengoper JSONArray ruangan ke DaftarRuangan.class
-                    i.putExtra("daftarRuangan", jArray.toString());
-                    i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
-                    i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
-                    startActivity(i);
+//                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                            fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan(jArray));
+//                            Toast.makeText(getActivity(),"daftar ruangan", Toast.LENGTH_SHORT).show();
+//                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                            fragmentTransaction.addToBackStack(null);
+//                            fragmentTransaction.commit();
+                            Intent i = new Intent(getActivity(), DaftarRuangan.class);
+                            //mengoper JSONArray ruangan ke DaftarRuangan.class
+                            i.putExtra("daftarRuangan", jArray.toString());
+                            i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
+                            i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
+                            startActivity(i);
+                        }
+                        else {
+                            Toast.makeText(getActivity(), "Pengisian tanggal tidak valid", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else {
                     Toast.makeText(getActivity(),"mohon isi semua tangggal dan jam",Toast.LENGTH_SHORT).show();
@@ -180,6 +192,7 @@ public class CariRuanganWaktu extends Fragment {
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
             populateSetDate(yy, mm+1, dd);
         }
+
         public void populateSetDate(int year, int month, int day) {
             String yearOutput = ""+year;
             String monthOutput = ""+month;
@@ -222,7 +235,7 @@ public class CariRuanganWaktu extends Fragment {
             final Calendar time = Calendar.getInstance();
             int hour = time.get(Calendar.HOUR_OF_DAY);
             int minutes = time.get(Calendar.MINUTE);
-            return new TimePickerDialog(getActivity(),this,hour, minutes, DateFormat.is24HourFormat(getActivity()));
+            return new TimePickerDialog(getActivity(),this,hour, (minutes/10)*10, DateFormat.is24HourFormat(getActivity()));
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
@@ -241,7 +254,7 @@ public class CariRuanganWaktu extends Fragment {
             final Calendar time = Calendar.getInstance();
             int hour = time.get(Calendar.HOUR_OF_DAY);
             int minutes = time.get(Calendar.MINUTE);
-            return new TimePickerDialog(getActivity(),this,hour, minutes, DateFormat.is24HourFormat(getActivity()));
+            return new TimePickerDialog(getActivity(),this,hour, (minutes/10)*10, DateFormat.is24HourFormat(getActivity()));
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
