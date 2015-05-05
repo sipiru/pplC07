@@ -147,7 +147,7 @@ public class FormPeminjaman extends Activity {
         else {
             Toast.makeText(context, "Error memunculkan Form Peminjaman", Toast.LENGTH_LONG).show();
             Intent i = new Intent(getApplicationContext(),MainActivityP.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             i.putExtra("user", user);
             startActivity(i);
         }

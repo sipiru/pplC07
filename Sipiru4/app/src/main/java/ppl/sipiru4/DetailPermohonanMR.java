@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,26 +14,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
+import ppl.sipiru4.Entity.User;
 
 public class DetailPermohonanMR extends Activity {
     final Context context = this;
     Peminjaman peminjaman;
-    int posisi;
     Bundle b;
-
-//    public DetailPermohonanMR(Peminjaman peminjaman) {
-//        this.peminjaman = peminjaman;
-//    }
+    SharedPreferences setting;
+    User user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.validasi_mr);
 
+        setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
+        user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
+                setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
+                setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
+
         // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanMR.class
         b = getIntent().getExtras();
         if (b!=null){
             peminjaman = b.getParcelable("peminjaman");
-            posisi = b.getInt("posisi");
             Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
 
             TextView ruang = (TextView)findViewById(R.id.ruang);
@@ -60,10 +64,8 @@ public class DetailPermohonanMR extends Activity {
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
                     // set title
                     alertDialogBuilder.setTitle("Apakah anda yakin untuk meneruskan permohonan ini?");
-
                     // set dialog message
                     alertDialogBuilder
                             .setMessage("Tekan Ya untuk meneruskan")
@@ -76,7 +78,11 @@ public class DetailPermohonanMR extends Activity {
                                     else {
                                         Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
                                     }
-                                    finish();
+                                    Intent i = new Intent(getApplicationContext(),MainActivityMR.class);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    i.putExtra("user",user);
+                                    i.putExtra("navPosition",0);
+                                    startActivity(i);
                                 }
                             })
                             .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
@@ -97,7 +103,6 @@ public class DetailPermohonanMR extends Activity {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                     // set title
                     alertDialogBuilder.setTitle("Apakah anda yakin untuk menolak permohonan ini?");
-
                     // set dialog message
                     alertDialogBuilder
                             .setMessage("Tekan Ya untuk menolak")
@@ -109,7 +114,11 @@ public class DetailPermohonanMR extends Activity {
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
                                     }
-                                    finish();
+                                    Intent i = new Intent(getApplicationContext(),MainActivityMR.class);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    i.putExtra("user",user);
+                                    i.putExtra("navPosition",0);
+                                    startActivity(i);
                                 }
                             })
                             .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
@@ -126,6 +135,11 @@ public class DetailPermohonanMR extends Activity {
         else {
             Toast.makeText(context, "Error mendapatkan data peminjaman", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
 

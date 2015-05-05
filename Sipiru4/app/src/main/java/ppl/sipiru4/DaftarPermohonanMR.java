@@ -20,7 +20,6 @@ import ppl.sipiru4.adapter.DaftarPermohonanAdapterMR;
 public class DaftarPermohonanMR extends Fragment {
     ListView lv;
     DaftarPermohonanAdapterMR adapter;
-    static ArrayList<Peminjaman> mItems = new ArrayList<>();
 
     public DaftarPermohonanMR(){}
 
@@ -33,7 +32,9 @@ public class DaftarPermohonanMR extends Fragment {
 
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
-        // mendapatkan data-data peminjaman dari webservice berbentuk JSON
+        final ArrayList<Peminjaman> mItems = new ArrayList<>();
+
+        // mendapatkan data-data peminjaman dari webservice berbentuk JSON untuk manajer ruangan
         JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/displayManajerRuangan/");
         for (int i = 0; i < jArray.length(); i++) {
             try {
@@ -66,7 +67,6 @@ public class DaftarPermohonanMR extends Fragment {
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanMR.class);
                 // passing array index
                 i.putExtra("peminjaman", mItems.get(position));
-                i.putExtra("posisi",position);
                 startActivity(i);
 //                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 //                fragmentTransaction.replace(R.id.frame_container, new DetailPermohonanMR(mItems.get(position)));
@@ -78,10 +78,4 @@ public class DaftarPermohonanMR extends Fragment {
         });
         return rootView;
     }
-
-    @Override
-    public void onResume() {
-        onCreate();
-    }
-
 }

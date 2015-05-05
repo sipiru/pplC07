@@ -20,7 +20,6 @@ import ppl.sipiru4.adapter.DaftarPermohonanAdapterK;
 public class DaftarPermohonanK extends Fragment {
     ListView lv;
     DaftarPermohonanAdapterK adapter;
-    ArrayList<Peminjaman> mItems;
 
     public DaftarPermohonanK(){}
 
@@ -33,10 +32,10 @@ public class DaftarPermohonanK extends Fragment {
 
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
-        mItems = new ArrayList<>();
+        final ArrayList<Peminjaman> mItems = new ArrayList<>();
 
+        // mendapatkan data-data peminjaman dari webservice berbentuk JSON untuk manajer kemahasiswaan
         JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/displayManajerKemahasiswaan/");
-
         for (int i = 0; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);
@@ -65,7 +64,6 @@ public class DaftarPermohonanK extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-
                 // Sending image id to FullScreenActivity
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanK.class);
                 // passing array index

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,11 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
+import ppl.sipiru4.Entity.User;
 
 public class DetailPermohonanP extends Activity {
     final Context context = this;
     Peminjaman peminjaman;
+    SharedPreferences setting;
     Bundle b;
+    User user;
 
 //    public DetailPermohonanP(Peminjaman peminjaman) {
 //        this.peminjaman = peminjaman;
@@ -26,6 +30,11 @@ public class DetailPermohonanP extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_permohonan_p);
+
+        setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
+        user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
+                setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
+                setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
 
         // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanP.class
         b = getIntent().getExtras();
@@ -70,7 +79,6 @@ public class DetailPermohonanP extends Activity {
                 // set dialog message
                 alertDialogBuilder
                         .setMessage("Tekan Ya untuk membatalkan permohonan")
-                        .setCancelable(false)
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/" + peminjaman.getId());
@@ -82,6 +90,7 @@ public class DetailPermohonanP extends Activity {
                                 Intent i = new Intent(getApplicationContext(),MainActivityP.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 i.putExtra("user",user);
+                                i.putExtra("navPosition",2);
                                 startActivity(i);
                             }
                         })

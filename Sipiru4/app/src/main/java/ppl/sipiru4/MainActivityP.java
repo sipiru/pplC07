@@ -32,6 +32,7 @@ public class MainActivityP extends FragmentActivity {
     final Context context = this;
     Intent i;
     Bundle b;
+    int navPosition;
     private String[] menuPeminjam; // slide menu items
     //    SharedPreferences settings;
 
@@ -50,6 +51,7 @@ public class MainActivityP extends FragmentActivity {
         b = getIntent().getExtras();
         if(b!=null) {
             user = b.getParcelable("user");
+            navPosition = b.getInt("navPosition");
             Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
 
             SharedPreferences.Editor edit = setting.edit();
@@ -129,10 +131,11 @@ public class MainActivityP extends FragmentActivity {
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        if (savedInstanceState == null) {
-            // on first time display view for first nav item
-            displayView(0);
-        }
+//        if (navPosition == 0) {
+//            // on first time display view for first nav item
+//            displayView(0);
+//        }
+        displayView(navPosition);
     }
 
     /**

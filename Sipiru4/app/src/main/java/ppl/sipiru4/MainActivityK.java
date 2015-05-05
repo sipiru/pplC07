@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.model.NavDrawerItem;
 
@@ -27,29 +29,45 @@ public class MainActivityK extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-
-    // nav drawer title
     private CharSequence mDrawerTitle;
-
-    // used to store app title
     private CharSequence mTitle;
     final Context context = this;
     Intent i;
-
-    // slide menu items
+    Bundle b;
+    int navPosition;
     private String[] menuK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mTitle = mDrawerTitle = getTitle();
 
-        // load slide menu items
-        menuK = getResources().getStringArray(R.array.nav_drawer_items_mk);
+        User user;
 
-        // nav drawer icons from resources
+        SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
+
+        // mendapatkan nilai-nilai yang dioper
+        b = getIntent().getExtras();
+        if (b!=null){
+            user = b.getParcelable("user");
+            navPosition = b.getInt("navPosition");
+            Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
+
+            // simpan username, nama dan role ke SharedPreferences
+            // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
+            // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
+            SharedPreferences.Editor edit = setting.edit();
+            edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
+            edit.putString(LoginActivity.KEY_NAMA, user.getNama());
+            edit.putString(LoginActivity.KEY_ROLE, user.getRole());
+            edit.apply();
+        }
+
+        Log.e("mainAct MK ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
+                +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+
+        menuK = getResources().getStringArray(R.array.nav_drawer_items_mk);
         TypedArray navMenuIcons = getResources()
                 .obtainTypedArray(R.array.nav_drawer_icons_mgr);
 
@@ -102,17 +120,13 @@ public class MainActivityK extends FragmentActivity {
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        if (savedInstanceState == null) {
-            // on first time display view for first nav item
-            displayView(0);
-        }
+        displayView(navPosition);
     }
 
     /**
      * Slide menu item click listener
      * */
-    private class SlideMenuClickListener implements
-            ListView.OnItemClickListener {
+    private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
@@ -166,67 +180,75 @@ public class MainActivityK extends FragmentActivity {
             case 1:
                 fragment = new DaftarPeminjamanK();
                 break;
-//            case 2:
-//                fragment = new DaftarPesanK();
-//                break; //ga jadi pake ini
             case 2:
-                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                // passing array index
-                i.putExtra("id", "peminjam");
-                startActivity(i);
+                fragment = new CariRuanganRuang();
                 break;
             case 3:
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
-                // set title
-                alertDialogBuilder.setTitle("Apakah anda yakin untuk keluar dari SIPIRU ?");
-
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage("Tekan Ya untuk keluar!")
-                        .setCancelable(false)
-                        .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, close
-                                // current activity
-                                MainActivityK.this.finish();
-                            }
-                        })
-                        .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
-                                dialog.cancel();
-                            }
-                        });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                // show it
-                alertDialog.show();
+                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
+                startActivity(i);
+                break;
+            case 4:
+                logout();
 
             default:
                 break;
         }
 
         if (fragment != null) {
-
-            //FragmentManager fragmentManager = getFragmentManager();
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
-                setTitle(menuK[position]);
-
+            setTitle(menuK[position]);
 
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");
         }
+    }
+
+    private void logout() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        // set title
+        alertDialogBuilder.setTitle("Apakah anda yakin untuk logout?");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Tekan Ya untuk logout")
+                .setCancelable(false)
+                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke
+                        // halaman Login dan mengakhiri semua proses yang ada di stack
+                        SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
+                        Log.e("sebelum logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
+                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+
+                        SharedPreferences.Editor edit = setting.edit();
+                        edit.clear();
+                        edit.apply();
+
+                        Log.e("setelah logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
+                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(i);
+
+                        finish();
+                    }
+                })
+                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // memunculkan alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     @Override
@@ -254,4 +276,9 @@ public class MainActivityK extends FragmentActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    public void onBackPressed() {
+        // saat user menekan tombol back, lakukan konfirmasi logout
+        logout();
+    }
 }

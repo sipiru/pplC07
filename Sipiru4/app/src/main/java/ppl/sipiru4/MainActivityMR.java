@@ -33,24 +33,24 @@ public class MainActivityMR extends FragmentActivity {
     final Context context = this;
     Intent i;
     Bundle b;
+    int navPosition;
     private String[] menuMR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mTitle = mDrawerTitle = getTitle();
 
-
-        // mendapatkan nilai-nilai yang dioper dari LoginActivity.class
         User user;
 
         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
 
+        // mendapatkan nilai-nilai yang dioper
         b = getIntent().getExtras();
         if (b!=null){
             user = b.getParcelable("user");
+            navPosition = b.getInt("navPosition");
             Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
 
             // simpan username, nama dan role ke SharedPreferences
@@ -116,10 +116,7 @@ public class MainActivityMR extends FragmentActivity {
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        if (savedInstanceState == null) {
-            // on first time display view for first nav item
-            displayView(0);
-        }
+        displayView(navPosition);
     }
 
     /**
@@ -175,19 +172,15 @@ public class MainActivityMR extends FragmentActivity {
         switch (position) {
             case 0:
                 fragment = new DaftarPermohonanMR();
-//                fragment.setArguments(b);
                 break;
             case 1:
                 fragment = new DaftarPeminjamanMR();
-//                fragment.setArguments(b);
                 break;
             case 2:
                 fragment = new CariRuanganRuang();
                 break;
             case 3:
                 Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                // passing array index
-                i.putExtra("id", "peminjam");
                 startActivity(i);
                 break;
             case 4:
