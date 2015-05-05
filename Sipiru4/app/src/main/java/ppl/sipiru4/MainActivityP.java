@@ -54,6 +54,9 @@ public class MainActivityP extends FragmentActivity {
             navPosition = b.getInt("navPosition");
             Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
 
+            // simpan username, nama dan role ke SharedPreferences
+            // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
+            // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
             SharedPreferences.Editor edit = setting.edit();
             edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
             edit.putString(LoginActivity.KEY_NAMA, user.getNama());
@@ -62,12 +65,6 @@ public class MainActivityP extends FragmentActivity {
             edit.putString(LoginActivity.KEY_KODE_IDENTITAS, user.getKodeIdentitas());
             edit.apply();
         }
-
-        // simpan username, nama dan role ke SharedPreferences
-        // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
-        // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
-
-
         Log.e("mainAct P ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
@@ -87,9 +84,9 @@ public class MainActivityP extends FragmentActivity {
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[0], navMenuIcons.getResourceId(0, -1)));
             // Lihat Jadwal Ruangan
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[1], navMenuIcons.getResourceId(1, -1)));
-            // Daftar Permohonan
+            // Daftar Pending
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[2], navMenuIcons.getResourceId(2, -1)));
-            // Daftar Peminjaman
+            // Daftar History
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
 //            // Daftar Pesan
 //            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));

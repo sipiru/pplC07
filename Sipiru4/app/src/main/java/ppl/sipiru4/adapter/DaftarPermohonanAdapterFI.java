@@ -5,22 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 import java.util.List;
-
+import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
-import ppl.sipiru4.model.DaftarPermohonanItemFI;
 
-public class DaftarPermohonanAdapterFI extends ArrayAdapter<DaftarPermohonanItemFI> {
+public class DaftarPermohonanAdapterFI extends ArrayAdapter<Peminjaman> {
 
-    private Context context;
-    private ArrayList<DaftarPermohonanItemFI> navDrawerItems;
-
-    public DaftarPermohonanAdapterFI(Context context, List<DaftarPermohonanItemFI> items) {
+    public DaftarPermohonanAdapterFI(Context context, List<Peminjaman> items) {
         super(context, R.layout.list, items );
     }
 
@@ -33,8 +25,7 @@ public class DaftarPermohonanAdapterFI extends ArrayAdapter<DaftarPermohonanItem
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan_mk, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.npmPeminjam = (TextView) convertView.findViewById(R.id.npmPeminjam);
-            final View finalConvertView = convertView;
+            viewHolder.username = (TextView) convertView.findViewById(R.id.npmPeminjam);
             viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
             convertView.setTag(viewHolder);
         } else {
@@ -42,10 +33,10 @@ public class DaftarPermohonanAdapterFI extends ArrayAdapter<DaftarPermohonanItem
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // update the item view
-        DaftarPermohonanItemFI item = getItem(position);
+        Peminjaman item = getItem(position);
 
-        viewHolder.npmPeminjam.setText(item.npmPeminjam);
-        viewHolder.ruangan.setText(item.ruangan);
+        viewHolder.username.setText(item.getUsernameP());
+        viewHolder.ruangan.setText(item.getKodeRuangan());
 
         return convertView;
     }
@@ -57,7 +48,7 @@ public class DaftarPermohonanAdapterFI extends ArrayAdapter<DaftarPermohonanItem
      */
 
     private static class ViewHolder {
-        TextView npmPeminjam;
+        TextView username;
         TextView ruangan;
     }
 }

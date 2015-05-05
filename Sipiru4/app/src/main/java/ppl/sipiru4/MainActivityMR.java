@@ -62,7 +62,6 @@ public class MainActivityMR extends FragmentActivity {
             edit.putString(LoginActivity.KEY_ROLE, user.getRole());
             edit.apply();
         }
-
         Log.e("mainAct MR ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
@@ -70,12 +69,13 @@ public class MainActivityMR extends FragmentActivity {
         TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons_mgr);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
+
         ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<>();
 
             // adding nav drawer items to array
-            // Daftar Permohonan
+            // Daftar Pending
             navDrawerItems.add(new NavDrawerItem(menuMR[0], navMenuIcons.getResourceId(0, -1)));
-            // Daftar Peminjaman
+            // Daftar History
             navDrawerItems.add(new NavDrawerItem(menuMR[1], navMenuIcons.getResourceId(1, -1)));
             // Lihat Jadwal Ruangan
             navDrawerItems.add(new NavDrawerItem(menuMR[2], navMenuIcons.getResourceId(2, -1)));
