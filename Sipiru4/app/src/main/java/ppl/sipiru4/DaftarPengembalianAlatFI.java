@@ -1,8 +1,9 @@
 package ppl.sipiru4;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapterFI;
@@ -28,12 +30,19 @@ public class DaftarPengembalianAlatFI extends Fragment {
         View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
         lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         final ArrayList<Peminjaman> mItems = new ArrayList<>();
 
-        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showNotReturn/");
+        // mendapatkan data-data peminjaman dari webservice berbentuk JSON untuk manajer kemahasiswaan
+        AsyncTask<String, String, JSONArray> hasil = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showNotReturn/");
+
+        JSONArray jArray = null;
+        try {
+            jArray = hasil.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        assert jArray != null;
         for (int i = 0 ; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);
@@ -69,5 +78,29 @@ public class DaftarPengembalianAlatFI extends Fragment {
             }
         });
         return rootView;
+    }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class TaskHelper extends AsyncTask<String, String, JSONArray> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Mendapatkan daftar peminjaman yang belum mengembalikan alat...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        @Override
+        protected JSONArray doInBackground(String... args) {
+            return JSONParser.getJSONfromURL(args[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray hasil) {
+            pDialog.dismiss();
+        }
     }
 }

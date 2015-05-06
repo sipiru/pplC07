@@ -40,7 +40,6 @@ public class DetailPeminjamanP extends Activity {
 
         TextView peralatan = (TextView)findViewById(R.id.peralatan);
         peralatan.setText(peminjaman.getPeralatan());
-
     }
 
     @Override

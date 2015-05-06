@@ -1,7 +1,8 @@
 package ppl.sipiru4;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.StrictMode;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
@@ -29,9 +31,6 @@ public class DaftarPeminjamanP extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         Bundle b;
         User user;
         b = getArguments();
@@ -42,7 +41,17 @@ public class DaftarPeminjamanP extends Fragment {
 
         final ArrayList<Peminjaman> mItems = new ArrayList<>();
 
-        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/daftarAcceptedPeminjam/" + user.getUsername());
+        AsyncTask<String, String, JSONArray> hasil = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/daftarAcceptedPeminjam/"
+                + user.getUsername());
+
+        JSONArray jArray = null;
+        try {
+            jArray = hasil.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        assert jArray != null;
         for (int i = 0 ; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);
@@ -84,5 +93,29 @@ public class DaftarPeminjamanP extends Fragment {
             }
         });
         return rootView;
+    }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class TaskHelper extends AsyncTask<String, String, JSONArray> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Mendapatkan daftar yang sudah disetujui...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        @Override
+        protected JSONArray doInBackground(String... args) {
+            return JSONParser.getJSONfromURL(args[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray hasil) {
+            pDialog.dismiss();
+        }
     }
 }

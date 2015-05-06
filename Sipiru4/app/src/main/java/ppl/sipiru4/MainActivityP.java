@@ -200,8 +200,7 @@ public class MainActivityP extends FragmentActivity {
                 fragment.setArguments(b);
                 break;
             case 4:
-                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                startActivity(i);
+                fragment = new KirimPesan();
                 break;
             case 5:
                 logout();

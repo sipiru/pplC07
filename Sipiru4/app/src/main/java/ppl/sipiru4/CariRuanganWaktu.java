@@ -3,9 +3,10 @@ package ppl.sipiru4;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.os.StrictMode;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -20,11 +21,11 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import org.json.JSONArray;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 import ppl.sipiru4.Entity.JSONParser;
 
@@ -48,10 +49,6 @@ public class CariRuanganWaktu extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_waktu_ui, container, false);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         tglMulai = (EditText)rootView.findViewById(R.id.TglMulai);
         tglSelesai = (EditText)rootView.findViewById(R.id.TglSelesai);
         jamMulai = (EditText)rootView.findViewById(R.id.mulai);
@@ -112,17 +109,19 @@ public class CariRuanganWaktu extends Fragment {
 
                         // pengecekan validasi input tanggal
                         if (dateAkhir.after(dateAwal) && dateAwal.after(now)) {
-                            JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
-                                    +tglMulai.getText()+"%20"+jamMulai.getText()+"&"+tglSelesai.getText()+"%20"+jamSelesai.getText());
+                            AsyncTask<String, String, JSONArray> hasil = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
+                                    + tglMulai.getText() + "%20" + jamMulai.getText() + "&" + tglSelesai.getText() + "%20" + jamSelesai.getText());
 
-//                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan(jArray));
-//                            Toast.makeText(getActivity(),"daftar ruangan", Toast.LENGTH_SHORT).show();
-//                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                            fragmentTransaction.addToBackStack(null);
-//                            fragmentTransaction.commit();
+                            JSONArray jArray = null;
+                            try {
+                                jArray = hasil.get();
+                            } catch (InterruptedException | ExecutionException e) {
+                                e.printStackTrace();
+                            }
+
                             Intent i = new Intent(getActivity(), DaftarRuangan.class);
                             //mengoper JSONArray ruangan ke DaftarRuangan.class
+                            assert jArray != null;
                             i.putExtra("daftarRuangan", jArray.toString());
                             i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
                             i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
@@ -140,7 +139,6 @@ public class CariRuanganWaktu extends Fragment {
                 }
             }
         });
-
         return rootView;
     }
 
@@ -155,28 +153,6 @@ public class CariRuanganWaktu extends Fragment {
     {
         super.onAttach(activity);
     }
-
-//    @Override
-//    public void onStart()
-//    {
-//        super.onStart();
-//    }
-//
-//    @Override
-//    public void onResume()
-//    {
-//        super.onResume();
-//    }
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        Log.d("MyTag", "TabFragment0--onDestroyView");
-//    }
-//    @Override
-//    public void onViewStateRestored(Bundle savedInstanceState) {
-//        super.onViewStateRestored(savedInstanceState);
-//        Log.d("MyTag", "TabFragment0--onViewStateRestored");
-//    }
 
     public static class SelectTglMulai extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @NonNull
@@ -263,6 +239,30 @@ public class CariRuanganWaktu extends Fragment {
             if (hour<10) {hourOutput="0"+hour;}
             if (minutes<10) {minutesOutput="0"+minutes;}
             jamSelesai.setText(hourOutput + ":" + minutesOutput + ":00");
+        }
+    }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class TaskHelper extends AsyncTask<String, String, JSONArray> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Mencari ruangan...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        @Override
+        protected JSONArray doInBackground(String... args) {
+            return JSONParser.getJSONfromURL(args[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray hasil) {
+            pDialog.dismiss();
         }
     }
 }

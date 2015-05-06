@@ -1,6 +1,5 @@
 package ppl.sipiru4.Entity;
 
-import android.os.AsyncTask;
 import android.util.Log;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,17 +12,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class JSONParser extends AsyncTask {
+public class JSONParser {
     static HttpClient httpclient;
-    @Override
-    protected Object doInBackground(Object[] url) {
-        return getJSONfromURL((String) url[0]);
-    }
-
-    @Override
-    protected void onPostExecute(Object o) {
-        httpclient.getConnectionManager().shutdown();
-    }
 
     public static JSONArray getJSONfromURL(String url) {
         Log.e("URL", url);

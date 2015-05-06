@@ -1,25 +1,22 @@
 package ppl.sipiru4;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
+import java.util.concurrent.ExecutionException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.DaftarPeminjamanAdapterK;
 
 public class DaftarPeminjamanK extends Fragment {
@@ -33,18 +30,18 @@ public class DaftarPeminjamanK extends Fragment {
         View rootView = inflater.inflate(R.layout.list, container, false);
         lv = (ListView) rootView.findViewById(R.id.list);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-//        Bundle b;
-//        User user;
-//        b = getArguments();
-//        user = b.getParcelable("user");
-//        Log.e("user daftar peminjaman", user.getUsername() + " " + user.getNama() + " " + user.getRole());
-
         final ArrayList<Peminjaman> mItems = new ArrayList<>();
 
-        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/historyManajerKemahasiswaan/");
+        AsyncTask<String, String, JSONArray> hasil = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/historyManajerKemahasiswaan/");
+
+        JSONArray jArray = null;
+        try {
+            jArray = hasil.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        assert jArray != null;
         for (int i = 0 ; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);
@@ -81,5 +78,29 @@ public class DaftarPeminjamanK extends Fragment {
             }
         });
         return rootView;
+    }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class TaskHelper extends AsyncTask<String, String, JSONArray> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Mendapatkan history manajer ruangan...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        @Override
+        protected JSONArray doInBackground(String... args) {
+            return JSONParser.getJSONfromURL(args[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray hasil) {
+            pDialog.dismiss();
+        }
     }
 }

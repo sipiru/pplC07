@@ -1,7 +1,8 @@
 package ppl.sipiru4;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.adapter.JamTersediaAdapter;
 import ppl.sipiru4.model.JamTersediaItem;
@@ -29,19 +29,22 @@ public class CariRuanganRuang extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
-
         final Spinner spinner = (Spinner)rootView.findViewById(R.id.spinner);
         final ArrayList<String> ruangan = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ruangan);
-
         final TextView namaRuangan = (TextView) rootView.findViewById(R.id.namaRuangan);
-
         lView = (ListView)rootView.findViewById(R.id.listView);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        // mengakses URL menggunakan AsyncTask class
+        JSONArray jArray = null;
+        try {
+            jArray = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ruangan/").get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
 
-        final JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/ruangan/");
+        // memasukkan nama ruangan ke ArrayList Ruangan
+        assert jArray != null;
         for (int i = 0; i < jArray.length(); i++) {
             try {
                 ruangan.add(jArray.getJSONObject(i).getString("nama"));
@@ -49,8 +52,9 @@ public class CariRuanganRuang extends Fragment {
                 e.printStackTrace();
             }
         }
-
         spinner.setAdapter(adapter);
+
+        final JSONArray finalJArray = jArray;
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -59,10 +63,27 @@ public class CariRuanganRuang extends Fragment {
                 int sid = spinner.getSelectedItemPosition();
                 namaRuangan.setText(ruangan.get(sid));
 
+//                JSONArray jArray2 = null;
+//                try {
+//                    jArray2 = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/" + finalJArray.getJSONObject(sid).getString("kode"));
+//                    Toast.makeText(getActivity(),"terpilih "+ finalJArray.getJSONObject(sid).getString("kode"),Toast.LENGTH_SHORT).show();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+
+                // mengakses URL menggunakan AsyncTask class
+                AsyncTask<String, String, JSONArray> hasil;
                 JSONArray jArray2 = null;
                 try {
-                    jArray2 = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/" + jArray.getJSONObject(sid).getString("kode"));
-                    Toast.makeText(getActivity(),"terpilih "+jArray.getJSONObject(sid).getString("kode"),Toast.LENGTH_SHORT).show();
+                    hasil = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/"
+                            + finalJArray.getJSONObject(sid).getString("kode"));
+
+                    // memasukkan content URL ke dalam variable bertipe JArray
+                    try {
+                        jArray2 = hasil.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        e.printStackTrace();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -87,7 +108,6 @@ public class CariRuanganRuang extends Fragment {
             }
         }
         );
-
         lView.setAdapter(adapterList);
 
         return rootView;
@@ -98,32 +118,27 @@ public class CariRuanganRuang extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-//    @Override
-//    public void onAttach(Activity activity)
-//    {
-//        super.onAttach(activity);
-//    }
-//
-//    @Override
-//    public void onStart()
-//    {
-//        super.onStart();
-//    }
-//
-//    @Override
-//    public void onResume()
-//    {
-//        super.onResume();
-//    }
-//
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        Log.d("MyTag", "TabFragment0--onDestroyView");
-//    }
-//    @Override
-//    public void onViewStateRestored(Bundle savedInstanceState) {
-//        super.onViewStateRestored(savedInstanceState);
-//        Log.d("MyTag", "TabFragment0--onViewStateRestored");
-//    }
+    // kelas AsyncTask untuk mengakses URL
+    private class TaskHelper extends AsyncTask<String, String, JSONArray> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Mendapatkan jadwal ruangan...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        @Override
+        protected JSONArray doInBackground(String... args) {
+            return JSONParser.getJSONfromURL(args[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray hasil) {
+            pDialog.dismiss();
+        }
+    }
 }

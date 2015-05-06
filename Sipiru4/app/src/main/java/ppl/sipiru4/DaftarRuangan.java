@@ -25,10 +25,6 @@ public class DaftarRuangan extends Activity {
     public DaftarRuangan(){
     }
 
-//    public DaftarRuangan(JSONArray input) {
-//        jArray = input;
-//    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_daftar_ruangan);
@@ -82,12 +78,6 @@ public class DaftarRuangan extends Activity {
                     i.putExtra("waktuAwal", waktuAwal);
                     i.putExtra("waktuAkhir", waktuAkhir);
                     startActivity(i);
-
-//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.frame_container, new DetailRuangan(mItems.get(position)));
-//                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
                 }
             });
         }
