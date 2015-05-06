@@ -59,7 +59,7 @@ public class DaftarRuangan extends Activity {
                 String kapasitas = "" + jsonRuangan.getInt("kapasitas");
                 String deskripsi = jsonRuangan.getString("deskripsi");
 
-                mItems.add(new Ruangan(kode, nama, kapasitas, deskripsi));
+                mItems.add(new Ruangan(kode, nama, kapasitas, deskripsi, getResources().getDrawable(R.drawable.kotak)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

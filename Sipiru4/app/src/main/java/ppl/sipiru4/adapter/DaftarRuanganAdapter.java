@@ -34,11 +34,11 @@ public class DaftarRuanganAdapter extends ArrayAdapter<Ruangan> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_daftarruangan, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-//            viewHolder.kotak = (ImageView) convertView.findViewById(R.id.kotak);
             viewHolder.nama = (TextView) convertView.findViewById(R.id.nama);
             viewHolder.kode = (TextView) convertView.findViewById(R.id.kode);
             viewHolder.deskripsi = (TextView) convertView.findViewById(R.id.deskripsi);
             viewHolder.kapasitas =(TextView) convertView.findViewById(R.id.kapasitas);
+            viewHolder.kotak = (ImageView) convertView.findViewById(R.id.kotak);
 
             convertView.setTag(viewHolder);
         } else {
@@ -49,7 +49,7 @@ public class DaftarRuanganAdapter extends ArrayAdapter<Ruangan> {
         Ruangan item = getItem(position);
 //        Gambar gambar = new Gambar();
 
-//        viewHolder.kotak.setImageDrawable(gambar.getKotak());
+        viewHolder.kotak.setImageDrawable(item.getKotak());
         viewHolder.nama.setText(item.getNama());
         viewHolder.kode.setText(item.getKode());
         viewHolder.deskripsi.setText(item.getDeskripsi());
