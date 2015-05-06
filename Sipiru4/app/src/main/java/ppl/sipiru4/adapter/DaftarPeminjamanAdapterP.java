@@ -28,7 +28,7 @@ public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
             // initialize the view holder
             viewHolder = new ViewHolder();
             viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.label);
-            viewHolder.statusP = (TextView) convertView.findViewById(R.id.statusClosed);
+            viewHolder.statusP = (TextView) convertView.findViewById(R.id.status);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -38,12 +38,13 @@ public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
         Peminjaman item = getItem(position);
 
         viewHolder.kodeRuangan.setText(item.getKodeRuangan());
-        if (!item.getStatusPeminjam()) {
-            viewHolder.statusP.setText("peralatan belum dikembalikan");
+        if (item.getStatusPeminjam()) {
+            viewHolder.statusP.setText("Peralatan belum dikembalikan");
             viewHolder.statusP.setTextColor(Color.RED);
         }
         else {
-            viewHolder.statusP.setText("selesai");
+            viewHolder.statusP.setText("Selesai");
+            viewHolder.statusP.setTextColor(Color.BLACK);
         }
 
         return convertView;

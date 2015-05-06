@@ -42,8 +42,7 @@ public class DaftarPeminjamanP extends Fragment {
 
         final ArrayList<Peminjaman> mItems = new ArrayList<>();
 
-        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/daftarAcceptedPeminjam/"
-                + user.getUsername());
+        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/daftarAcceptedPeminjam/" + user.getUsername());
         for (int i = 0 ; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);

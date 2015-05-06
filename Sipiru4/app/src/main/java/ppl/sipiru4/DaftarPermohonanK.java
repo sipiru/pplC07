@@ -52,7 +52,7 @@ public class DaftarPermohonanK extends Fragment {
                 String peralatan = jPeminjaman.getString("peralatan");
                 int status = jPeminjaman.getInt("status");
 
-                mItems.add(new Peminjaman(id, kodeRuangan, namaP, usernameP, statusPeminjam, perihal, kegiatan, mulai, selesai, peralatan, status));
+                mItems.add(new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,kegiatan,peralatan,status));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

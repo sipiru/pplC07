@@ -33,7 +33,7 @@ public class DetailPermohonanFI extends Activity {
                 setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
                 setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
 
-        // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanK.class
+        // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanFI.class
         b = getIntent().getExtras();
         if (b!=null){
             peminjaman = b.getParcelable("peminjaman");
@@ -51,13 +51,16 @@ public class DetailPermohonanFI extends Activity {
             TextView prihal = (TextView)findViewById(R.id.prihal);
             prihal.setText(peminjaman.getPerihal());
 
+            TextView kegiatan = (TextView) findViewById(R.id.kegiatan);
+            kegiatan.setText(peminjaman.getKegiatan());
+
             TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
             waktuMulai.setText(peminjaman.getMulai());
 
             TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
             waktuSelesai.setText(peminjaman.getSelesai());
 
-            TextView peralatan = (TextView)findViewById(R.id.peralatan);
+            final TextView peralatan = (TextView)findViewById(R.id.peralatan);
             peralatan.setText(peminjaman.getPeralatan());
 
             Button btnUpdate = (Button)findViewById(R.id.btnUpdate);
@@ -69,15 +72,22 @@ public class DetailPermohonanFI extends Activity {
                     alertDialogBuilder.setTitle("Apakah anda yakin untuk mengupdate peralatan?");
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage("Tekan Ya untuk menyetujui")
+                            .setMessage("Tekan Ya untuk mengupdate")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
-                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerKemahasiswaan/" + peminjaman.getId());
-                                    if (notif.equals("\"sukses\"")){
+                                    String peralatanModif = peralatan.getText().toString().replaceAll(" ", "%20");
+                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/updatePeralatan/" + peminjaman.getId()
+                                            + "&" + peralatanModif);
+                                    if (notif.trim().equals("\"sukses\"")){
                                         Toast.makeText(getApplicationContext(), "Peralatan berhasil diupdate", Toast.LENGTH_SHORT).show();
                                     }
                                     else {
-                                        Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        i.putExtra("user",user);
+                                        i.putExtra("navPosition",0);
+                                        startActivity(i);
                                     }
                                 }
                             })
@@ -103,14 +113,14 @@ public class DetailPermohonanFI extends Activity {
                             .setMessage("Tekan Ya untuk menyetujui")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
-                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerKemahasiswaan/" + peminjaman.getId());
-                                    if (notif.equals("\"sukses\"")){
+                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/acceptByITF/" + peminjaman.getId());
+                                    if (notif.trim().equals("\"sukses\"")){
                                         Toast.makeText(getApplicationContext(), "Permohonan berhasil disetujui", Toast.LENGTH_SHORT).show();
                                     }
                                     else {
                                         Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
                                     }
-                                    Intent i = new Intent(getApplicationContext(),MainActivityMR.class);
+                                    Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
                                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     i.putExtra("user",user);
                                     i.putExtra("navPosition",0);
@@ -137,7 +147,6 @@ public class DetailPermohonanFI extends Activity {
                     // set dialog message
                     alertDialogBuilder
                             .setMessage("Tekan Ya untuk menolak")
-                            .setCancelable(false)
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
                                     String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"+ peminjaman.getId());
@@ -146,7 +155,7 @@ public class DetailPermohonanFI extends Activity {
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
                                     }
-                                    Intent i = new Intent(getApplicationContext(),MainActivityMR.class);
+                                    Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
                                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     i.putExtra("user",user);
                                     i.putExtra("navPosition",0);

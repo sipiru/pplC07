@@ -67,7 +67,7 @@ public class MainActivityFI extends FragmentActivity {
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
         menuFI = getResources().getStringArray(R.array.nav_drawer_items_fasumitf);
-        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons_mgr);
+        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons_ITF);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 

@@ -17,7 +17,7 @@ import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
 
-public class DetailPermohonanK extends Activity {
+public class DetailPengembalianAlat extends Activity {
     final Context context = this;
     Peminjaman peminjaman;
     Bundle b;
@@ -26,14 +26,14 @@ public class DetailPermohonanK extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_permohonan_mk);
+        setContentView(R.layout.detail_pengembalian_alat_fi);
 
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
         user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
                 setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
                 setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
 
-        // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanK.class
+        // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanFI.class
         b = getIntent().getExtras();
         if (b!=null){
             peminjaman = b.getParcelable("peminjaman");
@@ -60,67 +60,33 @@ public class DetailPermohonanK extends Activity {
             TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
             waktuSelesai.setText(peminjaman.getSelesai());
 
-            TextView peralatan = (TextView)findViewById(R.id.peralatan);
+            final TextView peralatan = (TextView)findViewById(R.id.peralatan);
             peralatan.setText(peminjaman.getPeralatan());
 
-            Button btnSetuju = (Button)findViewById(R.id.btnSetuju);
-            btnSetuju.setOnClickListener(new View.OnClickListener() {
+
+            Button btnSelesai = (Button)findViewById(R.id.btnSelesai);
+            btnSelesai.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                     // set title
-                    alertDialogBuilder.setTitle("Apakah anda yakin untuk menyetujui permohonan ini?");
+                    alertDialogBuilder.setTitle("Apakah semua peralatan sudah dicek kembali?");
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage("Tekan Ya untuk menyetujui")
+                            .setMessage("Tekan Ya untuk konfirmasi")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
-                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerKemahasiswaan/" + peminjaman.getId());
+                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/ubahStatusPeminjam/" + peminjaman.getId());
                                     if (notif.trim().equals("\"sukses\"")){
-                                        Toast.makeText(getApplicationContext(), "Permohonan berhasil disetujui", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Status berhasil diubah", Toast.LENGTH_SHORT).show();
                                     }
                                     else {
-                                        Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                                     }
-                                    Intent i = new Intent(getApplicationContext(),MainActivityK.class);
+                                    Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
                                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     i.putExtra("user",user);
-                                    i.putExtra("navPosition",0);
-                                    startActivity(i);
-                                }
-                            })
-                            .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
-                                    dialog.cancel();
-                                }
-                            });
-                    // create alert dialog
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
-                }
-            });
-            Button btnTolak = (Button)findViewById(R.id.btnTolak);
-            btnTolak.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                    // set title
-                    alertDialogBuilder.setTitle("Apakah anda yakin untuk menolak permohonan ini?");
-                    // set dialog message
-                    alertDialogBuilder
-                            .setMessage("Tekan Ya untuk menolak")
-                            .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
-                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"+ peminjaman.getId());
-                                    if (notif.trim().equals("\"sukses\"")) {
-                                        Toast.makeText(getApplicationContext(), "Permohonan berhasil ditolak", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
-                                    }
-                                    Intent i = new Intent(getApplicationContext(),MainActivityK.class);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    i.putExtra("user",user);
-                                    i.putExtra("navPosition",0);
+                                    i.putExtra("navPosition",1);
                                     startActivity(i);
                                 }
                             })
@@ -145,3 +111,5 @@ public class DetailPermohonanK extends Activity {
         finish();
     }
 }
+
+

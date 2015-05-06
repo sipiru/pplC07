@@ -50,6 +50,9 @@ public class DetailPermohonanMR extends Activity {
             TextView prihal = (TextView)findViewById(R.id.prihal);
             prihal.setText(peminjaman.getPerihal());
 
+            TextView kegiatan = (TextView) findViewById(R.id.kegiatan);
+            kegiatan.setText(peminjaman.getKegiatan());
+
             TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
             waktuMulai.setText(peminjaman.getMulai());
 
@@ -72,7 +75,7 @@ public class DetailPermohonanMR extends Activity {
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
                                     String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerRuangan/"+ peminjaman.getId());
-                                    if (notif.equals("\"sukses\"")){
+                                    if (notif.trim().equals("\"sukses\"")){
                                         Toast.makeText(getApplicationContext(), "Permohonan berhasil diteruskan", Toast.LENGTH_SHORT).show();
                                     }
                                     else {

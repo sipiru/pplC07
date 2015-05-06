@@ -9,6 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:padding="10dip"
+        android:gravity="center"
+        android:textAlignment="textStart"
         android:textSize="16dip"
         android:textColor="#000"
         android:layout_weight="1.44"
@@ -19,6 +21,8 @@
         android:layout_width="224dp"
         android:layout_height="fill_parent"
         android:padding="10dip"
+        android:gravity="center"
+        android:textAlignment="textEnd"
         android:textSize="16dip"
         android:textColor="#000"
         android:layout_marginLeft="10dp">

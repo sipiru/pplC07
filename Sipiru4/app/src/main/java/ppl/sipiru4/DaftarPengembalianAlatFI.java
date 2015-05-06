@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,26 +17,24 @@ import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapterFI;
 
-public class DaftarPermohonanFI extends Fragment {
+public class DaftarPengembalianAlatFI extends Fragment {
     ListView lv;
     DaftarPermohonanAdapterFI adapter;
 
-    public DaftarPermohonanFI(){}
+    public DaftarPengembalianAlatFI(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
+        lv = (ListView) rootView.findViewById(R.id.listPermohonan);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        lv = (ListView) rootView.findViewById(R.id.listPermohonan);
-
         final ArrayList<Peminjaman> mItems = new ArrayList<>();
 
-        // mendapatkan data-data peminjaman dari webservice berbentuk JSON untuk manajer kemahasiswaan
-        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/displayITF/");
-        for (int i = 0; i < jArray.length(); i++) {
+        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showNotReturn/");
+        for (int i = 0 ; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);
                 assert jPeminjaman != null;
@@ -59,14 +56,13 @@ public class DaftarPermohonanFI extends Fragment {
             }
         }
 
-        adapter = new DaftarPermohonanAdapterFI(getActivity().getApplicationContext(), mItems);
+        adapter = new DaftarPermohonanAdapterFI(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanFI.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPengembalianAlat.class);
                 // passing array index
                 i.putExtra("peminjaman", mItems.get(position));
                 startActivity(i);

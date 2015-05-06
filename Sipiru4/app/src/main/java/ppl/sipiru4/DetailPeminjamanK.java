@@ -13,6 +13,7 @@ public class DetailPeminjamanK extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_peminjaman_mk);
 
+        // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanK.class
         Bundle b = getIntent().getExtras();
         peminjaman = b.getParcelable("peminjaman");
         Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());

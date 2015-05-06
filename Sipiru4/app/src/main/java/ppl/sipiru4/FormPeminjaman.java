@@ -107,6 +107,7 @@ public class FormPeminjaman extends Activity {
                     else {
                         int statusP;
 
+                        Log.e("peralatan check", ""+((peralatan.getText()+"").trim().length()==0));
                         if ((peralatan.getText()+"").trim().length()==0){
                             statusP = 0;
                             peralatan.setText("Tidak ada");

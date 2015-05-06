@@ -36,11 +36,11 @@ public class DaftarPeminjamanK extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        Bundle b;
-        User user;
-        b = getArguments();
-        user = b.getParcelable("user");
-        Log.e("user daftar peminjaman", user.getUsername() + " " + user.getNama() + " " + user.getRole());
+//        Bundle b;
+//        User user;
+//        b = getArguments();
+//        user = b.getParcelable("user");
+//        Log.e("user daftar peminjaman", user.getUsername() + " " + user.getNama() + " " + user.getRole());
 
         final ArrayList<Peminjaman> mItems = new ArrayList<>();
 

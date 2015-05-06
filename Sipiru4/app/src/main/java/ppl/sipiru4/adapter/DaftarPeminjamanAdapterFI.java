@@ -6,20 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
-
+import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
-import ppl.sipiru4.model.DaftarPeminjamanItemFI;
-import ppl.sipiru4.model.DaftarPeminjamanItemP;
 
-public class DaftarPeminjamanAdapterFI extends ArrayAdapter<DaftarPeminjamanItemFI> {
+public class DaftarPeminjamanAdapterFI extends ArrayAdapter<Peminjaman> {
 
-    private Context context;
-    private ArrayList<DaftarPeminjamanItemFI> navDrawerItems;
-
-    public DaftarPeminjamanAdapterFI(Context context, List<DaftarPeminjamanItemFI> items) {
+    public DaftarPeminjamanAdapterFI(Context context, List<Peminjaman> items) {
         super(context, R.layout.list, items );
     }
 
@@ -32,7 +25,7 @@ public class DaftarPeminjamanAdapterFI extends ArrayAdapter<DaftarPeminjamanItem
             convertView = inflater.inflate(R.layout.ui_tiap_list_peminjaman_mr, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.npmPeminjam = (TextView) convertView.findViewById(R.id.npmPeminjam);
+            viewHolder.username = (TextView) convertView.findViewById(R.id.npmPeminjam);
             viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
             convertView.setTag(viewHolder);
         } else {
@@ -40,10 +33,10 @@ public class DaftarPeminjamanAdapterFI extends ArrayAdapter<DaftarPeminjamanItem
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // update the item view
-        DaftarPeminjamanItemFI item = getItem(position);
+        Peminjaman item = getItem(position);
 
-        viewHolder.npmPeminjam.setText(item.npmPeminjam);
-        viewHolder.ruangan.setText(item.ruangan);
+        viewHolder.username.setText(item.getUsernameP());
+        viewHolder.ruangan.setText(item.getKodeRuangan());
         return convertView;
     }
     /**
@@ -54,7 +47,7 @@ public class DaftarPeminjamanAdapterFI extends ArrayAdapter<DaftarPeminjamanItem
      */
 
     private static class ViewHolder {
-        TextView npmPeminjam;
+        TextView username;
         TextView ruangan;
     }
 
