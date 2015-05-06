@@ -1,103 +1,157 @@
 package ppl.sipiru4;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
+import ppl.sipiru4.Entity.User;
 
 public class FormPeminjaman extends Activity {
+    Context context;
     SharedPreferences setting;
+    User user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_peminjaman_ui);
 
-        Bundle b = getIntent().getExtras();
-
-        String kodeRuangan = b.getString("kodeRuangan");
-        String waktuAwal = b.getString("waktuAwal");
-        String waktuAkhir = b.getString("waktuAkhir");
-
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
 
-        final String username = setting.getString(LoginActivity.KEY_USERNAME,null);
+        // mendapatkan informasi user
+        user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
+                setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
+                setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
 
-        final EditText ruang = (EditText)findViewById(R.id.ruang);
-        ruang.setText(kodeRuangan);
+        context = this;
 
-        final EditText nama = (EditText)findViewById(R.id.nama);
-        nama.setText(setting.getString(LoginActivity.KEY_NAMA,null));
+        Bundle b = getIntent().getExtras();
+        if (b!=null) {
+            String kodeRuangan = b.getString("kodeRuangan");
+            String waktuAwal = b.getString("waktuAwal");
+            String waktuAkhir = b.getString("waktuAkhir");
 
-        final EditText perihal = (EditText)findViewById(R.id.perihal);
-        final EditText kegiatan = (EditText)findViewById(R.id.kegiatan);
+            final String username = setting.getString(LoginActivity.KEY_USERNAME,null);
 
-        final EditText waktuMulai = (EditText)findViewById(R.id.waktuMulai);
-        waktuMulai.setText(waktuAwal);
+            final EditText ruang = (EditText)findViewById(R.id.ruang);
+            ruang.setText(kodeRuangan);
 
-        final EditText waktuSelesai = (EditText)findViewById(R.id.waktuSelesai);
-        waktuSelesai.setText(waktuAkhir);
+            final EditText nama = (EditText)findViewById(R.id.id);
+            nama.setText(setting.getString(LoginActivity.KEY_NAMA,null));
 
-        final EditText peralatan = (EditText)findViewById(R.id.peralatan);
+            final Spinner perihal = (Spinner) findViewById(R.id.perihal);
+            final ArrayList<String> perihalString = new ArrayList<>();
+            perihalString.add("Akademis");
+            perihalString.add("Kepanitiaan");
+            perihalString.add("Organisasi");
 
-        Button btnSubmit = (Button)findViewById(R.id.submit);
-        btnSubmit.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, perihalString) {
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    View v = super.getView(position, convertView, parent);
+                    ((TextView)v).setTextSize(24);
+                    ((TextView)v).setTextColor(getResources().getColorStateList(R.color.abc_primary_text_disable_only_material_light));
+
+                    return v;
+                }
+
+                @Override
+                public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    View v = super.getView(position, convertView, parent);
+                    ((TextView)v).setTextSize(22);
+
+                    return v;
+                }
+            };
+            perihal.setAdapter(adapter);
+
+            final EditText kegiatan = (EditText)findViewById(R.id.kegiatan);
+
+            final EditText waktuMulai = (EditText)findViewById(R.id.waktuMulai);
+            waktuMulai.setText(waktuAwal);
+
+            final EditText waktuSelesai = (EditText)findViewById(R.id.waktuSelesai);
+            waktuSelesai.setText(waktuAkhir);
+
+            final EditText peralatan = (EditText)findViewById(R.id.peralatan);
+
+            Button btnSubmit = (Button)findViewById(R.id.submit);
+            btnSubmit.setOnClickListener(new View.OnClickListener()
             {
+                @Override
+                public void onClick(View v)
+                {
 /*                android.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan());
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();*/
-                String token1 = perihal.getText()+"";
-                String token2 = kegiatan.getText()+"";
+                    String perihalValue = perihalString.get(perihal.getSelectedItemPosition())+"";
+                    Log.e("perihal", perihalValue);
+                    String kegiatanValue = kegiatan.getText()+"";
 
-                if (token1.trim().length()==0 || token2.trim().length()==0) {
-                    Toast.makeText(getApplicationContext(), "Isian perihal atau kegiatan tidak valid", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    int statusP;
-
-                    if ((peralatan.getText()+"").trim().length()==0){
-                        statusP = 0;
-                        peralatan.setText("Tidak ada");
-                    }
-                    else  {
-                        statusP = 1;
-                    }
-
-                    Log.e("username",username);
-                    String namaP = nama.getText().toString().replaceAll(" ","%20");
-                    Log.e("nama", namaP);
-                    String waktuAwal = waktuMulai.getText().toString().replaceAll(" ","%20");
-                    Log.e("waktuAwal", waktuAwal);
-                    String waktuAkhir = waktuSelesai.getText().toString().replaceAll(" ","%20");
-                    Log.e("waktuAkhir", waktuAkhir);
-                    String alat = peralatan.getText().toString().replaceAll(" ","%20");
-
-                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
-                            + username+"&"+namaP+"&"+statusP+"&"+ruang.getText()+"&"
-                            +waktuAwal+"&"+waktuAkhir+"&"+perihal.getText()+"&"+alat+"&0/");
-//                    Toast.makeText(getApplicationContext(), notif + " length " + notif.length(), Toast.LENGTH_SHORT).show();
-//                    finish();
-                    if (notif.trim().equals("\"sukses\"")){
-                        Toast.makeText(getApplicationContext(), "Permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
-                        finish();
+                    if (kegiatanValue.trim().length()==0) {
+                        Toast.makeText(getApplicationContext(), "Isian kegiatan tidak valid", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "Maaf, ruangan tidak bisa dipinjam. Silakan cek jadwal ruangan",
-                                Toast.LENGTH_SHORT).show();
+                        int statusP;
+
+                        Log.e("peralatan check", ""+((peralatan.getText()+"").trim().length()==0));
+                        if ((peralatan.getText()+"").trim().length()==0){
+                            statusP = 0;
+                            peralatan.setText("Tidak ada");
+                        }
+                        else  {
+                            statusP = 1;
+                        }
+
+                        Log.e("username",username);
+                        String namaP = nama.getText().toString().replaceAll(" ","%20");
+                        Log.e("nama", namaP);
+                        String waktuAwal = waktuMulai.getText().toString().replaceAll(" ","%20");
+                        Log.e("waktuAwal", waktuAwal);
+                        String waktuAkhir = waktuSelesai.getText().toString().replaceAll(" ","%20");
+                        Log.e("waktuAkhir", waktuAkhir);
+                        String alat = peralatan.getText().toString().replaceAll(" ","%20");
+
+                        String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
+                                + username+"&"+namaP+"&"+statusP+"&"+ruang.getText()+"&"
+                                +waktuAwal+"&"+waktuAkhir+"&"+perihalValue+"&"+kegiatanValue+"&"+alat+"&0/");
+//                    Toast.makeText(getApplicationContext(), notif + " length " + notif.length(), Toast.LENGTH_SHORT).show();
+//                    finish();
+                        if (notif.trim().equals("\"sukses\"")){
+                            Toast.makeText(getApplicationContext(), "Permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(getApplicationContext(),MainActivityP.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            i.putExtra("user",user);
+                            startActivity(i);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Error. Peminjaman tidak dapat dilakukan",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
-            }
-        });
-
+            });
+        }
+        else {
+            Toast.makeText(context, "Error memunculkan Form Peminjaman", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getApplicationContext(),MainActivityP.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("user", user);
+            startActivity(i);
+        }
     }
 
     @Override

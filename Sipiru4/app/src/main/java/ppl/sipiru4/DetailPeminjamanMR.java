@@ -29,7 +29,7 @@ public class DetailPeminjamanMR extends Activity {
         TextView ruang = (TextView)findViewById(R.id.ruang);
         ruang.setText(peminjaman.getKodeRuangan());
 
-        TextView nama = (TextView)findViewById(R.id.nama);
+        TextView nama = (TextView)findViewById(R.id.id);
         nama.setText(peminjaman.getNamaP());
 
         TextView username = (TextView)findViewById(R.id.username);
@@ -37,6 +37,9 @@ public class DetailPeminjamanMR extends Activity {
 
         TextView prihal = (TextView)findViewById(R.id.prihal);
         prihal.setText(peminjaman.getPerihal());
+
+        TextView kegiatan = (TextView)findViewById(R.id.kegiatan);
+        kegiatan.setText(peminjaman.getKegiatan());
 
         TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
         waktuMulai.setText(peminjaman.getMulai());

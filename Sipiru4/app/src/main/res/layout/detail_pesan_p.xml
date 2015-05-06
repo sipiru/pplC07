@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="From  :"
             android:textSize="30dp"
-            android:id="@+id/textView2"
+            android:id="@+id/tekID"
             android:textColor="#ff000000"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -48,7 +48,7 @@
             android:id="@+id/buttonKirim"
             android:textSize="20dp"
             android:background="#959596"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/tekID"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -59,7 +59,7 @@
             android:ems="10"
             android:id="@+id/editIsi"
             android:background="#D3F0D2"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/tekID"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/editDari"
@@ -72,7 +72,7 @@
             android:ems="10"
             android:id="@+id/editDari"
             android:background="#D3F0D2"
-            android:layout_alignTop="@+id/textView2"
+            android:layout_alignTop="@+id/tekID"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 

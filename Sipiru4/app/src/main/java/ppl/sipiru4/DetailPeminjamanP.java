@@ -9,10 +9,6 @@ import ppl.sipiru4.Entity.Peminjaman;
 public class DetailPeminjamanP extends Activity {
     Peminjaman peminjaman;
 
-//    public DetailPeminjamanP(Peminjaman peminjaman) {
-//        this.peminjaman = peminjaman;
-//    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_peminjaman_p);
@@ -24,7 +20,7 @@ public class DetailPeminjamanP extends Activity {
         TextView ruang = (TextView)findViewById(R.id.ruang);
         ruang.setText(peminjaman.getKodeRuangan());
 
-        TextView nama = (TextView)findViewById(R.id.nama);
+        TextView nama = (TextView)findViewById(R.id.id);
         nama.setText(peminjaman.getNamaP());
 
         TextView username = (TextView)findViewById(R.id.username);
@@ -33,13 +29,16 @@ public class DetailPeminjamanP extends Activity {
         TextView prihal = (TextView)findViewById(R.id.prihal);
         prihal.setText(peminjaman.getPerihal());
 
+        TextView kegiatan = (TextView)findViewById(R.id.kegiatan);
+        kegiatan.setText(peminjaman.getKegiatan());
+
         TextView mulai = (TextView)findViewById(R.id.waktuMulai);
         mulai.setText(peminjaman.getMulai());
 
         TextView selesai = (TextView)findViewById(R.id.waktuSelesai);
         selesai.setText(peminjaman.getSelesai());
 
-        TextView peralatan = (TextView)findViewById(R.id.permintaanlain);
+        TextView peralatan = (TextView)findViewById(R.id.peralatan);
         peralatan.setText(peminjaman.getPeralatan());
 
     }

@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:background="#ff008688"
             android:text=" Kode "
-            android:id="@+id/textView1"
+            android:id="@+id/tekRole"
             android:textSize="20dp"
             android:layout_marginTop="4dp"
             android:layout_below="@+id/namaRuangan"
@@ -55,7 +55,7 @@
             android:text="kode ruangan"
             android:textColor="#424242"
             android:textSize="20dp"
-            android:layout_below="@+id/textView1"
+            android:layout_below="@+id/tekRole"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:background="#ff008688"
             android:text=" Kapasitas "
-            android:id="@+id/textView2"
+            android:id="@+id/tekID"
             android:textSize="20dp"
             android:layout_marginTop="4dp"
             android:layout_below="@+id/kodeRuangan"
@@ -90,7 +90,7 @@
             android:text="kapasitas"
             android:textColor="#424242"
             android:textSize="20dp"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/tekID"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 

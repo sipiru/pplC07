@@ -15,26 +15,25 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.adapter.DaftarPeminjamanAdapterMR;
+import ppl.sipiru4.adapter.DaftarPermohonanAdapterFI;
 
-public class DaftarPeminjamanMR extends Fragment {
+public class DaftarPengembalianAlatFI extends Fragment {
     ListView lv;
-    DaftarPeminjamanAdapterMR adapter;
+    DaftarPermohonanAdapterFI adapter;
 
-    public DaftarPeminjamanMR(){}
+    public DaftarPengembalianAlatFI(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
+        View rootView = inflater.inflate(R.layout.list, container, false);
+        lv = (ListView) rootView.findViewById(R.id.list);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        lv = (ListView) rootView.findViewById(R.id.listPermohonan);
-
         final ArrayList<Peminjaman> mItems = new ArrayList<>();
 
-        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/historyManajerRuangan/");
+        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showNotReturn/");
         for (int i = 0 ; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);
@@ -57,22 +56,16 @@ public class DaftarPeminjamanMR extends Fragment {
             }
         }
 
-        adapter = new DaftarPeminjamanAdapterMR(getActivity().getApplicationContext(),mItems);
+        adapter = new DaftarPermohonanAdapterFI(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getActivity().getApplicationContext(), DetailPeminjamanMR.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), DetailPengembalianAlat.class);
                 // passing array index
                 i.putExtra("peminjaman", mItems.get(position));
                 startActivity(i);
-//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.frame_container, new DetailPeminjamanMR(mItems.get(position)));
-//                Toast.makeText(getActivity(), "detail peminjaman", Toast.LENGTH_SHORT).show();
-//                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
             }
         });
         return rootView;

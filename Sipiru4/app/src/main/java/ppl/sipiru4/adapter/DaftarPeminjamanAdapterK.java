@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import ppl.sipiru4.Entity.Peminjaman;
@@ -25,8 +26,11 @@ public class DaftarPeminjamanAdapterK extends ArrayAdapter<Peminjaman> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan_mk, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.username = (TextView) convertView.findViewById(R.id.npmPeminjam);
-            viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
+            viewHolder.gambar = (ImageView) convertView.findViewById(R.id.gambar);
+            viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.kodeRuang);
+            viewHolder.namaPeminjam = (TextView) convertView.findViewById(R.id.namaPeminjam);
+            viewHolder.perihal = (TextView) convertView.findViewById(R.id.perihal);
+            viewHolder.tglPeminjaman = (TextView) convertView.findViewById(R.id.tglPeminjaman);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -35,8 +39,19 @@ public class DaftarPeminjamanAdapterK extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-        viewHolder.username.setText(item.getUsernameP());
-        viewHolder.ruangan.setText(item.getKodeRuangan());
+        viewHolder.gambar.setImageDrawable(item.getGambar());
+        viewHolder.kodeRuangan.setText(item.getKodeRuangan());
+        viewHolder.namaPeminjam.setText(item.getNamaP());
+        viewHolder.tglPeminjaman.setText(item.getMulai() + "-" + item.getSelesai());
+        if(item.getPerihal().equalsIgnoreCase("Akademis")) {
+            viewHolder.perihal.setText("A");
+        }
+        else if(item.getPerihal().equalsIgnoreCase("Kepanitiaan")) {
+            viewHolder.perihal.setText("K");
+        }
+        else {
+            viewHolder.perihal.setText("O");
+        }
 
         return convertView;
     }
@@ -48,7 +63,10 @@ public class DaftarPeminjamanAdapterK extends ArrayAdapter<Peminjaman> {
      */
 
     private static class ViewHolder {
-        TextView username;
-        TextView ruangan;
+        TextView kodeRuangan;
+        TextView namaPeminjam;
+        TextView tglPeminjaman;
+        TextView perihal;
+        ImageView gambar;
     }
 }

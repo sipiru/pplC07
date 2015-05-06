@@ -4,13 +4,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Ruangan implements Parcelable {
+public class Ruangan implements Parcelable{
     private String kode;
     private String nama;
     private String kapasitas;
     private String deskripsi;
     private Drawable kotak;
-
 
     public Ruangan(String kode, String nama, String kapasitas, String deskripsi) {
         this.kode = kode;
@@ -18,7 +17,6 @@ public class Ruangan implements Parcelable {
         this.kapasitas = kapasitas;
         this.deskripsi = deskripsi;
     }
-
     public Ruangan(String kode, String nama, String kapasitas, String deskripsi, Drawable kotak) {
         this.kode = kode;
         this.nama = nama;
@@ -65,15 +63,12 @@ public class Ruangan implements Parcelable {
     public void setKode(String kode) {
         this.kode = kode;
     }
-
-    public Drawable getKotak() {
+    public Drawable getKotak(){
         return kotak;
     }
-
     public void setKotak(Drawable kotak){
         this.kotak = kotak;
     }
-
 
     @Override
     public int describeContents() {

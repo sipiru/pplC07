@@ -22,6 +22,8 @@ public class LoginActivity extends Activity{
     static final String KEY_USERNAME = "uname";
     static final String KEY_NAMA = "name";
     static final String KEY_ROLE = "role";
+    static final String KEY_KODE_ORG = "kode_org";
+    final static String KEY_KODE_IDENTITAS = "kode_identitas";
     private EditText username;
     private EditText password;
     static SharedPreferences setting;
@@ -70,10 +72,13 @@ public class LoginActivity extends Activity{
 
         if (status == 1) {
             if (role.equals("mahasiswa")) {
+                // menyimpan data user ke SharedPreferences
                 SharedPreferences.Editor edit = setting.edit();
                 edit.putString(KEY_USERNAME, username);
                 edit.putString(KEY_NAMA, nama);
+                edit.putString(KEY_KODE_ORG,kodeOrg);
                 edit.putString(KEY_ROLE, role);
+                edit.putString(KEY_KODE_IDENTITAS,kodeIdentitas);
                 edit.apply();
 
                 Intent i = new Intent(getApplicationContext(), MainActivityP.class);
@@ -81,7 +86,7 @@ public class LoginActivity extends Activity{
                 User user = new User(username,nama,kodeOrg,role,kodeIdentitas);
                 i.putExtra("user", user);
                 startActivity(i);
-//                finish();
+                finish();
             }
             else {
                 Log.e("warning","bukan mahasiswa atau manager");
@@ -102,9 +107,10 @@ public class LoginActivity extends Activity{
 
             Intent i = new Intent(getApplicationContext(), MainActivityMR.class);
             User user = new User("mr","mr",null,"manager ruangan",null);
+            //mengoper data user ke MainActivityMR.class
             i.putExtra("user", user);
-
             startActivity(i);
+            finish();
         }
         else if (uname.equals("mk")&&pass.equals("mk")){
             SharedPreferences.Editor edit = setting.edit();
@@ -114,10 +120,11 @@ public class LoginActivity extends Activity{
             edit.apply();
 
             Intent i = new Intent(getApplicationContext(), MainActivityK.class);
+            //mengoper data user ke MainActivityK.class
             User user = new User("mk","mk",null,"manager kemahasiswaan",null);
             i.putExtra("user", user);
-
             startActivity(i);
+            finish();
         }
         else if (uname.equals("itf")&&pass.equals("itf")){
             SharedPreferences.Editor edit = setting.edit();
@@ -127,10 +134,11 @@ public class LoginActivity extends Activity{
             edit.apply();
 
             Intent i = new Intent(getApplicationContext(), MainActivityFI.class);
+            //mengoper data user ke MainActivityFI.class
             User user = new User("itf","itf",null,"FASUM/ITF",null);
             i.putExtra("user", user);
-
             startActivity(i);
+            finish();
         }
         else if (uname.equals("admin")&&pass.equals("admin")){
             SharedPreferences.Editor edit = setting.edit();
@@ -140,10 +148,11 @@ public class LoginActivity extends Activity{
             edit.apply();
 
             Intent i = new Intent(getApplicationContext(), MainActivityA.class);
+            //mengoper data user ke MainActivityA.class
             User user = new User("admin","admin",null,"admin",null);
             i.putExtra("user", user);
-
             startActivity(i);
+            finish();
         }
         else {
             Toast.makeText(getApplicationContext(), "akun tidak terdaftar", Toast.LENGTH_SHORT).show();

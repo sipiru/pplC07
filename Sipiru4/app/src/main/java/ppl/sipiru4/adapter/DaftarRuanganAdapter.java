@@ -8,7 +8,6 @@ import ppl.sipiru4.R;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,6 @@ public class DaftarRuanganAdapter extends ArrayAdapter<Ruangan> {
         }
         // update the item view
         Ruangan item = getItem(position);
-//        Gambar gambar = new Gambar();
 
         viewHolder.kotak.setImageDrawable(item.getKotak());
         viewHolder.nama.setText(item.getNama());
@@ -71,12 +69,5 @@ public class DaftarRuanganAdapter extends ArrayAdapter<Ruangan> {
         TextView deskripsi;
         ImageView kotak;
     }
-//    private static class Gambar{
-//        Drawable kotak;
-//        public Drawable getKotak(){
-//            return kotak;
-//        }
-//    }
 
 }
-

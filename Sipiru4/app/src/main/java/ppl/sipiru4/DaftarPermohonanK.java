@@ -20,23 +20,22 @@ import ppl.sipiru4.adapter.DaftarPermohonanAdapterK;
 public class DaftarPermohonanK extends Fragment {
     ListView lv;
     DaftarPermohonanAdapterK adapter;
-    ArrayList<Peminjaman> mItems;
 
     public DaftarPermohonanK(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
+        View rootView = inflater.inflate(R.layout.list, container, false);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        lv = (ListView) rootView.findViewById(R.id.listPermohonan);
+        lv = (ListView) rootView.findViewById(R.id.list);
 
-        mItems = new ArrayList<>();
+        final ArrayList<Peminjaman> mItems = new ArrayList<>();
 
+        // mendapatkan data-data peminjaman dari webservice berbentuk JSON untuk manajer kemahasiswaan
         JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/displayManajerKemahasiswaan/");
-
         for (int i = 0; i < jArray.length(); i++) {
             try {
                 JSONObject jPeminjaman = jArray.getJSONObject(i);
@@ -47,12 +46,13 @@ public class DaftarPermohonanK extends Fragment {
                 String usernameP = jPeminjaman.getString("username_peminjam");
                 boolean statusPeminjam = jPeminjaman.getBoolean("status_peminjam");
                 String perihal = jPeminjaman.getString("perihal");
+                String kegiatan = jPeminjaman.getString("kegiatan");
                 String mulai = jPeminjaman.getString("waktu_awal_pinjam");
                 String selesai = jPeminjaman.getString("waktu_akhir_pinjam");
                 String peralatan = jPeminjaman.getString("peralatan");
-                int status = jPeminjaman.getInt("status");
+                String status = "" + jPeminjaman.getInt("status");
 
-                mItems.add(new Peminjaman(id, kodeRuangan, namaP, usernameP, statusPeminjam, perihal, mulai, selesai, peralatan, status));
+                mItems.add(new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,kegiatan,peralatan,status, getResources().getDrawable(R.drawable.kotak)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -64,7 +64,6 @@ public class DaftarPermohonanK extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-
                 // Sending image id to FullScreenActivity
                 Intent i = new Intent(getActivity().getApplicationContext(), DetailPermohonanK.class);
                 // passing array index

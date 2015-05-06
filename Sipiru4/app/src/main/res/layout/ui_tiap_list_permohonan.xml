@@ -1,30 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:weightSum="1">
-    <!--  Single List Item Design -->
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/label"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:padding="10dip"
-        android:textSize="16dip"
-        android:textStyle="bold"
-        android:text="username"
-        android:layout_weight="0.91"
-        android:layout_marginLeft="20dp">
-    </TextView>
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/ruangan"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:padding="10dip"
-        android:textSize="16dip"
-        android:textStyle="bold"
-        android:text="ruangan"
-        android:layout_weight="0.91"
-        android:layout_marginLeft="20dp">
-    </TextView>
+        android:layout_height="wrap_content"
+        android:src="@drawable/kotak"
+        android:layout_gravity="center"
+        android:id="@+id/gambar"/>
 
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/kodeRuang"
+            android:background="@color/material_deep_teal_500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:textSize="30dip"
+            android:textColor="#ff000000"
+            android:textStyle="bold"
+            android:text="2302"
+            android:layout_weight="0.91"
+            android:layout_marginLeft="20dp">
+        </TextView>
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/namaPeminjam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:textSize="16dip"
+            android:textColor="#ff000000"
+            android:textStyle="bold"
+            android:text="tian"
+            android:layout_weight="0.91"
+            android:layout_marginLeft="20dp">
+        </TextView>
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/tglPeminjaman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:textSize="16dip"
+            android:textColor="#ff000000"
+            android:textStyle="bold"
+            android:text="tgl"
+            android:layout_weight="0.91"
+            android:layout_marginLeft="20dp">
+        </TextView>
+    </LinearLayout>
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/perihal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:textSize="40dip"
+        android:textColor="#ff000000"
+        android:textStyle="bold"
+        android:text="60"
+        android:layout_weight="1"
+        android:layout_gravity="center">
+    </TextView>
 </LinearLayout>

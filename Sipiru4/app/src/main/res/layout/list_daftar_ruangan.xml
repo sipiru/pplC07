@@ -3,16 +3,18 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:id="@+id/layoutScroll"
-    android:background="#b2dfdb">
+    android:background="#B1D9E7">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/list"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:divider="@color/link_text_material_light"
-        android:dividerHeight="1dp"
-        android:background="@color/material_deep_teal_200" />
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/list"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:divider="#B1D9E7"
+                android:dividerHeight="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#ff008688" />
 </RelativeLayout>

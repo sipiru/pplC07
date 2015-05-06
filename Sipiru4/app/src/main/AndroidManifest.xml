@@ -44,6 +44,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivityA">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivityK">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -115,6 +120,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailRuangan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailPengembalianAlat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

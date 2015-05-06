@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import ppl.sipiru4.Entity.Peminjaman;
@@ -25,8 +26,11 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan_p, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
+            viewHolder.gambar = (ImageView) convertView.findViewById(R.id.gambar);
+            viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.kodeRuang);
+            viewHolder.namaPeminjam = (TextView) convertView.findViewById(R.id.namaPeminjam);
             viewHolder.status = (TextView) convertView.findViewById(R.id.status);
+            viewHolder.tglPeminjaman = (TextView) convertView.findViewById(R.id.tglPeminjaman);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -35,15 +39,19 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-        viewHolder.tvTitle.setText(item.getKodeRuangan());
-        if (item.getStatus()==0) {
-            viewHolder.status.setText("menunggu manajer ruangan");
+
+        viewHolder.gambar.setImageDrawable(item.getGambar());
+        viewHolder.kodeRuangan.setText(item.getKodeRuangan());
+        viewHolder.namaPeminjam.setText(item.getNamaP());
+        viewHolder.tglPeminjaman.setText(item.getMulai() + "-" + item.getSelesai());
+        if (item.getStatus().equalsIgnoreCase("0")) {
+            viewHolder.status.setText("MR");
         }
-        else if (item.getStatus()==1) {
-            viewHolder.status.setText("menunggu manajer kemahasiswaan");
+        else if (item.getStatus().equalsIgnoreCase("1")) {
+            viewHolder.status.setText("MK");
         }
         else {
-            viewHolder.status.setText("menunggu ITF atau Fasum");
+            viewHolder.status.setText("ITF");
         }
 
         return convertView;
@@ -56,7 +64,10 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
      */
 
     private static class ViewHolder {
-        TextView tvTitle;
+        TextView kodeRuangan;
+        TextView namaPeminjam;
+        TextView tglPeminjaman;
         TextView status;
+        ImageView gambar;
     }
 }

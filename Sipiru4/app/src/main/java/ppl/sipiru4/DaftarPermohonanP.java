@@ -23,23 +23,25 @@ import ppl.sipiru4.adapter.DaftarPermohonanAdapterP;
 public class DaftarPermohonanP extends Fragment {
     ListView lv;
     DaftarPermohonanAdapterP adapter;
+    User user;
 
     public DaftarPermohonanP(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
+        View rootView = inflater.inflate(R.layout.list, container, false);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         Bundle b;
-        User user;
         b = getArguments();
-        user = b.getParcelable("user");
-        Log.e("user daftar permohonan",user.getUsername() + " " + user.getNama() + " " + user.getRole());
+        if (b!=null) {
+            user = b.getParcelable("user");
+            Log.e("user daftar permohonan",user.getUsername() + " " + user.getNama() + " " + user.getRole());
+        }
 
-        lv = (ListView) rootView.findViewById(R.id.listPermohonan);
+        lv = (ListView) rootView.findViewById(R.id.list);
 
         final ArrayList<Peminjaman> mItems = new ArrayList<>();
 
@@ -55,12 +57,13 @@ public class DaftarPermohonanP extends Fragment {
                 String usernameP = jPeminjaman.getString("username_peminjam");
                 boolean statusPeminjam = jPeminjaman.getBoolean("status_peminjam");
                 String perihal = jPeminjaman.getString("perihal");
+                String kegiatan = jPeminjaman.getString("kegiatan");
                 String mulai = jPeminjaman.getString("waktu_awal_pinjam");
                 String selesai = jPeminjaman.getString("waktu_akhir_pinjam");
                 String peralatan = jPeminjaman.getString("peralatan");
-                int status = jPeminjaman.getInt("status");
+                String status = "" + jPeminjaman.getInt("status");
 
-                mItems.add(new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,peralatan,status));
+                mItems.add(new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,kegiatan,peralatan,status, getResources().getDrawable(R.drawable.kotak)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

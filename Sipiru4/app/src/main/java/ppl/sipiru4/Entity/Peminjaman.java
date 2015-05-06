@@ -1,5 +1,6 @@
 package ppl.sipiru4.Entity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -12,10 +13,12 @@ public class Peminjaman implements Parcelable{
     private String mulai;
     private String selesai;
     private String perihal;
+    private String kegiatan;
     private String peralatan;
-    private int status;
+    private String status;
+    private Drawable gambar;
 
-    public Peminjaman(int id,String kodeRuangan, String usernameP, String namaP, boolean statusPeminjam, String mulai, String selesai, String perihal, String peralatan, int status) {
+    public Peminjaman(int id,String kodeRuangan, String usernameP, String namaP, boolean statusPeminjam, String mulai, String selesai, String perihal, String kegiatan, String peralatan, String status, Drawable gambar) {
         this.id = id;
         this.kodeRuangan = kodeRuangan;
         this.usernameP = usernameP;
@@ -24,6 +27,22 @@ public class Peminjaman implements Parcelable{
         this.mulai = mulai;
         this.selesai = selesai;
         this.perihal = perihal;
+        this.kegiatan = kegiatan;
+        this.peralatan = peralatan;
+        this.status = status;
+        this.gambar = gambar;
+    }
+
+    public Peminjaman(int id,String kodeRuangan, String usernameP, String namaP, boolean statusPeminjam, String mulai, String selesai, String perihal, String kegiatan, String peralatan, String status) {
+        this.id = id;
+        this.kodeRuangan = kodeRuangan;
+        this.usernameP = usernameP;
+        this.namaP = namaP;
+        this.statusPeminjam = statusPeminjam;
+        this.mulai = mulai;
+        this.selesai = selesai;
+        this.perihal = perihal;
+        this.kegiatan = kegiatan;
         this.peralatan = peralatan;
         this.status = status;
     }
@@ -37,8 +56,9 @@ public class Peminjaman implements Parcelable{
         mulai = source.readString();
         selesai = source.readString();
         perihal = source.readString();
+        kegiatan = source.readString();
         peralatan = source.readString();
-        status = source.readInt();
+        status = "" + source.readInt();
     }
 
     public int getId() {
@@ -77,8 +97,16 @@ public class Peminjaman implements Parcelable{
         return perihal;
     }
 
-    public int getStatus() {
+    public String getKegiatan() {
+        return kegiatan;
+    }
+
+    public String getStatus() {
         return status;
+    }
+
+    public Drawable getGambar(){
+        return gambar;
     }
 
     @Override
@@ -97,8 +125,9 @@ public class Peminjaman implements Parcelable{
         dest.writeString(mulai);
         dest.writeString(selesai);
         dest.writeString(perihal);
+        dest.writeString(kegiatan);
         dest.writeString(peralatan);
-        dest.writeInt(status);
+        dest.writeString(status);
     }
 
     public static final Parcelable.Creator<Peminjaman> CREATOR

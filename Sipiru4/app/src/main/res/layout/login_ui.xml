@@ -27,7 +27,7 @@
         android:layout_below="@+id/imageHeader"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/layoutLogin2">
 
         <TextView
@@ -37,7 +37,7 @@
             android:text= "Selamat Datang!"
             android:layout_marginTop="10dp"
             android:textSize="25dp"
-            android:id="@+id/textView1"
+            android:id="@+id/tekRole"
             android:textColor="@color/primary_text_default_material_light"/>
 
         <TextView
@@ -48,7 +48,7 @@
             android:textStyle="italic"
             android:textSize="18dp"
             android:layout_marginTop="6dp"
-            android:id="@+id/textView2"
+            android:id="@+id/tekID"
             android:textColor="@color/primary_text_default_material_light"/>
 
 
@@ -98,19 +98,6 @@
             android:background="#ff008688"
             android:layout_gravity="left"/>
 
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="Atau tempelkan KTM"
-            android:textSize="20dp"
-            android:id="@+id/textView3"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="30dp"
-            android:layout_weight="0.00"
-            android:textColor="@color/primary_text_default_material_light"/>
 
     </LinearLayout>
 

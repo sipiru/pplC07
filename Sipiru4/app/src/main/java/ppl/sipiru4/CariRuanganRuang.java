@@ -32,8 +32,10 @@ public class CariRuanganRuang extends Fragment {
 
         final Spinner spinner = (Spinner)rootView.findViewById(R.id.spinner);
         final ArrayList<String> ruangan = new ArrayList<>();
-        final TextView namaRuangan = (TextView) rootView.findViewById(R.id.namaRuangan);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ruangan);
+
+        final TextView namaRuangan = (TextView) rootView.findViewById(R.id.namaRuangan);
+
         lView = (ListView)rootView.findViewById(R.id.listView);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
