@@ -17,11 +17,12 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
+import ppl.sipiru4.adapter.DaftarPengembalianAlatAdapterFI;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapterFI;
 
 public class DaftarPengembalianAlatFI extends Fragment {
     ListView lv;
-    DaftarPermohonanAdapterFI adapter;
+    DaftarPengembalianAlatAdapterFI adapter;
 
     public DaftarPengembalianAlatFI(){}
 
@@ -65,7 +66,7 @@ public class DaftarPengembalianAlatFI extends Fragment {
             }
         }
 
-        adapter = new DaftarPermohonanAdapterFI(getActivity().getApplicationContext(),mItems);
+        adapter = new DaftarPengembalianAlatAdapterFI(getActivity().getApplicationContext(),mItems);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

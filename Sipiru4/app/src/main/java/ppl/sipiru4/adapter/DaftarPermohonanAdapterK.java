@@ -25,7 +25,8 @@ public class DaftarPermohonanAdapterK extends ArrayAdapter<Peminjaman> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan_mk, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.username = (TextView) convertView.findViewById(R.id.npmPeminjam);
+            viewHolder.nama = (TextView) convertView.findViewById(R.id.nama);
+            viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
             viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
             convertView.setTag(viewHolder);
         } else {
@@ -35,7 +36,8 @@ public class DaftarPermohonanAdapterK extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-        viewHolder.username.setText(item.getUsernameP());
+        viewHolder.nama.setText(item.getNamaP());
+        viewHolder.perihal.setText(item.getPerihal());
         viewHolder.ruangan.setText(item.getKodeRuangan());
 
         return convertView;
@@ -48,45 +50,8 @@ public class DaftarPermohonanAdapterK extends ArrayAdapter<Peminjaman> {
      */
 
     private static class ViewHolder {
-        TextView username;
+        TextView nama;
+        TextView perihal;
         TextView ruangan;
     }
-
-
-/*   public DaftarPermohonanAdapter(Context context, ArrayList<DaftarPermohonanItem> navDrawerItems){
-        super(context, R.layout.list_permohonan, navDrawerItems);
-        this.context = context;
-        this.navDrawerItems = navDrawerItems;
-    }
-
-    @Override
-    public int getCount() {
-        return navDrawerItems.size();
-    }
-
-*//*    @Override
-    public Object getItem(int position) {
-        return navDrawerItems.get(position);
-    }*//*
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            LayoutInflater mInflater = (LayoutInflater)
-                    context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.ui_tiap_list_permohonan, null);
-        }
-
-        TextView txtTitle = (TextView) convertView.findViewById(R.id.label);
-        txtTitle.setText(navDrawerItems.get(position).getTitle());
-        Button btnSetuju = (Button) convertView.findViewById(R.id.setuju);
-        Button btnTolak =(Button) convertView.findViewById(R.id.tolak);
-        return convertView;
-    }*/
-
 }

@@ -22,10 +22,11 @@ public class DaftarPermohonanAdapterFI extends ArrayAdapter<Peminjaman> {
         if(convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan_mk, parent, false);
+            convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.username = (TextView) convertView.findViewById(R.id.npmPeminjam);
+            viewHolder.nama = (TextView) convertView.findViewById(R.id.nama);
+            viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
             viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
             convertView.setTag(viewHolder);
         } else {
@@ -35,7 +36,8 @@ public class DaftarPermohonanAdapterFI extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-        viewHolder.username.setText(item.getUsernameP());
+        viewHolder.nama.setText(item.getNamaP());
+        viewHolder.perihal.setText(item.getPerihal());
         viewHolder.ruangan.setText(item.getKodeRuangan());
 
         return convertView;
@@ -48,7 +50,8 @@ public class DaftarPermohonanAdapterFI extends ArrayAdapter<Peminjaman> {
      */
 
     private static class ViewHolder {
-        TextView username;
+        TextView nama;
+        TextView perihal;
         TextView ruangan;
     }
 }

@@ -25,7 +25,8 @@ public class DaftarPeminjamanAdapterFI extends ArrayAdapter<Peminjaman> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_peminjaman_mr, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.username = (TextView) convertView.findViewById(R.id.npmPeminjam);
+            viewHolder.nama = (TextView) convertView.findViewById(R.id.nama);
+            viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
             viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
             convertView.setTag(viewHolder);
         } else {
@@ -35,7 +36,8 @@ public class DaftarPeminjamanAdapterFI extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-        viewHolder.username.setText(item.getUsernameP());
+        viewHolder.nama.setText(item.getNamaP());
+        viewHolder.perihal.setText(item.getPerihal());
         viewHolder.ruangan.setText(item.getKodeRuangan());
         return convertView;
     }
@@ -47,7 +49,8 @@ public class DaftarPeminjamanAdapterFI extends ArrayAdapter<Peminjaman> {
      */
 
     private static class ViewHolder {
-        TextView username;
+        TextView nama;
+        TextView perihal;
         TextView ruangan;
     }
 

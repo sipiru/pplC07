@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import org.json.JSONArray;
@@ -31,14 +30,10 @@ import ppl.sipiru4.Entity.JSONParser;
 
 public class CariRuanganWaktu extends Fragment {
     Button btnCari;
-    Button ambilTglMulai;
-    Button ambilTglSelesai;
-    Button ambilJamMulai;
-    Button ambilJamSelesai;
-    static EditText tglMulai;
-    static EditText tglSelesai;
-    static EditText jamMulai;
-    static EditText jamSelesai;
+    static Button tglMulai;
+    static Button tglSelesai;
+    static Button jamMulai;
+    static Button jamSelesai;
     boolean tglMulaiClicked;
     boolean tglSelesaiClicked;
     boolean jamMulaiClicked;
@@ -49,12 +44,8 @@ public class CariRuanganWaktu extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_waktu_ui, container, false);
-        tglMulai = (EditText)rootView.findViewById(R.id.TglMulai);
-        tglSelesai = (EditText)rootView.findViewById(R.id.TglSelesai);
-        jamMulai = (EditText)rootView.findViewById(R.id.mulai);
-        jamSelesai = (EditText)rootView.findViewById(R.id.selesai);
-        ambilTglMulai = (Button)rootView.findViewById(R.id.btnTglMulai);
-        ambilTglMulai.setOnClickListener(new View.OnClickListener() {
+        tglMulai = (Button)rootView.findViewById(R.id.btnTglMulai);
+        tglMulai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectTglMulai();
@@ -63,8 +54,8 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
 
-        ambilTglSelesai = (Button)rootView.findViewById(R.id.btnTglSelesai);
-        ambilTglSelesai.setOnClickListener(new View.OnClickListener() {
+        tglSelesai = (Button)rootView.findViewById(R.id.btnTglSelesai);
+        tglSelesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectTglSelesai();
@@ -73,8 +64,8 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
 
-        ambilJamMulai = (Button)rootView.findViewById(R.id.btnJamMulai);
-        ambilJamMulai.setOnClickListener(new View.OnClickListener() {
+        jamMulai = (Button)rootView.findViewById(R.id.btnJamMulai);
+        jamMulai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectJamMulai();
@@ -83,8 +74,8 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
 
-        ambilJamSelesai = (Button)rootView.findViewById(R.id.btnJamSelesai);
-        ambilJamSelesai.setOnClickListener(new View.OnClickListener() {
+        jamSelesai = (Button)rootView.findViewById(R.id.btnJamSelesai);
+        jamSelesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectJamSelesai();
