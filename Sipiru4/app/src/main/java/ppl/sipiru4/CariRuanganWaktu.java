@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import org.json.JSONArray;
@@ -24,12 +25,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 
 import ppl.sipiru4.Entity.JSONParser;
 
 public class CariRuanganWaktu extends Fragment {
-    Button btnCari;
+    ImageButton btnCari;
     static Button tglMulai;
     static Button tglSelesai;
     static Button jamMulai;
@@ -84,7 +84,7 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
 
-        btnCari = (Button) rootView.findViewById(R.id.buttonCari);
+        btnCari = (ImageButton) rootView.findViewById(R.id.buttonCari);
         btnCari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,23 +100,8 @@ public class CariRuanganWaktu extends Fragment {
 
                         // pengecekan validasi input tanggal
                         if (dateAkhir.after(dateAwal) && dateAwal.after(now)) {
-                            AsyncTask<String, String, JSONArray> hasil = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
+                            new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
                                     + tglMulai.getText() + "%20" + jamMulai.getText() + "&" + tglSelesai.getText() + "%20" + jamSelesai.getText());
-
-                            JSONArray jArray = null;
-                            try {
-                                jArray = hasil.get();
-                            } catch (InterruptedException | ExecutionException e) {
-                                e.printStackTrace();
-                            }
-
-                            Intent i = new Intent(getActivity(), DaftarRuangan.class);
-                            //mengoper JSONArray ruangan ke DaftarRuangan.class
-                            assert jArray != null;
-                            i.putExtra("daftarRuangan", jArray.toString());
-                            i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
-                            i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
-                            startActivity(i);
                         }
                         else {
                             Toast.makeText(getActivity(), "Pengisian tanggal tidak valid", Toast.LENGTH_SHORT).show();
@@ -202,7 +187,7 @@ public class CariRuanganWaktu extends Fragment {
             final Calendar time = Calendar.getInstance();
             int hour = time.get(Calendar.HOUR_OF_DAY);
             int minutes = time.get(Calendar.MINUTE);
-            return new TimePickerDialog(getActivity(),this,hour, (minutes/10)*10, DateFormat.is24HourFormat(getActivity()));
+            return new TimePickerDialog(getActivity(),this,hour, ((minutes/10)+1)*10, DateFormat.is24HourFormat(getActivity()));
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
@@ -221,7 +206,7 @@ public class CariRuanganWaktu extends Fragment {
             final Calendar time = Calendar.getInstance();
             int hour = time.get(Calendar.HOUR_OF_DAY);
             int minutes = time.get(Calendar.MINUTE);
-            return new TimePickerDialog(getActivity(),this,hour, (minutes/10)*10, DateFormat.is24HourFormat(getActivity()));
+            return new TimePickerDialog(getActivity(),this,hour, ((minutes/10)+1)*10, DateFormat.is24HourFormat(getActivity()));
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
@@ -241,18 +226,33 @@ public class CariRuanganWaktu extends Fragment {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Mencari ruangan...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
         @Override
         protected JSONArray doInBackground(String... args) {
-            return JSONParser.getJSONfromURL(args[0]);
+            try {
+                return JSONParser.getJSONfromURL(args[0]);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         @Override
         protected void onPostExecute(JSONArray hasil) {
+            if (hasil == null) {
+                pDialog.dismiss();
+                Toast.makeText(getActivity(),"gagal terhubung ke server. coba lagi.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent i = new Intent(getActivity(), DaftarRuangan.class);
+            //mengoper JSONArray ruangan ke DaftarRuangan.class
+            i.putExtra("daftarRuangan", hasil.toString());
+            i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
+            i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
+            startActivity(i);
             pDialog.dismiss();
         }
     }

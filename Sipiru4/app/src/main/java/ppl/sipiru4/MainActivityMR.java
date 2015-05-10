@@ -211,7 +211,6 @@ public class MainActivityMR extends FragmentActivity {
         // set dialog message
         alertDialogBuilder
                 .setMessage("Tekan Ya untuk logout")
-                .setCancelable(false)
                 .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         // pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke

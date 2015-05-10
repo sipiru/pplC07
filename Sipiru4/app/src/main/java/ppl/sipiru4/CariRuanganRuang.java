@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -126,18 +127,28 @@ public class CariRuanganRuang extends Fragment {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Mendapatkan jadwal ruangan...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
         @Override
         protected JSONArray doInBackground(String... args) {
-            return JSONParser.getJSONfromURL(args[0]);
+            try {
+                return JSONParser.getJSONfromURL(args[0]);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         @Override
         protected void onPostExecute(JSONArray hasil) {
+            if (hasil == null) {
+                pDialog.dismiss();
+                Toast.makeText(getActivity(),"gagal terhubung ke server. coba lagi.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             pDialog.dismiss();
         }
     }

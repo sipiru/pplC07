@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.concurrent.ExecutionException;
+import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
@@ -77,25 +77,7 @@ public class DetailPengembalianAlat extends Activity {
                             .setMessage("Tekan Ya untuk konfirmasi")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
-                                    String notif = null;
-                                    try {
-                                        notif = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ubahStatusPeminjam/" + peminjaman.getId()).get();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    assert notif != null;
-                                    if (notif.trim().equals("\"sukses\"")){
-                                        Toast.makeText(getApplicationContext(), "Status berhasil diubah", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else {
-                                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-                                    }
-                                    Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    i.putExtra("user",user);
-                                    i.putExtra("navPosition",1);
-                                    startActivity(i);
+                                    new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ubahStatusPeminjam/" + peminjaman.getId());
                                 }
                             })
                             .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
@@ -127,18 +109,38 @@ public class DetailPengembalianAlat extends Activity {
             super.onPreExecute();
             pDialog = new ProgressDialog(context);
             pDialog.setMessage("Sedang diproses...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
         @Override
         protected String doInBackground(String... args) {
-            return JSONParser.getNotifFromURL(args[0]);
+            try {
+                return JSONParser.getNotifFromURL(args[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         @Override
-        protected void onPostExecute(String data) {
+        protected void onPostExecute(String notif) {
+            if (notif == null) {
+                pDialog.dismiss();
+                Toast.makeText(context, "gagal menghubungkan server. coba lagi.",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (notif.trim().equals("\"sukses\"")){
+                Toast.makeText(getApplicationContext(), "Status berhasil diubah", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+            Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("user",user);
+            i.putExtra("navPosition",1);
+            startActivity(i);
             pDialog.dismiss();
         }
     }

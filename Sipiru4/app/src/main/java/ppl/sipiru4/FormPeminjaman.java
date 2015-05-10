@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -16,8 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.User;
 
@@ -121,29 +120,11 @@ public class FormPeminjaman extends Activity {
 //                        Log.e("waktuAkhir", waktuAkhir);
                         String alat = peralatan.getText().toString().replaceAll(" ","%20");
 
-                        AsyncTask<String, String, String> Helper = new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
+                        new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
                                 + username + "&" + namaP + "&" + statusP + "&" + ruang.getText() + "&"
                                 + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanValue + "&" + alat + "&0/");
 
-                        String notif = null;
-                        try {
-                            notif = Helper.get();
-                        } catch (InterruptedException | ExecutionException e) {
-                            e.printStackTrace();
-                        }
 
-                        assert notif != null;
-                        if (notif.trim().equals("\"sukses\"")){
-                            Toast.makeText(getApplicationContext(), "Permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(getApplicationContext(),MainActivityP.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            i.putExtra("user",user);
-                            startActivity(i);
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), "Error. Peminjaman tidak dapat dilakukan",
-                                    Toast.LENGTH_SHORT).show();
-                        }
                     }
                 }
             });
@@ -170,18 +151,39 @@ public class FormPeminjaman extends Activity {
             super.onPreExecute();
             pDialog = new ProgressDialog(context);
             pDialog.setMessage("Submit permohonan...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
         @Override
         protected String doInBackground(String... args) {
-            return JSONParser.getNotifFromURL(args[0]);
+            try {
+                return JSONParser.getNotifFromURL(args[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         @Override
         protected void onPostExecute(String data) {
+            if (data==null) {
+                pDialog.dismiss();
+                Toast.makeText(context,"gagal terhubung ke server. coba lagi",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (data.trim().equals("\"sukses\"")){
+                Toast.makeText(getApplicationContext(), "Permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(),MainActivityP.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.putExtra("user",user);
+                startActivity(i);
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Error. Peminjaman tidak dapat dilakukan",
+                        Toast.LENGTH_SHORT).show();
+            }
             pDialog.dismiss();
         }
     }

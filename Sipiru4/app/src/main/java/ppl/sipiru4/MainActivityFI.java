@@ -195,7 +195,6 @@ public class MainActivityFI extends FragmentActivity {
         }
 
         if (fragment != null) {
-
             //FragmentManager fragmentManager = getFragmentManager();
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
@@ -280,4 +279,8 @@ public class MainActivityFI extends FragmentActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    public void onBackPressed() {
+        logout();
+    }
 }

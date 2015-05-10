@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.concurrent.ExecutionException;
+import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
@@ -25,13 +25,10 @@ public class DetailPermohonanP extends Activity {
     Bundle b;
     User user;
 
-//    public DetailPermohonanP(Peminjaman peminjaman) {
-//        this.peminjaman = peminjaman;
-//    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_permohonan_p);
+        Log.e("Detail Permohonan P", "create");
 
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
         user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
@@ -83,24 +80,7 @@ public class DetailPermohonanP extends Activity {
                         .setMessage("Tekan Ya untuk membatalkan permohonan")
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                String notif = null;
-                                try {
-                                    notif = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/" + peminjaman.getId()).get();
-                                } catch (InterruptedException | ExecutionException e) {
-                                    e.printStackTrace();
-                                }
-
-                                assert notif != null;
-                                if (notif.trim().equals("\"sukses\"")) {
-                                    Toast.makeText(getApplicationContext(), "Permohonan berhasil dibatalkan", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Error. Permohonan sudah tidak ada", Toast.LENGTH_SHORT).show();
-                                }
-                                Intent i = new Intent(getApplicationContext(),MainActivityP.class);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                i.putExtra("user",user);
-                                i.putExtra("navPosition",2);
-                                startActivity(i);
+                                new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/" + peminjaman.getId());
                             }
                         })
                         .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -131,21 +111,62 @@ public class DetailPermohonanP extends Activity {
             super.onPreExecute();
             pDialog = new ProgressDialog(context);
             pDialog.setMessage("Sedang diproses...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
         @Override
         protected String doInBackground(String... args) {
-            return JSONParser.getNotifFromURL(args[0]);
+            try {
+                return JSONParser.getNotifFromURL(args[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         @Override
         protected void onPostExecute(String data) {
+            if (data==null) {
+                pDialog.dismiss();
+                Toast.makeText(context,"gagal menghubungkan ke server. coba lagi.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (data.trim().equals("\"sukses\"")) {
+                Toast.makeText(getApplicationContext(), "Permohonan berhasil dibatalkan", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Error. Permohonan sudah tidak ada", Toast.LENGTH_SHORT).show();
+            }
+            Intent i = new Intent(getApplicationContext(),MainActivityP.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("user",user);
+            i.putExtra("navPosition",2);
+            startActivity(i);
             pDialog.dismiss();
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("Detail Permohonan P", "resume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("Detail Permohonan P","stop");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e("Detail Permohonan P", "start");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("Detail Permohonan P", "pause");
+    }
 }
-
-

@@ -79,14 +79,14 @@ public class MainActivityA extends FragmentActivity {
             // adding nav drawer items to array
             // Buat Ruangan Baru
         navDrawerItems.add(new NavDrawerItem(menuAdmin[0], navMenuIcons.getResourceId(0, -1)));
-            // Update Ruangan
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
-            // Delete Ruangan
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
+//            // Update Ruangan
+//        navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
+//            // Delete Ruangan
+//        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
             // Update Role
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[3], navMenuIcons.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
             // Logout
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[4], navMenuIcons.getResourceId(4, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
 
 
         // Recycle the typed array
@@ -178,19 +178,19 @@ public class MainActivityA extends FragmentActivity {
                 fragment = new TambahRuangan();
                 Toast.makeText(this,"create tabel", Toast.LENGTH_SHORT).show();
                 break;
+//            case 1:
+//                fragment = new UpdateRuangan();
+//                Toast.makeText(this,"update tabel", Toast.LENGTH_SHORT).show();
+//                break;
+//            case 2:
+//                fragment = new HapusRuangan();
+//                Toast.makeText(this,"delete tabel", Toast.LENGTH_SHORT).show();
+//                break;
             case 1:
-                fragment = new UpdateRuangan();
-                Toast.makeText(this,"update tabel", Toast.LENGTH_SHORT).show();
-                break;
-            case 2:
-                fragment = new HapusRuangan();
-                Toast.makeText(this,"delete tabel", Toast.LENGTH_SHORT).show();
-                break;
-            case 3:
                 fragment = new UpdateRole();
                 Toast.makeText(this,"update role", Toast.LENGTH_SHORT).show();
                 break;
-            case 4:
+            case 2:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 // set title
                 alertDialogBuilder.setTitle("Apakah anda yakin untuk keluar dari SIPIRU ?");
@@ -198,7 +198,6 @@ public class MainActivityA extends FragmentActivity {
                 // set dialog message
                 alertDialogBuilder
                         .setMessage("Tekan Ya untuk keluar!")
-                        .setCancelable(false)
                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, close

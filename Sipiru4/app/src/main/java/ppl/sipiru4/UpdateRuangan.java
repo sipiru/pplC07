@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import ppl.sipiru4.Entity.JSONParser;
 
@@ -75,14 +77,18 @@ public class UpdateRuangan extends Fragment {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Mengubah ruangan di database...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
         @Override
         protected String doInBackground(String... args) {
-            return JSONParser.getNotifFromURL(args[0]);
+            try {
+                return JSONParser.getNotifFromURL(args[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         @Override

@@ -42,6 +42,7 @@ public class MainActivityP extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
+        Log.e("Main activity P create", "create");
 
         // mendapatkan nilai-nilai yang dioper dari LoginActivity.class
         User user;
@@ -233,7 +234,6 @@ public class MainActivityP extends FragmentActivity {
         // set dialog message
         alertDialogBuilder
                 .setMessage("Tekan Ya untuk logout")
-                .setCancelable(false)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
@@ -296,5 +296,35 @@ public class MainActivityP extends FragmentActivity {
     public void onBackPressed() {
         // saat user menekan tombol back, lakukan konfirmasi logout
         logout();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e("Main activity P start", "start");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("Main Activity P restart", "restart");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("Main Activity P pause", "pause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("Main Activity P resume", "resume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("Main Activity P stop", "stop");
     }
 }

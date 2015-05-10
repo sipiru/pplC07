@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="fill_parent"
-    android:layout_height="90dp">
+    android:layout_height="wrap_content">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,8 @@
         android:text="barang sudah dikembalikan"
         android:layout_below="@+id/perihal"
         android:layout_alignLeft="@+id/perihal"
-        android:layout_alignStart="@+id/perihal">
+        android:layout_alignStart="@+id/perihal"
+        android:paddingBottom="4dp">
     </TextView>
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -46,7 +47,7 @@
         android:layout_marginLeft="18dp"
         android:layout_toRightOf="@+id/image"
         android:layout_toEndOf="@+id/image"
-        android:layout_marginTop="4dp">
+        android:paddingTop="4dp">
     </TextView>
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
