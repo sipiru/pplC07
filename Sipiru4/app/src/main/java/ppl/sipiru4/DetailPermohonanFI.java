@@ -2,6 +2,7 @@ package ppl.sipiru4;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
@@ -42,7 +43,7 @@ public class DetailPermohonanFI extends Activity {
             TextView ruang = (TextView)findViewById(R.id.ruang);
             ruang.setText(peminjaman.getKodeRuangan());
 
-            TextView nama = (TextView)findViewById(R.id.id);
+            TextView nama = (TextView)findViewById(R.id.nama);
             nama.setText(peminjaman.getNamaP());
 
             TextView username = (TextView)findViewById(R.id.username);
@@ -67,38 +68,35 @@ public class DetailPermohonanFI extends Activity {
             btnUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                    // set title
-                    alertDialogBuilder.setTitle("Apakah anda yakin untuk mengupdate peralatan?");
-                    // set dialog message
-                    alertDialogBuilder
-                            .setMessage("Tekan Ya untuk mengupdate")
-                            .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
-                                    String peralatanModif = peralatan.getText().toString().replaceAll(" ", "%20");
-                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/updatePeralatan/" + peminjaman.getId()
-                                            + "&" + peralatanModif);
-                                    if (notif.trim().equals("\"sukses\"")){
-                                        Toast.makeText(getApplicationContext(), "Peralatan berhasil diupdate", Toast.LENGTH_SHORT).show();
+                    if (peralatan.getText().toString().trim().length()==0) {
+                        Toast.makeText(context, "peralatan tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                        // set title
+                        alertDialogBuilder.setTitle("Apakah anda yakin untuk mengupdate peralatan?");
+                        // set dialog message
+                        alertDialogBuilder
+                                .setMessage("Tekan Ya untuk mengupdate")
+                                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        String peralatanModif = peralatan.getText().toString().replaceAll(" ", "%20");
+                                        new TaskHelper1().execute("http://ppl-c07.cs.ui.ac.id/connect/updatePeralatan/"
+                                                + peminjaman.getId() + "&" + peralatanModif);
+
+
                                     }
-                                    else {
-                                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        i.putExtra("user",user);
-                                        i.putExtra("navPosition",0);
-                                        startActivity(i);
+                                })
+                                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        dialog.cancel();
                                     }
-                                }
-                            })
-                            .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
-                                    dialog.cancel();
-                                }
-                            });
-                    // create alert dialog
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
+                                });
+                        // create alert dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                    }
+
                 }
             });
             Button btnSetuju = (Button)findViewById(R.id.btnSetuju);
@@ -113,18 +111,7 @@ public class DetailPermohonanFI extends Activity {
                             .setMessage("Tekan Ya untuk menyetujui")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
-                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/acceptByITF/" + peminjaman.getId());
-                                    if (notif.trim().equals("\"sukses\"")){
-                                        Toast.makeText(getApplicationContext(), "Permohonan berhasil disetujui", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else {
-                                        Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
-                                    }
-                                    Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    i.putExtra("user",user);
-                                    i.putExtra("navPosition",0);
-                                    startActivity(i);
+                                    new TaskHelper2().execute("http://ppl-c07.cs.ui.ac.id/connect/acceptByITF/" + peminjaman.getId());
                                 }
                             })
                             .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
@@ -149,17 +136,7 @@ public class DetailPermohonanFI extends Activity {
                             .setMessage("Tekan Ya untuk menolak")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
-                                    String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"+ peminjaman.getId());
-                                    if (notif.trim().equals("\"sukses\"")) {
-                                        Toast.makeText(getApplicationContext(), "Permohonan berhasil ditolak", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
-                                    }
-                                    Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    i.putExtra("user",user);
-                                    i.putExtra("navPosition",0);
-                                    startActivity(i);
+                                    new TaskHelper2().execute("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"+ peminjaman.getId());
                                 }
                             })
                             .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
@@ -181,6 +158,94 @@ public class DetailPermohonanFI extends Activity {
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class TaskHelper1 extends android.os.AsyncTask<String, String, String> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(context);
+            pDialog.setMessage("Sedang diproses...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+            try {
+                return JSONParser.getNotifFromURL(args[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String notif) {
+            if (notif == null) {
+                pDialog.dismiss();
+                Toast.makeText(context, "gagal menghubungkan server. coba lagi.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (notif.trim().equals("\"sukses\"")){
+                Toast.makeText(getApplicationContext(), "sukses", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.putExtra("user",user);
+                i.putExtra("navPosition",0);
+                startActivity(i);
+            }
+            pDialog.dismiss();
+        }
+    }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class TaskHelper2 extends android.os.AsyncTask<String, String, String> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(context);
+            pDialog.setMessage("Sedang diproses...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+            try {
+                return JSONParser.getNotifFromURL(args[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String notif) {
+            if (notif == null) {
+                pDialog.dismiss();
+                Toast.makeText(context, "gagal menghubungkan server. coba lagi.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (notif.trim().equals("\"sukses\"")){
+                Toast.makeText(getApplicationContext(), "sukses", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+            Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("user",user);
+            i.putExtra("navPosition",0);
+            startActivity(i);
+            pDialog.dismiss();
+        }
     }
 }
 

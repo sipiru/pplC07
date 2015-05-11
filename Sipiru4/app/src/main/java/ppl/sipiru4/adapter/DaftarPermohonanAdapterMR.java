@@ -8,13 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
 
     public DaftarPermohonanAdapterMR(Context context, List<Peminjaman> items) {
-        super(context, R.layout.list, items );
+        super(context, R.layout.list_permohonan, items );
     }
 
     @Override
@@ -26,12 +25,9 @@ public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-
-            viewHolder.gambar = (ImageView) convertView.findViewById(R.id.gambar);
-            viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.kodeRuang);
-            viewHolder.namaPeminjam = (TextView) convertView.findViewById(R.id.namaPeminjam);
-            viewHolder.perihal = (TextView) convertView.findViewById(R.id.perihal);
-            viewHolder.tglPeminjaman = (TextView) convertView.findViewById(R.id.tglPeminjaman);
+            viewHolder.nama = (TextView) convertView.findViewById(R.id.nama);
+            viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
+            viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
             convertView.setTag(viewHolder);
 
         } else {
@@ -41,19 +37,9 @@ public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-        viewHolder.gambar.setImageDrawable(item.getGambar());
-        viewHolder.kodeRuangan.setText(item.getKodeRuangan());
-        viewHolder.namaPeminjam.setText(item.getNamaP());
-        viewHolder.tglPeminjaman.setText(item.getMulai() + "-" + item.getSelesai());
-        if(item.getPerihal().equalsIgnoreCase("Akademis")) {
-            viewHolder.perihal.setText("A");
-        }
-        else if(item.getPerihal().equalsIgnoreCase("Kepanitiaan")) {
-            viewHolder.perihal.setText("K");
-        }
-        else {
-            viewHolder.perihal.setText("O");
-        }
+        viewHolder.nama.setText(item.getNamaP());
+        viewHolder.ruangan.setText(item.getKodeRuangan());
+        viewHolder.perihal.setText(item.getPerihal());
         return convertView;
     }
     /**
@@ -64,48 +50,8 @@ public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
      */
 
     private static class ViewHolder {
-        TextView kodeRuangan;
-        TextView namaPeminjam;
-        TextView tglPeminjaman;
+        TextView nama;
+        TextView ruangan;
         TextView perihal;
-        ImageView gambar;
     }
-
-
-/*   public DaftarPermohonanAdapter(Context context, ArrayList<DaftarPermohonanItem> navDrawerItems){
-        super(context, R.layout.list_permohonan, navDrawerItems);
-        this.context = context;
-        this.navDrawerItems = navDrawerItems;
-    }
-
-    @Override
-    public int getCount() {
-        return navDrawerItems.size();
-    }
-
-*//*    @Override
-    public Object getItem(int position) {
-        return navDrawerItems.get(position);
-    }*//*
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            LayoutInflater mInflater = (LayoutInflater)
-                    context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.ui_tiap_list_permohonan, null);
-        }
-
-        TextView txtTitle = (TextView) convertView.findViewById(R.id.label);
-        txtTitle.setText(navDrawerItems.get(position).getTitle());
-        Button btnSetuju = (Button) convertView.findViewById(R.id.setuju);
-        Button btnTolak =(Button) convertView.findViewById(R.id.tolak);
-        return convertView;
-    }*/
-
 }

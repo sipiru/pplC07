@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import java.util.ArrayList;
-
 import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.model.NavDrawerItem;
@@ -180,8 +179,7 @@ public class MainActivityMR extends FragmentActivity {
                 fragment = new CariRuanganRuang();
                 break;
             case 3:
-                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                startActivity(i);
+                fragment = new KirimPesan();
                 break;
             case 4:
                 logout();
@@ -213,7 +211,6 @@ public class MainActivityMR extends FragmentActivity {
         // set dialog message
         alertDialogBuilder
                 .setMessage("Tekan Ya untuk logout")
-                .setCancelable(false)
                 .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         // pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke

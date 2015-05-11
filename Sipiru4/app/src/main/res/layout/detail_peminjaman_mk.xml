@@ -42,7 +42,7 @@
             android:background="#ff008688"
             android:text=" Nama"
             android:textSize="20dp"
-            android:id="@+id/tekID"
+            android:id="@+id/textView2"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/ruang"
             android:layout_alignParentLeft="true"
@@ -51,12 +51,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/id"
+            android:id="@+id/nama"
             android:layout_gravity="center_vertical"
             android:hint="Nama peminjam"
             android:textSize="20dp"
             android:textColor="#424242"
-            android:layout_below="@+id/tekID"
+            android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true" />
 
         <TextView
@@ -65,9 +65,9 @@
             android:background="#ff008688"
             android:text=" Username"
             android:textSize="20dp"
-            android:id="@+id/tekNama"
+            android:id="@+id/textView4"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/id"
+            android:layout_below="@+id/nama"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="4dp"/>
 
@@ -79,7 +79,7 @@
             android:hint="Username"
             android:textSize="20dp"
             android:textColor="#424242"
-            android:layout_below="@+id/tekNama"
+            android:layout_below="@+id/textView4"
             android:layout_alignParentLeft="true" />
 
         <TextView
@@ -157,7 +157,7 @@
             android:background="#ff008688"
             android:text=" Waktu Selesai"
             android:textSize="20dp"
-            android:id="@+id/tekDeskripsi"
+            android:id="@+id/textView8"
             android:layout_below="@+id/waktuMulai"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="4dp"/>
@@ -170,7 +170,7 @@
             android:hint="Selesai"
             android:textSize="20dp"
             android:textColor="#424242"
-            android:layout_below="@+id/tekDeskripsi"
+            android:layout_below="@+id/textView8"
             android:layout_alignParentLeft="true" />
 
         <TextView

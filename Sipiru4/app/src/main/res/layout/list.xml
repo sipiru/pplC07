@@ -1,20 +1,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+    android:layout_width="wrap_content"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:id="@+id/layoutScroll"
-    android:background="#B1D9E7">
+    android:background="#ff00b5b7">
 
     <ListView
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/list"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:divider="#B1D9E7"
-        android:dividerHeight="8dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#ff008688" />
+        android:background="#ff008688"
+        android:dividerHeight="3dp"
+        android:divider="#ff00b5b7"/>
 </RelativeLayout>

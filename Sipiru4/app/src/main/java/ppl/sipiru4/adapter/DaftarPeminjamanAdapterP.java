@@ -16,7 +16,7 @@ import ppl.sipiru4.R;
 public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
 
     public DaftarPeminjamanAdapterP(Context context, List<Peminjaman> items) {
-        super(context, R.layout.list, items );
+        super(context, R.layout.list_permohonan, items );
     }
 
     @Override
@@ -28,11 +28,10 @@ public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_peminjaman_p, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.gambar = (ImageView) convertView.findViewById(R.id.gambar);
-            viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.kodeRuang);
-            viewHolder.namaPeminjam = (TextView) convertView.findViewById(R.id.namaPeminjam);
+            viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.nama);
+            viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
             viewHolder.statusP = (TextView) convertView.findViewById(R.id.status);
-            viewHolder.tglPeminjaman = (TextView) convertView.findViewById(R.id.tglPeminjaman);
+            viewHolder.img = (ImageView) convertView.findViewById(R.id.image);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -41,18 +40,17 @@ public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-        viewHolder.gambar.setImageDrawable(item.getGambar());
         viewHolder.kodeRuangan.setText(item.getKodeRuangan());
-        viewHolder.namaPeminjam.setText(item.getNamaP());
-        viewHolder.tglPeminjaman.setText(item.getMulai() + "-" + item.getSelesai());
-        viewHolder.kodeRuangan.setText(item.getKodeRuangan());
+        viewHolder.perihal.setText(item.getPerihal());
         if (item.getStatusPeminjam()) {
             viewHolder.statusP.setText("Peralatan belum dikembalikan");
             viewHolder.statusP.setTextColor(Color.RED);
+            viewHolder.img.setImageResource(R.drawable.status_pinjaman);
         }
         else {
             viewHolder.statusP.setText("Selesai");
             viewHolder.statusP.setTextColor(Color.BLACK);
+            viewHolder.img.setImageResource(R.drawable.status_pinjaman);
         }
 
         return convertView;
@@ -66,12 +64,8 @@ public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
 
     private static class ViewHolder {
         TextView kodeRuangan;
-        TextView namaPeminjam;
-        TextView tglPeminjaman;
+        TextView perihal;
         TextView statusP;
-        ImageView gambar;
+        ImageView img;
     }
 }
-
-
-

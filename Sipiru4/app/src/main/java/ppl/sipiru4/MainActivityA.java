@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -18,9 +19,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
+import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.model.NavDrawerItem;
 
@@ -32,6 +32,8 @@ public class MainActivityA extends FragmentActivity {
     private CharSequence mTitle; // used to store app title
     final Context context = this;
     Intent i;
+    Bundle b;
+    int navPosition;
     private String[] menuAdmin; // slide menu items
     //    SharedPreferences settings;
 
@@ -40,6 +42,28 @@ public class MainActivityA extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
+
+        User user;
+        SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
+
+        // mendapatkan nilai-nilai yang dioper
+        b = getIntent().getExtras();
+        if (b!=null){
+            user = b.getParcelable("user");
+            navPosition = b.getInt("navPosition");
+            Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
+
+            // simpan username, nama dan role ke SharedPreferences
+            // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
+            // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
+            SharedPreferences.Editor edit = setting.edit();
+            edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
+            edit.putString(LoginActivity.KEY_NAMA, user.getNama());
+            edit.putString(LoginActivity.KEY_ROLE, user.getRole());
+            edit.apply();
+        }
+        Log.e("mainAct A ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
+                +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
         // load slide menu items
         menuAdmin = getResources().getStringArray(R.array.nav_drawer_items_admin);
@@ -53,17 +77,16 @@ public class MainActivityA extends FragmentActivity {
         ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<>();
 
             // adding nav drawer items to array
-            // Buat Tabel Baru
+            // Buat Ruangan Baru
         navDrawerItems.add(new NavDrawerItem(menuAdmin[0], navMenuIcons.getResourceId(0, -1)));
-            // Update Tabel
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
-            // Delete Tabel
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
+//            // Update Ruangan
+//        navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
+//            // Delete Ruangan
+//        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
             // Update Role
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[3], navMenuIcons.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
             // Logout
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[4], navMenuIcons.getResourceId(4, -1)));
-
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
 
 
         // Recycle the typed array
@@ -98,10 +121,7 @@ public class MainActivityA extends FragmentActivity {
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        if (savedInstanceState == null) {
-            // on first time display view for first nav item
-            displayView(0);
-        }
+        displayView(navPosition);
     }
 
     /**
@@ -155,22 +175,22 @@ public class MainActivityA extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new CreateTabel();
+                fragment = new TambahRuangan();
                 Toast.makeText(this,"create tabel", Toast.LENGTH_SHORT).show();
                 break;
+//            case 1:
+//                fragment = new UpdateRuangan();
+//                Toast.makeText(this,"update tabel", Toast.LENGTH_SHORT).show();
+//                break;
+//            case 2:
+//                fragment = new HapusRuangan();
+//                Toast.makeText(this,"delete tabel", Toast.LENGTH_SHORT).show();
+//                break;
             case 1:
-                fragment = new UpdateTabel();
-                Toast.makeText(this,"update tabel", Toast.LENGTH_SHORT).show();
-                break;
-            case 2:
-                fragment = new DeleteTabel();
-                Toast.makeText(this,"delete tabel", Toast.LENGTH_SHORT).show();
-                break;
-            case 3:
                 fragment = new UpdateRole();
                 Toast.makeText(this,"update role", Toast.LENGTH_SHORT).show();
                 break;
-            case 4:
+            case 2:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 // set title
                 alertDialogBuilder.setTitle("Apakah anda yakin untuk keluar dari SIPIRU ?");
@@ -178,7 +198,6 @@ public class MainActivityA extends FragmentActivity {
                 // set dialog message
                 alertDialogBuilder
                         .setMessage("Tekan Ya untuk keluar!")
-                        .setCancelable(false)
                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, close

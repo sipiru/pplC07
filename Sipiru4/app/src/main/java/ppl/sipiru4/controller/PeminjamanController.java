@@ -1,16 +1,6 @@
 package ppl.sipiru4.controller;
 
-import ppl.sipiru4.Constants;
 import ppl.sipiru4.Entity.DaftarPeminjaman;
-import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.Entity.User;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.GregorianCalendar;
 
 /**
  * Created by User on 11/04/2015.

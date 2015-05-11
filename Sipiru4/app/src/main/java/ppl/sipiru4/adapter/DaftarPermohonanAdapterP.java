@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import ppl.sipiru4.Entity.Peminjaman;
@@ -26,11 +25,9 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan_p, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.gambar = (ImageView) convertView.findViewById(R.id.gambar);
-            viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.kodeRuang);
-            viewHolder.namaPeminjam = (TextView) convertView.findViewById(R.id.namaPeminjam);
+            viewHolder.ruangan = (TextView) convertView.findViewById(R.id.nama);
+            viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
             viewHolder.status = (TextView) convertView.findViewById(R.id.status);
-            viewHolder.tglPeminjaman = (TextView) convertView.findViewById(R.id.tglPeminjaman);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -39,19 +36,16 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-
-        viewHolder.gambar.setImageDrawable(item.getGambar());
-        viewHolder.kodeRuangan.setText(item.getKodeRuangan());
-        viewHolder.namaPeminjam.setText(item.getNamaP());
-        viewHolder.tglPeminjaman.setText(item.getMulai() + "-" + item.getSelesai());
-        if (item.getStatus().equalsIgnoreCase("0")) {
-            viewHolder.status.setText("MR");
+        viewHolder.ruangan.setText(item.getKodeRuangan());
+        viewHolder.perihal.setText(item.getPerihal());
+        if (item.getStatus()==0) {
+            viewHolder.status.setText("menunggu manajer ruangan");
         }
-        else if (item.getStatus().equalsIgnoreCase("1")) {
-            viewHolder.status.setText("MK");
+        else if (item.getStatus()==1) {
+            viewHolder.status.setText("menunggu manajer kemahasiswaan");
         }
         else {
-            viewHolder.status.setText("ITF");
+            viewHolder.status.setText("menunggu ITF atau Fasum");
         }
 
         return convertView;
@@ -64,10 +58,8 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
      */
 
     private static class ViewHolder {
-        TextView kodeRuangan;
-        TextView namaPeminjam;
-        TextView tglPeminjaman;
+        TextView ruangan;
+        TextView perihal;
         TextView status;
-        ImageView gambar;
     }
 }

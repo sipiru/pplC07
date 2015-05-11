@@ -181,53 +181,20 @@ public class MainActivityFI extends FragmentActivity {
             case 2:
                 fragment = new DaftarPeminjamanFI();
                 break;
-//            case 2:
-//                fragment = new DaftarPesanFI();
-//                break; // ga jadi pake ini
             case 3:
-                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                // passing array index
-                i.putExtra("id", "peminjam");
-                startActivity(i);
+                fragment = new CariRuanganRuang();
                 break;
             case 4:
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
-                // set title
-                alertDialogBuilder.setTitle("Apakah anda yakin untuk keluar dari SIPIRU ?");
-
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage("Tekan Ya untuk keluar!")
-                        .setCancelable(false)
-                        .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, close
-                                // current activity
-                                MainActivityFI.this.finish();
-                            }
-                        })
-                        .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
-                                dialog.cancel();
-                            }
-                        });
-
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
+                fragment = new KirimPesan();
+                break;
+            case 5:
+                logout();
 
             default:
                 break;
         }
 
         if (fragment != null) {
-
             //FragmentManager fragmentManager = getFragmentManager();
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
@@ -244,6 +211,47 @@ public class MainActivityFI extends FragmentActivity {
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");
         }
+    }
+
+    private void logout() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        // set title
+        alertDialogBuilder.setTitle("Apakah anda yakin untuk logout?");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Tekan Ya untuk logout")
+                .setCancelable(false)
+                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke
+                        // halaman Login dan mengakhiri semua proses yang ada di stack
+                        SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
+                        Log.e("sebelum logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
+                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+
+                        SharedPreferences.Editor edit = setting.edit();
+                        edit.clear();
+                        edit.apply();
+
+                        Log.e("setelah logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
+                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(i);
+
+                        finish();
+                    }
+                })
+                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // memunculkan alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     @Override
@@ -271,4 +279,8 @@ public class MainActivityFI extends FragmentActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    public void onBackPressed() {
+        logout();
+    }
 }

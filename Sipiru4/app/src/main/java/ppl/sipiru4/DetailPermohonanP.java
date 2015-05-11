@@ -2,6 +2,7 @@ package ppl.sipiru4;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
@@ -23,13 +25,10 @@ public class DetailPermohonanP extends Activity {
     Bundle b;
     User user;
 
-//    public DetailPermohonanP(Peminjaman peminjaman) {
-//        this.peminjaman = peminjaman;
-//    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_permohonan_p);
+        Log.e("Detail Permohonan P", "create");
 
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
         user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
@@ -44,7 +43,7 @@ public class DetailPermohonanP extends Activity {
         TextView ruang = (TextView)findViewById(R.id.ruang);
         ruang.setText(peminjaman.getKodeRuangan());
 
-        TextView nama = (TextView)findViewById(R.id.id);
+        TextView nama = (TextView)findViewById(R.id.nama);
         nama.setText(peminjaman.getNamaP());
 
         TextView username = (TextView)findViewById(R.id.username);
@@ -81,17 +80,7 @@ public class DetailPermohonanP extends Activity {
                         .setMessage("Tekan Ya untuk membatalkan permohonan")
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/" + peminjaman.getId());
-                                if (notif.trim().equals("\"sukses\"")) {
-                                    Toast.makeText(getApplicationContext(), "Permohonan berhasil dibatalkan", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Error. Permohonan sudah tidak ada", Toast.LENGTH_SHORT).show();
-                                }
-                                Intent i = new Intent(getApplicationContext(),MainActivityP.class);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                i.putExtra("user",user);
-                                i.putExtra("navPosition",2);
-                                startActivity(i);
+                                new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/" + peminjaman.getId());
                             }
                         })
                         .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -113,6 +102,71 @@ public class DetailPermohonanP extends Activity {
     public void onBackPressed() {
         finish();
     }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class TaskHelper extends android.os.AsyncTask<String, String, String> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(context);
+            pDialog.setMessage("Sedang diproses...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+            try {
+                return JSONParser.getNotifFromURL(args[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String data) {
+            if (data==null) {
+                pDialog.dismiss();
+                Toast.makeText(context,"gagal menghubungkan ke server. coba lagi.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (data.trim().equals("\"sukses\"")) {
+                Toast.makeText(getApplicationContext(), "Permohonan berhasil dibatalkan", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Error. Permohonan sudah tidak ada", Toast.LENGTH_SHORT).show();
+            }
+            Intent i = new Intent(getApplicationContext(),MainActivityP.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("user",user);
+            i.putExtra("navPosition",2);
+            startActivity(i);
+            pDialog.dismiss();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("Detail Permohonan P", "resume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("Detail Permohonan P","stop");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e("Detail Permohonan P", "start");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("Detail Permohonan P", "pause");
+    }
 }
-
-

@@ -12,10 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-/**
- * Created by Gina on 4/24/2015.
- */
-public class DeleteTabel extends Fragment {
+public class HapusRuangan extends Fragment {
 
     Button delete;
 

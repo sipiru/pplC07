@@ -20,7 +20,7 @@ public class DetailPeminjamanP extends Activity {
         TextView ruang = (TextView)findViewById(R.id.ruang);
         ruang.setText(peminjaman.getKodeRuangan());
 
-        TextView nama = (TextView)findViewById(R.id.id);
+        TextView nama = (TextView)findViewById(R.id.nama);
         nama.setText(peminjaman.getNamaP());
 
         TextView username = (TextView)findViewById(R.id.username);
@@ -40,7 +40,6 @@ public class DetailPeminjamanP extends Activity {
 
         TextView peralatan = (TextView)findViewById(R.id.peralatan);
         peralatan.setText(peminjaman.getPeralatan());
-
     }
 
     @Override

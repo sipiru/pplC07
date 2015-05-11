@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="waktu awal"
-        android:id="@+id/tekRole"
+        android:id="@+id/textView1"
         android:textColor="#ff000000"
         android:textSize="16dp"
         android:layout_marginTop="4dp"
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="waktu akhir"
-        android:id="@+id/tekID"
+        android:id="@+id/textView2"
         android:textColor="#ff000000"
         android:textSize="16dp"
         android:layout_marginRight="20dp"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/tekRole"
+        android:layout_below="@+id/textView1"
         android:layout_marginTop="6dp"
         android:background="#ff008688"/>
 

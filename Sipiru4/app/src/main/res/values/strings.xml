@@ -53,9 +53,7 @@
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_admin">
-        <item >Buat Tabel Baru</item>
-        <item >Update Tabel</item>
-        <item >Hapus Tabel</item>
+        <item >Mengelola Ruangan</item>
         <item >Update Role</item>
         <item >Logout</item>
     </string-array>
@@ -89,8 +87,6 @@
         <item>@drawable/logout2</item>
     </array>
     <array name="nav_drawer_icons_admin">
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/logout2</item>
