@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import java.util.ArrayList;
-
 import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.model.NavDrawerItem;
@@ -62,7 +61,6 @@ public class MainActivityMR extends FragmentActivity {
             edit.putString(LoginActivity.KEY_ROLE, user.getRole());
             edit.apply();
         }
-
         Log.e("mainAct MR ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
@@ -70,12 +68,13 @@ public class MainActivityMR extends FragmentActivity {
         TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons_mgr);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
+
         ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<>();
 
             // adding nav drawer items to array
-            // Daftar Permohonan
+            // Daftar Pending
             navDrawerItems.add(new NavDrawerItem(menuMR[0], navMenuIcons.getResourceId(0, -1)));
-            // Daftar Peminjaman
+            // Daftar History
             navDrawerItems.add(new NavDrawerItem(menuMR[1], navMenuIcons.getResourceId(1, -1)));
             // Lihat Jadwal Ruangan
             navDrawerItems.add(new NavDrawerItem(menuMR[2], navMenuIcons.getResourceId(2, -1)));
@@ -180,8 +179,7 @@ public class MainActivityMR extends FragmentActivity {
                 fragment = new CariRuanganRuang();
                 break;
             case 3:
-                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                startActivity(i);
+                fragment = new KirimPesan();
                 break;
             case 4:
                 logout();
@@ -213,7 +211,6 @@ public class MainActivityMR extends FragmentActivity {
         // set dialog message
         alertDialogBuilder
                 .setMessage("Tekan Ya untuk logout")
-                .setCancelable(false)
                 .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         // pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke

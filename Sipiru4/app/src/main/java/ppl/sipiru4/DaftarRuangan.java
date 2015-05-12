@@ -25,10 +25,6 @@ public class DaftarRuangan extends Activity {
     public DaftarRuangan(){
     }
 
-//    public DaftarRuangan(JSONArray input) {
-//        jArray = input;
-//    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_daftar_ruangan);
@@ -74,20 +70,12 @@ public class DaftarRuangan extends Activity {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getApplicationContext(), DetailRuangan.class);
-                    // passing array index
+                    // mengoper ke kelas yang akan dipanggil
                     i.putExtra("ruangan", mItems.get(position));
                     i.putExtra("waktuAwal", waktuAwal);
                     i.putExtra("waktuAkhir", waktuAkhir);
                     startActivity(i);
-
-//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.frame_container, new DetailRuangan(mItems.get(position)));
-//                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
                 }
             });
         }

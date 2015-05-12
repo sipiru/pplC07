@@ -3,9 +3,10 @@ package ppl.sipiru4;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.os.StrictMode;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -16,11 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import org.json.JSONArray;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,15 +29,11 @@ import java.util.Date;
 import ppl.sipiru4.Entity.JSONParser;
 
 public class CariRuanganWaktu extends Fragment {
-    Button btnCari;
-    Button ambilTglMulai;
-    Button ambilTglSelesai;
-    Button ambilJamMulai;
-    Button ambilJamSelesai;
-    static EditText tglMulai;
-    static EditText tglSelesai;
-    static EditText jamMulai;
-    static EditText jamSelesai;
+    ImageButton btnCari;
+    static Button tglMulai;
+    static Button tglSelesai;
+    static Button jamMulai;
+    static Button jamSelesai;
     boolean tglMulaiClicked;
     boolean tglSelesaiClicked;
     boolean jamMulaiClicked;
@@ -48,16 +44,8 @@ public class CariRuanganWaktu extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_waktu_ui, container, false);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        tglMulai = (EditText)rootView.findViewById(R.id.TglMulai);
-        tglSelesai = (EditText)rootView.findViewById(R.id.TglSelesai);
-        jamMulai = (EditText)rootView.findViewById(R.id.mulai);
-        jamSelesai = (EditText)rootView.findViewById(R.id.selesai);
-        ambilTglMulai = (Button)rootView.findViewById(R.id.btnTglMulai);
-        ambilTglMulai.setOnClickListener(new View.OnClickListener() {
+        tglMulai = (Button)rootView.findViewById(R.id.btnTglMulai);
+        tglMulai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectTglMulai();
@@ -66,8 +54,8 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
 
-        ambilTglSelesai = (Button)rootView.findViewById(R.id.btnTglSelesai);
-        ambilTglSelesai.setOnClickListener(new View.OnClickListener() {
+        tglSelesai = (Button)rootView.findViewById(R.id.btnTglSelesai);
+        tglSelesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectTglSelesai();
@@ -76,8 +64,8 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
 
-        ambilJamMulai = (Button)rootView.findViewById(R.id.btnJamMulai);
-        ambilJamMulai.setOnClickListener(new View.OnClickListener() {
+        jamMulai = (Button)rootView.findViewById(R.id.btnJamMulai);
+        jamMulai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectJamMulai();
@@ -86,8 +74,8 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
 
-        ambilJamSelesai = (Button)rootView.findViewById(R.id.btnJamSelesai);
-        ambilJamSelesai.setOnClickListener(new View.OnClickListener() {
+        jamSelesai = (Button)rootView.findViewById(R.id.btnJamSelesai);
+        jamSelesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 DialogFragment newFragment = new SelectJamSelesai();
@@ -96,7 +84,7 @@ public class CariRuanganWaktu extends Fragment {
             }
         });
 
-        btnCari = (Button) rootView.findViewById(R.id.buttonCari);
+        btnCari = (ImageButton) rootView.findViewById(R.id.buttonCari);
         btnCari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,21 +100,8 @@ public class CariRuanganWaktu extends Fragment {
 
                         // pengecekan validasi input tanggal
                         if (dateAkhir.after(dateAwal) && dateAwal.after(now)) {
-                            JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
-                                    +tglMulai.getText()+"%20"+jamMulai.getText()+"&"+tglSelesai.getText()+"%20"+jamSelesai.getText());
-
-//                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan(jArray));
-//                            Toast.makeText(getActivity(),"daftar ruangan", Toast.LENGTH_SHORT).show();
-//                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                            fragmentTransaction.addToBackStack(null);
-//                            fragmentTransaction.commit();
-                            Intent i = new Intent(getActivity(), DaftarRuangan.class);
-                            //mengoper JSONArray ruangan ke DaftarRuangan.class
-                            i.putExtra("daftarRuangan", jArray.toString());
-                            i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
-                            i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
-                            startActivity(i);
+                            new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
+                                    + tglMulai.getText() + "%20" + jamMulai.getText() + "&" + tglSelesai.getText() + "%20" + jamSelesai.getText());
                         }
                         else {
                             Toast.makeText(getActivity(), "Pengisian tanggal tidak valid", Toast.LENGTH_SHORT).show();
@@ -140,7 +115,6 @@ public class CariRuanganWaktu extends Fragment {
                 }
             }
         });
-
         return rootView;
     }
 
@@ -155,28 +129,6 @@ public class CariRuanganWaktu extends Fragment {
     {
         super.onAttach(activity);
     }
-
-//    @Override
-//    public void onStart()
-//    {
-//        super.onStart();
-//    }
-//
-//    @Override
-//    public void onResume()
-//    {
-//        super.onResume();
-//    }
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        Log.d("MyTag", "TabFragment0--onDestroyView");
-//    }
-//    @Override
-//    public void onViewStateRestored(Bundle savedInstanceState) {
-//        super.onViewStateRestored(savedInstanceState);
-//        Log.d("MyTag", "TabFragment0--onViewStateRestored");
-//    }
 
     public static class SelectTglMulai extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @NonNull
@@ -235,7 +187,7 @@ public class CariRuanganWaktu extends Fragment {
             final Calendar time = Calendar.getInstance();
             int hour = time.get(Calendar.HOUR_OF_DAY);
             int minutes = time.get(Calendar.MINUTE);
-            return new TimePickerDialog(getActivity(),this,hour, (minutes/10)*10, DateFormat.is24HourFormat(getActivity()));
+            return new TimePickerDialog(getActivity(),this,hour, ((minutes/10)+1)*10, DateFormat.is24HourFormat(getActivity()));
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
@@ -254,7 +206,7 @@ public class CariRuanganWaktu extends Fragment {
             final Calendar time = Calendar.getInstance();
             int hour = time.get(Calendar.HOUR_OF_DAY);
             int minutes = time.get(Calendar.MINUTE);
-            return new TimePickerDialog(getActivity(),this,hour, (minutes/10)*10, DateFormat.is24HourFormat(getActivity()));
+            return new TimePickerDialog(getActivity(),this,hour, ((minutes/10)+1)*10, DateFormat.is24HourFormat(getActivity()));
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
@@ -263,6 +215,45 @@ public class CariRuanganWaktu extends Fragment {
             if (hour<10) {hourOutput="0"+hour;}
             if (minutes<10) {minutesOutput="0"+minutes;}
             jamSelesai.setText(hourOutput + ":" + minutesOutput + ":00");
+        }
+    }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class TaskHelper extends AsyncTask<String, String, JSONArray> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Mencari ruangan...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected JSONArray doInBackground(String... args) {
+            try {
+                return JSONParser.getJSONfromURL(args[0]);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray hasil) {
+            if (hasil == null) {
+                pDialog.dismiss();
+                Toast.makeText(getActivity(),"gagal terhubung ke server. coba lagi.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent i = new Intent(getActivity(), DaftarRuangan.class);
+            //mengoper JSONArray ruangan ke DaftarRuangan.class
+            i.putExtra("daftarRuangan", hasil.toString());
+            i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
+            i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
+            startActivity(i);
+            pDialog.dismiss();
         }
     }
 }

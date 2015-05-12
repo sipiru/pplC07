@@ -1,67 +1,51 @@
 package ppl.sipiru4;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
+import ppl.sipiru4.Entity.Peminjaman;
 
 public class DetailPeminjamanFI extends Activity {
-    final Context context = this;
+    Peminjaman peminjaman;
 
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_peminjaman_fi);
-        //TODO : menampilkan detail peminjaman yang sudah disetujui oleh fasumITF
-        TextView ruang = (TextView) findViewById(R.id.ruang);
-        TextView nama = (TextView) findViewById(R.id.nama);
-        TextView npm = (TextView) findViewById(R.id.npm);
-        TextView prihal = (TextView) findViewById(R.id.prihal);
-        TextView tgl = (TextView) findViewById(R.id.tgl);
-        TextView jam = (TextView) findViewById(R.id.jam);
-        TextView permintaanLain = (TextView) findViewById(R.id.permintaanLain);
-        Button selesai = (Button) findViewById(R.id.selesai);
 
-            selesai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        Bundle b = getIntent().getExtras();
+        peminjaman = b.getParcelable("peminjaman");
+        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
-                // set title
-                alertDialogBuilder.setTitle("Apakah semua peralatan sudah dikembalikan?");
+        TextView ruang = (TextView)findViewById(R.id.ruang);
+        ruang.setText(peminjaman.getKodeRuangan());
 
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage("Tekan Ya untuk konfirmasi")
-                        .setCancelable(false)
-                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // if this button is clicked, close
-                                // current activity
-                                //TODO : hapus semua data peminjaman ini disemua daftar peminjaman Role
+        TextView nama = (TextView)findViewById(R.id.nama);
+        nama.setText(peminjaman.getNamaP());
 
-                                Toast.makeText(getApplicationContext(), "Peminjaman sudah selesai",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
-                                dialog.cancel();
-                            }
-                        });
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-            }
-        });
+        TextView username = (TextView)findViewById(R.id.username);
+        username.setText(peminjaman.getUsernameP());
+
+        TextView prihal = (TextView)findViewById(R.id.prihal);
+        prihal.setText(peminjaman.getPerihal());
+
+        TextView kegiatan = (TextView)findViewById(R.id.kegiatan);
+        kegiatan.setText(peminjaman.getKegiatan());
+
+        TextView mulai = (TextView)findViewById(R.id.waktuMulai);
+        mulai.setText(peminjaman.getMulai());
+
+        TextView selesai = (TextView)findViewById(R.id.waktuSelesai);
+        selesai.setText(peminjaman.getSelesai());
+
+        TextView peralatan = (TextView)findViewById(R.id.peralatan);
+        peralatan.setText(peminjaman.getPeralatan());
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
 

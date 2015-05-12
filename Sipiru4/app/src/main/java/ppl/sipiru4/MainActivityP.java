@@ -42,6 +42,7 @@ public class MainActivityP extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
+        Log.e("Main activity P create", "create");
 
         // mendapatkan nilai-nilai yang dioper dari LoginActivity.class
         User user;
@@ -54,6 +55,9 @@ public class MainActivityP extends FragmentActivity {
             navPosition = b.getInt("navPosition");
             Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
 
+            // simpan username, nama dan role ke SharedPreferences
+            // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
+            // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
             SharedPreferences.Editor edit = setting.edit();
             edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
             edit.putString(LoginActivity.KEY_NAMA, user.getNama());
@@ -62,12 +66,6 @@ public class MainActivityP extends FragmentActivity {
             edit.putString(LoginActivity.KEY_KODE_IDENTITAS, user.getKodeIdentitas());
             edit.apply();
         }
-
-        // simpan username, nama dan role ke SharedPreferences
-        // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
-        // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
-
-
         Log.e("mainAct P ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
@@ -87,9 +85,9 @@ public class MainActivityP extends FragmentActivity {
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[0], navMenuIcons.getResourceId(0, -1)));
             // Lihat Jadwal Ruangan
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[1], navMenuIcons.getResourceId(1, -1)));
-            // Daftar Permohonan
+            // Daftar Pending
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[2], navMenuIcons.getResourceId(2, -1)));
-            // Daftar Peminjaman
+            // Daftar History
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
 //            // Daftar Pesan
 //            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
@@ -203,8 +201,7 @@ public class MainActivityP extends FragmentActivity {
                 fragment.setArguments(b);
                 break;
             case 4:
-                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                startActivity(i);
+                fragment = new KirimPesan();
                 break;
             case 5:
                 logout();
@@ -237,7 +234,6 @@ public class MainActivityP extends FragmentActivity {
         // set dialog message
         alertDialogBuilder
                 .setMessage("Tekan Ya untuk logout")
-                .setCancelable(false)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
@@ -300,5 +296,35 @@ public class MainActivityP extends FragmentActivity {
     public void onBackPressed() {
         // saat user menekan tombol back, lakukan konfirmasi logout
         logout();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e("Main activity P start", "start");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("Main Activity P restart", "restart");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("Main Activity P pause", "pause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("Main Activity P resume", "resume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("Main Activity P stop", "stop");
     }
 }

@@ -4,7 +4,7 @@ import ppl.sipiru4.Entity.User;
 
 public class PenggunaController {
 
-    private static User currentPengguna = null;
+    private static User currentPengguna;
 
     public PenggunaController() {}
 

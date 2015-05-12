@@ -40,7 +40,7 @@
     <string-array name="nav_drawer_items_mk">
         <item >Daftar Pending</item>
         <item >Daftar Disetujui</item>
-        <!--<item >Daftar Pesan</item>-->
+        <item >Lihat Jadwal Ruangan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
@@ -48,14 +48,12 @@
         <item >Daftar Pending</item>
         <item >Daftar Pengembalian Alat</item>
         <item >Daftar History</item>
-        <!--<item >Daftar Pesan</item>-->
+        <item >Lihat Jadwal Ruangan</item>
         <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_admin">
-        <item >Buat Tabel Baru</item>
-        <item >Update Tabel</item>
-        <item >Hapus Tabel</item>
+        <item >Mengelola Ruangan</item>
         <item >Update Role</item>
         <item >Logout</item>
     </string-array>
@@ -77,8 +75,6 @@
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_cariruangan</item>
-        <!--<item>@drawable/update_status</item>-->
-        <!--<item>@drawable/daftar_pesan</item>-->
         <item>@drawable/tulis_pesan</item>
         <item>@drawable/logout2</item>
     </array>
@@ -86,14 +82,11 @@
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
-        <!--<item>@drawable/update_status</item>-->
-        <!--<item>@drawable/daftar_pesan</item>-->
+        <item>@drawable/ic_cariruangan</item>
         <item>@drawable/tulis_pesan</item>
         <item>@drawable/logout2</item>
     </array>
     <array name="nav_drawer_icons_admin">
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <item>@drawable/logout2</item>
@@ -106,7 +99,6 @@
     </string-array>
 
     <string-array name="role">
-        <item>Peminjam</item>
         <item>Manajer Ruangan</item>
         <item>Manajer Kemahasiswaan</item>
         <item>Manajer Umum</item>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import ppl.sipiru4.Entity.Peminjaman;
@@ -27,8 +28,10 @@ public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_peminjaman_p, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.label);
-            viewHolder.statusP = (TextView) convertView.findViewById(R.id.statusClosed);
+            viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.nama);
+            viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
+            viewHolder.statusP = (TextView) convertView.findViewById(R.id.status);
+            viewHolder.img = (ImageView) convertView.findViewById(R.id.image);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -38,12 +41,16 @@ public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
         Peminjaman item = getItem(position);
 
         viewHolder.kodeRuangan.setText(item.getKodeRuangan());
-        if (!item.getStatusPeminjam()) {
-            viewHolder.statusP.setText("peralatan belum dikembalikan");
+        viewHolder.perihal.setText(item.getPerihal());
+        if (item.getStatusPeminjam()) {
+            viewHolder.statusP.setText("Peralatan belum dikembalikan");
             viewHolder.statusP.setTextColor(Color.RED);
+            viewHolder.img.setImageResource(R.drawable.status_pinjaman);
         }
         else {
-            viewHolder.statusP.setText("selesai");
+            viewHolder.statusP.setText("Selesai");
+            viewHolder.statusP.setTextColor(Color.BLACK);
+            viewHolder.img.setImageResource(R.drawable.status_pinjaman);
         }
 
         return convertView;
@@ -57,8 +64,8 @@ public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
 
     private static class ViewHolder {
         TextView kodeRuangan;
+        TextView perihal;
         TextView statusP;
+        ImageView img;
     }
-
-
 }

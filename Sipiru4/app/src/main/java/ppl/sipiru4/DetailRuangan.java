@@ -16,12 +16,6 @@ public class DetailRuangan extends Activity {
     Context context;
     Ruangan ruangan;
 
-//    public DetailRuangan(){}
-//
-//    public DetailRuangan(Ruangan ruangan) {
-//        this.ruangan = ruangan;
-//    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_ruangan);
@@ -46,23 +40,6 @@ public class DetailRuangan extends Activity {
 
             TextView deskripsi = (TextView) findViewById(R.id.deskripsi);
             deskripsi.setText(ruangan.getDeskripsi());
-
-//        lv = (ListView) findViewById(R.id.listJam);
-//        final ArrayList<JamTersediaItem> mItems = new ArrayList<>();
-//
-//        JSONArray jArray = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/"+kodeRuangan.getText());
-//        for (int i = 0 ; i < jArray.length(); i++) {
-//            JSONObject jJadwal;
-//            try {
-//                jJadwal = jArray.getJSONObject(i);
-//                mItems.add(new JamTersediaItem(jJadwal.getString("waktu_awal_pinjam"),jJadwal.getString("waktu_akhir_pinjam")));
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        adapter = new JamTersediaAdapter(getApplicationContext(), mItems);
-//        lv.setAdapter(adapter);
 
             Button pinjam = (Button) findViewById(R.id.buttonPinjam);
             pinjam.setOnClickListener(new View.OnClickListener() {

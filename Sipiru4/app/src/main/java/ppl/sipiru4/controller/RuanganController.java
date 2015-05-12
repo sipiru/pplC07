@@ -1,13 +1,7 @@
 package ppl.sipiru4.controller;
 
-import ppl.sipiru4.Constants;
 import ppl.sipiru4.Entity.DaftarRuangan;
 import ppl.sipiru4.Entity.Ruangan;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 
 public class RuanganController {
 

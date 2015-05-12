@@ -25,7 +25,8 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
             convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan_p, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label);
+            viewHolder.ruangan = (TextView) convertView.findViewById(R.id.nama);
+            viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
             viewHolder.status = (TextView) convertView.findViewById(R.id.status);
             convertView.setTag(viewHolder);
         } else {
@@ -35,7 +36,8 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-        viewHolder.tvTitle.setText(item.getKodeRuangan());
+        viewHolder.ruangan.setText(item.getKodeRuangan());
+        viewHolder.perihal.setText(item.getPerihal());
         if (item.getStatus()==0) {
             viewHolder.status.setText("menunggu manajer ruangan");
         }
@@ -56,7 +58,8 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
      */
 
     private static class ViewHolder {
-        TextView tvTitle;
+        TextView ruangan;
+        TextView perihal;
         TextView status;
     }
 }

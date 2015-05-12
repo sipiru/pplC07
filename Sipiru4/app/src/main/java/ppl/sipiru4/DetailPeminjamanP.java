@@ -9,10 +9,6 @@ import ppl.sipiru4.Entity.Peminjaman;
 public class DetailPeminjamanP extends Activity {
     Peminjaman peminjaman;
 
-//    public DetailPeminjamanP(Peminjaman peminjaman) {
-//        this.peminjaman = peminjaman;
-//    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_peminjaman_p);
@@ -42,9 +38,8 @@ public class DetailPeminjamanP extends Activity {
         TextView selesai = (TextView)findViewById(R.id.waktuSelesai);
         selesai.setText(peminjaman.getSelesai());
 
-        TextView peralatan = (TextView)findViewById(R.id.permintaanlain);
+        TextView peralatan = (TextView)findViewById(R.id.peralatan);
         peralatan.setText(peminjaman.getPeralatan());
-
     }
 
     @Override

@@ -1,7 +1,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView01"
+    android:gravity="center_horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="#B1D9E7">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -20,18 +23,30 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text=" Detail Ruangan"
+            android:id="@+id/header"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:textColor="#424242"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="#ff008688"
             android:text=" Nama"
             android:id="@+id/textView"
-            android:textSize="20dp" />
+            android:layout_below="@+id/header"
+            android:textSize="22dp"
+            android:layout_marginTop="30dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/namaRuangan"
             android:text="nama ruangan"
             android:textColor="#424242"
-            android:textSize="20dp"
+            android:textSize="22dp"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -42,19 +57,19 @@
             android:background="#ff008688"
             android:text=" Kode "
             android:id="@+id/textView1"
-            android:textSize="20dp"
+            android:textSize="22dp"
             android:layout_marginTop="4dp"
             android:layout_below="@+id/namaRuangan"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/kodeRuangan"
             android:text="kode ruangan"
             android:textColor="#424242"
-            android:textSize="20dp"
+            android:textSize="22dp"
             android:layout_below="@+id/textView1"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -65,7 +80,7 @@
             android:background="#ff008688"
             android:text=" Kapasitas "
             android:id="@+id/textView2"
-            android:textSize="20dp"
+            android:textSize="22dp"
             android:layout_marginTop="4dp"
             android:layout_below="@+id/kodeRuangan"
             android:layout_alignParentLeft="true"
@@ -77,19 +92,19 @@
             android:background="#ff008688"
             android:text=" Deskripsi"
             android:id="@+id/textView3"
-            android:textSize="20dp"
+            android:textSize="22dp"
             android:layout_marginTop="4dp"
             android:layout_below="@+id/kapasitas"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/kapasitas"
             android:text="kapasitas"
             android:textColor="#424242"
-            android:textSize="20dp"
+            android:textSize="22dp"
             android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -100,7 +115,7 @@
             android:id="@+id/deskripsi"
             android:text="deskripsi"
             android:textColor="#424242"
-            android:textSize="20dp"
+            android:textSize="22dp"
             android:layout_below="@+id/textView3"
             android:layout_alignLeft="@+id/textView3"
             android:layout_alignStart="@+id/textView3" />
@@ -153,11 +168,11 @@
         <!--android:nestedScrollingEnabled="true"-->
         <!--android:background="#ff008688" />-->
         <Button
-            android:layout_height="40dp"
-            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_width="140dp"
             android:id="@+id/buttonPinjam"
             android:text="Pinjam"
-            android:textSize="22dp"
+            android:textSize="24dp"
             android:background="#ff008688"
             android:layout_below="@+id/deskripsi"
             android:layout_centerHorizontal="true"

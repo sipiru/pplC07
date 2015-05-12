@@ -1,11 +1,12 @@
 package ppl.sipiru4;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.IOException;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.User;
@@ -92,13 +94,8 @@ public class FormPeminjaman extends Activity {
                 @Override
                 public void onClick(View v)
                 {
-/*                android.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frame_container, new DaftarRuangan());
-                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();*/
                     String perihalValue = perihalString.get(perihal.getSelectedItemPosition())+"";
-                    Log.e("perihal", perihalValue);
+//                    Log.e("perihal", perihalValue);
                     String kegiatanValue = kegiatan.getText()+"";
 
                     if (kegiatanValue.trim().length()==0) {
@@ -106,7 +103,6 @@ public class FormPeminjaman extends Activity {
                     }
                     else {
                         int statusP;
-
                         if ((peralatan.getText()+"").trim().length()==0){
                             statusP = 0;
                             peralatan.setText("Tidak ada");
@@ -115,31 +111,20 @@ public class FormPeminjaman extends Activity {
                             statusP = 1;
                         }
 
-                        Log.e("username",username);
+//                        Log.e("username",username);
                         String namaP = nama.getText().toString().replaceAll(" ","%20");
-                        Log.e("nama", namaP);
+//                        Log.e("nama", namaP);
                         String waktuAwal = waktuMulai.getText().toString().replaceAll(" ","%20");
-                        Log.e("waktuAwal", waktuAwal);
+//                        Log.e("waktuAwal", waktuAwal);
                         String waktuAkhir = waktuSelesai.getText().toString().replaceAll(" ","%20");
-                        Log.e("waktuAkhir", waktuAkhir);
+//                        Log.e("waktuAkhir", waktuAkhir);
                         String alat = peralatan.getText().toString().replaceAll(" ","%20");
 
-                        String notif = JSONParser.getNotifFromURL("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
-                                + username+"&"+namaP+"&"+statusP+"&"+ruang.getText()+"&"
-                                +waktuAwal+"&"+waktuAkhir+"&"+perihalValue+"&"+kegiatanValue+"&"+alat+"&0/");
-//                    Toast.makeText(getApplicationContext(), notif + " length " + notif.length(), Toast.LENGTH_SHORT).show();
-//                    finish();
-                        if (notif.trim().equals("\"sukses\"")){
-                            Toast.makeText(getApplicationContext(), "Permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(getApplicationContext(),MainActivityP.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            i.putExtra("user",user);
-                            startActivity(i);
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), "Error. Peminjaman tidak dapat dilakukan",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                        new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
+                                + username + "&" + namaP + "&" + statusP + "&" + ruang.getText() + "&"
+                                + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanValue + "&" + alat + "&0/");
+
+
                     }
                 }
             });
@@ -156,5 +141,50 @@ public class FormPeminjaman extends Activity {
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class SubmitHelper extends AsyncTask<String, String, String> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(context);
+            pDialog.setMessage("Submit permohonan...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+            try {
+                return JSONParser.getNotifFromURL(args[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String data) {
+            if (data==null) {
+                pDialog.dismiss();
+                Toast.makeText(context,"gagal terhubung ke server. coba lagi",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (data.trim().equals("\"sukses\"")){
+                Toast.makeText(getApplicationContext(), "Permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(),MainActivityP.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.putExtra("user",user);
+                startActivity(i);
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Error. Peminjaman tidak dapat dilakukan",
+                        Toast.LENGTH_SHORT).show();
+            }
+            pDialog.dismiss();
+        }
     }
 }

@@ -18,9 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import java.util.ArrayList;
-
 import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.model.NavDrawerItem;
@@ -68,25 +66,23 @@ public class MainActivityK extends FragmentActivity {
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
         menuK = getResources().getStringArray(R.array.nav_drawer_items_mk);
-        TypedArray navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons_mgr);
-
+        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons_mgr);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
         ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<>();
 
             // adding nav drawer items to array
-            // Daftar Permohonan
+            // Daftar Pending
             navDrawerItems.add(new NavDrawerItem(menuK[0], navMenuIcons.getResourceId(0, -1)));
-            // Daftar Peminjaman
+            // Daftar History
             navDrawerItems.add(new NavDrawerItem(menuK[1], navMenuIcons.getResourceId(1, -1)));
-//            // Daftar Pesan
-//            navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -2)));
-            // PesanBaru
+            // Lihat Jadwal Ruangan
             navDrawerItems.add(new NavDrawerItem(menuK[2], navMenuIcons.getResourceId(2, -1)));
-            // Logout
+            // PesanBaru
             navDrawerItems.add(new NavDrawerItem(menuK[3], navMenuIcons.getResourceId(3, -1)));
+            // Logout
+            navDrawerItems.add(new NavDrawerItem(menuK[4], navMenuIcons.getResourceId(4, -1)));
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -94,8 +90,7 @@ public class MainActivityK extends FragmentActivity {
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(),
-                navDrawerItems);
+        NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
         mDrawerList.setAdapter(adapter);
 
         // enabling action bar app icon and behaving it as toggle button
@@ -128,8 +123,7 @@ public class MainActivityK extends FragmentActivity {
      * */
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             // display view for selected nav drawer item
             displayView(position);
         }
@@ -184,8 +178,7 @@ public class MainActivityK extends FragmentActivity {
                 fragment = new CariRuanganRuang();
                 break;
             case 3:
-                Intent i = new Intent(getApplicationContext(), KirimPesan.class);
-                startActivity(i);
+                fragment = new KirimPesan();
                 break;
             case 4:
                 logout();

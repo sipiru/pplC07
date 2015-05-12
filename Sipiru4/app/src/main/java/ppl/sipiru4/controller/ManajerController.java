@@ -1,10 +1,7 @@
 package ppl.sipiru4.controller;
 
-import ppl.sipiru4.Constants;
 import ppl.sipiru4.Entity.DaftarManajer;
 import ppl.sipiru4.Entity.Manajer;
-
-import java.io.IOException;
 
 
 public class ManajerController {
