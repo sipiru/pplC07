@@ -34,7 +34,7 @@ public class DetailPengembalianAlat extends Activity {
                 setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
                 setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
 
-        // mendapatkan nilai-nilai yang dioper dari DaftarPermohonanFI.class
+        // mendapatkan nilai-nilai yang dioper dari DaftarPendingFI.class
         b = getIntent().getExtras();
         if (b!=null){
             peminjaman = b.getParcelable("peminjaman");

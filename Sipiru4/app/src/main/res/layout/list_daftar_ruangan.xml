@@ -15,6 +15,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:background="#ff008688"
-                android:dividerHeight="3dp"
-                android:divider="#ff00b5b7"/>
+                android:dividerHeight="2dp"
+                android:divider="#ff97d6e1"/>
 </RelativeLayout>

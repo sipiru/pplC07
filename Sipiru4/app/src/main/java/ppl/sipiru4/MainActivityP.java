@@ -68,6 +68,9 @@ public class MainActivityP extends FragmentActivity {
         }
         Log.e("mainAct P ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+//
+//        Log.e("mainAct P 2",LoginActivity.setting.getString(LoginActivity.KEY_USERNAME,null)+" "
+//                +LoginActivity.setting.getString(LoginActivity.KEY_NAMA,null) + " " + LoginActivity.setting.getString(LoginActivity.KEY_ROLE,null));
 
         // load slide menu items
         menuPeminjam = getResources().getStringArray(R.array.nav_drawer_items_peminjam);
@@ -155,17 +158,18 @@ public class MainActivityP extends FragmentActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // toggle nav drawer on selecting action bar app icon/title
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        // Handle action bar actions click
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+//        // toggle nav drawer on selecting action bar app icon/title
+//        if (mDrawerToggle.onOptionsItemSelected(item)) {
+//            return true;
+//        }
+//        // Handle action bar actions click
+//        switch (item.getItemId()) {
+//            case R.id.action_settings:
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+        return true;
     }
 
     /* *
@@ -174,8 +178,6 @@ public class MainActivityP extends FragmentActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -193,11 +195,11 @@ public class MainActivityP extends FragmentActivity {
                 fragment = new CariRuanganRuang();
                 break;
             case 2:
-                fragment = new DaftarPermohonanP();
+                fragment = new DaftarPendingP();
                 fragment.setArguments(b);
                 break;
             case 3:
-                fragment = new DaftarPeminjamanP();
+                fragment = new DaftarHistoryP();
                 fragment.setArguments(b);
                 break;
             case 4:

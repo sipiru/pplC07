@@ -42,6 +42,7 @@ public class LoginActivity extends Activity{
         context = this;
 
         setting = getSharedPreferences(PREFS_NAME,0);
+        Log.e("user", setting.getString(KEY_USERNAME,null) + " " + setting.getString(KEY_ROLE,null));
 
         setupVariables();
     }
@@ -57,10 +58,15 @@ public class LoginActivity extends Activity{
                 ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                 if (networkInfo!=null && networkInfo.isConnected()) {
-                    try {
-                        authenticateLogin(v);
-                    } catch (IOException | JSONException e) {
-                        e.printStackTrace();
+                    if (uname.getText().toString().trim().length()==0 || pass.getText().toString().trim().length()==0) {
+                        Toast.makeText(context, "Mohon isi username dan password dengan benar", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        try {
+                            authenticateLogin(v);
+                        } catch (IOException | JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
                 else {
@@ -68,6 +74,8 @@ public class LoginActivity extends Activity{
                 }
             }
         });
+
+        Log.e("user2", setting.getString(KEY_USERNAME,null) + " " + setting.getString(KEY_ROLE,null));
     }
 
     public void authenticateLogin(View view) throws IOException, JSONException {
@@ -98,7 +106,7 @@ public class LoginActivity extends Activity{
             }
             if (hasil == null) {
                 pDialog.dismiss();
-                Toast.makeText(context,"gagal terhubung ke server. coba lagi",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context,"gagal terhubung ke server. coba lagi",Toast.LENGTH_SHORT).show();
                 return null;
             }
             try {
@@ -117,6 +125,7 @@ public class LoginActivity extends Activity{
                 Toast.makeText(context,"gagal terhubung ke server. coba lagi",Toast.LENGTH_SHORT).show();
                 return;
             }
+            Log.e("user3", setting.getString(KEY_USERNAME,null) + " " + setting.getString(KEY_ROLE,null));
             String username;
             String nama;
             String kodeOrg;

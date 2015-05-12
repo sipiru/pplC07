@@ -28,8 +28,8 @@ public class DaftarPengembalianAlatFI extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.list_permohonan, container, false);
-        lv = (ListView) rootView.findViewById(R.id.listPermohonan);
+        View rootView = inflater.inflate(R.layout.list, container, false);
+        lv = (ListView) rootView.findViewById(R.id.list);
 
         // mendapatkan data-data peminjaman dari webservice berbentuk JSON untuk manajer kemahasiswaan
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showNotReturn/");

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,7 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.adapter.JamTersediaAdapter;
 import ppl.sipiru4.model.JamTersediaItem;
@@ -25,91 +25,49 @@ import ppl.sipiru4.model.JamTersediaItem;
 public class CariRuanganRuang extends Fragment {
     ListView lView;
     JamTersediaAdapter adapterList;
+    ArrayAdapter<String> adapter;
+    String[] ruangan;
+    String[] kodeRuangan;
+    Spinner spinner;
+    ImageButton search;
+    int posisi;
 
     public CariRuanganRuang() {}
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
-        final Spinner spinner = (Spinner)rootView.findViewById(R.id.spinner);
-        final ArrayList<String> ruangan = new ArrayList<>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ruangan);
+//        ruangan = new ArrayList<>();
+//        kodeRuangan = new ArrayList<>();
+
         final TextView namaRuangan = (TextView) rootView.findViewById(R.id.namaRuangan);
         lView = (ListView)rootView.findViewById(R.id.listView);
+        spinner = (Spinner)rootView.findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        posisi = spinner.getSelectedItemPosition();
+                        namaRuangan.setText(ruangan[posisi]);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                }
+        );
+
+        search = (ImageButton) rootView.findViewById(R.id.search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // mengakses URL menggunakan AsyncTask class
+                new getJadwalHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/"
+                        + kodeRuangan[posisi]);
+            }
+        });
 
         // mengakses URL menggunakan AsyncTask class
-        JSONArray jArray = null;
-        try {
-            jArray = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ruangan/").get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        // memasukkan nama ruangan ke ArrayList Ruangan
-        assert jArray != null;
-        for (int i = 0; i < jArray.length(); i++) {
-            try {
-                ruangan.add(jArray.getJSONObject(i).getString("nama"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        spinner.setAdapter(adapter);
-
-        final JSONArray finalJArray = jArray;
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                final ArrayList<JamTersediaItem> waktuRuangan = new ArrayList<>();
-
-                int sid = spinner.getSelectedItemPosition();
-                namaRuangan.setText(ruangan.get(sid));
-
-//                JSONArray jArray2 = null;
-//                try {
-//                    jArray2 = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/" + finalJArray.getJSONObject(sid).getString("kode"));
-//                    Toast.makeText(getActivity(),"terpilih "+ finalJArray.getJSONObject(sid).getString("kode"),Toast.LENGTH_SHORT).show();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-
-                // mengakses URL menggunakan AsyncTask class
-                AsyncTask<String, String, JSONArray> hasil;
-                JSONArray jArray2 = null;
-                try {
-                    hasil = new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/"
-                            + finalJArray.getJSONObject(sid).getString("kode"));
-
-                    // memasukkan content URL ke dalam variable bertipe JArray
-                    try {
-                        jArray2 = hasil.get();
-                    } catch (InterruptedException | ExecutionException e) {
-                        e.printStackTrace();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                assert jArray2 != null;
-                for (int i = 0 ; i < jArray2.length(); i++) {
-                    JSONObject jJadwal;
-                    try {
-                        jJadwal = jArray2.getJSONObject(i);
-                        waktuRuangan.add(new JamTersediaItem(jJadwal.getString("waktu_awal_pinjam"),jJadwal.getString("waktu_akhir_pinjam")));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                adapterList = new JamTersediaAdapter(getActivity(),waktuRuangan);
-                lView.setAdapter(adapterList);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        }
-        );
-        lView.setAdapter(adapterList);
+        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ruangan/");
 
         return rootView;
     }
@@ -121,6 +79,55 @@ public class CariRuanganRuang extends Fragment {
 
     // kelas AsyncTask untuk mengakses URL
     private class TaskHelper extends AsyncTask<String, String, JSONArray> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Mendapatkan semua informasi ruangan...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected JSONArray doInBackground(String... args) {
+            try {
+                return JSONParser.getJSONfromURL(args[0]);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray hasil) {
+            if (hasil == null) {
+                pDialog.dismiss();
+                Toast.makeText(getActivity(),"gagal terhubung ke server. coba lagi.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int sizeRuangan = hasil.length();
+            ruangan = new String[sizeRuangan];
+            kodeRuangan = new String[sizeRuangan];
+            // memasukkan nama ruangan ke ArrayList Ruangan
+            for (int i = 0; i < sizeRuangan; i++) {
+                try {
+                    ruangan[i] = (hasil.getJSONObject(i).getString("nama"));
+                    kodeRuangan[i] = (hasil.getJSONObject(i).getString("kode"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(),"gagal terhubung ke server. coba lagi.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+            adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,ruangan);
+            spinner.setAdapter(adapter);
+            pDialog.dismiss();
+        }
+    }
+
+    // kelas AsyncTask untuk mengakses URL
+    private class getJadwalHelper extends AsyncTask<String, String, JSONArray> {
         private ProgressDialog pDialog;
         @Override
         protected void onPreExecute() {
@@ -148,6 +155,19 @@ public class CariRuanganRuang extends Fragment {
                 Toast.makeText(getActivity(),"gagal terhubung ke server. coba lagi.", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            final ArrayList<JamTersediaItem> waktuRuangan = new ArrayList<>();
+            for (int i = 0 ; i < hasil.length(); i++) {
+                JSONObject jJadwal;
+                try {
+                    jJadwal = hasil.getJSONObject(i);
+                    waktuRuangan.add(new JamTersediaItem(jJadwal.getString("waktu_awal_pinjam"),jJadwal.getString("waktu_akhir_pinjam")));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            adapterList = new JamTersediaAdapter(getActivity(),waktuRuangan);
+            lView.setAdapter(adapterList);
 
             pDialog.dismiss();
         }

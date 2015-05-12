@@ -63,33 +63,33 @@
     <!--bikin yang banyak untuk masing masing pengguna-->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_cariruangan</item>
-        <item>@drawable/ic_cariruangan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/detail</item>
+        <item>@drawable/ic_daftarpending</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <!--<item>@drawable/update_status</item>-->
         <!--<item>@drawable/daftar_pesan</item>-->
         <item>@drawable/tulis_pesan</item>
-        <item>@drawable/logout2</item>
+        <item>@drawable/logout</item>
     </array>
     <array name="nav_drawer_icons_mgr">
+        <item>@drawable/ic_daftarpending</item>
         <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_cariruangan</item>
+        <item>@drawable/lihatjadwalruangan</item>
         <item>@drawable/tulis_pesan</item>
-        <item>@drawable/logout2</item>
+        <item>@drawable/logout</item>
     </array>
     <array name="nav_drawer_icons_ITF">
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_cariruangan</item>
+        <item>@drawable/ic_daftarpending</item>
+        <item>@drawable/pengembalianalat</item>
+        <item>@drawable/history</item>
+        <item>@drawable/ic_lihatjadwalruangan</item>
         <item>@drawable/tulis_pesan</item>
-        <item>@drawable/logout2</item>
+        <item>@drawable/logout</item>
     </array>
     <array name="nav_drawer_icons_admin">
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/logout2</item>
+        <item>@drawable/mengelolaruangan</item>
+        <item>@drawable/updaterole</item>
+        <item>@drawable/logout</item>
     </array>
 
     <string-array name="manager">

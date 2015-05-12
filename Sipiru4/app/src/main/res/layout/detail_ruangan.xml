@@ -4,7 +4,7 @@
     android:gravity="center_horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#B1D9E7">
+    android:background="#ffdef6fd">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -17,7 +17,6 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
-        android:background="#B1D9E7"
         android:id="@+id/layoutDecRuang1">
 
         <TextView
@@ -33,12 +32,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff008688"
+            android:background="#ff00a0a2"
             android:text=" Nama"
             android:id="@+id/textView"
             android:layout_below="@+id/header"
             android:textSize="22dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -54,11 +53,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff008688"
+            android:background="#ff00a0a2"
             android:text=" Kode "
             android:id="@+id/textView1"
             android:textSize="22dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:layout_below="@+id/namaRuangan"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -77,11 +76,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff008688"
+            android:background="#ff00a0a2"
             android:text=" Kapasitas "
             android:id="@+id/textView2"
             android:textSize="22dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:layout_below="@+id/kodeRuangan"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -89,11 +88,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff008688"
+            android:background="#ff00a0a2"
             android:text=" Deskripsi"
             android:id="@+id/textView3"
             android:textSize="22dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:layout_below="@+id/kapasitas"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -173,10 +172,10 @@
             android:id="@+id/buttonPinjam"
             android:text="Pinjam"
             android:textSize="24dp"
-            android:background="#ff008688"
+            android:background="#ff00a0a2"
             android:layout_below="@+id/deskripsi"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="30dp"/>
     </RelativeLayout>
 
 </ScrollView>
