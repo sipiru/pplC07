@@ -2,7 +2,7 @@
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ff9fdfea">
+    android:background="#4d4d7ed0">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +14,6 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
-        android:background="#ff9fdfea"
         android:id="@+id/layoutForm1">
         <TextView
             android:layout_width="wrap_content"

@@ -9,7 +9,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
-        android:background="#B1D9E7"
+        android:background="#4d4d7ed0"
         android:id="@+id/layoutDecRuang1">
 
             <TextView
@@ -79,7 +79,7 @@
                 android:nestedScrollingEnabled="false"
                 android:clickable="true"
                 android:layout_alignParentBottom="false"
-                android:background="#ff008688" />
+                android:background="#b73b5998" />
 
 
 

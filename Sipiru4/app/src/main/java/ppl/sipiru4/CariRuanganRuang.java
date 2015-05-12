@@ -36,8 +36,6 @@ public class CariRuanganRuang extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
-//        ruangan = new ArrayList<>();
-//        kodeRuangan = new ArrayList<>();
 
         final TextView namaRuangan = (TextView) rootView.findViewById(R.id.namaRuangan);
         lView = (ListView)rootView.findViewById(R.id.listView);

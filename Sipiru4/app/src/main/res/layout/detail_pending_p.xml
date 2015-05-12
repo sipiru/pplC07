@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="false"
-    android:background="#ff9fdfea">
+    android:background="#4d4d7ed0">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -14,13 +14,12 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:scrollbars="horizontal"
         tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
-        android:background="#ff9fdfea"
         android:id="@+id/layoutForm1">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff00a0a2"
+            android:background="#ff008688"
             android:text=" Ruangan"
             android:textSize="20dp"
             android:id="@+id/textView3"
@@ -42,7 +41,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff00a0a2"
+            android:background="#ff008688"
             android:text=" Nama"
             android:textSize="20dp"
             android:id="@+id/textView2"
@@ -65,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff00a0a2"
+            android:background="#ff008688"
             android:text=" Username"
             android:textSize="20dp"
             android:id="@+id/textView4"
@@ -88,7 +87,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff00a0a2"
+            android:background="#ff008688"
             android:text=" Perihal"
             android:textSize="20dp"
             android:id="@+id/textView5"
@@ -111,7 +110,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff00a0a2"
+            android:background="#ff008688"
             android:text=" Kegiatan"
             android:textSize="20dp"
             android:id="@+id/textView6"
@@ -134,7 +133,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff00a0a2"
+            android:background="#ff008688"
             android:text=" Waktu Mulai"
             android:textSize="20dp"
             android:id="@+id/textView7"
@@ -157,7 +156,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff00a0a2"
+            android:background="#ff008688"
             android:text=" Waktu Selesai"
             android:textSize="20dp"
             android:id="@+id/textView8"
@@ -179,7 +178,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff00a0a2"
+            android:background="#ff008688"
             android:text=" Peralatan "
             android:textSize="20dp"
             android:id="@+id/textView9"
@@ -205,7 +204,7 @@
             android:layout_height="wrap_content"
             android:text="Batal"
             android:id="@+id/batal"
-            android:background="#ff58a591"
+            android:background="#ff008688"
             android:textSize="20dp"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/permintaanlain"

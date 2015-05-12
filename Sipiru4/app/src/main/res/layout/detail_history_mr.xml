@@ -1,7 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ScrollView01"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#4d4d7ed0">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -12,7 +13,6 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:scrollbars="horizontal"
         tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
-        android:background="#B1D9E7"
         android:id="@+id/layoutForm1">
 
         <TextView

@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="#ff9fdfea">
+    android:background="#4d4d7ed0">
 
     <TextView
         android:id="@+id/textViewPhoneNo"

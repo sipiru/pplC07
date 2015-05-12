@@ -53,7 +53,8 @@
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_admin">
-        <item >Mengelola Ruangan</item>
+        <item >Update/Hapus Ruangan</item>
+        <item >Tambah Ruangan</item>
         <item >Update Role</item>
         <item >Logout</item>
     </string-array>
@@ -74,19 +75,20 @@
     <array name="nav_drawer_icons_mgr">
         <item>@drawable/ic_daftarpending</item>
         <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/lihatjadwalruangan</item>
+        <item>@drawable/detail</item>
         <item>@drawable/tulis_pesan</item>
         <item>@drawable/logout</item>
     </array>
     <array name="nav_drawer_icons_ITF">
         <item>@drawable/ic_daftarpending</item>
         <item>@drawable/pengembalianalat</item>
-        <item>@drawable/history</item>
-        <item>@drawable/ic_lihatjadwalruangan</item>
+        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/detail</item>
         <item>@drawable/tulis_pesan</item>
         <item>@drawable/logout</item>
     </array>
     <array name="nav_drawer_icons_admin">
+        <item>@drawable/mengelolaruangan</item>
         <item>@drawable/mengelolaruangan</item>
         <item>@drawable/updaterole</item>
         <item>@drawable/logout</item>

@@ -105,7 +105,6 @@ public class FormPeminjaman extends Activity {
                         int statusP;
                         if ((peralatan.getText()+"").trim().length()==0){
                             statusP = 0;
-                            peralatan.setText("Tidak ada");
                         }
                         else  {
                             statusP = 1;
@@ -119,10 +118,11 @@ public class FormPeminjaman extends Activity {
                         String waktuAkhir = waktuSelesai.getText().toString().replaceAll(" ","%20");
 //                        Log.e("waktuAkhir", waktuAkhir);
                         String alat = peralatan.getText().toString().replaceAll(" ","%20");
+                        String kegiatanModif = kegiatanValue.replaceAll(" ", "%20");
 
                         new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
                                 + username + "&" + namaP + "&" + statusP + "&" + ruang.getText() + "&"
-                                + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanValue + "&" + alat + "&0/");
+                                + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanModif + "&" + alat + "&0/");
 
 
                     }

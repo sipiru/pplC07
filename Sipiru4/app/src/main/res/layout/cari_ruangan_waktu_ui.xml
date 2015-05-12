@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:id="@+id/layoutScroll"
-    android:background="#ff97d6e1"
+    android:background="#b74d7ed0"
     android:clickable="false"
     android:fillViewport="false">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,7 +40,7 @@
                 android:text="Waktu mulai :"
                 android:id="@+id/textView2"
                 android:textSize="25dp"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:layout_marginTop="10dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"/>
@@ -79,7 +79,7 @@
                 android:id="@+id/textView4"
                 android:layout_marginTop="20dp"
                 android:textSize="25dp"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:layout_below="@+id/btnJamMulai"/>
 
             <Button

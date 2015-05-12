@@ -141,10 +141,10 @@ public class MainActivityFI extends FragmentActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        // toggle nav drawer on selecting action bar app icon/title
-//        if (mDrawerToggle.onOptionsItemSelected(item)) {
-//            return true;
-//        }
+        // toggle nav drawer on selecting action bar app icon/title
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
 //        // Handle action bar actions click
 //        switch (item.getItemId()) {
 //            case R.id.action_settings:
@@ -152,7 +152,7 @@ public class MainActivityFI extends FragmentActivity {
 //            default:
 //                return super.onOptionsItemSelected(item);
 //        }
-        return true;
+        return false;
     }
 
     /* *

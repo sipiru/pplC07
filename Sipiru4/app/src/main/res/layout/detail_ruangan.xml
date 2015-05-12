@@ -4,7 +4,7 @@
     android:gravity="center_horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffdef6fd">
+    android:background="#4d4d7ed0">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -175,7 +175,8 @@
             android:background="#ff00a0a2"
             android:layout_below="@+id/deskripsi"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            android:clickable="true" />
     </RelativeLayout>
 
 </ScrollView>
