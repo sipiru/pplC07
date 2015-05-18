@@ -12,17 +12,17 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.adapter.DaftarPengembalianAlatAdapterFI;
+import ppl.sipiru4.controller.PeminjamanController;
 
 public class DaftarPengembalianAlatFI extends Fragment {
     ListView lv;
     DaftarPengembalianAlatAdapterFI adapter;
     ArrayList<Peminjaman> mItems;
+    PeminjamanController peminjamanController;
 
     public DaftarPengembalianAlatFI(){}
 
@@ -67,26 +67,10 @@ public class DaftarPengembalianAlatFI extends Fragment {
                 return;
             }
             mItems = new ArrayList<>();
-            for (int i = 0 ; i < hasil.length(); i++) {
-                try {
-                    JSONObject jPeminjaman = hasil.getJSONObject(i);
-                    assert jPeminjaman != null;
-                    int id = jPeminjaman.getInt("id");
-                    String kodeRuangan = jPeminjaman.getString("kode_ruangan");
-                    String namaP = jPeminjaman.getString("nama_peminjam");
-                    String usernameP = jPeminjaman.getString("username_peminjam");
-                    boolean statusPeminjam = jPeminjaman.getBoolean("status_peminjam");
-                    String perihal = jPeminjaman.getString("perihal");
-                    String kegiatan = jPeminjaman.getString("kegiatan");
-                    String mulai = jPeminjaman.getString("waktu_awal_pinjam");
-                    String selesai = jPeminjaman.getString("waktu_akhir_pinjam");
-                    String peralatan = jPeminjaman.getString("peralatan");
-                    int status = jPeminjaman.getInt("status");
+            peminjamanController = new PeminjamanController(hasil);
 
-                    mItems.add(new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,kegiatan,peralatan,status));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            for (int i = 0 ; i < hasil.length(); i++) {
+                mItems.add(peminjamanController.getPeminjaman(i));
             }
 
             adapter = new DaftarPengembalianAlatAdapterFI(getActivity().getApplicationContext(),mItems);
@@ -97,7 +81,7 @@ public class DaftarPengembalianAlatFI extends Fragment {
                     // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailPengembalianAlat.class);
                     // passing array index
-                    i.putExtra("peminjaman", mItems.get(position));
+                    i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }
             });

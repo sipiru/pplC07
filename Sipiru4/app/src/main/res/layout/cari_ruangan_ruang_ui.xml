@@ -3,47 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${packageName}.${activityClass}"
-    android:background="#b74d7ed0">
+    android:background="@color/background">
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:popupBackground="#cc8b9dc3"
+        android:popupBackground="@color/popup"
         android:layout_toLeftOf="@+id/search"
-        android:layout_toStartOf="@+id/search" />
+        android:layout_toStartOf="@+id/search"
+        android:layout_alignBottom="@+id/search"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="3dp"
+        android:elevation="5dp" />
 
     <ImageButton
         android:layout_width="60dp"
         android:layout_height="55dp"
         android:src="@android:drawable/ic_search_category_default"
         android:id="@+id/search"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:clickable="true" />
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:elevation="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:textColor="#000"
         android:text="Jadwal ruangan "
         android:textSize="20dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/spinner"
         android:layout_marginLeft="10dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/namaRuangan"
         android:hint="nama ruangan"
-        android:textColor="#000"
+        android:textColor="@color/textblack"
         android:textSize="20dp"
         android:layout_alignTop="@+id/textView"
         android:layout_toRightOf="@+id/textView"
@@ -54,9 +62,8 @@
         android:layout_height="wrap_content"
         android:text="waktu awal"
         android:id="@+id/textView1"
-        android:textColor="#000"
+        android:textColor="@color/textblack"
         android:textSize="20dp"
-        android:layout_marginTop="4dp"
         android:layout_marginLeft="20dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
@@ -67,13 +74,12 @@
         android:layout_height="wrap_content"
         android:text="waktu akhir"
         android:id="@+id/textView2"
-        android:textColor="#000"
+        android:textColor="@color/textblack"
         android:textSize="20dp"
         android:layout_marginRight="20dp"
-        android:layout_above="@+id/listView"
+        android:layout_alignTop="@+id/textView1"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="35dp" />
+        android:layout_alignParentEnd="true" />
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
@@ -82,6 +88,9 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="6dp"
-        android:background="#fedbdbdb"/>
+        android:background="@color/list_background_hal"
+        android:divider="@color/list_divider"
+        android:dividerHeight="2dp"
+        android:clickable="true" />
 
 </RelativeLayout>

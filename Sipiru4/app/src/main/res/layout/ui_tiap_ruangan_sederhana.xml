@@ -2,11 +2,12 @@
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
     android:id="@+id/nama"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textSize="24dp"
-    android:textColor="#ff000000"
+    android:textColor="@color/textlist"
     android:text="2302"
     android:layout_marginLeft="18dp"
     android:paddingTop="4dp"

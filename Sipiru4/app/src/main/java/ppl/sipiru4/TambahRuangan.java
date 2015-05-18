@@ -1,6 +1,7 @@
 package ppl.sipiru4;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -38,9 +39,13 @@ public class TambahRuangan extends Fragment {
                     String nama = namaRuangan.getText().toString().replaceAll(" ","%20");
                     String kap = kapasitas.getText().toString().trim();
                     String desk = deskripsi.getText().toString().replaceAll(" ","%20");
-
-                    new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/menambahRuangan/"
-                            + kode + "&" + nama + "&" + kap + "&" + desk);
+                    if (kap.length() > 4) {
+                        Toast.makeText(getActivity(), "kapasitas terlalu besar.", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/menambahRuangan/"
+                                + kode + "&" + nama + "&" + kap + "&" + desk);
+                    }
                 }
             }
         });
@@ -78,6 +83,10 @@ public class TambahRuangan extends Fragment {
             }
             if (data.trim().equals("\"sukses\"")){
                 Toast.makeText(getActivity(), "Ruangan berhasil ditambah", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity(),MainActivityA.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.putExtra("navPosition",1);
+                startActivity(i);
             }
             else {
                 Toast.makeText(getActivity(), "Error.", Toast.LENGTH_SHORT).show();

@@ -25,9 +25,10 @@ import java.net.URLConnection;
 
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
+import ppl.sipiru4.controller.PeminjamanController;
 
 public class DetailHistoryMR extends Activity {
-    Peminjaman peminjaman;
+    PeminjamanController peminjamanController;
     Context context = this;
     Bundle b;
     private static String file_url = "http://api.androidhive.info/progressdialog/hive.jpg";
@@ -41,32 +42,35 @@ public class DetailHistoryMR extends Activity {
 
         // mendapatkan nilai-nilai yang dioper dari DaftarPendingMR.class
         b = getIntent().getExtras();
-        peminjaman = b.getParcelable("peminjaman");
-        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
+        Peminjaman peminjaman = b.getParcelable("peminjaman");
+        peminjamanController = new PeminjamanController(peminjaman);
+
+        Log.e("peminjaman", peminjamanController.getPeminjaman().getKodeRuangan() + " " + peminjamanController.getPeminjaman().getNamaP()
+                + " " + peminjamanController.getPeminjaman().getId());
 
         TextView ruang = (TextView)findViewById(R.id.ruang);
-        ruang.setText(peminjaman.getKodeRuangan());
+        ruang.setText(peminjamanController.getPeminjaman().getKodeRuangan());
 
         TextView nama = (TextView)findViewById(R.id.nama);
-        nama.setText(peminjaman.getNamaP());
+        nama.setText(peminjamanController.getPeminjaman().getNamaP());
 
         TextView username = (TextView)findViewById(R.id.username);
-        username.setText(peminjaman.getUsernameP());
+        username.setText(peminjamanController.getPeminjaman().getUsernameP());
 
         TextView prihal = (TextView)findViewById(R.id.prihal);
-        prihal.setText(peminjaman.getPerihal());
+        prihal.setText(peminjamanController.getPeminjaman().getPerihal());
 
         TextView kegiatan = (TextView)findViewById(R.id.kegiatan);
-        kegiatan.setText(peminjaman.getKegiatan());
+        kegiatan.setText(peminjamanController.getPeminjaman().getKegiatan());
 
         TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
-        waktuMulai.setText(peminjaman.getMulai());
+        waktuMulai.setText(peminjamanController.getPeminjaman().getMulai());
 
         TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
-        waktuSelesai.setText(peminjaman.getSelesai());
+        waktuSelesai.setText(peminjamanController.getPeminjaman().getSelesai());
 
         TextView peralatan = (TextView)findViewById(R.id.peralatan);
-        peralatan.setText(peminjaman.getPeralatan());
+        peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
 
         Button download = (Button)findViewById(R.id.download);
         download.setOnClickListener(new View.OnClickListener() {

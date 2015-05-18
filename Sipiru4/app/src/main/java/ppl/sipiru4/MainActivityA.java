@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +21,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
+import ppl.sipiru4.controller.PenggunaController;
 import ppl.sipiru4.model.NavDrawerItem;
 
 public class MainActivityA extends FragmentActivity {
@@ -34,7 +35,7 @@ public class MainActivityA extends FragmentActivity {
     Bundle b;
     int navPosition;
     private String[] menuAdmin; // slide menu items
-    //    SharedPreferences settings;
+    PenggunaController penggunaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,24 +43,26 @@ public class MainActivityA extends FragmentActivity {
         setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
 
-        User user;
         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
 
         // mendapatkan nilai-nilai yang dioper
         b = getIntent().getExtras();
         if (b!=null){
             navPosition = b.getInt("navPosition");
-            user = b.getParcelable("user");
+            User user = b.getParcelable("user");
             if (user != null) {
-                Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
+                penggunaController = new PenggunaController(user);
+                Log.e("user", penggunaController.getCurrentPengguna().getUsername() + " " + penggunaController.getCurrentPengguna().getNama()
+                        + " " + penggunaController.getCurrentPengguna().getKodeOrg()+" "+penggunaController.getCurrentPengguna().getRole()
+                        + " " + penggunaController.getCurrentPengguna().getKodeIdentitas());
 
                 // simpan username, nama dan role ke SharedPreferences
                 // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
                 // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
                 SharedPreferences.Editor edit = setting.edit();
-                edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
-                edit.putString(LoginActivity.KEY_NAMA, user.getNama());
-                edit.putString(LoginActivity.KEY_ROLE, user.getRole());
+                edit.putString(LoginActivity.KEY_USERNAME, penggunaController.getCurrentPengguna().getUsername());
+                edit.putString(LoginActivity.KEY_NAMA, penggunaController.getCurrentPengguna().getNama());
+                edit.putString(LoginActivity.KEY_ROLE, penggunaController.getCurrentPengguna().getRole());
                 edit.apply();
             }
         }
@@ -80,14 +83,16 @@ public class MainActivityA extends FragmentActivity {
             // adding nav drawer items to array
             // Update Ruangan
         navDrawerItems.add(new NavDrawerItem(menuAdmin[0], navMenuIcons.getResourceId(0, -1)));
-            // Buat Ruangan Baru
+            // Hapus Ruangan
         navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
 //            // Delete Ruangan
 //        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
-            // Update Role
+            // Tambah Role
         navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
-            // Logout
+            // Hapus Role
         navDrawerItems.add(new NavDrawerItem(menuAdmin[3], navMenuIcons.getResourceId(3, -1)));
+            // Logout
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[4], navMenuIcons.getResourceId(4, -1)));
 
 
         // Recycle the typed array
@@ -104,7 +109,7 @@ public class MainActivityA extends FragmentActivity {
         getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                 //nav menu toggle icon
+                R.drawable.ic_sidemenu, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
@@ -177,21 +182,20 @@ public class MainActivityA extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new UpdateRuangan();
+                fragment = new UpdateHapusRuangan();
                 break;
             case 1:
                 fragment = new TambahRuangan();
                 break;
-//            case 2:
-//                fragment = new HapusRuangan();
-//                Toast.makeText(this,"delete tabel", Toast.LENGTH_SHORT).show();
-//                break;
             case 2:
-                fragment = new UpdateRole();
+                fragment = new CreateRole();
                 break;
             case 3:
+                fragment = new DeleteRole();
+                break;
+            case 4:
                 logout();
-
+                break;
             default:
                 break;
         }

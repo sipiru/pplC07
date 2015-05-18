@@ -11,16 +11,17 @@ import android.widget.ListView;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.Ruangan;
 import ppl.sipiru4.adapter.DaftarRuanganAdapter;
+import ppl.sipiru4.controller.RuanganController;
 
 public class DaftarRuangan extends Activity {
     ListView lv;
     Context context;
     JSONArray jArray;
     DaftarRuanganAdapter adapter;
+    RuanganController ruanganController;
 
     public DaftarRuangan(){
     }
@@ -34,6 +35,7 @@ public class DaftarRuangan extends Activity {
         if (b!=null) {
             try {
                 jArray = new JSONArray(b.getString("daftarRuangan"));
+                ruanganController = new RuanganController(jArray);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -47,22 +49,10 @@ public class DaftarRuangan extends Activity {
                 return ;
             }
 
-            for (int i = 0 ; i < jArray.length() ; i++) {
-                JSONObject jsonRuangan;
-                try {
-                    jsonRuangan = jArray.getJSONObject(i);
-                    if (jsonRuangan == null) throw new AssertionError();
-                    String kode = jsonRuangan.getString("kode");
-                    String nama = jsonRuangan.getString("nama");
-                    int kapasitas = jsonRuangan.getInt("kapasitas");
-                    String deskripsi = jsonRuangan.getString("deskripsi");
-
-                    mItems.add(new Ruangan(kode, nama, kapasitas, deskripsi));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            for (int i = 0 ; i < ruanganController.getSize() ; i++) {
+                mItems.add(ruanganController.getRuangan(i));
             }
-            Log.e("mitems", mItems.toString());
+//            Log.e("mitems", mItems.toString());
 
             adapter = new DaftarRuanganAdapter(getApplicationContext(), mItems);
             Log.e("adapter", adapter.toString());
@@ -72,7 +62,7 @@ public class DaftarRuangan extends Activity {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                     Intent i = new Intent(getApplicationContext(), DetailRuangan.class);
                     // mengoper ke kelas yang akan dipanggil
-                    i.putExtra("ruangan", mItems.get(position));
+                    i.putExtra("ruangan", ruanganController.getRuangan(position));
                     i.putExtra("waktuAwal", waktuAwal);
                     i.putExtra("waktuAkhir", waktuAkhir);
                     startActivity(i);

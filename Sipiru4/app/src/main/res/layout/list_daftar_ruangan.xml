@@ -3,7 +3,7 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:id="@+id/layoutScroll"
-    android:background="#b74d7ed0">
+    android:background="@color/background">
 
             <ListView
                 android:layout_marginTop="3dp"
@@ -14,7 +14,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:background="#b74d7ed0"
+                android:background="@color/list_background_hal"
                 android:dividerHeight="2dp"
-                android:divider="#b73b5998"/>
+                android:divider="@color/list_divider"/>
 </RelativeLayout>

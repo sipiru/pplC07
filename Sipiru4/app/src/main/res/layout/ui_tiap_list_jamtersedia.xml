@@ -10,7 +10,8 @@
         android:layout_height="fill_parent"
         android:padding="10dip"
         android:textSize="18dp"
-        android:text="permohonan"
+        android:text="mulai"
+        android:textColor="@color/textlist"
         android:layout_marginLeft="10dp"
         android:layout_weight="0.39">
     </TextView>
@@ -20,7 +21,8 @@
         android:layout_height="fill_parent"
         android:padding="10dip"
         android:textSize="18dp"
-        android:text="permohonan"
+        android:text="selesai"
+        android:textColor="@color/textlist"
         android:layout_marginLeft="10dp"
         android:layout_weight="0.44">
     </TextView>

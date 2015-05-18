@@ -11,10 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ppl.sipiru4.Entity.Ruangan;
+import ppl.sipiru4.controller.RuanganController;
 
 public class DetailRuangan extends Activity {
     Context context;
-    Ruangan ruangan;
+    RuanganController ruanganController;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,23 +24,27 @@ public class DetailRuangan extends Activity {
 
         Bundle b = getIntent().getExtras();
         if (b!=null) {
-            ruangan = b.getParcelable("ruangan");
+            Ruangan ruangan = b.getParcelable("ruangan");
+            ruanganController = new RuanganController(ruangan);
+
             final String waktuAwal = b.getString("waktuAwal");
             final String waktuAkhir = b.getString("waktuAkhir");
-            Log.e("detail ruangan", ruangan.getKode()+" "+ruangan.getNama()+" "+ruangan.getKapasitas()+" "+ruangan.getDeskripsi());
+
+            Log.e("detail ruangan", ruanganController.getRuangan().getKode()+" "+ ruanganController.getRuangan().getNama()+" "
+                    + ruanganController.getRuangan().getKapasitas()+" "+ ruanganController.getRuangan().getDeskripsi());
             Log.e("waktu", waktuAwal + " " + waktuAkhir);
 
             TextView namaRuangan = (TextView) findViewById(R.id.namaRuangan);
-            namaRuangan.setText(ruangan.getNama());
+            namaRuangan.setText(ruanganController.getRuangan().getNama());
 
             final TextView kodeRuangan = (TextView) findViewById(R.id.kodeRuangan);
-            kodeRuangan.setText(ruangan.getKode());
+            kodeRuangan.setText(ruanganController.getRuangan().getKode());
 
             TextView kapasitas = (TextView) findViewById(R.id.kapasitas);
-            kapasitas.setText(""+ruangan.getKapasitas());
+            kapasitas.setText("" + ruanganController.getRuangan().getKapasitas());
 
             TextView deskripsi = (TextView) findViewById(R.id.deskripsi);
-            deskripsi.setText(ruangan.getDeskripsi());
+            deskripsi.setText(ruanganController.getRuangan().getDeskripsi());
 
             Button pinjam = (Button) findViewById(R.id.buttonPinjam);
             pinjam.setOnClickListener(new View.OnClickListener() {

@@ -6,13 +6,16 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:id="@+id/layoutScroll"
-    android:background="#b74d7ed0"
+    android:background="@color/background"
     android:clickable="false"
     android:fillViewport="false">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:gravity="center_horizontal"
-        android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
@@ -40,7 +43,7 @@
                 android:text="Waktu mulai :"
                 android:id="@+id/textView2"
                 android:textSize="25dp"
-                android:textColor="#000"
+                android:textColor="@color/textblack"
                 android:layout_marginTop="10dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"/>
@@ -57,8 +60,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:background="#73ffffff"
-                android:textColor="#ff3b3b3b" />
+                android:background="@color/field"
+                android:textColor="@color/textblack" />
 
             <Button
                 android:layout_width="match_parent"
@@ -69,8 +72,8 @@
                 android:layout_marginTop="10dp"
                 android:textSize="22dp"
                 android:layout_below="@+id/textView4"
-                android:background="#73ffffff"
-                android:textColor="#ff3b3b3b"/>
+                android:background="@color/field"
+                android:textColor="@color/textblack"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +82,7 @@
                 android:id="@+id/textView4"
                 android:layout_marginTop="20dp"
                 android:textSize="25dp"
-                android:textColor="#000"
+                android:textColor="@color/textblack"
                 android:layout_below="@+id/btnJamMulai"/>
 
             <Button
@@ -91,8 +94,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_gravity="left"
                 android:layout_below="@+id/btnTglMulai"
-                android:background="#73ffffff"
-                android:textColor="#ff3b3b3b"/>
+                android:background="@color/field"
+                android:textColor="@color/textblack"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -103,8 +106,8 @@
                 android:textSize="22dp"
                 android:layout_gravity="left"
                 android:layout_below="@+id/btnTglSelesai"
-                android:background="#73ffffff"
-                android:textColor="#ff3b3b3b"/>
+                android:background="@color/field"
+                android:textColor="@color/textblack"/>
 
             <ImageButton
                 android:layout_width="90dp"
@@ -115,7 +118,9 @@
                 android:layout_below="@+id/btnJamSelesai"
                 android:layout_centerHorizontal="true"
                 android:clickable="true"
-                android:adjustViewBounds="false" />
+                android:adjustViewBounds="false"
+                android:elevation="20dp"
+                android:focusable="false" />
         </RelativeLayout>
 
     </RelativeLayout>

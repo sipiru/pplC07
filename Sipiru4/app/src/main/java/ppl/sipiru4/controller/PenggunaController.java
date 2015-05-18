@@ -3,19 +3,22 @@ package ppl.sipiru4.controller;
 import ppl.sipiru4.Entity.User;
 
 public class PenggunaController {
+    User user;
 
-    private static User currentPengguna;
-
-    public PenggunaController() {}
-
-    public static void loginPengguna(User user) {
-        currentPengguna = user;
+    public PenggunaController(User user) {
+        this.user = user;
     }
 
-    public static User getCurrentPengguna() {
-        if (currentPengguna != null) {
-            return currentPengguna;
+//    public void loginPengguna(User user) {
+//        currentPengguna = user;
+//    }
+
+    public User getCurrentPengguna() {
+        if (user != null) {
+            return user;
         }
         return null;
     }
+
+
 }

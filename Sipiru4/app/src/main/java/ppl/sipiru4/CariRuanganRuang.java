@@ -20,13 +20,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.adapter.JamTersediaAdapter;
+import ppl.sipiru4.controller.RuanganController;
 import ppl.sipiru4.model.JamTersediaItem;
 
 public class CariRuanganRuang extends Fragment {
     ListView lView;
     JamTersediaAdapter adapterList;
     ArrayAdapter<String> adapter;
-    String[] ruangan;
+    RuanganController ruanganController;
+    String[] namaRuangan;
     String[] kodeRuangan;
     Spinner spinner;
     ImageButton search;
@@ -37,15 +39,16 @@ public class CariRuanganRuang extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
 
-        final TextView namaRuangan = (TextView) rootView.findViewById(R.id.namaRuangan);
+        final TextView namaR = (TextView) rootView.findViewById(R.id.namaRuangan);
         lView = (ListView)rootView.findViewById(R.id.listView);
         spinner = (Spinner)rootView.findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(25);
                         posisi = spinner.getSelectedItemPosition();
-                        namaRuangan.setText(ruangan[posisi]);
+                        namaR.setText(namaRuangan[posisi]);
                     }
 
                     @Override
@@ -104,21 +107,18 @@ public class CariRuanganRuang extends Fragment {
                 Toast.makeText(getActivity(),"gagal terhubung ke server. coba lagi.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            int sizeRuangan = hasil.length();
-            ruangan = new String[sizeRuangan];
+            ruanganController = new RuanganController(hasil);
+            int sizeRuangan = ruanganController.getSize();
+
+            namaRuangan = new String[sizeRuangan];
             kodeRuangan = new String[sizeRuangan];
             // memasukkan nama ruangan ke ArrayList Ruangan
             for (int i = 0; i < sizeRuangan; i++) {
-                try {
-                    ruangan[i] = (hasil.getJSONObject(i).getString("nama"));
-                    kodeRuangan[i] = (hasil.getJSONObject(i).getString("kode"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(),"gagal terhubung ke server. coba lagi.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                namaRuangan[i] = ruanganController.getRuangan(i).getNama();
+                kodeRuangan[i] = ruanganController.getRuangan(i).getKode();
             }
-            adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,ruangan);
+
+            adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,namaRuangan);
             spinner.setAdapter(adapter);
             pDialog.dismiss();
         }

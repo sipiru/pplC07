@@ -14,7 +14,7 @@
         android:layout_height="600dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:background="#b73b5998"
+        android:background="@color/background"
         android:id="@+id/layoutLogin1">
 
 
@@ -27,7 +27,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:background="#67ffffff" />
+            android:background="@color/field" />
 
 
 
@@ -52,7 +52,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="25dp"
                 android:id="@+id/textView1"
-                android:textColor="#fff"/>
+                android:textColor="@color/textwhite"/>
 
             <TextView
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="6dp"
                 android:id="@+id/textView2"
-                android:textColor="#fff"/>
+                android:textColor="@color/textwhite"/>
 
 
 
@@ -75,14 +75,14 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
                 android:textAlignment="center"
-                android:background="#73ffffff"
-                android:textColor="#fff"
+                android:background="@color/field_login"
+                android:textColor="@color/textwhite"
                 android:hint="username"
                 android:autoText="true"
                 android:id="@+id/editText1"
                 android:textSize="25dp"
                 android:paddingLeft="5dp"
-                android:textColorHint="#ffd1d1d1"
+                android:textColorHint="@color/hint_color"
                 android:layout_marginBottom="10dp"
                 android:textStyle="normal" />
 
@@ -95,7 +95,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:background="#73ffffff"
+                android:background="@color/field_login"
                 android:textAlignment="center"
                 android:password="true"
                 android:textColor="#fff"
@@ -104,7 +104,7 @@
                 android:textSize="25dp"
                 android:autoText="false"
                 android:paddingLeft="5dp"
-                android:textColorHint="#FFD1D1D1"
+                android:textColorHint="@color/hint_color"
                 android:layout_marginBottom="20dp"
                 android:textStyle="normal" />
 
@@ -113,13 +113,13 @@
                 android:layout_height="40dp"
                 android:text="@string/Login"
                 android:gravity="center"
-                android:background="#fff"
+                android:background="@color/textwhite"
                 android:layout_marginTop="20dp"
-                android:textColor="#3b5998"
+                android:textColor="@color/text_button_login"
                 android:clickable="true"
                 android:textStyle="bold"
                 android:textSize="25dp"
-                android:layout_marginBottom="80dp"
+                android:layout_marginBottom="8dp"
                 android:layout_gravity="center_horizontal" />
 
         </LinearLayout>

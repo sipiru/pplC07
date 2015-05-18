@@ -19,15 +19,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONArray;
-import org.json.JSONException;
 import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
-import ppl.sipiru4.Entity.Ruangan;
+import ppl.sipiru4.controller.RuanganController;
 
-public class UpdateRuangan extends Fragment {
+public class UpdateHapusRuangan extends Fragment {
     ArrayAdapter<String> adapter;
     String[] ruangan;
-    Ruangan[] detailRuangan;
+    RuanganController ruanganController;
     Spinner spinner;
     ImageButton search;
     int posisi;
@@ -45,6 +44,7 @@ public class UpdateRuangan extends Fragment {
                 new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(24);
                         posisi = spinner.getSelectedItemPosition();
                     }
 
@@ -64,10 +64,10 @@ public class UpdateRuangan extends Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kodeRuangan.setText(detailRuangan[posisi].getKode()+"");
-                namaRuangan.setText(detailRuangan[posisi].getNama()+"");
-                kapasitas.setText(detailRuangan[posisi].getKapasitas()+"");
-                deskripsi.setText(detailRuangan[posisi].getDeskripsi()+"");
+                kodeRuangan.setText(ruanganController.getRuangan(posisi).getKode()+"");
+                namaRuangan.setText(ruanganController.getRuangan(posisi).getNama()+"");
+                kapasitas.setText(ruanganController.getRuangan(posisi).getKapasitas()+"");
+                deskripsi.setText(ruanganController.getRuangan(posisi).getDeskripsi()+"");
             }
         });
 
@@ -90,8 +90,13 @@ public class UpdateRuangan extends Fragment {
                     String kap = kapasitas.getText().toString().trim();
                     String desk = deskripsi.getText().toString().replaceAll(" ","%20");
 
-                    new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/updateRuangan/"
-                            + kode + "&" + nama + "&" + kap + "&" + desk);
+                    if (kap.length() > 4) {
+                        Toast.makeText(getActivity(), "kapasitas terlalu besar.", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/updateRuangan/"
+                                + kode + "&" + nama + "&" + kap + "&" + desk);
+                    }
                 }
             }
         });
@@ -209,18 +214,10 @@ public class UpdateRuangan extends Fragment {
             }
             int sizeRuangan = hasil.length();
             ruangan = new String[sizeRuangan];
-            detailRuangan = new Ruangan[sizeRuangan];
+            ruanganController = new RuanganController(hasil);
             // memasukkan nama ruangan ke ArrayList Ruangan
             for (int i = 0; i < sizeRuangan; i++) {
-                try {
-                    ruangan[i] = (hasil.getJSONObject(i).getString("nama"));
-                    detailRuangan[i] = new Ruangan((hasil.getJSONObject(i).getString("kode")), (hasil.getJSONObject(i).getString("nama")),
-                            (hasil.getJSONObject(i).getInt("kapasitas")), (hasil.getJSONObject(i).getString("deskripsi")));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(),"gagal terhubung ke server. coba lagi.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                ruangan[i] = ruanganController.getRuangan(i).getNama();
             }
 
             adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,ruangan);

@@ -19,11 +19,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.User;
+import ppl.sipiru4.controller.PenggunaController;
 
 public class FormPeminjaman extends Activity {
     Context context;
     SharedPreferences setting;
-    User user;
+    PenggunaController penggunaController;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +33,10 @@ public class FormPeminjaman extends Activity {
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
 
         // mendapatkan informasi user
-        user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
+        User user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
                 setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
                 setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
+        penggunaController = new PenggunaController(user);
 
         context = this;
 
@@ -133,7 +135,7 @@ public class FormPeminjaman extends Activity {
             Toast.makeText(context, "Error memunculkan Form Peminjaman", Toast.LENGTH_LONG).show();
             Intent i = new Intent(getApplicationContext(),MainActivityP.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            i.putExtra("user", user);
+            i.putExtra("user", penggunaController.getCurrentPengguna());
             startActivity(i);
         }
     }
@@ -177,7 +179,7 @@ public class FormPeminjaman extends Activity {
                 Toast.makeText(getApplicationContext(), "Permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(),MainActivityP.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                i.putExtra("user",user);
+                i.putExtra("user", penggunaController.getCurrentPengguna());
                 startActivity(i);
             }
             else {

@@ -5,41 +5,45 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import ppl.sipiru4.Entity.Peminjaman;
+import ppl.sipiru4.controller.PeminjamanController;
 
 public class DetailHistoryP extends Activity {
-    Peminjaman peminjaman;
+    PeminjamanController peminjamanController;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_history_p);
 
         Bundle b = getIntent().getExtras();
-        peminjaman = b.getParcelable("peminjaman");
-        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
+        Peminjaman peminjaman = b.getParcelable("peminjaman");
+        peminjamanController = new PeminjamanController(peminjaman);
+
+        Log.e("peminjaman", peminjamanController.getPeminjaman().getKodeRuangan() + " " + peminjamanController.getPeminjaman().getNamaP() + " "
+                + peminjamanController.getPeminjaman().getId());
 
         TextView ruang = (TextView)findViewById(R.id.ruang);
-        ruang.setText(peminjaman.getKodeRuangan());
+        ruang.setText(peminjamanController.getPeminjaman().getKodeRuangan());
 
         TextView nama = (TextView)findViewById(R.id.nama);
-        nama.setText(peminjaman.getNamaP());
+        nama.setText(peminjamanController.getPeminjaman().getNamaP());
 
         TextView username = (TextView)findViewById(R.id.username);
-        username.setText(peminjaman.getUsernameP());
+        username.setText(peminjamanController.getPeminjaman().getUsernameP());
 
         TextView prihal = (TextView)findViewById(R.id.prihal);
-        prihal.setText(peminjaman.getPerihal());
+        prihal.setText(peminjamanController.getPeminjaman().getPerihal());
 
         TextView kegiatan = (TextView)findViewById(R.id.kegiatan);
-        kegiatan.setText(peminjaman.getKegiatan());
+        kegiatan.setText(peminjamanController.getPeminjaman().getKegiatan());
 
         TextView mulai = (TextView)findViewById(R.id.waktuMulai);
-        mulai.setText(peminjaman.getMulai());
+        mulai.setText(peminjamanController.getPeminjaman().getMulai());
 
         TextView selesai = (TextView)findViewById(R.id.waktuSelesai);
-        selesai.setText(peminjaman.getSelesai());
+        selesai.setText(peminjamanController.getPeminjaman().getSelesai());
 
         TextView peralatan = (TextView)findViewById(R.id.peralatan);
-        peralatan.setText(peminjaman.getPeralatan());
+        peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
     }
 
     @Override

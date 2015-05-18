@@ -17,13 +17,15 @@ import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
+import ppl.sipiru4.controller.PeminjamanController;
+import ppl.sipiru4.controller.PenggunaController;
 
 public class DetailPendingP extends Activity {
     final Context context = this;
-    Peminjaman peminjaman;
+    PeminjamanController peminjamanController;
     SharedPreferences setting;
     Bundle b;
-    User user;
+    PenggunaController penggunaController;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,38 +33,40 @@ public class DetailPendingP extends Activity {
         Log.e("Detail Permohonan P", "create");
 
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
-        user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
+        User user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
                 setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
                 setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
+        penggunaController = new PenggunaController(user);
 
         // mendapatkan nilai-nilai yang dioper dari DaftarPendingP.class
         b = getIntent().getExtras();
-        peminjaman = b.getParcelable("peminjaman");
-        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
+        Peminjaman peminjaman = b.getParcelable("peminjaman");
+        peminjamanController = new PeminjamanController(peminjaman);
+//        Log.e("peminjaman", peminjaman.getKodeRuangan() + " " + peminjaman.getNamaP() + " " + peminjaman.getId());
 
         TextView ruang = (TextView)findViewById(R.id.ruang);
-        ruang.setText(peminjaman.getKodeRuangan());
+        ruang.setText(peminjamanController.getPeminjaman().getKodeRuangan());
 
         TextView nama = (TextView)findViewById(R.id.nama);
-        nama.setText(peminjaman.getNamaP());
+        nama.setText(peminjamanController.getPeminjaman().getNamaP());
 
         TextView username = (TextView)findViewById(R.id.username);
-        username.setText(peminjaman.getUsernameP());
+        username.setText(peminjamanController.getPeminjaman().getUsernameP());
 
         TextView prihal = (TextView)findViewById(R.id.prihal);
-        prihal.setText(peminjaman.getPerihal());
+        prihal.setText(peminjamanController.getPeminjaman().getPerihal());
 
         TextView kegiatan = (TextView) findViewById(R.id.kegiatan);
-        kegiatan.setText(peminjaman.getKegiatan());
+        kegiatan.setText(peminjamanController.getPeminjaman().getKegiatan());
 
         TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
-        waktuMulai.setText(peminjaman.getMulai());
+        waktuMulai.setText(peminjamanController.getPeminjaman().getMulai());
 
         TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
-        waktuSelesai.setText(peminjaman.getSelesai());
+        waktuSelesai.setText(peminjamanController.getPeminjaman().getSelesai());
 
         TextView peralatan = (TextView)findViewById(R.id.permintaanlain);
-        peralatan.setText(peminjaman.getPeralatan());
+        peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
 
         Button batal = (Button)findViewById(R.id.batal);
         batal.setOnClickListener(new View.OnClickListener()
@@ -80,7 +84,8 @@ public class DetailPendingP extends Activity {
                         .setMessage("Tekan Ya untuk membatalkan permohonan")
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/" + peminjaman.getId());
+                                new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/"
+                                        + peminjamanController.getPeminjaman().getId());
                             }
                         })
                         .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -139,7 +144,7 @@ public class DetailPendingP extends Activity {
             }
             Intent i = new Intent(getApplicationContext(),MainActivityP.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            i.putExtra("user",user);
+            i.putExtra("user",penggunaController.getCurrentPengguna());
             i.putExtra("navPosition",2);
             startActivity(i);
             pDialog.dismiss();

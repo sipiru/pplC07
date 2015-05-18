@@ -1,60 +1,50 @@
 package ppl.sipiru4.controller;
 
-import ppl.sipiru4.Entity.DaftarPeminjaman;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-/**
- * Created by User on 11/04/2015.
- */
+import ppl.sipiru4.Entity.Peminjaman;
+
 public class PeminjamanController {
+    Peminjaman[] peminjamans;
+    int size;
 
-    private static DaftarPeminjaman daftarPeminjaman;
+    public PeminjamanController(Peminjaman peminjaman) {
+        peminjamans = new Peminjaman[1];
+        peminjamans[0] = peminjaman;
+    }
 
-//    public static boolean tambahPeminjaman(Peminjaman peminjaman) {
-//        String strPeminjaman = "{";
-//        strPeminjaman += "peminjam:" + peminjaman.getPeminjam().getUsername() + '&' + "mulai:" +
-//                peminjaman.getMulai().toString() + '&' +
-//                "selesai:" + peminjaman.getSelesai().toString() + '&' +
-//                "ruangan:" + peminjaman.getRuangan().getKode() + "status:" +peminjaman.getStatus();
-//        strPeminjaman += '}';
-//
-////        try {
-////            JSONHelper.post(Constants.PINJAM_ADDR, strPeminjaman);
-////        } catch (IOException e) {
-////            return false;
-////        }
-//
-//        daftarPeminjaman.tambahPeminjaman(peminjaman);
-//        return true;
-//    }
+    public PeminjamanController(JSONArray jArray) {
+        peminjamans = new Peminjaman[jArray.length()];
+        for (int i = 0 ; i < jArray.length(); i++) {
+            try {
+                JSONObject jPeminjaman = jArray.getJSONObject(i);
+                int id = jPeminjaman.getInt("id");
+                String kodeRuangan = jPeminjaman.getString("kode_ruangan");
+                String namaP = jPeminjaman.getString("nama_peminjam");
+                String usernameP = jPeminjaman.getString("username_peminjam");
+                boolean statusPeminjam = jPeminjaman.getBoolean("status_peminjam");
+                String perihal = jPeminjaman.getString("perihal");
+                String kegiatan = jPeminjaman.getString("kegiatan");
+                String mulai = jPeminjaman.getString("waktu_awal_pinjam");
+                String selesai = jPeminjaman.getString("waktu_akhir_pinjam");
+                String peralatan = jPeminjaman.getString("peralatan");
+                int status = jPeminjaman.getInt("status");
 
-//    public static void retrieveAllPeminjaman(User pengguna)
-//            throws ConnectionErrorException, ParseErrorException {
-//        JSONArray jsonArray;
-//
-//        try {
-//            jsonArray = JSONHelper.getArrayFromUrl(Constants.PEMINJAMAN_ADDR + '&' +
-//                    "pengguna:" + pengguna.getUsername());
-//        } catch (IOException|JSONException e) {
-//            throw new ConnectionErrorException();
-//        }
-//
-//        for (int i = 0; i < jsonArray.length(); i++) {
-//            JSONObject object;
-//            try {
-//                object = (JSONObject) jsonArray.get(i);
-//            } catch (JSONException e) {
-//                throw new ParseErrorException();
-//            }
-//            Peminjaman peminjaman = null;
-////            try {
-////                peminjaman = new Peminjaman(pengguna,
-////                        new GregorianCalendar(object.getString("mulai")),
-////                        new GregorianCalendar(object.getString("selesai")),
-////                        RuanganController.cariRuangan(object.getString("koderuangan")));
-////            } catch (JSONException e) {
-////                throw new ParseErrorException();
-////            }
-//            daftarPeminjaman.tambahPeminjaman(peminjaman);
-//        }
-//    }
+                peminjamans[i] = new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,kegiatan,peralatan,status);
+                size++;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public Peminjaman getPeminjaman(int i) {
+        return peminjamans[i];
+    }
+
+    public Peminjaman getPeminjaman() {
+        return peminjamans[0];
+    }
 }
