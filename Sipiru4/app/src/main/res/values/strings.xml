@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Sipiru</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="drawer_open">Slider Menu Opened</string>
-    <string name="drawer_close">Slider Menu Closed</string>
+    <string name="app_name">SiPiRu</string>
     <string name="title_activity_display_message">My Message</string>
     <string name="Login">LOGIN</string>
     <string name="set_date">login</string>
     <string name="prompt_password">password</string>
-
+     <string name="drawer_open">
+        <item >@drawable/ic_drawer</item>
+    </string>
+    <string name="drawer_close">
+        <item >@drawable/ic_drawer</item>
+    </string>
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
         <item >Cari Ruangan</item>
@@ -53,8 +54,10 @@
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_admin">
-        <item >Mengelola Ruangan</item>
-        <item >Update Role</item>
+        <item >Update/Hapus Ruangan</item>
+        <item >Tambah Ruangan</item>
+        <item >Tambah Role</item>
+        <item >Hapus Role</item>
         <item >Logout</item>
     </string-array>
 
@@ -63,33 +66,35 @@
     <!--bikin yang banyak untuk masing masing pengguna-->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_cariruangan</item>
-        <item>@drawable/ic_cariruangan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
+        <item>@drawable/detail</item>
+        <item>@drawable/ic_daftarpending</item>
         <item>@drawable/ic_daftarpermohonan</item>
         <!--<item>@drawable/update_status</item>-->
         <!--<item>@drawable/daftar_pesan</item>-->
         <item>@drawable/tulis_pesan</item>
-        <item>@drawable/logout2</item>
+        <item>@drawable/logout</item>
     </array>
     <array name="nav_drawer_icons_mgr">
+        <item>@drawable/ic_daftarpending</item>
         <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_cariruangan</item>
+        <item>@drawable/detail</item>
         <item>@drawable/tulis_pesan</item>
-        <item>@drawable/logout2</item>
+        <item>@drawable/logout</item>
     </array>
     <array name="nav_drawer_icons_ITF">
+        <item>@drawable/ic_daftarpending</item>
+        <item>@drawable/pengembalianalat</item>
         <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_cariruangan</item>
+        <item>@drawable/detail</item>
         <item>@drawable/tulis_pesan</item>
-        <item>@drawable/logout2</item>
+        <item>@drawable/logout</item>
     </array>
     <array name="nav_drawer_icons_admin">
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/ic_daftarpermohonan</item>
-        <item>@drawable/logout2</item>
+        <item>@drawable/mengelolaruangan</item>
+        <item>@drawable/mengelolaruangan</item>
+        <item>@drawable/updaterole</item>
+        <item>@drawable/updaterole</item>
+        <item>@drawable/logout</item>
     </array>
 
     <string-array name="manager">

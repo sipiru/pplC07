@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!--
@@ -8,4 +9,7 @@
         <!-- API 11 theme customizations can go here. -->
     </style>
 
+    <style name="AppTheme" parent="AppBaseTheme">
+
+    </style>
 </resources>

@@ -11,17 +11,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
+import ppl.sipiru4.controller.PenggunaController;
 import ppl.sipiru4.model.NavDrawerItem;
 
 public class MainActivityA extends FragmentActivity {
@@ -35,7 +35,7 @@ public class MainActivityA extends FragmentActivity {
     Bundle b;
     int navPosition;
     private String[] menuAdmin; // slide menu items
-    //    SharedPreferences settings;
+    PenggunaController penggunaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,24 +43,28 @@ public class MainActivityA extends FragmentActivity {
         setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
 
-        User user;
         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
 
         // mendapatkan nilai-nilai yang dioper
         b = getIntent().getExtras();
         if (b!=null){
-            user = b.getParcelable("user");
             navPosition = b.getInt("navPosition");
-            Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
+            User user = b.getParcelable("user");
+            if (user != null) {
+                penggunaController = new PenggunaController(user);
+                Log.e("user", penggunaController.getCurrentPengguna().getUsername() + " " + penggunaController.getCurrentPengguna().getNama()
+                        + " " + penggunaController.getCurrentPengguna().getKodeOrg()+" "+penggunaController.getCurrentPengguna().getRole()
+                        + " " + penggunaController.getCurrentPengguna().getKodeIdentitas());
 
-            // simpan username, nama dan role ke SharedPreferences
-            // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
-            // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
-            SharedPreferences.Editor edit = setting.edit();
-            edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
-            edit.putString(LoginActivity.KEY_NAMA, user.getNama());
-            edit.putString(LoginActivity.KEY_ROLE, user.getRole());
-            edit.apply();
+                // simpan username, nama dan role ke SharedPreferences
+                // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
+                // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
+                SharedPreferences.Editor edit = setting.edit();
+                edit.putString(LoginActivity.KEY_USERNAME, penggunaController.getCurrentPengguna().getUsername());
+                edit.putString(LoginActivity.KEY_NAMA, penggunaController.getCurrentPengguna().getNama());
+                edit.putString(LoginActivity.KEY_ROLE, penggunaController.getCurrentPengguna().getRole());
+                edit.apply();
+            }
         }
         Log.e("mainAct A ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
@@ -77,20 +81,22 @@ public class MainActivityA extends FragmentActivity {
         ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<>();
 
             // adding nav drawer items to array
-            // Buat Ruangan Baru
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[0], navMenuIcons.getResourceId(0, -1)));
-//            // Update Ruangan
-//        navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
+            // Update Ruangan
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[0]));
+            // Hapus Ruangan
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[1]));
 //            // Delete Ruangan
 //        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
-            // Update Role
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[1], navMenuIcons.getResourceId(1, -1)));
+            // Tambah Role
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[2]));
+            // Hapus Role
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[3]));
             // Logout
-        navDrawerItems.add(new NavDrawerItem(menuAdmin[2], navMenuIcons.getResourceId(2, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuAdmin[4]));
 
 
         // Recycle the typed array
-        navMenuIcons.recycle();
+       // navMenuIcons.recycle();
 
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
@@ -103,7 +109,7 @@ public class MainActivityA extends FragmentActivity {
         getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                 //nav menu toggle icon
+                R.drawable.ic_sidemenu, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
@@ -147,13 +153,14 @@ public class MainActivityA extends FragmentActivity {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        // Handle action bar actions click
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+//        // Handle action bar actions click
+//        switch (item.getItemId()) {
+//            case R.id.action_settings:
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+        return false;
     }
 
     /* *
@@ -162,8 +169,8 @@ public class MainActivityA extends FragmentActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+//        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+//        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -175,48 +182,20 @@ public class MainActivityA extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new TambahRuangan();
-                Toast.makeText(this,"create tabel", Toast.LENGTH_SHORT).show();
+                fragment = new UpdateHapusRuangan();
                 break;
-//            case 1:
-//                fragment = new UpdateRuangan();
-//                Toast.makeText(this,"update tabel", Toast.LENGTH_SHORT).show();
-//                break;
-//            case 2:
-//                fragment = new HapusRuangan();
-//                Toast.makeText(this,"delete tabel", Toast.LENGTH_SHORT).show();
-//                break;
             case 1:
-                fragment = new UpdateRole();
-                Toast.makeText(this,"update role", Toast.LENGTH_SHORT).show();
+                fragment = new TambahRuangan();
                 break;
             case 2:
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                // set title
-                alertDialogBuilder.setTitle("Apakah anda yakin untuk keluar dari SIPIRU ?");
-
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage("Tekan Ya untuk keluar!")
-                        .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, close
-                                // current activity
-                                MainActivityA.this.finish();
-                            }
-                        })
-                        .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
-                                dialog.cancel();
-                            }
-                        });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-
+                fragment = new CreateRole();
+                break;
+            case 3:
+                fragment = new DeleteRole();
+                break;
+            case 4:
+                logout();
+                break;
             default:
                 break;
         }
@@ -244,6 +223,47 @@ public class MainActivityA extends FragmentActivity {
         getActionBar().setTitle(mTitle);
     }
 
+    private void logout() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        // set title
+        alertDialogBuilder.setTitle("Apakah anda yakin untuk logout?");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Tekan Ya untuk logout")
+                .setCancelable(false)
+                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke
+                        // halaman Login dan mengakhiri semua proses yang ada di stack
+                        SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
+                        Log.e("sebelum logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
+                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+
+                        SharedPreferences.Editor edit = setting.edit();
+                        edit.clear();
+                        edit.apply();
+
+                        Log.e("setelah logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
+                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(i);
+
+                        finish();
+                    }
+                })
+                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // memunculkan alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
     /**
      * When using the ActionBarDrawerToggle, you must call it during
      * onPostCreate() and onConfigurationChanged()...
@@ -263,4 +283,8 @@ public class MainActivityA extends FragmentActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    public void onBackPressed() {
+        logout();
+    }
 }

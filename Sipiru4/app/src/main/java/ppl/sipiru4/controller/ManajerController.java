@@ -1,25 +1,36 @@
 package ppl.sipiru4.controller;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import ppl.sipiru4.Entity.DaftarManajer;
 import ppl.sipiru4.Entity.Manajer;
+import ppl.sipiru4.Entity.Peminjaman;
 
 
 public class ManajerController {
+    private Manajer[] manajers;
+    private int size;
 
-    public static DaftarManajer daftarManajer = null;
+    public ManajerController(JSONArray jArray) {
+        manajers = new Manajer[jArray.length()];
+        for (int i = 0 ; i < jArray.length() ; i++) {
+            try {
+                JSONObject jPeminjaman = jArray.getJSONObject(i);
+                String username = jPeminjaman.getString("username");
+                String nama = jPeminjaman.getString("nama");
+                String role = jPeminjaman.getString("role");
 
-    public static boolean tambahManajer(Manajer manajer) {
-        String strManajer= "{";
+                manajers[i] = new Manajer(username,nama, role);
+                size++;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-        strManajer += '}';
-
-//        try {
-//            JSONHelper.post(Constants.PINJAM_ADDR, strManajer);
-//        } catch (IOException e) {
-//            return false;
-//        }
-
-        daftarManajer.tambahManajer(manajer);
-        return true;
+    public Manajer getManajer(int i) {
+        return manajers[i];
     }
 }

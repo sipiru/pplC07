@@ -2,6 +2,7 @@ package ppl.sipiru4;
 
 import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
+import ppl.sipiru4.controller.PenggunaController;
 import ppl.sipiru4.model.NavDrawerItem;
 import java.util.ArrayList;
 import android.app.AlertDialog;
@@ -13,7 +14,7 @@ import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -34,7 +35,7 @@ public class MainActivityP extends FragmentActivity {
     Bundle b;
     int navPosition;
     private String[] menuPeminjam; // slide menu items
-    //    SharedPreferences settings;
+    PenggunaController penggunaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,30 +45,35 @@ public class MainActivityP extends FragmentActivity {
         mTitle = mDrawerTitle = getTitle();
         Log.e("Main activity P create", "create");
 
-        // mendapatkan nilai-nilai yang dioper dari LoginActivity.class
-        User user;
+//        // mendapatkan nilai-nilai yang dioper dari LoginActivity.class
+//        User user;
 
         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
 
         b = getIntent().getExtras();
         if(b!=null) {
-            user = b.getParcelable("user");
+            User user = b.getParcelable("user");
+            penggunaController = new PenggunaController(user);
             navPosition = b.getInt("navPosition");
-            Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
+            Log.e("user", penggunaController.getCurrentPengguna().getUsername() + " " + penggunaController.getCurrentPengguna().getNama() + " "
+                    + penggunaController.getCurrentPengguna().getKodeOrg()+" "+ penggunaController.getCurrentPengguna().getRole() + " " + penggunaController.getCurrentPengguna().getKodeIdentitas());
 
             // simpan username, nama dan role ke SharedPreferences
             // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
             // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
             SharedPreferences.Editor edit = setting.edit();
-            edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
-            edit.putString(LoginActivity.KEY_NAMA, user.getNama());
-            edit.putString(LoginActivity.KEY_KODE_ORG, user.getKodeOrg());
-            edit.putString(LoginActivity.KEY_ROLE, user.getRole());
-            edit.putString(LoginActivity.KEY_KODE_IDENTITAS, user.getKodeIdentitas());
+            edit.putString(LoginActivity.KEY_USERNAME, penggunaController.getCurrentPengguna().getUsername());
+            edit.putString(LoginActivity.KEY_NAMA, penggunaController.getCurrentPengguna().getNama());
+            edit.putString(LoginActivity.KEY_KODE_ORG, penggunaController.getCurrentPengguna().getKodeOrg());
+            edit.putString(LoginActivity.KEY_ROLE, penggunaController.getCurrentPengguna().getRole());
+            edit.putString(LoginActivity.KEY_KODE_IDENTITAS, penggunaController.getCurrentPengguna().getKodeIdentitas());
             edit.apply();
         }
         Log.e("mainAct P ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
                 +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
+//
+//        Log.e("mainAct P 2",LoginActivity.setting.getString(LoginActivity.KEY_USERNAME,null)+" "
+//                +LoginActivity.setting.getString(LoginActivity.KEY_NAMA,null) + " " + LoginActivity.setting.getString(LoginActivity.KEY_ROLE,null));
 
         // load slide menu items
         menuPeminjam = getResources().getStringArray(R.array.nav_drawer_items_peminjam);
@@ -82,19 +88,19 @@ public class MainActivityP extends FragmentActivity {
 
             // adding nav drawer items to array
             // Cari Ruangan Waktu
-        navDrawerItems.add(new NavDrawerItem(menuPeminjam[0], navMenuIcons.getResourceId(0, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[0]));
             // Lihat Jadwal Ruangan
-        navDrawerItems.add(new NavDrawerItem(menuPeminjam[1], navMenuIcons.getResourceId(1, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[1]));
             // Daftar Pending
-        navDrawerItems.add(new NavDrawerItem(menuPeminjam[2], navMenuIcons.getResourceId(2, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[2]));
             // Daftar History
-        navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[3]));
 //            // Daftar Pesan
 //            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
             // PesanBaru
-        navDrawerItems.add(new NavDrawerItem(menuPeminjam[4], navMenuIcons.getResourceId(4, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[4]));
             // Logout
-        navDrawerItems.add(new NavDrawerItem(menuPeminjam[5], navMenuIcons.getResourceId(5, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuPeminjam[5]));
 
 
         // Recycle the typed array
@@ -111,7 +117,7 @@ public class MainActivityP extends FragmentActivity {
         getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                 //nav menu toggle icon
+                R.drawable.ic_sidemenu, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
@@ -159,13 +165,14 @@ public class MainActivityP extends FragmentActivity {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        // Handle action bar actions click
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+//        // Handle action bar actions click
+//        switch (item.getItemId()) {
+//            case R.id.action_settings:
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+        return false;
     }
 
     /* *
@@ -174,8 +181,6 @@ public class MainActivityP extends FragmentActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -193,11 +198,11 @@ public class MainActivityP extends FragmentActivity {
                 fragment = new CariRuanganRuang();
                 break;
             case 2:
-                fragment = new DaftarPermohonanP();
+                fragment = new DaftarPendingP();
                 fragment.setArguments(b);
                 break;
             case 3:
-                fragment = new DaftarPeminjamanP();
+                fragment = new DaftarHistoryP();
                 fragment.setArguments(b);
                 break;
             case 4:
@@ -205,7 +210,7 @@ public class MainActivityP extends FragmentActivity {
                 break;
             case 5:
                 logout();
-
+                break;
             default:
                 break;
         }

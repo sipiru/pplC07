@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -18,11 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import java.util.ArrayList;
-
 import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
+import ppl.sipiru4.controller.PenggunaController;
 import ppl.sipiru4.model.NavDrawerItem;
 
 public class MainActivityFI extends FragmentActivity {
@@ -36,6 +35,7 @@ public class MainActivityFI extends FragmentActivity {
     Bundle b;
     int navPosition;
     private String[] menuFI;
+    PenggunaController penggunaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,24 +43,26 @@ public class MainActivityFI extends FragmentActivity {
         setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
 
-        User user;
-
         SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
 
         // mendapatkan nilai-nilai yang dioper
         b = getIntent().getExtras();
         if (b!=null){
-            user = b.getParcelable("user");
+            User user = b.getParcelable("user");
+            penggunaController = new PenggunaController(user);
+
             navPosition = b.getInt("navPosition");
-            Log.e("user", user.getUsername() + " " + user.getNama() + " " + user.getKodeOrg()+" "+user.getRole() + " " + user.getKodeIdentitas());
+            Log.e("user", penggunaController.getCurrentPengguna().getUsername() + " " + penggunaController.getCurrentPengguna().getNama() + " "
+                    + penggunaController.getCurrentPengguna().getKodeOrg()+" "+penggunaController.getCurrentPengguna().getRole() + " "
+                    + penggunaController.getCurrentPengguna().getKodeIdentitas());
 
             // simpan username, nama dan role ke SharedPreferences
             // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
             // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
             SharedPreferences.Editor edit = setting.edit();
-            edit.putString(LoginActivity.KEY_USERNAME, user.getUsername());
-            edit.putString(LoginActivity.KEY_NAMA, user.getNama());
-            edit.putString(LoginActivity.KEY_ROLE, user.getRole());
+            edit.putString(LoginActivity.KEY_USERNAME, penggunaController.getCurrentPengguna().getUsername());
+            edit.putString(LoginActivity.KEY_NAMA, penggunaController.getCurrentPengguna().getNama());
+            edit.putString(LoginActivity.KEY_ROLE, penggunaController.getCurrentPengguna().getRole());
             edit.apply();
         }
         Log.e("mainAct MR ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
@@ -75,17 +77,17 @@ public class MainActivityFI extends FragmentActivity {
 
         // adding nav drawer items to array
         // Daftar Permohonan
-        navDrawerItems.add(new NavDrawerItem(menuFI[0], navMenuIcons.getResourceId(0, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuFI[0]));
         // Daftar Pengembalian Alat
-        navDrawerItems.add(new NavDrawerItem(menuFI[1], navMenuIcons.getResourceId(1, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuFI[1]));
         // Daftar History
-        navDrawerItems.add(new NavDrawerItem(menuFI[2], navMenuIcons.getResourceId(2, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuFI[2]));
         // Lihat Jadwal Ruangan
-        navDrawerItems.add(new NavDrawerItem(menuFI[3], navMenuIcons.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuFI[3]));
         // PesanBaru
-        navDrawerItems.add(new NavDrawerItem(menuFI[4], navMenuIcons.getResourceId(4, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuFI[4]));
         // Logout
-        navDrawerItems.add(new NavDrawerItem(menuFI[5], navMenuIcons.getResourceId(5, -1)));
+        navDrawerItems.add(new NavDrawerItem(menuFI[5]));
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -101,6 +103,7 @@ public class MainActivityFI extends FragmentActivity {
         getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.drawable.ic_sidemenu, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
@@ -145,13 +148,14 @@ public class MainActivityFI extends FragmentActivity {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        // Handle action bar actions click
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+//        // Handle action bar actions click
+//        switch (item.getItemId()) {
+//            case R.id.action_settings:
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+        return false;
     }
 
     /* *
@@ -160,8 +164,8 @@ public class MainActivityFI extends FragmentActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+//        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+//        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -173,13 +177,13 @@ public class MainActivityFI extends FragmentActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new DaftarPermohonanFI();
+                fragment = new DaftarPendingFI();
                 break;
             case 1:
                 fragment = new DaftarPengembalianAlatFI();
                 break;
             case 2:
-                fragment = new DaftarPeminjamanFI();
+                fragment = new DaftarHistoryFI();
                 break;
             case 3:
                 fragment = new CariRuanganRuang();
@@ -189,7 +193,7 @@ public class MainActivityFI extends FragmentActivity {
                 break;
             case 5:
                 logout();
-
+                break;
             default:
                 break;
         }

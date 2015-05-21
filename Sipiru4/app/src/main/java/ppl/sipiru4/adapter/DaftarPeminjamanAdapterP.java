@@ -16,7 +16,7 @@ import ppl.sipiru4.R;
 public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
 
     public DaftarPeminjamanAdapterP(Context context, List<Peminjaman> items) {
-        super(context, R.layout.list_permohonan, items );
+        super(context, R.layout.list, items );
     }
 
     @Override

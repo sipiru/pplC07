@@ -22,99 +22,110 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
-            android:process=":sync">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityP">
+        <activity android:name=".MainActivityP"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityK">
+        <activity android:name=".MainActivityK"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityMR">
+        <activity android:name=".MainActivityMR"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityFI">
+        <activity android:name=".MainActivityFI"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityA">
+        <activity android:name=".MainActivityA"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DaftarRuangan">
+        <activity android:name=".DaftarRuangan"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".FormPeminjaman">
+        <activity android:name=".FormPeminjaman"
+            android:screenOrientation="portrait">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
         </intent-filter>
         </activity>
-        <activity android:name=".DetailPermohonanP">
+        <activity android:name=".DetailPendingP"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPermohonanMR">
+        <activity android:name=".DetailPendingMR"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPermohonanK">
+        <activity android:name=".DetailPendingK"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPermohonanFI">
+        <activity android:name=".DetailPendingFI"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPesan">
+        <activity android:name=".DetailHistoryP"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPeminjamanP">
+        <activity android:name=".DetailHistoryK"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPeminjamanK">
+        <activity android:name=".DetailHistoryMR"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPeminjamanMR">
+        <activity android:name=".DetailHistoryFI"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPeminjamanFI">
+        <activity android:name=".DetailRuangan"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailRuangan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".DetailPengembalianAlat">
+        <activity android:name=".DetailPengembalianAlat"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

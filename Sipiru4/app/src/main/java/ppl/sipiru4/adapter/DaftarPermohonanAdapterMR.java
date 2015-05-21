@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
 
     public DaftarPermohonanAdapterMR(Context context, List<Peminjaman> items) {
-        super(context, R.layout.list_permohonan, items );
+        super(context, R.layout.list, items );
     }
 
     @Override
