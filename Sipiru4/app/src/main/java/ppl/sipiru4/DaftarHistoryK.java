@@ -24,14 +24,12 @@ public class DaftarHistoryK extends Fragment {
     ArrayList<Peminjaman> mItems;
     PeminjamanController peminjamanController;
 
-    public DaftarHistoryK(){}
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
-        lv = (ListView) rootView.findViewById(R.id.list);
-
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/historyManajerKemahasiswaan/");
+
+        lv = (ListView) rootView.findViewById(R.id.list);
 
         return rootView;
     }

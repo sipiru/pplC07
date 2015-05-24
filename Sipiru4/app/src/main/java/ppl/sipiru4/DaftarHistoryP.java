@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.Entity.User;
+import ppl.sipiru4.Entity.SessionManager;
 import ppl.sipiru4.adapter.DaftarPeminjamanAdapterP;
 import ppl.sipiru4.controller.PeminjamanController;
 import ppl.sipiru4.controller.PenggunaController;
@@ -26,23 +25,18 @@ public class DaftarHistoryP extends Fragment {
     ArrayList<Peminjaman> mItems;
     PenggunaController penggunaController;
     PeminjamanController peminjamanController;
-
-    public DaftarHistoryP(){}
+    SessionManager session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
-        lv = (ListView) rootView.findViewById(R.id.list);
-
-        Bundle b;
-        b = getArguments();
-        if (b!=null) {
-            User user = b.getParcelable("user");
-            penggunaController = new PenggunaController(user);
-            Log.e("user daftar peminjaman",user.getUsername() + " " + user.getNama() + " " + user.getRole());
-        }
+        session = new SessionManager(getActivity().getApplicationContext());
+        penggunaController = new PenggunaController(session.getUser());
 
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/daftarAcceptedPeminjam/" + penggunaController.getCurrentPengguna().getUsername());
+
+        lv = (ListView) rootView.findViewById(R.id.list);
+
 
         return rootView;
     }

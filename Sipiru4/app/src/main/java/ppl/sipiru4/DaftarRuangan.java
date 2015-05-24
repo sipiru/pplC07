@@ -23,9 +23,6 @@ public class DaftarRuangan extends Activity {
     DaftarRuanganAdapter adapter;
     RuanganController ruanganController;
 
-    public DaftarRuangan(){
-    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_daftar_ruangan);
@@ -52,7 +49,6 @@ public class DaftarRuangan extends Activity {
             for (int i = 0 ; i < ruanganController.getSize() ; i++) {
                 mItems.add(ruanganController.getRuangan(i));
             }
-//            Log.e("mitems", mItems.toString());
 
             adapter = new DaftarRuanganAdapter(getApplicationContext(), mItems);
             Log.e("adapter", adapter.toString());

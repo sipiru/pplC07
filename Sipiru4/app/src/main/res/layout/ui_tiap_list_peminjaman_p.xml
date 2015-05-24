@@ -3,51 +3,49 @@
     android:orientation="horizontal" android:layout_width="fill_parent"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/update_status"
+        android:src="@drawable/ic_daftarpermohonan"
         android:layout_gravity="center"
         android:id="@+id/image"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="8dp"
-        android:paddingBottom="5dp"
-        android:elevation="5dp" />
+        android:layout_marginLeft="@dimen/text_padding"/>
 
 
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="@dimen/text_size2"
         android:textColor="@color/textlist"
         android:text="barang sudah dikembalikan"
         android:layout_below="@+id/perihal"
         android:layout_alignLeft="@+id/perihal"
         android:layout_alignStart="@+id/perihal"
-        android:paddingBottom="4dp">
+        android:paddingBottom="@dimen/text_padding">
     </TextView>
 
     <TextView
         android:id="@+id/nama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="@dimen/text_size_medium"
         android:textColor="@color/textlist"
         android:text="2302"
         android:layout_below="@+id/linearLayout"
-        android:layout_marginLeft="18dp"
+        android:layout_marginLeft="@dimen/text_padding"
         android:layout_toRightOf="@+id/image"
         android:layout_toEndOf="@+id/image"
-        android:paddingTop="4dp">
+        android:paddingTop="@dimen/text_padding">
     </TextView>
 
     <TextView
         android:id="@+id/perihal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="@dimen/text_size2"
         android:textColor="@color/textlist"
         android:text="perihal : "
         android:layout_below="@+id/nama"
@@ -59,9 +57,10 @@
         android:id="@+id/deskripsi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="@dimen/text_size2"
         android:textColor="@color/textlist"
         android:text="perihal apa"
+        android:lines="1"
         android:layout_alignTop="@+id/perihal"
         android:layout_toRightOf="@+id/perihal"
         android:layout_toEndOf="@+id/perihal">

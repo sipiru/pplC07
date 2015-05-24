@@ -1,6 +1,6 @@
 package ppl.sipiru4;
 
-import ppl.sipiru4.Entity.User;
+import ppl.sipiru4.Entity.SessionManager;
 import ppl.sipiru4.adapter.NavDrawerListAdapter;
 import ppl.sipiru4.controller.PenggunaController;
 import ppl.sipiru4.model.NavDrawerItem;
@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
@@ -36,50 +35,25 @@ public class MainActivityP extends FragmentActivity {
     int navPosition;
     private String[] menuPeminjam; // slide menu items
     PenggunaController penggunaController;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        session.checkLogin();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
-        Log.e("Main activity P create", "create");
 
-//        // mendapatkan nilai-nilai yang dioper dari LoginActivity.class
-//        User user;
-
-        SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
+        session = new SessionManager(getApplicationContext());
 
         b = getIntent().getExtras();
         if(b!=null) {
-            User user = b.getParcelable("user");
-            penggunaController = new PenggunaController(user);
             navPosition = b.getInt("navPosition");
-            Log.e("user", penggunaController.getCurrentPengguna().getUsername() + " " + penggunaController.getCurrentPengguna().getNama() + " "
-                    + penggunaController.getCurrentPengguna().getKodeOrg()+" "+ penggunaController.getCurrentPengguna().getRole() + " " + penggunaController.getCurrentPengguna().getKodeIdentitas());
-
-            // simpan username, nama dan role ke SharedPreferences
-            // dibuat untuk mengatasi bug penyimpanan  nilai-nilai di SharedPreferences saat user sudah melakukan login pertama kali, kemudian logout dan
-            // login untuk kedua kalinya atau lebih (tanpa menutup aplikasi selama proses).
-            SharedPreferences.Editor edit = setting.edit();
-            edit.putString(LoginActivity.KEY_USERNAME, penggunaController.getCurrentPengguna().getUsername());
-            edit.putString(LoginActivity.KEY_NAMA, penggunaController.getCurrentPengguna().getNama());
-            edit.putString(LoginActivity.KEY_KODE_ORG, penggunaController.getCurrentPengguna().getKodeOrg());
-            edit.putString(LoginActivity.KEY_ROLE, penggunaController.getCurrentPengguna().getRole());
-            edit.putString(LoginActivity.KEY_KODE_IDENTITAS, penggunaController.getCurrentPengguna().getKodeIdentitas());
-            edit.apply();
         }
-        Log.e("mainAct P ",setting.getString(LoginActivity.KEY_USERNAME,null)+" "
-                +setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
-//
-//        Log.e("mainAct P 2",LoginActivity.setting.getString(LoginActivity.KEY_USERNAME,null)+" "
-//                +LoginActivity.setting.getString(LoginActivity.KEY_NAMA,null) + " " + LoginActivity.setting.getString(LoginActivity.KEY_ROLE,null));
-
         // load slide menu items
         menuPeminjam = getResources().getStringArray(R.array.nav_drawer_items_peminjam);
 
         // nav drawer icons from resources
-        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+//        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
@@ -97,14 +71,13 @@ public class MainActivityP extends FragmentActivity {
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[3]));
 //            // Daftar Pesan
 //            navDrawerItems.add(new NavDrawerItem(menuPeminjam[3], navMenuIcons.getResourceId(3, -1)));
-            // PesanBaru
+            // Daftar Ditolak
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[4]));
             // Logout
         navDrawerItems.add(new NavDrawerItem(menuPeminjam[5]));
 
-
         // Recycle the typed array
-        navMenuIcons.recycle();
+//        navMenuIcons.recycle();
 
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
@@ -128,7 +101,7 @@ public class MainActivityP extends FragmentActivity {
             }
 
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
+                getActionBar().setTitle(mDrawerTitle + " : Mahasiswa");
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
             }
@@ -199,14 +172,12 @@ public class MainActivityP extends FragmentActivity {
                 break;
             case 2:
                 fragment = new DaftarPendingP();
-                fragment.setArguments(b);
                 break;
             case 3:
                 fragment = new DaftarHistoryP();
-                fragment.setArguments(b);
                 break;
             case 4:
-                fragment = new KirimPesan();
+                fragment = new DaftarRejectedP();
                 break;
             case 5:
                 logout();
@@ -232,6 +203,7 @@ public class MainActivityP extends FragmentActivity {
     }
 
     private void logout() {
+
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         // set title
         alertDialogBuilder.setTitle("Apakah anda yakin untuk logout?");
@@ -245,16 +217,16 @@ public class MainActivityP extends FragmentActivity {
 //                        pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke
 //                        halaman Login dan mengakhiri semua proses yang ada di stack
 
+                        Log.e("sebelum logout session" , session.getUserDetails()+"");
 //                        Log.e("sebelum logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
 //                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
-                        SharedPreferences.Editor edit = setting.edit();
-                        edit.clear();
-                        edit.apply();
+                        session.logoutUser();
 
 //                        Log.e("setelah logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
 //                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
 
+                        Log.e("sesudah logout session" , session.getUserDetails()+"");
                         Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(i);
 

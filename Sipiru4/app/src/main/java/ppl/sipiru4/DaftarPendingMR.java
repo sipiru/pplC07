@@ -12,11 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
+import ppl.sipiru4.Entity.SessionManager;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapterMR;
 import ppl.sipiru4.controller.PeminjamanController;
 
@@ -25,15 +24,15 @@ public class DaftarPendingMR extends Fragment {
     DaftarPermohonanAdapterMR adapter;
     ArrayList<Peminjaman> mItems;
     PeminjamanController peminjamanController;
-
-    public DaftarPendingMR(){}
+    SessionManager session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
-        lv = (ListView) rootView.findViewById(R.id.list);
-
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/displayManajerRuangan/");
+
+        lv = (ListView) rootView.findViewById(R.id.list);
+        session = new SessionManager(getActivity().getApplicationContext());
 
         return rootView;
     }

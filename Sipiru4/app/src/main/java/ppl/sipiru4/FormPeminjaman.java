@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -16,29 +15,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
-import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
-import ppl.sipiru4.Entity.User;
+import ppl.sipiru4.Entity.SessionManager;
 import ppl.sipiru4.controller.PenggunaController;
 
 public class FormPeminjaman extends Activity {
     Context context;
-    SharedPreferences setting;
     PenggunaController penggunaController;
+    SessionManager session;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.form_peminjaman_ui);
-
-        setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
-
-        // mendapatkan informasi user
-        User user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
-                setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
-                setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
-        penggunaController = new PenggunaController(user);
-
         context = this;
+        setContentView(R.layout.form_peminjaman_ui);
+        session = new SessionManager(getApplicationContext());
+        // mendapatkan informasi user
+        penggunaController = new PenggunaController(session.getUser());
 
         Bundle b = getIntent().getExtras();
         if (b!=null) {
@@ -46,21 +38,19 @@ public class FormPeminjaman extends Activity {
             String waktuAwal = b.getString("waktuAwal");
             String waktuAkhir = b.getString("waktuAkhir");
 
-            final String username = setting.getString(LoginActivity.KEY_USERNAME,null);
+            final String username = penggunaController.getCurrentPengguna().getUsername();
 
             final EditText ruang = (EditText)findViewById(R.id.ruang);
             ruang.setText(kodeRuangan);
 
             final EditText nama = (EditText)findViewById(R.id.nama);
-            nama.setText(setting.getString(LoginActivity.KEY_NAMA,null));
+            nama.setText(penggunaController.getCurrentPengguna().getNama());
 
             final Spinner perihal = (Spinner) findViewById(R.id.perihal);
-            final ArrayList<String> perihalString = new ArrayList<>();
-            perihalString.add("Akademis");
-            perihalString.add("Kepanitiaan");
-            perihalString.add("Organisasi");
+            final String[] perihalArray;
+            perihalArray = getResources().getStringArray(R.array.perihal);
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, perihalString) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, perihalArray) {
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View v = super.getView(position, convertView, parent);
@@ -96,7 +86,7 @@ public class FormPeminjaman extends Activity {
                 @Override
                 public void onClick(View v)
                 {
-                    String perihalValue = perihalString.get(perihal.getSelectedItemPosition())+"";
+                    String perihalValue = perihalArray[perihal.getSelectedItemPosition()]+"";
 //                    Log.e("perihal", perihalValue);
                     String kegiatanValue = kegiatan.getText()+"";
 
@@ -125,18 +115,12 @@ public class FormPeminjaman extends Activity {
                         new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
                                 + username + "&" + namaP + "&" + statusP + "&" + ruang.getText() + "&"
                                 + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanModif + "&" + alat + "&0/");
-
-
                     }
                 }
             });
         }
         else {
             Toast.makeText(context, "Error memunculkan Form Peminjaman", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(getApplicationContext(),MainActivityP.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            i.putExtra("user", penggunaController.getCurrentPengguna());
-            startActivity(i);
         }
     }
 
@@ -179,7 +163,6 @@ public class FormPeminjaman extends Activity {
                 Toast.makeText(getApplicationContext(), "Permohonan berhasil disubmit", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(),MainActivityP.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                i.putExtra("user", penggunaController.getCurrentPengguna());
                 startActivity(i);
             }
             else {

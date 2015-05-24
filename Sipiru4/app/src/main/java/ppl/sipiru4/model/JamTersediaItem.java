@@ -1,31 +1,21 @@
 package ppl.sipiru4.model;
 
+import java.text.ParseException;
 
 public class JamTersediaItem {
-
-    public final String jamMulai;
-    public final String jamSelesai;
+    private final String jamMulai;
+    private final String jamSelesai;
 
     // the text for the ListView item title
     public JamTersediaItem(String jamMulai, String jamSelesai) {
-
         this.jamMulai = jamMulai;
         this.jamSelesai=jamSelesai;
     }
 
-    public String getJamMulai() {
-        return this.jamMulai;
-
-    }
-    public String getJamSelesai() {
-        return this.jamSelesai;
-
-    }
-
-    public String setJamMulai() {
+    public String getJamMulai() throws ParseException {
         return jamMulai;
     }
-    public String setJamSelesai() {
+    public String getJamSelesai() {
         return jamSelesai;
     }
 }

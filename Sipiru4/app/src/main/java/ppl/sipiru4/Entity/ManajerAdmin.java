@@ -1,11 +1,11 @@
 package ppl.sipiru4.Entity;
 
-public class Manajer {
+public class ManajerAdmin {
     private String username;
     private String nama;
     private String role;
 
-    public Manajer(String username, String nama, String role) {
+    public ManajerAdmin(String username, String nama, String role) {
         this.username = username;
         this.nama = nama;
         this.role = role;

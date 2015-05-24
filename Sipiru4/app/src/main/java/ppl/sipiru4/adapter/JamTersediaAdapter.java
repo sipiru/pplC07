@@ -7,18 +7,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
-
 import ppl.sipiru4.R;
 import ppl.sipiru4.model.JamTersediaItem;
 
 public class JamTersediaAdapter extends ArrayAdapter<JamTersediaItem> {
 
-    private Context context;
-    private ArrayList<JamTersediaItem> navDrawerItems;
-
-    public JamTersediaAdapter(Context context, List<JamTersediaItem> items) {
+    public JamTersediaAdapter(Context context, ArrayList<JamTersediaItem> items) {
         super(context, R.layout.list, items );
     }
 
@@ -41,8 +37,12 @@ public class JamTersediaAdapter extends ArrayAdapter<JamTersediaItem> {
         // update the item view
         JamTersediaItem item = getItem(position);
 
-        viewHolder.jamMulai.setText(item.jamMulai);
-        viewHolder.jamSelesai.setText(item.jamSelesai);
+        try {
+            viewHolder.jamMulai.setText(item.getJamMulai());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        viewHolder.jamSelesai.setText(item.getJamSelesai());
 
         return convertView;
     }

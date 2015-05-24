@@ -47,4 +47,8 @@ public class PeminjamanController {
     public Peminjaman getPeminjaman() {
         return peminjamans[0];
     }
+
+    public int getSize() {
+        return size;
+    }
 }

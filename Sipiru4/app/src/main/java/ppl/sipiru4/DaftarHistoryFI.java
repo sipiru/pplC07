@@ -12,8 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
@@ -26,15 +24,12 @@ public class DaftarHistoryFI extends Fragment {
     ArrayList<Peminjaman> mItems;
     PeminjamanController peminjamanController;
 
-    public DaftarHistoryFI(){}
-    //private DaftarPermohonanItem mItems; // ListView items list
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
-        lv = (ListView) rootView.findViewById(R.id.list);
-
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/historyITF/");
+
+        lv = (ListView) rootView.findViewById(R.id.list);
 
         return rootView;
     }

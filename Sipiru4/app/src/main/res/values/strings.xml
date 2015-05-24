@@ -6,6 +6,8 @@
     <string name="Login">LOGIN</string>
     <string name="set_date">login</string>
     <string name="prompt_password">password</string>
+    <string name="button_add_ruangan">Tambah Ruangan</string>
+    <string name="button_add_role">Tambah Role</string>
      <string name="drawer_open">
         <item >@drawable/ic_drawer</item>
     </string>
@@ -17,7 +19,6 @@
         <item >Cari Ruangan</item>
         <item >Daftar Permohonan</item>
         <item >Daftar Peminjamann</item>
-        <!--<item >Daftar Pesan</item>-->
         <item >Tulis Pesan</item>
         <item >Logout</item>
         <item >Menu Admin</item>
@@ -27,37 +28,34 @@
         <item >Lihat Jadwal Ruangan</item>
         <item >Daftar Pending</item>
         <item >Daftar Disetujui</item>
-        <!--<item >Daftar Pesan</item>-->
-        <item >Tulis Pesan</item>
+        <item >Daftar Ditolak</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_mr">
         <item >Daftar Pending</item>
         <item >Daftar Disetujui</item>
+        <item >Daftar Ditolak</item>
         <item >Lihat Jadwal Ruangan</item>
-        <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_mk">
         <item >Daftar Pending</item>
         <item >Daftar Disetujui</item>
+        <item >Daftar Ditolak</item>
         <item >Lihat Jadwal Ruangan</item>
-        <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_fasumitf">
         <item >Daftar Pending</item>
         <item >Daftar Pengembalian Alat</item>
         <item >Daftar History</item>
+        <item >Daftar Ditolak</item>
         <item >Lihat Jadwal Ruangan</item>
-        <item >Tulis Pesan</item>
         <item >Logout</item>
     </string-array>
     <string-array name="nav_drawer_items_admin">
-        <item >Update/Hapus Ruangan</item>
-        <item >Tambah Ruangan</item>
-        <item >Tambah Role</item>
-        <item >Hapus Role</item>
+        <item >Mengelola Ruangan</item>
+        <item >Mengelola Role</item>
         <item >Logout</item>
     </string-array>
 
@@ -110,6 +108,12 @@
         <item>Manajer Umum</item>
         <item>ITF</item>
         <item>Admin</item>
+    </string-array>
+
+    <string-array name="perihal">
+        <item>Akademis</item>
+        <item>Kepanitiaan</item>
+        <item>Organisasi</item>
     </string-array>
     
     <!-- Content Description -->

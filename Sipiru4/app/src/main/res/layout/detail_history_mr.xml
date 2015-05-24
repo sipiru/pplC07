@@ -238,7 +238,7 @@
         <Button
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:text="Download dokument"
+            android:text="Unduh Dokumen"
             android:id="@+id/download"
             android:background="@color/button_color"
             android:textSize="16dp"

@@ -57,36 +57,45 @@
         android:layout_toRightOf="@+id/textView"
         android:layout_toEndOf="@+id/textView" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="waktu awal"
-        android:id="@+id/textView1"
-        android:textColor="@color/textblack"
-        android:textSize="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:weightSum="1"
+        android:layout_below="@+id/namaRuangan">
+        <!--  Single List Item Design -->
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/mulai"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:padding="10dip"
+            android:textSize="18dp"
+            android:text="waktu mulai"
+            android:textColor="@color/textblack"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.39">
+        </TextView>
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/selesai"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:padding="10dip"
+            android:textSize="18dp"
+            android:text="waktu selesai"
+            android:textColor="@color/textblack"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.44">
+        </TextView>
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="waktu akhir"
-        android:id="@+id/textView2"
-        android:textColor="@color/textblack"
-        android:textSize="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignTop="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/linearLayout"
         android:layout_marginTop="6dp"
         android:background="@color/list_background_hal"
         android:divider="@color/list_divider"

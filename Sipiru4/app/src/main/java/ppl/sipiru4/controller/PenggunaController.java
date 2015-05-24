@@ -9,10 +9,6 @@ public class PenggunaController {
         this.user = user;
     }
 
-//    public void loginPengguna(User user) {
-//        currentPengguna = user;
-//    }
-
     public User getCurrentPengguna() {
         if (user != null) {
             return user;

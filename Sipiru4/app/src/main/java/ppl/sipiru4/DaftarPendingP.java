@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.Entity.User;
+import ppl.sipiru4.Entity.SessionManager;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapterP;
 import ppl.sipiru4.controller.PeminjamanController;
 import ppl.sipiru4.controller.PenggunaController;
@@ -28,23 +28,17 @@ public class DaftarPendingP extends Fragment {
     ArrayList<Peminjaman> mItems;
     PenggunaController penggunaController;
     PeminjamanController peminjamanController;
+    SessionManager session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
-        lv = (ListView) rootView.findViewById(R.id.list);
-        Log.e("Daftar Permohonan P", "createView fragment");
-
-        Bundle b;
-        b = getArguments();
-        if (b!=null) {
-            User user = b.getParcelable("user");
-            penggunaController = new PenggunaController(user);
-
-            Log.e("user daftar permohonan",user.getUsername() + " " + user.getNama() + " " + user.getRole());
-        }
+        session = new SessionManager(getActivity().getApplicationContext());
+        penggunaController = new PenggunaController(session.getUser());
 
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/daftarPendingPeminjam/" + penggunaController.getCurrentPengguna().getUsername());
+
+        lv = (ListView) rootView.findViewById(R.id.list);
 
         return rootView;
     }
@@ -81,7 +75,7 @@ public class DaftarPendingP extends Fragment {
             mItems = new ArrayList<>();
             peminjamanController = new PeminjamanController(hasil);
 
-            for (int i = 0 ; i < hasil.length(); i++) {
+            for (int i = 0 ; i < peminjamanController.getSize(); i++) {
                 mItems.add(peminjamanController.getPeminjaman(i));
             }
 

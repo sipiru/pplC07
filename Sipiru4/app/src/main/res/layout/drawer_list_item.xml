@@ -7,15 +7,13 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/icon"
-        android:text="misalkan"
-        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="@color/textlist"
         android:gravity="center_vertical"
-        android:paddingRight="40dp"/>
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_marginRight="@dimen/text_margin"/>
 
 
 </RelativeLayout>

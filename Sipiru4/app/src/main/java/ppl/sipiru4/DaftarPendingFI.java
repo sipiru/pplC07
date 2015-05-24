@@ -24,15 +24,12 @@ public class DaftarPendingFI extends Fragment {
     ArrayList<Peminjaman> mItems;
     PeminjamanController peminjamanController;
 
-    public DaftarPendingFI(){}
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
-        lv = (ListView) rootView.findViewById(R.id.list);
-
-        // mendapatkan data-data peminjaman dari webservice berbentuk JSON untuk manajer kemahasiswaan
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/displayITF/");
+
+        lv = (ListView) rootView.findViewById(R.id.list);
 
         return rootView;
     }
