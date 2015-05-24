@@ -5,14 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
 
-public class DaftarPermohonanAdapterFI extends ArrayAdapter<Peminjaman> {
 
-    public DaftarPermohonanAdapterFI(Context context, ArrayList<Peminjaman> items) {
+public class DaftarRejectedAdapter extends ArrayAdapter<Peminjaman> {
+
+    public DaftarRejectedAdapter(Context context, ArrayList<Peminjaman> items) {
         super(context, R.layout.list, items );
     }
 
@@ -22,12 +24,12 @@ public class DaftarPermohonanAdapterFI extends ArrayAdapter<Peminjaman> {
         if(convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan, parent, false);
+            convertView = inflater.inflate(R.layout.ui_tiap_list_rejected, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.nama = (TextView) convertView.findViewById(R.id.nama);
+            viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.nama);
             viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
-            viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
+            viewHolder.img = (ImageView) convertView.findViewById(R.id.image);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -36,9 +38,8 @@ public class DaftarPermohonanAdapterFI extends ArrayAdapter<Peminjaman> {
         // update the item view
         Peminjaman item = getItem(position);
 
-        viewHolder.nama.setText(item.getNamaP());
+        viewHolder.kodeRuangan.setText(item.getKodeRuangan());
         viewHolder.perihal.setText(item.getPerihal());
-        viewHolder.ruangan.setText(item.getKodeRuangan());
 
         return convertView;
     }
@@ -50,8 +51,8 @@ public class DaftarPermohonanAdapterFI extends ArrayAdapter<Peminjaman> {
      */
 
     private static class ViewHolder {
-        TextView nama;
+        TextView kodeRuangan;
         TextView perihal;
-        TextView ruangan;
+        ImageView img;
     }
 }

@@ -15,19 +15,19 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.adapter.DaftarPeminjamanAdapterK;
+import ppl.sipiru4.adapter.DaftarRejectedAdapter;
 import ppl.sipiru4.controller.PeminjamanController;
 
-public class DaftarHistoryK extends Fragment {
+public class DaftarRejected extends Fragment {
     ListView lv;
-    DaftarPeminjamanAdapterK adapter;
+    DaftarRejectedAdapter adapter;
     ArrayList<Peminjaman> mItems;
     PeminjamanController peminjamanController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
-        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/historyManajerKemahasiswaan/");
+        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showRejected/");
 
         lv = (ListView) rootView.findViewById(R.id.list);
 
@@ -41,7 +41,7 @@ public class DaftarHistoryK extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Mendapatkan history manajer ruangan...");
+            pDialog.setMessage("Mendapatkan daftar yang ditolak...");
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -69,14 +69,14 @@ public class DaftarHistoryK extends Fragment {
                 mItems.add(peminjamanController.getPeminjaman(i));
             }
 
-            adapter = new DaftarPeminjamanAdapterK(getActivity().getApplicationContext(), mItems);
+            adapter = new DaftarRejectedAdapter(getActivity().getApplicationContext(), mItems);
             lv.setAdapter(adapter);
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v,
                                         int position, long id) {
                     // Sending image id to FullScreenActivity
-                    Intent i = new Intent(getActivity().getApplicationContext(), DetailHistoryK.class);
+                    Intent i = new Intent(getActivity().getApplicationContext(), DetailRejected.class);
                     // passing array index
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);

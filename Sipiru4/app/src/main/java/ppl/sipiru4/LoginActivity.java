@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -13,37 +12,65 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
+import ppl.sipiru4.Entity.SessionManager;
 import ppl.sipiru4.Entity.User;
+import ppl.sipiru4.controller.PenggunaController;
 
 public class LoginActivity extends Activity{
     static final String PREFS_NAME = "pref";
     static final String KEY_USERNAME = "uname";
     static final String KEY_NAMA = "name";
     static final String KEY_ROLE = "role";
-    static final String KEY_KODE_ORG = "kode_org";
-    final static String KEY_KODE_IDENTITAS = "kode_identitas";
     private EditText uname;
     private EditText pass;
-    static SharedPreferences setting;
     Context context;
     private ProgressDialog pDialog;
+    SessionManager session;
+    PenggunaController penggunaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.e("LoginActivity", "create");
+        session = new SessionManager(getApplicationContext());
+        context = this;
+        if(session.isUserLoggedIn()) {
+            if (session.getUser().getRole().equals("mahasiswa")) {
+                Intent i = new Intent(context,MainActivityP.class);
+                startActivity(i);
+                finish();
+            }
+            else if (session.getUser().getRole().equals("manajer ruangan")){
+                Intent i = new Intent(context,MainActivityMR.class);
+                startActivity(i);
+                finish();
+            }
+            else if (session.getUser().getRole().equals("manajer kemahasiswaan")){
+                Intent i = new Intent(context,MainActivityK.class);
+                startActivity(i);
+                finish();
+            }
+            else if (session.getUser().getRole().equals("manajer umum") || session.getUser().getRole().equals("manajer itf")){
+                Intent i = new Intent(context,MainActivityFI.class);
+                startActivity(i);
+                finish();
+            }
+            else if (session.getUser().getRole().equals("admin")){
+                Intent i = new Intent(context,MainActivityA.class);
+                startActivity(i);
+                finish();
+            }
+            else {
+                Toast.makeText(context, "Ada kesalahan pencatatan role", Toast.LENGTH_SHORT).show();
+            }
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_ui);
-        context = this;
-
-        setting = getSharedPreferences(PREFS_NAME,0);
-        Log.e("user", setting.getString(KEY_USERNAME,null) + " " + setting.getString(KEY_ROLE,null));
 
         setupVariables();
     }
@@ -75,68 +102,42 @@ public class LoginActivity extends Activity{
                 }
             }
         });
-
-        Log.e("user2", setting.getString(KEY_USERNAME,null) + " " + setting.getString(KEY_ROLE,null));
     }
 
     public void authenticateLogin(String username, String password) throws IOException, JSONException {
         if (username.equals("mr")&&password.equals("mr")){
             // username dan password percobaan untuk manajer ruangan, tanpa menggunakan SSO
-            SharedPreferences.Editor edit = setting.edit();
-            edit.putString(KEY_USERNAME, "mr");
-            edit.putString(KEY_NAMA, "mr");
-            edit.putString(KEY_ROLE, "manager ruangan");
-            edit.apply();
+            penggunaController = new PenggunaController(new User("mr","mr","manajer ruangan"));
+            session.createLoginSession(penggunaController.getCurrentPengguna());
 
             Intent i = new Intent(getApplicationContext(), MainActivityMR.class);
-            User user = new User("mr","mr",null,"manager ruangan",null);
-            //mengoper data user ke MainActivityMR.class
-            i.putExtra("user", user);
             startActivity(i);
             finish();
         }
         else if (username.equals("mk")&&password.equals("mk")){
             // username dan password percobaan untuk manajer kemahasiswaan, tanpa menggunakan SSO
-            SharedPreferences.Editor edit = setting.edit();
-            edit.putString(KEY_USERNAME, "mk");
-            edit.putString(KEY_NAMA, "mk");
-            edit.putString(KEY_ROLE, "manager kemahasiswaan");
-            edit.apply();
+            penggunaController = new PenggunaController(new User("mk","mk","manajer kemahasiswaan"));
+            session.createLoginSession(penggunaController.getCurrentPengguna());
 
             Intent i = new Intent(getApplicationContext(), MainActivityK.class);
-            //mengoper data user ke MainActivityK.class
-            User user = new User("mk","mk",null,"manager kemahasiswaan",null);
-            i.putExtra("user", user);
             startActivity(i);
             finish();
         }
         else if (username.equals("itf")&&password.equals("itf")){
             // username dan password buat percobaan untuk manajer ITF, tanpa menggunakan SSO
-            SharedPreferences.Editor edit = setting.edit();
-            edit.putString(KEY_USERNAME, "itf");
-            edit.putString(KEY_NAMA, "itf");
-            edit.putString(KEY_ROLE, "FASUM/ITF");
-            edit.apply();
+            penggunaController = new PenggunaController(new User("itf","itf","manajer itf"));
+            session.createLoginSession(penggunaController.getCurrentPengguna());
 
             Intent i = new Intent(getApplicationContext(), MainActivityFI.class);
-            //mengoper data user ke MainActivityFI.class
-            User user = new User("itf","itf",null,"FASUM/ITF",null);
-            i.putExtra("user", user);
             startActivity(i);
             finish();
         }
         else if (username.equals("admin")&&password.equals("admin")){
             // username dan password buat percobaan untuk admin, tanpa menggunakan SSO
-            SharedPreferences.Editor edit = setting.edit();
-            edit.putString(KEY_USERNAME, "admin");
-            edit.putString(KEY_NAMA, "admin");
-            edit.putString(KEY_ROLE, "admin");
-            edit.apply();
+            penggunaController = new PenggunaController(new User("admin","admin","admin"));
+            session.createLoginSession(penggunaController.getCurrentPengguna());
 
             Intent i = new Intent(getApplicationContext(), MainActivityA.class);
-            //mengoper data user ke MainActivityA.class
-            User user = new User("admin","admin",null,"admin",null);
-            i.putExtra("user", user);
             startActivity(i);
             finish();
         }
@@ -189,20 +190,18 @@ public class LoginActivity extends Activity{
                 Toast.makeText(context,"gagal terhubung ke server. coba lagi",Toast.LENGTH_SHORT).show();
                 return;
             }
-            Log.e("user3", setting.getString(KEY_USERNAME,null) + " " + setting.getString(KEY_ROLE,null));
             String username;
             String nama;
             String kodeOrg;
             String role;
             int status;
-            String kodeIdentitas;
             try {
                 username = data.getString("username");
                 nama = data.getString("nama");
                 kodeOrg = data.getString("kode_org");
                 role = data.getString("nama_role");
                 status = data.getInt("state");
-                kodeIdentitas = data.getString("kodeidentitas");
+//                kodeIdentitas = data.getString("kodeidentitas");
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(context, e.toString(),Toast.LENGTH_SHORT).show();
@@ -210,90 +209,44 @@ public class LoginActivity extends Activity{
             }
 
             if (status == 1) {
-//                kodeOrg.equals("xx.xx.01.00.12.01:mahasiswa")
                 Log.e("kode universitas", kodeOrg.substring(12,14));
-                if (role.equals("mahasiswa")) {
-                    // menyimpan data user ke SharedPreferences
-                    SharedPreferences.Editor edit = setting.edit();
-                    edit.putString(KEY_USERNAME, username);
-                    edit.putString(KEY_NAMA, nama);
-                    edit.putString(KEY_KODE_ORG,kodeOrg);
-                    edit.putString(KEY_ROLE, role);
-                    edit.putString(KEY_KODE_IDENTITAS,kodeIdentitas);
-                    edit.apply();
+                if (role.equals("mahasiswa") && kodeOrg.substring(12,14).equals("12")) {
+                    penggunaController = new PenggunaController(new User(username,nama,role));
+                    session.createLoginSession(penggunaController.getCurrentPengguna());
 
                     Intent i = new Intent(getApplicationContext(), MainActivityP.class);
-                    //mengoper data user ke MainActivityP.class
-                    User user = new User(username,nama,kodeOrg,role,kodeIdentitas);
-                    i.putExtra("user", user);
                     startActivity(i);
                     finish();
                 }
                 else if (role.equals("manajer ruangan")){
-                    // menyimpan data user ke SharedPreferences
-                    SharedPreferences.Editor edit = setting.edit();
-                    edit.putString(KEY_USERNAME, username);
-                    edit.putString(KEY_NAMA, nama);
-                    edit.putString(KEY_KODE_ORG,kodeOrg);
-                    edit.putString(KEY_ROLE, role);
-                    edit.putString(KEY_KODE_IDENTITAS,kodeIdentitas);
-                    edit.apply();
+                    penggunaController = new PenggunaController(new User(username,nama,role));
+                    session.createLoginSession(penggunaController.getCurrentPengguna());
 
                     Intent i = new Intent(getApplicationContext(), MainActivityMR.class);
-                    //mengoper data user ke MainActivityMR.class
-                    User user = new User(username,nama,kodeOrg,role,kodeIdentitas);
-                    i.putExtra("user", user);
                     startActivity(i);
                     finish();
                 }
                 else if (role.equals("manajer kemahasiswaan")){
-                    // menyimpan data user ke SharedPreferences
-                    SharedPreferences.Editor edit = setting.edit();
-                    edit.putString(KEY_USERNAME, username);
-                    edit.putString(KEY_NAMA, nama);
-                    edit.putString(KEY_KODE_ORG,kodeOrg);
-                    edit.putString(KEY_ROLE, role);
-                    edit.putString(KEY_KODE_IDENTITAS,kodeIdentitas);
-                    edit.apply();
+                    penggunaController = new PenggunaController(new User(username,nama,role));
+                    session.createLoginSession(penggunaController.getCurrentPengguna());
 
                     Intent i = new Intent(getApplicationContext(), MainActivityK.class);
-                    //mengoper data user ke MainActivityMK.class
-                    User user = new User(username,nama,kodeOrg,role,kodeIdentitas);
-                    i.putExtra("user", user);
                     startActivity(i);
                     finish();
                 }
-                else if (role.equals("manajer ITF")){
-                    // menyimpan data user ke SharedPreferences
-                    SharedPreferences.Editor edit = setting.edit();
-                    edit.putString(KEY_USERNAME, username);
-                    edit.putString(KEY_NAMA, nama);
-                    edit.putString(KEY_KODE_ORG,kodeOrg);
-                    edit.putString(KEY_ROLE, role);
-                    edit.putString(KEY_KODE_IDENTITAS,kodeIdentitas);
-                    edit.apply();
+                else if (role.equals("manajer itf") || role.equals("manajer umum")){
+                    penggunaController = new PenggunaController(new User(username,nama,role));
+                    session.createLoginSession(penggunaController.getCurrentPengguna());
 
                     Intent i = new Intent(getApplicationContext(), MainActivityFI.class);
-                    //mengoper data user ke MainActivityFI.class
-                    User user = new User(username,nama,kodeOrg,role,kodeIdentitas);
-                    i.putExtra("user", user);
                     startActivity(i);
                     finish();
                 }
                 else if (role.equals("admin")){
-                    // menyimpan data user ke SharedPreferences
-                    SharedPreferences.Editor edit = setting.edit();
-                    edit.putString(KEY_USERNAME, username);
-                    edit.putString(KEY_NAMA, nama);
-                    edit.putString(KEY_KODE_ORG,kodeOrg);
-                    edit.putString(KEY_ROLE, role);
-                    edit.putString(KEY_KODE_IDENTITAS,kodeIdentitas);
-                    edit.apply();
+                    penggunaController = new PenggunaController(new User(username,nama,role));
+                    session.createLoginSession(penggunaController.getCurrentPengguna());
 
                     Intent i = new Intent(getApplicationContext(), MainActivityA.class);
-                    //mengoper data user ke MainActivityA.class
-                    User user = new User(username,nama,kodeOrg,role,kodeIdentitas);
-                    i.putExtra("user", user);
                     startActivity(i);
                     finish();
                 }

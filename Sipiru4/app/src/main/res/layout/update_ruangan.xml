@@ -11,31 +11,6 @@
         android:layout_height="match_parent"
         tools:context="http://schemas.android.com/tools">
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:popupBackground="@color/popup"
-            android:layout_toLeftOf="@+id/search"
-            android:layout_toStartOf="@+id/search"
-            android:layout_alignTop="@+id/search"
-            android:layout_marginLeft="3dp"
-            android:layout_above="@+id/layoutForm1" />
-
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="55dp"
-            android:src="@android:drawable/ic_search_category_default"
-            android:id="@+id/search"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:clickable="true"
-            android:layout_marginLeft="3dp"/>
-
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
             android:layout_height="match_parent" android:gravity="center_horizontal"
@@ -45,8 +20,7 @@
             android:paddingTop="@dimen/activity_vertical_margin"
             android:scrollbars="horizontal"
             tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
-            android:id="@+id/layoutForm1"
-            android:layout_below="@+id/search">
+            android:id="@+id/layoutForm1">
 
             <TextView
                 android:layout_width="match_parent"
@@ -95,7 +69,7 @@
                 android:textSize="25dp"
                 android:layout_below="@+id/textView1"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -150,24 +124,13 @@
                 android:gravity="top" />
 
             <Button
-                android:layout_width="100dp"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:text="Update Ruangan"
                 android:id="@+id/buttonSave"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_below="@id/deskripsi"/>
-
-            <Button
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Hapus Ruangan"
-                android:id="@+id/buttonHapus"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp" />
+                android:layout_below="@+id/deskripsi"
+                android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
     </RelativeLayout>

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
+import ppl.sipiru4.Entity.SessionManager;
 import ppl.sipiru4.Entity.User;
 import ppl.sipiru4.controller.PeminjamanController;
 import ppl.sipiru4.controller.PenggunaController;
@@ -26,15 +27,17 @@ public class DetailPendingMR extends Activity {
     Bundle b;
     SharedPreferences setting;
     PenggunaController penggunaController;
+    SessionManager session;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_pending_mr);
 
+        session = new SessionManager(getApplicationContext());
+        Log.e("user session", session.getUserDetails()+"");
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
         User user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
-                setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
-                setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
+                setting.getString(LoginActivity.KEY_ROLE,null));
         penggunaController = new PenggunaController(user);
 
         // mendapatkan nilai-nilai yang dioper dari DaftarPendingMR.class

@@ -17,10 +17,8 @@ public class RuanganController {
     public RuanganController(JSONArray jArray) {
         ruangans = new Ruangan[jArray.length()];
         for (int i = 0 ; i < jArray.length(); i++) {
-            JSONObject jsonRuangan;
             try {
-                jsonRuangan = jArray.getJSONObject(i);
-                if (jsonRuangan == null) throw new AssertionError();
+                JSONObject jsonRuangan = jArray.getJSONObject(i);
                 String kode = jsonRuangan.getString("kode");
                 String nama = jsonRuangan.getString("nama");
                 int kapasitas = jsonRuangan.getInt("kapasitas");

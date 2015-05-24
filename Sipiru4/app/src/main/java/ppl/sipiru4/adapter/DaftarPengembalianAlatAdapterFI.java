@@ -8,14 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.List;
-
+import java.util.ArrayList;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
 
 public class DaftarPengembalianAlatAdapterFI extends ArrayAdapter<Peminjaman>{
-    public DaftarPengembalianAlatAdapterFI(Context context, List<Peminjaman> items) {
+    public DaftarPengembalianAlatAdapterFI(Context context, ArrayList<Peminjaman> items) {
         super(context, R.layout.list, items );
     }
 

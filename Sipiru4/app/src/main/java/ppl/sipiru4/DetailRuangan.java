@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import ppl.sipiru4.Entity.Ruangan;
 import ppl.sipiru4.controller.RuanganController;
 
@@ -60,9 +59,6 @@ public class DetailRuangan extends Activity {
         }
         else {
             Toast.makeText(this, "Error membuka halaman Detail Ruangan", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(getApplicationContext(),MainActivityP.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
         }
     }
 
@@ -71,5 +67,3 @@ public class DetailRuangan extends Activity {
         finish();
     }
 }
-
-

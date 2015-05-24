@@ -34,10 +34,11 @@ public class CariRuanganRuang extends Fragment {
     ImageButton search;
     int posisi;
 
-    public CariRuanganRuang() {}
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
+
+        // mengakses URL menggunakan AsyncTask class
+        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ruangan/");
 
         final TextView namaR = (TextView) rootView.findViewById(R.id.namaRuangan);
         lView = (ListView)rootView.findViewById(R.id.listView);
@@ -66,9 +67,6 @@ public class CariRuanganRuang extends Fragment {
                         + kodeRuangan[posisi]);
             }
         });
-
-        // mengakses URL menggunakan AsyncTask class
-        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ruangan/");
 
         return rootView;
     }

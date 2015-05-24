@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.List;
+import java.util.ArrayList;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
 
 
 public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
 
-    public DaftarPeminjamanAdapterP(Context context, List<Peminjaman> items) {
+    public DaftarPeminjamanAdapterP(Context context, ArrayList<Peminjaman> items) {
         super(context, R.layout.list, items );
     }
 
@@ -45,12 +45,12 @@ public class DaftarPeminjamanAdapterP extends ArrayAdapter<Peminjaman> {
         if (item.getStatusPeminjam()) {
             viewHolder.statusP.setText("Peralatan belum dikembalikan");
             viewHolder.statusP.setTextColor(Color.RED);
-            viewHolder.img.setImageResource(R.drawable.status_pinjaman);
+//            viewHolder.img.setImageResource(R.drawable.status_pinjaman);
         }
         else {
             viewHolder.statusP.setText("Selesai");
             viewHolder.statusP.setTextColor(Color.BLACK);
-            viewHolder.img.setImageResource(R.drawable.status_pinjaman);
+//            viewHolder.img.setImageResource(R.drawable.status_pinjaman);
         }
 
         return convertView;

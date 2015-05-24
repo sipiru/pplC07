@@ -9,27 +9,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import org.json.JSONArray;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
-import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.adapter.DaftarPeminjamanAdapterK;
-import ppl.sipiru4.controller.PeminjamanController;
+import ppl.sipiru4.Entity.Ruangan;
+import ppl.sipiru4.adapter.DaftarRuanganAdminAdapter;
+import ppl.sipiru4.controller.RuanganController;
 
-public class DaftarHistoryK extends Fragment {
+public class KelolaRuangan extends Fragment {
     ListView lv;
-    DaftarPeminjamanAdapterK adapter;
-    ArrayList<Peminjaman> mItems;
-    PeminjamanController peminjamanController;
+    DaftarRuanganAdminAdapter adapter;
+    ArrayList<Ruangan> mItems;
+    RuanganController ruanganController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.list, container, false);
-        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/historyManajerKemahasiswaan/");
+        View rootView = inflater.inflate(R.layout.list_admin, container, false);
+        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ruangan/");
 
         lv = (ListView) rootView.findViewById(R.id.list);
+
+        Button tambah = (Button) rootView.findViewById(R.id.btnAdd);
+        tambah.setText(R.string.button_add_ruangan);
+        tambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getApplicationContext(), TambahRuangan.class);
+                startActivity(i);
+            }
+        });
 
         return rootView;
     }
@@ -41,7 +52,7 @@ public class DaftarHistoryK extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Mendapatkan history manajer ruangan...");
+            pDialog.setMessage("Mendapatkan informasi...");
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -58,30 +69,30 @@ public class DaftarHistoryK extends Fragment {
 
         @Override
         protected void onPostExecute(JSONArray hasil) {
-            if (hasil == null){
+            if (hasil == null) {
                 pDialog.dismiss();
-                Toast.makeText(getActivity(),"gagal menghubungkan server. coba lagi.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "gagal menghubungkan ke server. coba lagi.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            mItems  = new ArrayList<>();
-            peminjamanController = new PeminjamanController(hasil);
-            for (int i = 0 ; i < hasil.length(); i++) {
-                mItems.add(peminjamanController.getPeminjaman(i));
+
+            mItems = new ArrayList<>();
+            ruanganController = new RuanganController(hasil);
+
+            for (int i = 0; i < ruanganController.getSize(); i++) {
+                mItems.add(ruanganController.getRuangan(i));
             }
 
-            adapter = new DaftarPeminjamanAdapterK(getActivity().getApplicationContext(), mItems);
+            adapter = new DaftarRuanganAdminAdapter(getActivity().getApplicationContext(), mItems);
             lv.setAdapter(adapter);
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View v,
-                                        int position, long id) {
-                    // Sending image id to FullScreenActivity
-                    Intent i = new Intent(getActivity().getApplicationContext(), DetailHistoryK.class);
-                    // passing array index
-                    i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent i = new Intent(parent.getContext(), UpdateRuangan.class);
+                    i.putExtra("ruangan", ruanganController.getRuangan(position));
                     startActivity(i);
                 }
             });
+
             pDialog.dismiss();
         }
     }

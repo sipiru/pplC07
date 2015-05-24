@@ -33,8 +33,7 @@ public class DetailPendingK extends Activity {
 
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
         User user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
-                setting.getString(LoginActivity.KEY_KODE_ORG,null), setting.getString(LoginActivity.KEY_ROLE,null),
-                setting.getString(LoginActivity.KEY_KODE_IDENTITAS,null));
+                setting.getString(LoginActivity.KEY_ROLE,null));
         penggunaController = new PenggunaController(user);
 
         // mendapatkan nilai-nilai yang dioper dari DaftarPendingK.class

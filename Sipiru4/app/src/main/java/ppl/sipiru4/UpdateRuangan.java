@@ -7,51 +7,65 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import ppl.sipiru4.Entity.JSONParser;
+import ppl.sipiru4.Entity.Ruangan;
+import ppl.sipiru4.controller.RuanganController;
 
-public class TambahRuangan extends Activity {
+public class UpdateRuangan extends Activity {
+    ArrayAdapter<String> adapter;
+    String[] ruangan;
+    RuanganController ruanganController;
     Context context;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tambah_ruangan);
+        setContentView(R.layout.update_ruangan);
         context = this;
 
-        final EditText kodeRuangan = (EditText) findViewById(R.id.kodeRuangan);
+        final TextView kodeRuangan = (TextView) findViewById(R.id.kodeRuangan);
         final EditText namaRuangan = (EditText) findViewById(R.id.namaRuangan);
         final EditText kapasitas = (EditText) findViewById(R.id.kapasitas);
         final EditText deskripsi = (EditText) findViewById(R.id.deskripsi);
 
-        Button add = (Button) findViewById(R.id.buttonAdd);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (kodeRuangan.getText().toString().trim().length()==0 || kapasitas.getText().toString().trim().length()==0) {
-                    Toast.makeText(context, "Kode ruangan dan kapasitas harus diisi", Toast.LENGTH_SHORT).show();
-                }
-                else if (kodeRuangan.getText().toString().length() > 5) {
-                    Toast.makeText(context, "Kode ruangan maksimal 5 karakter", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    String kode = kodeRuangan.getText().toString().trim();
+        Bundle b = getIntent().getExtras();
+        if (b!=null) {
+            Ruangan ruangan = b.getParcelable("ruangan");
+            ruanganController = new RuanganController(ruangan);
+
+            kodeRuangan.setText(ruanganController.getRuangan().getKode());
+            namaRuangan.setText(ruanganController.getRuangan().getNama());
+            kapasitas.setText(ruanganController.getRuangan().getKapasitas()+"");
+            deskripsi.setText(ruanganController.getRuangan().getDeskripsi());
+
+            Button save = (Button) findViewById(R.id.buttonSave);
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String kode = kodeRuangan.getText().toString();
                     String nama = namaRuangan.getText().toString().replaceAll(" ","%20");
                     String kap = kapasitas.getText().toString().trim();
                     String desk = deskripsi.getText().toString().replaceAll(" ","%20");
+
                     if (kap.length() > 4) {
                         Toast.makeText(context, "kapasitas terlalu besar.", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/menambahRuangan/"
+                        new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/updateRuangan/"
                                 + kode + "&" + nama + "&" + kap + "&" + desk);
                     }
                 }
-            }
-        });
+            });
+
+        }
+        else {
+            Toast.makeText(context, "Error membuka halaman Update Ruangan",Toast.LENGTH_LONG).show();
+        }
     }
 
     // kelas AsyncTask untuk mengakses URL
@@ -61,7 +75,7 @@ public class TambahRuangan extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(context);
-            pDialog.setMessage("Menambah ruangan ke database...");
+            pDialog.setMessage("Meng-update ruangan...");
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -84,7 +98,7 @@ public class TambahRuangan extends Activity {
                 return;
             }
             if (data.trim().equals("\"sukses\"")){
-                Toast.makeText(context, "Ruangan berhasil ditambah", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Ruangan berhasil diupdate", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(context,MainActivityA.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 i.putExtra("navPosition",0);
@@ -96,5 +110,4 @@ public class TambahRuangan extends Activity {
             pDialog.dismiss();
         }
     }
-
 }

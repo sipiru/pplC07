@@ -2,81 +2,73 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_home"
-        android:layout_gravity="center"
-        android:id="@+id/kotak"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/kapasitas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="@dimen/text_size1"
         android:textColor="@color/textlist"
         android:text="60"
         android:layout_below="@+id/kapasitasText"
         android:layout_alignLeft="@+id/kapasitasText"
-        android:layout_alignStart="@+id/kapasitasText">
+        android:layout_alignStart="@+id/kapasitasText"
+        android:paddingBottom="@dimen/text_padding">
     </TextView>
 
     <TextView
         android:id="@+id/kapasitasText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
+        android:textSize="@dimen/text_size2"
         android:textColor="@color/textlist"
         android:text="kapasitas"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/nama"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginEnd="30dp">
+        android:layout_marginRight="@dimen/text_margin"
+        android:paddingTop="@dimen/text_padding">
     </TextView>
 
     <TextView
         android:id="@+id/nama"
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
+        android:lines="1"
+        android:textSize="@dimen/text_size1"
         android:textColor="@color/textlist"
         android:text="2302"
         android:layout_below="@+id/linearLayout"
-        android:layout_marginLeft="18dp"
-        android:layout_toRightOf="@+id/kotak"
-        android:layout_toEndOf="@+id/kotak"
-        android:paddingTop="4dp">
+        android:layout_marginLeft="@dimen/text_margin"
+        android:paddingTop="@dimen/text_padding">
+    </TextView>
+
+    <TextView
+        android:id="@+id/kodeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textSize="@dimen/text_size2"
+        android:textColor="@color/textlist"
+        android:text="kode : "
+        android:layout_below="@+id/nama"
+        android:layout_alignLeft="@+id/nama"
+        android:layout_alignStart="@+id/nama"
+        android:paddingBottom="@dimen/text_padding">
     </TextView>
 
     <TextView
         android:id="@+id/kode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
+        android:lines="1"
+        android:textSize="@dimen/text_size2"
         android:textColor="@color/textlist"
         android:text="R2302"
-        android:layout_below="@+id/nama"
-        android:layout_alignLeft="@+id/nama"
-        android:layout_alignStart="@+id/nama">
-    </TextView>
-
-    <TextView
-        android:id="@+id/deskripsi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:textColor="@color/textlist"
-        android:text="Letak"
-        android:layout_below="@+id/kode"
-        android:layout_alignLeft="@+id/kode"
-        android:layout_alignStart="@+id/kode"
-        android:paddingBottom="4dp">
+        android:layout_alignTop="@+id/kodeText"
+        android:layout_toRightOf="@+id/kodeText"
+        android:layout_toEndOf="@+id/kodeText"
+        android:paddingBottom="@dimen/text_padding">
     </TextView>
 
 </RelativeLayout>

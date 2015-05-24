@@ -13,25 +13,12 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="@dimen/text_padding"/>
 
-
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size2"
-        android:textColor="@color/textlist"
-        android:text="barang sudah dikembalikan"
-        android:layout_below="@+id/perihal"
-        android:layout_alignLeft="@+id/perihal"
-        android:layout_alignStart="@+id/perihal"
-        android:paddingBottom="@dimen/text_padding">
-    </TextView>
-
     <TextView
         android:id="@+id/nama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_medium"
+        android:textSize="@dimen/text_size1"
+        android:lines="1"
         android:textColor="@color/textlist"
         android:text="2302"
         android:layout_below="@+id/linearLayout"
@@ -50,7 +37,8 @@
         android:text="perihal : "
         android:layout_below="@+id/nama"
         android:layout_alignLeft="@+id/nama"
-        android:layout_alignStart="@+id/nama">
+        android:layout_alignStart="@+id/nama"
+        android:paddingBottom="@dimen/text_padding">
     </TextView>
 
     <TextView
@@ -58,12 +46,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size2"
+        android:lines="1"
         android:textColor="@color/textlist"
         android:text="perihal apa"
-        android:lines="1"
         android:layout_alignTop="@+id/perihal"
         android:layout_toRightOf="@+id/perihal"
-        android:layout_toEndOf="@+id/perihal">
+        android:layout_toEndOf="@+id/perihal"
+        android:paddingBottom="@dimen/text_padding">
     </TextView>
 
 </RelativeLayout>

@@ -2,7 +2,7 @@ package ppl.sipiru4.adapter;
 
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
-import java.util.List;
+import java.util.ArrayList;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class DaftarPeminjamanAdapterMR extends ArrayAdapter<Peminjaman> {
 
-    public DaftarPeminjamanAdapterMR(Context context, List<Peminjaman> items) {
+    public DaftarPeminjamanAdapterMR(Context context, ArrayList<Peminjaman> items) {
         super(context, R.layout.list, items );
     }
 

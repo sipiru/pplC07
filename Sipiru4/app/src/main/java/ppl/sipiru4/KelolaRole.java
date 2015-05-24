@@ -8,29 +8,41 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import org.json.JSONArray;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
-import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.adapter.DaftarPermohonanAdapterFI;
-import ppl.sipiru4.controller.PeminjamanController;
+import ppl.sipiru4.Entity.ManajerAdmin;
+import ppl.sipiru4.Entity.SessionManager;
+import ppl.sipiru4.adapter.DaftarManagerAdminAdapter;
+import ppl.sipiru4.controller.ManajerAdminController;
 
-public class DaftarPendingFI extends Fragment {
+public class KelolaRole extends Fragment {
     ListView lv;
-    DaftarPermohonanAdapterFI adapter;
-    ArrayList<Peminjaman> mItems;
-    PeminjamanController peminjamanController;
+    DaftarManagerAdminAdapter adapter;
+    ArrayList<ManajerAdmin> mItems;
+    ManajerAdminController manajerAdminController;
+    SessionManager session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.list, container, false);
-        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/displayITF/");
+        View rootView = inflater.inflate(R.layout.list_admin, container, false);
+        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showAllManagerAdmin/");
 
+        session = new SessionManager(getActivity().getApplicationContext());
         lv = (ListView) rootView.findViewById(R.id.list);
 
+        Button tambah = (Button) rootView.findViewById(R.id.btnAdd);
+        tambah.setText(R.string.button_add_role);
+        tambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getApplicationContext(), TambahRole.class);
+                startActivity(i);
+            }
+        });
         return rootView;
     }
 
@@ -41,7 +53,7 @@ public class DaftarPendingFI extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Mendapatkan daftar pending...");
+            pDialog.setMessage("Mendapatkan informasi...");
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -63,26 +75,19 @@ public class DaftarPendingFI extends Fragment {
                 Toast.makeText(getActivity(), "gagal menghubungkan ke server. coba lagi.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            mItems = new ArrayList<>();
-            peminjamanController = new PeminjamanController(hasil);
 
-            for (int i = 0; i < hasil.length(); i++) {
-                mItems.add(peminjamanController.getPeminjaman(i));
+            mItems = new ArrayList<>();
+            manajerAdminController = new ManajerAdminController(hasil);
+
+            for (int i = 0; i < manajerAdminController.getSize(); i++) {
+                mItems.add(manajerAdminController.getManajer(i));
             }
 
-            adapter = new DaftarPermohonanAdapterFI(getActivity().getApplicationContext(), mItems);
+            adapter = new DaftarManagerAdminAdapter(getActivity().getApplicationContext(), mItems, manajerAdminController.getCountManajerRuangan(),
+                    manajerAdminController.getCountManajerKemahasiswaan(), manajerAdminController.getCountManajerUmum(), manajerAdminController.getCountManajerItf(),
+                    manajerAdminController.getCountAdmin());
             lv.setAdapter(adapter);
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View v,
-                                        int position, long id) {
-                    // Sending image id to FullScreenActivity
-                    Intent i = new Intent(getActivity().getApplicationContext(), DetailPendingFI.class);
-                    // passing array index
-                    i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
-                    startActivity(i);
-                }
-            });
+
             pDialog.dismiss();
         }
     }

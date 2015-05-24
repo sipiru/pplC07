@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
+import ppl.sipiru4.Entity.SessionManager;
 import ppl.sipiru4.adapter.DaftarPermohonanAdapterK;
 import ppl.sipiru4.controller.PeminjamanController;
 
@@ -23,16 +24,15 @@ public class DaftarPendingK extends Fragment {
     DaftarPermohonanAdapterK adapter;
     ArrayList<Peminjaman> mItems;
     PeminjamanController peminjamanController;
-
-    public DaftarPendingK(){}
+    SessionManager session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
-        lv = (ListView) rootView.findViewById(R.id.list);
-
-        // mendapatkan data-data peminjaman dari webservice berbentuk JSON untuk manajer kemahasiswaan
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/displayManajerKemahasiswaan/");
+
+        lv = (ListView) rootView.findViewById(R.id.list);
+        session = new SessionManager(getActivity().getApplicationContext());
 
         return rootView;
     }

@@ -2,7 +2,7 @@ package ppl.sipiru4.adapter;
 
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
-import java.util.List;
+import java.util.ArrayList;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
 
-    public DaftarPermohonanAdapterMR(Context context, List<Peminjaman> items) {
+    public DaftarPermohonanAdapterMR(Context context, ArrayList<Peminjaman> items) {
         super(context, R.layout.list, items );
     }
 

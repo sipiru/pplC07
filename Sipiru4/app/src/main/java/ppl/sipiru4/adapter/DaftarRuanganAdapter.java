@@ -2,11 +2,7 @@ package ppl.sipiru4.adapter;
 
 import ppl.sipiru4.Entity.Ruangan;
 import ppl.sipiru4.R;
-//import ppl.sipiru4.model.DaftarRuanganItem;
-//
-//import java.util.ArrayList;
-import java.util.List;
-
+import java.util.ArrayList;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +15,7 @@ public class DaftarRuanganAdapter extends ArrayAdapter<Ruangan> {
 //    private Context context;
 //    private ArrayList<DaftarRuanganItem> navDrawerItems;
 
-    public DaftarRuanganAdapter(Context context, List<Ruangan> items) {
+    public DaftarRuanganAdapter(Context context, ArrayList<Ruangan> items) {
         super(context, R.layout.list_daftar_ruangan, items );
     }
 

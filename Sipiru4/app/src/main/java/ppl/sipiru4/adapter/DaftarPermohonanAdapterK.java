@@ -6,13 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import java.util.List;
+import java.util.ArrayList;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
 
 public class DaftarPermohonanAdapterK extends ArrayAdapter<Peminjaman> {
 
-    public DaftarPermohonanAdapterK(Context context, List<Peminjaman> items) {
+    public DaftarPermohonanAdapterK(Context context, ArrayList<Peminjaman> items) {
         super(context, R.layout.list, items );
     }
 

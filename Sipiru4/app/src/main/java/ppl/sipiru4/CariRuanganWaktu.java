@@ -136,13 +136,13 @@ public class CariRuanganWaktu extends Fragment {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
             int yy = calendar.get(Calendar.YEAR);
-            int mm = calendar.get(Calendar.MONTH);
+            int mm = calendar.get(Calendar.MONTH)+1;
             int dd = calendar.get(Calendar.DAY_OF_MONTH);
             return new DatePickerDialog(getActivity(), this, yy, mm, dd);
         }
 
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
-            populateSetDate(yy, mm+1, dd);
+            populateSetDate(yy, mm, dd);
         }
 
         public void populateSetDate(int year, int month, int day) {
@@ -161,13 +161,13 @@ public class CariRuanganWaktu extends Fragment {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
             int yy = calendar.get(Calendar.YEAR);
-            int mm = calendar.get(Calendar.MONTH);
+            int mm = calendar.get(Calendar.MONTH)+1;
             int dd = calendar.get(Calendar.DAY_OF_MONTH);
             return new DatePickerDialog(getActivity(), this, yy, mm, dd);
         }
 
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
-            populateSetDate(yy, mm+1, dd);
+            populateSetDate(yy, mm, dd);
         }
 
         public void populateSetDate(int year, int month, int day) {
@@ -185,9 +185,10 @@ public class CariRuanganWaktu extends Fragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar time = Calendar.getInstance();
+            int minutes = (time.get(Calendar.MINUTE)/10 + 1) * 10;
             int hour = time.get(Calendar.HOUR_OF_DAY);
-            int minutes = time.get(Calendar.MINUTE);
-            return new TimePickerDialog(getActivity(),this,hour, ((minutes/10)+1)*10, DateFormat.is24HourFormat(getActivity()));
+            if (minutes==0) hour = hour + 1;
+            return new TimePickerDialog(getActivity(),this,hour, minutes, DateFormat.is24HourFormat(getActivity()));
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
@@ -204,9 +205,10 @@ public class CariRuanganWaktu extends Fragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar time = Calendar.getInstance();
+            int minutes = (time.get(Calendar.MINUTE)/10 + 1) * 10;
             int hour = time.get(Calendar.HOUR_OF_DAY);
-            int minutes = time.get(Calendar.MINUTE);
-            return new TimePickerDialog(getActivity(),this,hour, ((minutes/10)+1)*10, DateFormat.is24HourFormat(getActivity()));
+            if (minutes==0) hour = hour + 1;
+            return new TimePickerDialog(getActivity(),this,hour, minutes, DateFormat.is24HourFormat(getActivity()));
         }
 
         public void onTimeSet(TimePicker view, int hour, int minutes){
