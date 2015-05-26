@@ -9,7 +9,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -86,8 +85,10 @@ public class MainActivityP extends FragmentActivity {
         mDrawerList.setAdapter(adapter);
 
         // enabling action bar app icon and behaving it as toggle button
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        if (getActionBar()!=null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+            getActionBar().setHomeButtonEnabled(true);
+        }
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_sidemenu, //nav menu toggle icon
@@ -213,10 +214,8 @@ public class MainActivityP extends FragmentActivity {
                 .setMessage("Tekan Ya untuk logout")
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        SharedPreferences setting = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
 //                        pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke
 //                        halaman Login dan mengakhiri semua proses yang ada di stack
-
                         Log.e("sebelum logout session" , session.getUserDetails()+"");
 //                        Log.e("sebelum logout", setting.getString(LoginActivity.KEY_USERNAME,null) + " "
 //                                + setting.getString(LoginActivity.KEY_NAMA,null) + " " + setting.getString(LoginActivity.KEY_ROLE,null));
@@ -247,7 +246,9 @@ public class MainActivityP extends FragmentActivity {
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getActionBar().setTitle(mTitle);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle(mTitle);
+        }
     }
 
     /**

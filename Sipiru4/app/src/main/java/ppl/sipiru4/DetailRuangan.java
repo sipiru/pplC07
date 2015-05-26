@@ -18,6 +18,9 @@ public class DetailRuangan extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Detail Ruangan");
+        }
         setContentView(R.layout.detail_ruangan);
         context = this;
 

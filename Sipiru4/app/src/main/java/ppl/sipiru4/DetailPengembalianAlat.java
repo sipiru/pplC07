@@ -29,6 +29,9 @@ public class DetailPengembalianAlat extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Detail Pengembalian Alat");
+        }
         setContentView(R.layout.detail_pengembalian_alat_fi);
 
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);

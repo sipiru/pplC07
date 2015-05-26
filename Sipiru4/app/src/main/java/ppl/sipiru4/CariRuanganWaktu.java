@@ -100,8 +100,15 @@ public class CariRuanganWaktu extends Fragment {
 
                         // pengecekan validasi input tanggal
                         if (dateAkhir.after(dateAwal) && dateAwal.after(now)) {
-                            new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
-                                    + tglMulai.getText() + "%20" + jamMulai.getText() + "&" + tglSelesai.getText() + "%20" + jamSelesai.getText());
+                            long seconds = dateAkhir.getTime() - dateAwal.getTime();
+                            long days = seconds/(24*60*60*1000);
+                            if (days > 2) {
+                                Toast.makeText(getActivity(), "Tidak bisa meminjam ruangan dalam waktu lebih dari 2 hari", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
+                                        + tglMulai.getText() + "%20" + jamMulai.getText() + "&" + tglSelesai.getText() + "%20" + jamSelesai.getText());
+                            }
                         }
                         else {
                             Toast.makeText(getActivity(), "Pengisian tanggal tidak valid", Toast.LENGTH_SHORT).show();
@@ -136,13 +143,13 @@ public class CariRuanganWaktu extends Fragment {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
             int yy = calendar.get(Calendar.YEAR);
-            int mm = calendar.get(Calendar.MONTH)+1;
+            int mm = calendar.get(Calendar.MONTH);
             int dd = calendar.get(Calendar.DAY_OF_MONTH);
             return new DatePickerDialog(getActivity(), this, yy, mm, dd);
         }
 
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
-            populateSetDate(yy, mm, dd);
+            populateSetDate(yy, mm+1, dd);
         }
 
         public void populateSetDate(int year, int month, int day) {
@@ -161,13 +168,13 @@ public class CariRuanganWaktu extends Fragment {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
             int yy = calendar.get(Calendar.YEAR);
-            int mm = calendar.get(Calendar.MONTH)+1;
+            int mm = calendar.get(Calendar.MONTH);
             int dd = calendar.get(Calendar.DAY_OF_MONTH);
             return new DatePickerDialog(getActivity(), this, yy, mm, dd);
         }
 
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
-            populateSetDate(yy, mm, dd);
+            populateSetDate(yy, mm+1, dd);
         }
 
         public void populateSetDate(int year, int month, int day) {
@@ -187,7 +194,9 @@ public class CariRuanganWaktu extends Fragment {
             final Calendar time = Calendar.getInstance();
             int minutes = (time.get(Calendar.MINUTE)/10 + 1) * 10;
             int hour = time.get(Calendar.HOUR_OF_DAY);
-            if (minutes==0) hour = hour + 1;
+            if (minutes==60) {
+                hour = hour+1;
+            }
             return new TimePickerDialog(getActivity(),this,hour, minutes, DateFormat.is24HourFormat(getActivity()));
         }
 
@@ -207,7 +216,9 @@ public class CariRuanganWaktu extends Fragment {
             final Calendar time = Calendar.getInstance();
             int minutes = (time.get(Calendar.MINUTE)/10 + 1) * 10;
             int hour = time.get(Calendar.HOUR_OF_DAY);
-            if (minutes==0) hour = hour + 1;
+            if (minutes==60) {
+                hour = hour + 1;
+            }
             return new TimePickerDialog(getActivity(),this,hour, minutes, DateFormat.is24HourFormat(getActivity()));
         }
 

@@ -27,6 +27,9 @@ public class FormPeminjaman extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Form Peminjaman");
+        }
         setContentView(R.layout.form_peminjaman_ui);
         session = new SessionManager(getApplicationContext());
         // mendapatkan informasi user

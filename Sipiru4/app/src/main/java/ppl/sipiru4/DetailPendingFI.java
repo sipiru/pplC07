@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
@@ -29,6 +30,9 @@ public class DetailPendingFI extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Detail Permohonan Pending");
+        }
         setContentView(R.layout.detail_pending_fi);
 
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
@@ -66,44 +70,52 @@ public class DetailPendingFI extends Activity {
             TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
             waktuSelesai.setText(peminjamanController.getPeminjaman().getSelesai());
 
-            final TextView peralatan = (TextView)findViewById(R.id.peralatan);
+            final EditText peralatan = (EditText)findViewById(R.id.peralatan);
             peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
 
             Button btnUpdate = (Button)findViewById(R.id.btnUpdate);
-            btnUpdate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (peralatan.getText().toString().trim().length()==0) {
-                        Toast.makeText(context, "peralatan tidak boleh kosong", Toast.LENGTH_SHORT).show();
+            if (peralatan.getText().toString().trim().length()!=0) {
+                btnUpdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (peralatan.getText().toString().trim().length()==0) {
+                            Toast.makeText(context, "peralatan tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                            // set title
+                            alertDialogBuilder.setTitle("Apakah anda yakin untuk mengupdate peralatan?");
+                            // set dialog message
+                            alertDialogBuilder
+                                    .setMessage("Tekan Ya untuk mengupdate")
+                                    .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            String peralatanModif = peralatan.getText().toString().replaceAll(" ", "%20");
+                                            new TaskHelper1().execute("http://ppl-c07.cs.ui.ac.id/connect/updatePeralatan/"
+                                                    + peminjamanController.getPeminjaman().getId() + "&" + peralatanModif);
+                                        }
+                                    })
+                                    .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                            // create alert dialog
+                            AlertDialog alertDialog = alertDialogBuilder.create();
+                            alertDialog.show();
+                        }
                     }
-                    else {
-                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                        // set title
-                        alertDialogBuilder.setTitle("Apakah anda yakin untuk mengupdate peralatan?");
-                        // set dialog message
-                        alertDialogBuilder
-                                .setMessage("Tekan Ya untuk mengupdate")
-                                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        String peralatanModif = peralatan.getText().toString().replaceAll(" ", "%20");
-                                        new TaskHelper1().execute("http://ppl-c07.cs.ui.ac.id/connect/updatePeralatan/"
-                                                + peminjamanController.getPeminjaman().getId() + "&" + peralatanModif);
-
-
-                                    }
-                                })
-                                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-                        // create alert dialog
-                        AlertDialog alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
+                });
+            }
+            else {
+                btnUpdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context, "Tidak bisa mengupdate peralatan karena peminjam tidak meminjam apapun", Toast.LENGTH_SHORT).show();
                     }
+                });
+            }
 
-                }
-            });
             Button btnSetuju = (Button)findViewById(R.id.btnSetuju);
             btnSetuju.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,6 +142,7 @@ public class DetailPendingFI extends Activity {
                     alertDialog.show();
                 }
             });
+
             Button btnTolak = (Button)findViewById(R.id.btnTolak);
             btnTolak.setOnClickListener(new View.OnClickListener() {
                 @Override

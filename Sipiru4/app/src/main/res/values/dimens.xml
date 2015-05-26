@@ -4,10 +4,17 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_margin">20dp</dimen>
+    <dimen name="text_margin2">10dp</dimen>
     <dimen name="text_size1">24dp</dimen>
     <dimen name="text_size2">18dp</dimen>
     <dimen name="text_size_medium">20dp</dimen>
+    <dimen name="text_size_medium2">22dp</dimen>
     <dimen name="button_margin">15dp</dimen>
-    <dimen name="text_padding">8dp</dimen>
+    <dimen name="text_padding">6dp</dimen>
+    <dimen name="util_margin1">3dp</dimen>
+    <dimen name="elevation_size">5dp</dimen>
+    <dimen name="divider">2dp</dimen>
+    <dimen name="margin_permohonan">4dp</dimen>
+    <dimen name="margin_right">30dp</dimen>
 
 </resources>

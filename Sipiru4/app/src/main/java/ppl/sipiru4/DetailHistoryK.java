@@ -12,6 +12,9 @@ public class DetailHistoryK extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Detail History");
+        }
         setContentView(R.layout.detail_history_mk);
 
         // mendapatkan nilai-nilai yang dioper dari DaftarPendingK.class

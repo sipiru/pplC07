@@ -21,7 +21,7 @@
             android:text=" Ruangan "
             android:id="@+id/textView3"
             android:layout_alignParentTop="true"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_medium"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -31,26 +31,26 @@
             android:id="@+id/ruang"
             android:layout_gravity="center_vertical"
             android:hint="Nama ruangan"
-            android:textSize="25dp"
+            android:textSize="@dimen/text_size1"
             android:textColor="#424242"
             android:layout_below="@+id/textView3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@color/field"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"/>
+            android:layout_marginBottom="@dimen/margin_permohonan"
+            android:paddingLeft="@dimen/text_padding"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" Nama"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView2"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/ruang"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/margin_permohonan"
            />
 
         <TextView
@@ -59,26 +59,26 @@
             android:id="@+id/nama"
             android:layout_gravity="center_vertical"
             android:hint="Nama peminjam"
-            android:textSize="25dp"
+            android:textSize="@dimen/text_size1"
             android:textColor="@color/textblack"
             android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@color/field"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"/>
+            android:layout_marginBottom="@dimen/margin_permohonan"
+            android:paddingLeft="@dimen/text_padding"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" Username"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView4"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/nama"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="@dimen/margin_permohonan" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,26 +86,26 @@
             android:id="@+id/username"
             android:layout_gravity="center_vertical"
             android:hint="Username"
-            android:textSize="25dp"
+            android:textSize="@dimen/text_size1"
             android:textColor="#424242"
             android:layout_below="@+id/textView4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@color/field"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"/>
+            android:layout_marginBottom="@dimen/margin_permohonan"
+            android:paddingLeft="@dimen/text_padding"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" Perihal"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView5"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/username"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="@dimen/margin_permohonan"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -113,24 +113,24 @@
             android:id="@+id/prihal"
             android:layout_gravity="center_vertical"
             android:hint="Perihal"
-            android:textSize="25dp"
+            android:textSize="@dimen/text_size1"
             android:textColor="@color/textblack"
             android:layout_below="@+id/textView5"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@color/field"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"/>
+            android:layout_marginBottom="@dimen/margin_permohonan"
+            android:paddingLeft="@dimen/text_padding"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" Kegiatan"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView6"
             android:layout_below="@+id/prihal"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/margin_permohonan"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -140,23 +140,23 @@
             android:id="@+id/kegiatan"
             android:layout_gravity="center_vertical"
             android:hint="Kegiatan"
-            android:textSize="25dp"
+            android:textSize="@dimen/text_size1"
             android:textColor="@color/textblack"
             android:layout_below="@+id/textView6"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@color/field"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"/>
+            android:layout_marginBottom="@dimen/margin_permohonan"
+            android:paddingLeft="@dimen/text_padding"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" Waktu Mulai"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView7"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/margin_permohonan"
             android:layout_below="@+id/kegiatan"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -167,25 +167,25 @@
             android:id="@+id/waktuMulai"
             android:layout_gravity="center_vertical"
             android:hint="Mulai"
-            android:textSize="25dp"
+            android:textSize="@dimen/text_size1"
             android:textColor="@color/textblack"
             android:layout_below="@+id/textView7"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@color/field"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"/>
+            android:layout_marginBottom="@dimen/margin_permohonan"
+            android:paddingLeft="@dimen/text_padding"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" Waktu Selesai"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView8"
             android:layout_below="@+id/waktuMulai"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="@dimen/margin_permohonan"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -193,7 +193,7 @@
             android:id="@+id/waktuSelesai"
             android:layout_gravity="center_vertical"
             android:hint="Selesai"
-            android:textSize="25dp"
+            android:textSize="@dimen/text_size1"
             android:textColor="@color/textblack"
             android:layout_below="@+id/textView8"
             android:layout_alignParentLeft="true"
@@ -201,23 +201,22 @@
             android:layout_alignParentEnd="true"
             android:background="@color/field"
             android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"/>
+            android:paddingLeft="@dimen/text_padding"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" Peralatan "
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView9"
             android:layout_below="@+id/waktuSelesai"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="@dimen/margin_permohonan"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Peralatan-peralatan"
-            android:textSize="25dp"
+            android:textSize="@dimen/text_size1"
             android:textColor="@color/textblack"
             android:id="@+id/peralatan"
             android:layout_below="@+id/textView9"
@@ -226,9 +225,9 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@color/field"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="@dimen/margin_permohonan"
             android:textIsSelectable="false"
-            android:paddingLeft="5dp"/>
+            android:paddingLeft="@dimen/text_padding"/>
 
     </RelativeLayout>
 </ScrollView>

@@ -19,6 +19,9 @@ public class TambahRuangan extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Tambah Ruangan");
+        }
         setContentView(R.layout.tambah_ruangan);
         context = this;
 
@@ -34,15 +37,19 @@ public class TambahRuangan extends Activity {
                 if (kodeRuangan.getText().toString().trim().length()==0 || kapasitas.getText().toString().trim().length()==0) {
                     Toast.makeText(context, "Kode ruangan dan kapasitas harus diisi", Toast.LENGTH_SHORT).show();
                 }
-                else if (kodeRuangan.getText().toString().length() > 5) {
-                    Toast.makeText(context, "Kode ruangan maksimal 5 karakter", Toast.LENGTH_SHORT).show();
+                else if (kodeRuangan.getText().toString().length() != 5) {
+                    Toast.makeText(context, "Kode ruangan harus 5 karakter dan mengikuti contoh", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     String kode = kodeRuangan.getText().toString().trim();
                     String nama = namaRuangan.getText().toString().replaceAll(" ","%20");
                     String kap = kapasitas.getText().toString().trim();
                     String desk = deskripsi.getText().toString().replaceAll(" ","%20");
-                    if (kap.length() > 4) {
+                    if (!(Character.isLetter(kode.charAt(0)) && Character.isDigit(kode.charAt(1)) && Character.isDigit(kode.charAt(2))
+                            && Character.isDigit(kode.charAt(3)) && Character.isDigit(kode.charAt(4)))) {
+                        Toast.makeText(context, "format kode harus seperti di contoh", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (kap.length() > 4) {
                         Toast.makeText(context, "kapasitas terlalu besar.", Toast.LENGTH_SHORT).show();
                     }
                     else {

@@ -31,6 +31,9 @@ public class DetailPendingMR extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Detail Permohonan Pending");
+        }
         setContentView(R.layout.detail_pending_mr);
 
         session = new SessionManager(getApplicationContext());

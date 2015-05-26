@@ -12,6 +12,9 @@ public class DetailHistoryFI extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Detail History");
+        }
         setContentView(R.layout.detail_history_fi);
 
         Bundle b = getIntent().getExtras();

@@ -164,6 +164,9 @@ public class CariRuanganRuang extends Fragment {
             }
             adapterList = new JamTersediaAdapter(getActivity(),waktuRuangan);
             lView.setAdapter(adapterList);
+            if (waktuRuangan.size()==0) {
+                Toast.makeText(getActivity(), "Ruangan belum pernah dipinjam", Toast.LENGTH_SHORT).show();
+            }
 
             pDialog.dismiss();
         }

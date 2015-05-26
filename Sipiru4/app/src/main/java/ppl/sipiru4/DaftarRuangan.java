@@ -25,6 +25,9 @@ public class DaftarRuangan extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getActionBar()!=null) {
+            getActionBar().setTitle("Daftar Ruangan");
+        }
         setContentView(R.layout.list_daftar_ruangan);
         context = this;
 
@@ -33,6 +36,9 @@ public class DaftarRuangan extends Activity {
             try {
                 jArray = new JSONArray(b.getString("daftarRuangan"));
                 ruanganController = new RuanganController(jArray);
+                if (ruanganController.getSize()==0) {
+                    Toast.makeText(context,"Tidak ada ruangan yang tersedia",Toast.LENGTH_SHORT).show();
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

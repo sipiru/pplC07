@@ -12,6 +12,9 @@ public class DetailRejected extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Detail Permohonan Ditolak");
+        }
         setContentView(R.layout.detail_rejected);
 
         Bundle b = getIntent().getExtras();

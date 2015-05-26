@@ -15,9 +15,9 @@
         android:layout_toStartOf="@+id/search"
         android:layout_alignBottom="@+id/search"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="3dp"
-        android:elevation="5dp" />
+        android:layout_marginTop="@dimen/util_margin1"
+        android:layout_marginLeft="@dimen/util_margin1"
+        android:elevation="@dimen/elevation_size" />
 
     <ImageButton
         android:layout_width="60dp"
@@ -28,23 +28,20 @@
         android:layout_alignParentEnd="true"
         android:clickable="true"
         android:layout_alignParentTop="true"
-        android:elevation="5dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"/>
+        android:elevation="@dimen/elevation_size"
+        android:layout_marginTop="@dimen/util_margin1"
+        android:layout_marginLeft="@dimen/util_margin1"
+        android:layout_marginRight="@dimen/util_margin1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:text="Jadwal ruangan "
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/spinner"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp" />
+        android:text=" tidak tersedia pada:"
+        android:textSize="@dimen/text_size_medium"
+        android:layout_alignTop="@+id/namaRuangan"
+        android:layout_toRightOf="@+id/namaRuangan"
+        android:layout_toEndOf="@+id/namaRuangan" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,10 +49,11 @@
         android:id="@+id/namaRuangan"
         android:hint="nama ruangan"
         android:textColor="@color/textblack"
-        android:textSize="20dp"
-        android:layout_alignTop="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:textSize="@dimen/text_size_medium"
+        android:layout_below="@+id/spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/text_padding" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
@@ -69,8 +67,8 @@
             android:id="@+id/mulai"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:padding="10dip"
-            android:textSize="18dp"
+            android:padding="@dimen/text_margin2"
+            android:textSize="@dimen/text_size2"
             android:text="waktu mulai"
             android:textColor="@color/textblack"
             android:layout_marginLeft="10dp"
@@ -80,11 +78,11 @@
             android:id="@+id/selesai"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:padding="10dip"
-            android:textSize="18dp"
+            android:padding="@dimen/text_margin2"
+            android:textSize="@dimen/text_size2"
             android:text="waktu selesai"
             android:textColor="@color/textblack"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/text_margin2"
             android:layout_weight="0.44">
         </TextView>
     </LinearLayout>
@@ -96,10 +94,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="@dimen/util_margin1"
         android:background="@color/list_background_hal"
         android:divider="@color/list_divider"
-        android:dividerHeight="2dp"
+        android:dividerHeight="@dimen/divider"
         android:clickable="true" />
 
 </RelativeLayout>

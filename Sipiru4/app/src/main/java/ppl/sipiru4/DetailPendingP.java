@@ -26,6 +26,9 @@ public class DetailPendingP extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Detail Pending");
+        }
         setContentView(R.layout.detail_pending_p);
         Log.e("Detail Permohonan P", "create");
 
@@ -95,6 +98,16 @@ public class DetailPendingP extends Activity {
                     alertDialog.show();
                 }
             });
+
+            Button kirimPesan = (Button)findViewById(R.id.kirimPesan);
+            kirimPesan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, KirimPesan.class);
+                    startActivity(i);
+                }
+            });
+
         }
         else {
             Toast.makeText(context,"Error mendapatkan data peminjaman",Toast.LENGTH_LONG).show();

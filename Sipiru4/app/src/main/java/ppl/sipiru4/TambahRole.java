@@ -25,6 +25,9 @@ public class TambahRole extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Tambah Role");
+        }
         context = this;
 
         setContentView(R.layout.tambah_role);

@@ -26,8 +26,9 @@
                 android:layout_height="wrap_content"
                 android:text="Menambah Ruangan"
                 android:id="@+id/textHeader"
-                android:textSize="26dp"
-                android:layout_marginBottom="20dp"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size1"
+                android:layout_marginBottom="@dimen/text_margin"
                 android:gravity="center_horizontal" />
 
             <TextView
@@ -35,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text=" Kode ruangan (format : R2330)"
                 android:id="@+id/textView"
-                android:textSize="22dp"
+                android:textSize="@dimen/text_size_medium"
                 android:layout_below="@id/textHeader"/>
 
             <EditText
@@ -46,7 +47,7 @@
                 android:hint="kode ruangan"
                 android:inputType="textCapCharacters"
                 android:textColor="@color/textblack"
-                android:textSize="22dp"
+                android:textSize="@dimen/text_size_medium2"
                 android:editable="true"
                 android:layout_below="@+id/textView"/>
 
@@ -55,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:text=" Nama"
                 android:id="@+id/textView1"
-                android:textSize="22dp"
-                android:layout_marginTop="5dp"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="@dimen/margin_permohonan"
                 android:layout_below="@+id/kodeRuangan"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -69,7 +70,7 @@
                 android:textColor="@color/textblack"
                 android:lines="1"
                 android:editable="true"
-                android:textSize="22dp"
+                android:textSize="@dimen/text_size_medium2"
                 android:layout_below="@+id/textView1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -79,8 +80,8 @@
                 android:layout_height="wrap_content"
                 android:text=" Kapasitas "
                 android:id="@+id/textView2"
-                android:textSize="22dp"
-                android:layout_marginTop="5dp"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="@dimen/margin_permohonan"
                 android:layout_below="@+id/namaRuangan"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -90,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text=" Deskripsi (boleh kosong)"
                 android:id="@+id/textView3"
-                android:textSize="22dp"
+                android:textSize="@dimen/text_size_medium"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/kapasitas"
                 android:layout_alignParentLeft="true"
@@ -103,7 +104,7 @@
                 android:hint="kapasitas"
                 android:lines="1"
                 android:textColor="@color/textblack"
-                android:textSize="22dp"
+                android:textSize="@dimen/text_size_medium2"
                 android:editable="true"
                 android:inputType="numberSigned"
                 android:layout_below="@+id/textView2"
@@ -117,7 +118,7 @@
                 android:hint="deskripsi"
                 android:lines="2"
                 android:textColor="@color/textblack"
-                android:textSize="22dp"
+                android:textSize="@dimen/text_size_medium2"
                 android:editable="true"
                 android:layout_below="@+id/textView3"
                 android:layout_alignLeft="@+id/textView3"
@@ -132,7 +133,7 @@
                 android:layout_below="@+id/deskripsi"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="@dimen/text_margin" />
 
         </RelativeLayout>
 </ScrollView>

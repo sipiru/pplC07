@@ -25,6 +25,9 @@ public class UpdateRuangan extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar()!=null) {
+            getActionBar().setTitle("Update Ruangan");
+        }
         setContentView(R.layout.update_ruangan);
         context = this;
 
