@@ -1,8 +1,10 @@
 package ppl.sipiru4;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -63,22 +65,43 @@ public class KirimPesan extends Activity{
         buttonSend.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phoneNo = noHp[posisi];
-                String sms = textSMS.getText().toString();
+                final String phoneNo = noHp[posisi];
+                final String sms = textSMS.getText().toString();
                 if (sms.trim().length()==0) {
                     Toast.makeText(context, "Isi pesan harus ditulis", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    try {
-                        SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(phoneNo, null, sms, null, null);
-                        Toast.makeText(context, "SMS terkirim", Toast.LENGTH_LONG).show();
-                        textSMS.setText("");
-                    } catch (Exception e) {
-                        Toast.makeText(context, "SMS gagal terkirim. coba lagi nanti",
-                                Toast.LENGTH_LONG).show();
-                        e.printStackTrace();
-                    }
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                    // set title
+                    alertDialogBuilder.setTitle("Apakah anda yakin untuk mengirim pesan tersebut?");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("Tekan Ya untuk mengirim")
+                            .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    try {
+                                        SmsManager smsManager = SmsManager.getDefault();
+                                        smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+                                        Toast.makeText(context, "SMS terkirim", Toast.LENGTH_LONG).show();
+                                        textSMS.setText("");
+                                    } catch (Exception e) {
+                                        Toast.makeText(context, "SMS gagal terkirim. coba lagi nanti",
+                                                Toast.LENGTH_LONG).show();
+                                        e.printStackTrace();
+                                    }
+                                }
+                            })
+                            .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // memunculkan alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
                 }
             }
         });
