@@ -90,22 +90,24 @@ public class DetailHistoryMR extends Activity {
         peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
 
         Button download = (Button)findViewById(R.id.download);
-        download.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createPDF();
-                openPdf();
-//                File file = new File(Environment.getExternalStorageDirectory().getPath()+"/jai_ho.mp3");
-//                // Check if the Music file already exists
-//                if (file.exists()) {
-//                    Toast.makeText(getApplicationContext(), "File already exist under SD card", Toast.LENGTH_LONG).show();
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "File doesn't exist under SD Card, downloading Mp3 from Internet", Toast.LENGTH_LONG).show();
-//                    // Trigger Async Task (onPreExecute method)
-//                    new DownloadFileFromURL().execute(file_url);
-//                }
-            }
-        });
+        if (peminjamanController.getPeminjaman().getStatus()== 3) {
+            download.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    createPDF();
+                    openPdf();
+                }
+            });
+        }
+        else {
+            download.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Permohonan peminjaman belum disetujui oleh ITF/Fasum. " +
+                            "File tidak bisa disimpan", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
     /**
      * Showing Dialog

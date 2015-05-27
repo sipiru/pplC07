@@ -148,7 +148,7 @@ public class DaftarManagerAdminAdapter extends ArrayAdapter<ManajerAdmin> {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(parent.getContext());
-            pDialog.setMessage("manghapus role...");
+            pDialog.setMessage("menghapus role...");
             pDialog.setCancelable(false);
             pDialog.show();
         }
