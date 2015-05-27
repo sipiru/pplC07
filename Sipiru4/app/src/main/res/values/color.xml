@@ -2,20 +2,37 @@
 
 <resources>
 
+    <color name="background_gradient1">#1A567F</color>
+    <color name="background_gradient2">#5e88a5</color>
+    <color name="text_color">#fedbdbdb</color>
+    <color name="text_color_field">#000</color>
+    <color name="text_color_button">#3b5998</color>
+    <color name="hint_color">#ffd1d1d1</color>
+    <color name="text_color_wajib">#ffbc0a0e</color>
+    <color name="divider_color">#fedbdbdb</color>
+    <color name="stroke_color">#ffeb3b</color>
+    <color name="list_spiner">#fedbdbdb</color>
+    <color name="background_login1">#73ffffff</color>
+    <color name="background_login2">#3b5998</color>
+    <color name="batton_gradient1">#B1D9E7</color>
+    <color name="batton_gradient2">#FFF</color>
+    <color name="press_gradient1">#ffeb3b</color>
+    <color name="press_gradient2">#9e9e9e</color>
+    <color name="textlist">#B1D9E7</color>
+
+
     <color name="list_item_title">#000</color>
     <color name="list_background">#B1D9E7</color>
-    <color name="list_lihatruangan">#fedbdbdb</color>
     <color name="list_divider">#B1D9E7</color>
     <color name="textwhite">#FFF</color>
     <color name="textblack">#000</color>
-    <color name="textlist">#B1D9E7</color>
+
     <color name="background">#b74d7ed0</color>
     <color name="field">#73ffffff</color>
     <color name="textwajib">#ffbc0a0e</color>
     <color name="button_color">#ffd1d1d1</color>
     <color name="popup">#ffd1d1d1</color>
     <color name="list_background_hal">#b73b5998</color>
-    <color name="hint_color">#ffd1d1d1</color>
     <color name="field_login">#73ffffff</color>#3b5998
     <color name="text_button_login">#3b5998</color>
 

@@ -4,7 +4,7 @@
     android:orientation="horizontal" android:layout_width="fill_parent"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="70dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:src="@drawable/manager_ruangan"
         android:layout_gravity="center"
@@ -12,7 +12,8 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="@dimen/text_padding"/>
+        android:layout_marginLeft="@dimen/text_padding"
+        android:background="@drawable/button_gradient"/>
 
 
     <TextView

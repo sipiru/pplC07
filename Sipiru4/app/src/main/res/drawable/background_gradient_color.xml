@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!--this is to give gradient effect -->
+    <gradient
+        android:angle="270"
+        android:startColor="@color/background_gradient1"
+        android:endColor="@color/background_gradient2"
+        />
+    <!-- this is make corners of button rounded -->
+
+</shape>

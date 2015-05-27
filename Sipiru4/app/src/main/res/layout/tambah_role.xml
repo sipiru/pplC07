@@ -5,7 +5,7 @@
     android:gravity="center_horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background">
+    android:background="@drawable/background_gradient_color">
 
 
     <RelativeLayout
@@ -28,7 +28,8 @@
             android:id="@+id/textHeader"
             android:textSize="26dp"
             android:layout_marginBottom="20dp"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textColor="@color/text_color" />
 
         <TextView
             android:layout_width="match_parent"
@@ -36,18 +37,25 @@
             android:text=" Username "
             android:id="@+id/textView"
             android:textSize="22dp"
-            android:layout_below="@id/textHeader"/>
+            android:layout_below="@+id/textHeader"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/text_color" />
 
         <EditText
+            android:background="@drawable/edit_text_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/username"
             android:lines="1"
             android:hint="username"
-            android:textColor="@color/textblack"
-            android:textSize="22dp"
+            android:textColor="@color/text_color_field"
+            android:textSize="25dp"
             android:editable="true"
-            android:layout_below="@+id/textView"/>
+            android:layout_below="@+id/textView"
+            android:layout_marginBottom="5dp"
+            android:autoText="true"
+            android:padding="@dimen/text_padding"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -58,20 +66,24 @@
             android:layout_marginTop="5dp"
             android:layout_below="@+id/username"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="@color/text_color" />
 
         <EditText
+            android:background="@drawable/edit_text_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/namaPengguna"
             android:hint="nama pengguna"
-            android:textColor="@color/textblack"
+            android:textColor="@color/text_color_field"
             android:lines="1"
             android:editable="true"
-            android:textSize="22dp"
+            android:textSize="25dp"
             android:layout_below="@+id/textView1"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="5dp"
+            android:padding="@dimen/text_padding"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -82,7 +94,8 @@
             android:layout_marginTop="5dp"
             android:layout_below="@+id/namaPengguna"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="@color/text_color" />
 
         <TextView
             android:layout_width="match_parent"
@@ -93,34 +106,48 @@
             android:layout_marginTop="5dp"
             android:layout_below="@+id/role"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="@color/text_color" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/role"
             android:hint="role"
-            android:textColor="@color/textblack"
+            android:textColor="@color/text_color_field"
             android:textSize="22dp"
             android:editable="true"
             android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginBottom="5dp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/abc_spinner_mtrl_am_alpha"
+            android:id="@+id/imageDropDown"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <EditText
+            android:background="@drawable/edit_text_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nohp"
             android:hint="nomor HP"
-            android:inputType="phone"
-            android:textColor="@color/textblack"
-            android:textSize="22dp"
+            android:inputType="numberSigned"
+            android:textColor="@color/text_color_field"
+            android:textSize="25dp"
             android:editable="true"
             android:layout_below="@+id/textView3"
             android:layout_alignLeft="@+id/textView3"
             android:layout_alignStart="@+id/textView3"
             android:popupBackground="@color/popup"
             android:layout_gravity="center_vertical"
+            android:padding="@dimen/text_padding"
             android:dropDownSelector="@color/abc_primary_text_disable_only_material_dark"/>
 
         <Button
@@ -131,7 +158,9 @@
             android:layout_below="@+id/nohp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_background"
+            android:textColor="@color/text_color_button" />
 
     </RelativeLayout>
 </ScrollView>

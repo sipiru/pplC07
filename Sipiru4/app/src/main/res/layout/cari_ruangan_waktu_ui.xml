@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:id="@+id/layoutScroll"
-    android:background="@color/background"
+    android:background="@drawable/background_gradient_color"
     android:clickable="false"
     android:fillViewport="false">
 
@@ -42,9 +42,9 @@
                 android:layout_height="wrap_content"
                 android:text="Waktu mulai :"
                 android:id="@+id/textView2"
-                android:textSize="@dimen/text_size1"
-                android:textColor="@color/textblack"
-                android:layout_marginTop="@dimen/text_margin2"
+                android:textSize="25dp"
+                android:textColor="@color/text_color"
+                android:layout_marginTop="10dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"/>
 
@@ -54,14 +54,14 @@
                 android:text="Tanggal Mulai"
                 android:id="@+id/btnTglMulai"
                 android:layout_gravity="left"
-                android:textSize="@dimen/text_size_medium"
+                android:textSize="22dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/textView2"
-                android:layout_marginTop="@dimen/text_margin2"
+                android:layout_marginTop="10dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:background="@color/field"
-                android:textColor="@color/textblack" />
+                android:background="@drawable/edit_text"
+                android:textColor="@color/text_color_field"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -69,20 +69,20 @@
                 android:text="Tanggal Selesai"
                 android:id="@+id/btnTglSelesai"
                 android:layout_gravity="left"
-                android:layout_marginTop="@dimen/text_margin2"
-                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="10dp"
+                android:textSize="22dp"
                 android:layout_below="@+id/textView4"
-                android:background="@color/field"
-                android:textColor="@color/textblack"/>
+                android:background="@drawable/edit_text"
+                android:textColor="@color/text_color_field"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Waktu selesai :"
                 android:id="@+id/textView4"
-                android:layout_marginTop="@dimen/text_margin"
-                android:textSize="@dimen/text_size1"
-                android:textColor="@color/textblack"
+                android:layout_marginTop="20dp"
+                android:textSize="25dp"
+                android:textColor="@color/text_color"
                 android:layout_below="@+id/btnJamMulai"/>
 
             <Button
@@ -90,11 +90,11 @@
                 android:layout_height="40dp"
                 android:text="Waktu Mulai"
                 android:id="@+id/btnJamMulai"
-                android:textSize="@dimen/text_size_medium"
-                android:layout_marginTop="@dimen/text_padding"
+                android:textSize="22dp"
+                android:layout_marginTop="8dp"
                 android:layout_gravity="left"
                 android:layout_below="@+id/btnTglMulai"
-                android:background="@color/field"
+                android:background="@drawable/edit_text"
                 android:textColor="@color/textblack"/>
 
             <Button
@@ -102,25 +102,25 @@
                 android:layout_height="40dp"
                 android:text="Waktu Selesai"
                 android:id="@+id/btnJamSelesai"
-                android:layout_marginTop="@dimen/text_padding"
-                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="8dp"
+                android:textSize="22dp"
                 android:layout_gravity="left"
                 android:layout_below="@+id/btnTglSelesai"
-                android:background="@color/field"
-                android:textColor="@color/textblack"/>
+                android:background="@drawable/edit_text"
+                android:textColor="@color/text_color_field"/>
 
             <ImageButton
                 android:layout_width="90dp"
                 android:layout_height="50dp"
                 android:src="@android:drawable/ic_search_category_default"
                 android:id="@+id/buttonCari"
-                android:layout_marginTop="@dimen/text_margin"
+                android:layout_marginTop="30dp"
                 android:layout_below="@+id/btnJamSelesai"
                 android:layout_centerHorizontal="true"
                 android:clickable="true"
                 android:adjustViewBounds="false"
-                android:elevation="@dimen/elevation_size"
-                android:focusable="false" />
+                android:focusable="false"
+                android:background="@drawable/button_background"/>
         </RelativeLayout>
 
     </RelativeLayout>

@@ -4,7 +4,7 @@
     android:gravity="center_horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background">
+    android:background="@drawable/background_gradient_color">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,9 +27,9 @@
                 android:layout_height="wrap_content"
                 android:text=" Kode ruangan"
                 android:id="@+id/textView"
-                android:layout_marginTop="@dimen/text_margin"
-                android:textSize="@dimen/text_size_medium2"
-                android:textColor="@color/textblack" />
+                android:layout_marginTop="10dp"
+                android:textSize="22dp"
+                android:textColor="@color/text_color" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -37,12 +37,12 @@
                 android:id="@+id/kodeRuangan"
                 android:lines="1"
                 android:hint="kode ruangan"
-                android:textColor="@color/textblack"
-                android:textSize="@dimen/text_size1"
+                android:textColor="@color/text_color_field"
+                android:textSize="25dp"
                 android:editable="false"
-                android:paddingLeft="@dimen/text_padding"
+                android:paddingLeft="10dp"
                 android:layout_below="@+id/textView"
-                android:background="@color/field"
+                android:background="@drawable/edit_text_background"
                 android:clickable="true"
                 android:layout_marginBottom="10dp" />
 
@@ -51,49 +51,52 @@
                 android:layout_height="wrap_content"
                 android:text=" Nama"
                 android:id="@+id/textView1"
-                android:textSize="@dimen/text_size_medium2"
-                android:layout_marginTop="@dimen/margin_permohonan"
+                android:textSize="22dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@+id/kodeRuangan"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="@color/textblack" />
+                android:textColor="@color/text_color" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/namaRuangan"
                 android:hint="nama ruangan"
-                android:textColor="@color/textblack"
+                android:textColor="@color/text_color_field"
                 android:lines="1"
                 android:editable="true"
-                android:textSize="@dimen/text_size1"
+                android:textSize="25dp"
                 android:layout_below="@+id/textView1"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginBottom="5dp"
+                android:padding="@dimen/text_padding"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" Kapasitas "
                 android:id="@+id/textView2"
-                android:textSize="@dimen/text_size_medium2"
-                android:layout_marginTop="@dimen/margin_permohonan"
+                android:textSize="22dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@+id/namaRuangan"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="@color/textblack" />
+                android:textColor="@color/text_color" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" Deskripsi"
                 android:id="@+id/textView3"
-                android:textSize="@dimen/text_size_medium2"
-                android:layout_marginTop="@dimen/margin_permohonan"
+                android:textSize="22dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@+id/kapasitas"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="@color/textblack" />
+                android:textColor="@color/text_color" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -101,13 +104,16 @@
                 android:id="@+id/kapasitas"
                 android:hint="kapasitas"
                 android:lines="1"
-                android:textColor="#424242"
-                android:textSize="@dimen/text_size1"
+                android:textColor="@color/text_color_field"
+                android:textSize="25dp"
                 android:editable="true"
                 android:inputType="numberSigned"
                 android:layout_below="@+id/textView2"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginBottom="5dp"
+                android:padding="@dimen/text_padding"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -115,22 +121,26 @@
                 android:id="@+id/deskripsi"
                 android:hint="deskripsi"
                 android:lines="2"
-                android:textColor="@color/textblack"
-                android:textSize="@dimen/text_size1"
+                android:textColor="@color/text_color_field"
+                android:textSize="25dp"
                 android:editable="true"
                 android:layout_below="@+id/textView3"
                 android:layout_alignLeft="@+id/textView3"
                 android:layout_alignStart="@+id/textView3"
-                android:gravity="top" />
+                android:gravity="top"
+                android:background="@drawable/edit_text_background"
+                android:padding="@dimen/text_padding"/>
 
             <Button
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:text="Update Ruangan"
                 android:id="@+id/buttonSave"
-                android:layout_marginTop="@dimen/text_margin"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/deskripsi"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_background"
+                android:textColor="@color/text_color_button" />
 
         </RelativeLayout>
     </RelativeLayout>

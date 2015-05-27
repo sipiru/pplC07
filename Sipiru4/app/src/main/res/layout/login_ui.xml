@@ -52,7 +52,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="25dp"
                 android:id="@+id/textView1"
-                android:textColor="@color/textwhite"/>
+                android:textColor="@color/text_color"/>
 
             <TextView
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="6dp"
                 android:id="@+id/textView2"
-                android:textColor="@color/textwhite"/>
+                android:textColor="@color/text_color"/>
 
 
 
@@ -75,8 +75,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
                 android:textAlignment="center"
-                android:background="@color/field_login"
-                android:textColor="@color/textwhite"
+                android:background="@drawable/edit_text_background"
+                android:textColor="@color/text_color_button"
                 android:hint="username"
                 android:autoText="true"
                 android:id="@+id/editText1"
@@ -95,10 +95,10 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/field_login"
+                android:background="@drawable/edit_text_background"
                 android:textAlignment="center"
                 android:password="true"
-                android:textColor="#fff"
+                android:textColor="@color/text_color_button"
                 android:hint="password"
                 android:id="@+id/ruang"
                 android:textSize="25dp"
@@ -109,18 +109,19 @@
                 android:textStyle="normal" />
 
             <Button android:id="@+id/buttonLogin"
-                android:layout_width="130dp"
-                android:layout_height="40dp"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
                 android:text="@string/Login"
                 android:gravity="center"
-                android:background="@color/textwhite"
+                android:background="@drawable/button_background"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/text_button_login"
+                android:textColor="@color/text_color_button"
                 android:clickable="true"
                 android:textStyle="bold"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:layout_marginBottom="8dp"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:state_pressed="true"/>
 
         </LinearLayout>
 

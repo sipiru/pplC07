@@ -53,6 +53,7 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/textlist"/>
+        android:textColor="@color/text_color_button"
+        android:background="@drawable/button_background"/>
 
 </RelativeLayout>

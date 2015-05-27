@@ -1,22 +1,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="fill_parent"
-    android:gravity="center_horizontal"
-    android:id="@+id/layoutScroll"
-    android:background="@color/background">
+android:layout_width="wrap_content"
+android:layout_height="fill_parent"
+android:gravity="center_horizontal"
+android:id="@+id/layoutScroll"
+android:background="@drawable/background_gradient_color">
 
-    <ListView
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/list"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="@color/list_background_hal"
-        android:dividerHeight="2dp"
-        android:divider="@color/list_divider"
-        android:clickable="true"
-        />
+<ListView
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/list"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:background="@drawable/background_gradient_color"
+    android:dividerHeight="2dp"
+    android:divider="@color/list_divider"
+    android:clickable="true"
+    />
 </RelativeLayout>

@@ -256,8 +256,8 @@ public class DetailHistoryMR extends Activity {
 
             Paragraph judulP = new Paragraph("SURAT PERNYATAAN");
             Paragraph pernyataan = new Paragraph("Dengan surat ini saya mengatakan, untuk menajaga kebersihan dan " +
-                    "kerapihan ruangan selama peminjaman. Apabila dikemudian hari" +
-                    "saya melanggar, saya akan menerima segala konsekuensinya yang diberikan dari pihak Fakultas." +
+                    "kerapihan ruangan selama peminjaman. Apabila dikemudian hari " +
+                    "saya melanggar, saya akan menerima segala konsekuensinya yang diberikan dari pihak Fakultas. " +
                     "Demikian surat pernyataan ini saya buat dengan sebaik baiknya. \n\n\n");
             pernyataan.getExtraParagraphSpace();
 
@@ -277,6 +277,7 @@ public class DetailHistoryMR extends Activity {
 
             Table ttd = new Table(2);
             ttd.setAlignment(com.lowagie.text.Element.ALIGN_CENTER);
+            ttd.setPadding(5);
             ttd.addCell("Yang Menerima\n\n\n\n");
             ttd.addCell("Yang Menyerahkan\n\n\n\n");
             ttd.addCell(namaPeminjam);
@@ -295,6 +296,7 @@ public class DetailHistoryMR extends Activity {
 //            doc.addTitle("Bukti Peminjaman\n" + "Barang & Ruangan");
             Table tabel = new Table(2);
             tabel.setAlignment(Paragraph.ALIGN_MIDDLE);
+            tabel.setPadding(5);
             tabel.addCell("Nama : ");
             tabel.addCell(namaPeminjam);
             tabel.addCell("Nama Ruangan :");

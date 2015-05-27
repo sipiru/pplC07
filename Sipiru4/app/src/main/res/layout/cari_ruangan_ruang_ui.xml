@@ -3,21 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${packageName}.${activityClass}"
-    android:background="@color/background">
+    android:background="@drawable/background_gradient_color">
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:popupBackground="@color/popup"
-        android:layout_toLeftOf="@+id/search"
-        android:layout_toStartOf="@+id/search"
+        android:popupBackground="@color/list_spiner"
         android:layout_alignBottom="@+id/search"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/util_margin1"
-        android:layout_marginLeft="@dimen/util_margin1"
-        android:elevation="@dimen/elevation_size" />
+        android:layout_marginTop="3dp"
+        android:background="@color/field"
+        android:layout_toLeftOf="@+id/search"
+        android:layout_toStartOf="@+id/search"
+        android:layout_marginLeft="@dimen/text_padding"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/abc_spinner_mtrl_am_alpha"
+        android:id="@+id/imageDropDown"
+        android:layout_alignRight="@+id/spinner"
+        android:layout_alignEnd="@+id/spinner"
+        android:layout_alignBottom="@+id/spinner"
+        android:layout_alignTop="@+id/spinner" />
 
     <ImageButton
         android:layout_width="60dp"
@@ -28,18 +38,18 @@
         android:layout_alignParentEnd="true"
         android:clickable="true"
         android:layout_alignParentTop="true"
-        android:elevation="@dimen/elevation_size"
-        android:layout_marginTop="@dimen/util_margin1"
-        android:layout_marginLeft="@dimen/util_margin1"
-        android:layout_marginRight="@dimen/util_margin1"/>
+        android:layout_marginTop="3dp"
+        android:background="@drawable/button_background"
+        android:layout_marginRight="@dimen/text_padding"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:text=" tidak tersedia pada:"
-        android:textSize="@dimen/text_size_medium"
-        android:layout_alignTop="@+id/namaRuangan"
+        android:text=" tidak tersedia pada :"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"
+        android:layout_below="@+id/spinner"
         android:layout_toRightOf="@+id/namaRuangan"
         android:layout_toEndOf="@+id/namaRuangan" />
 
@@ -47,12 +57,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/namaRuangan"
-        android:textColor="@color/textblack"
-        android:textSize="@dimen/text_size_medium"
-        android:layout_below="@+id/spinner"
+        android:hint="nama"
+        android:textColor="@color/text_color"
+        android:textSize="20dp"
+        android:layout_alignTop="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/text_padding" />
+        android:layout_alignParentStart="true" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
@@ -66,10 +76,10 @@
             android:id="@+id/mulai"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:padding="@dimen/text_margin2"
-            android:textSize="@dimen/text_size2"
+            android:padding="10dip"
+            android:textSize="18dp"
             android:text="waktu mulai"
-            android:textColor="@color/textblack"
+            android:textColor="@color/text_color"
             android:layout_marginLeft="10dp"
             android:layout_weight="0.39">
         </TextView>
@@ -77,11 +87,11 @@
             android:id="@+id/selesai"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:padding="@dimen/text_margin2"
-            android:textSize="@dimen/text_size2"
+            android:padding="10dip"
+            android:textSize="18dp"
             android:text="waktu selesai"
-            android:textColor="@color/textblack"
-            android:layout_marginLeft="@dimen/text_margin2"
+            android:textColor="@color/text_color"
+            android:layout_marginLeft="10dp"
             android:layout_weight="0.44">
         </TextView>
     </LinearLayout>
@@ -93,10 +103,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout"
-        android:layout_marginTop="@dimen/util_margin1"
-        android:background="@color/list_background_hal"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/background_gradient_color"
         android:divider="@color/list_divider"
-        android:dividerHeight="@dimen/divider"
+        android:dividerHeight="2dp"
         android:clickable="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignBottom="@+id/spinner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
