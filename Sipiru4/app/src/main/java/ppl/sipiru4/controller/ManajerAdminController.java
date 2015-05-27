@@ -52,7 +52,7 @@ public class ManajerAdminController {
         }
     }
 
-    public ManajerAdmin getManajer(int i) {
+    public ManajerAdmin getManajerAdmin(int i) {
         return manajerAdmins[i];
     }
 

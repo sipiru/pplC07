@@ -1,8 +1,5 @@
 package ppl.sipiru4.adapter;
 
-import ppl.sipiru4.Entity.Peminjaman;
-import ppl.sipiru4.R;
-import java.util.ArrayList;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +7,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
+import java.util.ArrayList;
 
-    public DaftarPermohonanAdapterMR(Context context, ArrayList<Peminjaman> items) {
+import ppl.sipiru4.Entity.Manajer;
+import ppl.sipiru4.R;
+
+public class KirimPesanAdapter extends ArrayAdapter<Manajer>{
+    public KirimPesanAdapter(Context context, ArrayList<Manajer> items) {
         super(context, R.layout.list, items );
     }
 
@@ -22,12 +23,12 @@ public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
         if(convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.ui_tiap_list_permohonan, parent, false);
+            convertView = inflater.inflate(R.layout.kirim_pesan_adapter_ui, parent, false);
             // initialize the view holder
             viewHolder = new ViewHolder();
             viewHolder.nama = (TextView) convertView.findViewById(R.id.nama);
-            viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
-            viewHolder.ruangan = (TextView) convertView.findViewById(R.id.ruangan);
+            viewHolder.role = (TextView) convertView.findViewById(R.id.role);
+            viewHolder.no_hp = (TextView) convertView.findViewById(R.id.deskripsi);
             convertView.setTag(viewHolder);
 
         } else {
@@ -35,17 +36,17 @@ public class DaftarPermohonanAdapterMR extends ArrayAdapter<Peminjaman> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // update the item view
-        Peminjaman item = getItem(position);
+        Manajer item = getItem(position);
 
-        viewHolder.nama.setText(item.getNamaP());
-        viewHolder.ruangan.setText(item.getKodeRuangan());
-        viewHolder.perihal.setText(item.getPerihal());
+        viewHolder.nama.setText(item.getNama());
+        viewHolder.role.setText(item.getRole());
+        viewHolder.no_hp.setText(item.getNo_hp());
         return convertView;
     }
 
     private static class ViewHolder {
         TextView nama;
-        TextView ruangan;
-        TextView perihal;
+        TextView role;
+        TextView no_hp;
     }
 }

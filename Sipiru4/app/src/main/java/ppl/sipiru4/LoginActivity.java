@@ -209,8 +209,8 @@ public class LoginActivity extends Activity{
             }
 
             if (status == 1) {
-                Log.e("kode universitas", kodeOrg.substring(12,14));
-                if (role.equals("mahasiswa") && kodeOrg.substring(12,14).equals("12")) {
+                Toast.makeText(context, "kode org : " + kodeOrg.substring(12,14), Toast.LENGTH_SHORT).show();
+                if (role.equals("mahasiswa")) {
                     penggunaController = new PenggunaController(new User(username,nama,role));
                     session.createLoginSession(penggunaController.getCurrentPengguna());
 

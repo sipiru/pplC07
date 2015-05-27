@@ -80,7 +80,7 @@ public class KelolaRole extends Fragment {
             manajerAdminController = new ManajerAdminController(hasil);
 
             for (int i = 0; i < manajerAdminController.getSize(); i++) {
-                mItems.add(manajerAdminController.getManajer(i));
+                mItems.add(manajerAdminController.getManajerAdmin(i));
             }
 
             adapter = new DaftarManagerAdminAdapter(getActivity().getApplicationContext(), mItems, manajerAdminController.getCountManajerRuangan(),

@@ -232,7 +232,7 @@
         <Button
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:text="Simpan sebagai file .pdf"
+            android:text="Simpan sebagai PDF"
             android:id="@+id/download"
             android:background="@color/button_color"
             android:textSize="@dimen/text_size2"

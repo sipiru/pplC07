@@ -1,33 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${packageName}.${activityClass}"
     android:orientation="vertical"
     android:background="@color/background"
     android:paddingLeft="@dimen/text_margin2"
     android:paddingRight="@dimen/text_margin2">
 
     <TextView
+        android:id="@+id/textWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*fitur ini menggunakan pulsa Anda"
+        android:textColor="@color/textwajib"
+        android:layout_marginTop="@dimen/text_margin2"
+        android:layout_marginBottom="@dimen/text_margin2"/>
+
+    <TextView
         android:id="@+id/textViewPhoneNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nomor Telepon : "
-        android:textSize="25dp"
+        android:text="Nama Manajer :"
+        android:textSize="@dimen/text_size_medium2"
         android:textColor="@color/textblack"
-        android:layout_marginTop="@dimen/text_margin2" />
+        android:layout_below="@+id/textWarning"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <EditText
-        android:id="@+id/editTextPhoneNo"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:phoneNumber="true"
-        android:background="@color/field"
+    <Spinner
+        android:id="@+id/spinnerPhoneNo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:popupBackground="@color/popup"
+        android:elevation="@dimen/elevation_size"
+        android:layout_below="@+id/textViewPhoneNo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    </Spinner>
+
+    <TextView
+        android:id="@+id/jabatan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Role"
+        android:textSize="@dimen/text_size_medium2"
         android:textColor="@color/textblack"
-        android:layout_marginBottom="@dimen/text_margin"
-        android:paddingLeft="@dimen/text_padding"
-        android:paddingRight="@dimen/text_padding">
-    </EditText>
+        android:layout_below="@+id/spinnerPhoneNo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/text_margin2"/>
 
     <TextView
         android:id="@+id/textViewSMS"
@@ -35,7 +59,10 @@
         android:layout_height="wrap_content"
         android:text="Pesan : "
         android:textSize="@dimen/text_size1"
-        android:textColor="@color/textblack" />
+        android:textColor="@color/textblack"
+        android:layout_below="@+id/jabatan"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/editTextSMS"
@@ -46,17 +73,20 @@
         android:gravity="top"
         android:background="@color/field"
         android:textColor="@color/textblack"
-        android:paddingLeft="@dimen/text_padding"
-        android:paddingRight="@dimen/text_padding" />
+        android:padding="@dimen/text_padding"
+        android:layout_below="@+id/textViewSMS"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/text_margin"/>
 
     <Button
         android:id="@+id/buttonSend"
         android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="@dimen/text_margin"
+        android:layout_height="60dp"
         android:text="Kirim"
-        android:textSize="25dp"
-        android:background="@color/button_color"
-        android:layout_gravity="center_horizontal" />
+        android:textSize="@dimen/text_size_medium"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/editTextSMS"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+</RelativeLayout>

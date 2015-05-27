@@ -72,8 +72,8 @@ public class TambahRole extends Activity {
                 String name = nama.getText().toString();
                 String no_hp = noHP.getText().toString();
                 String link;
-                if(uname.trim().length()==0) {
-                    Toast.makeText(context, "mohon isi username", Toast.LENGTH_SHORT).show();
+                if(uname.trim().length()==0 || name.trim().length()==0) {
+                    Toast.makeText(context, "username dan nama harus diisi", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     if (roleValues.equals("admin")) {
@@ -87,7 +87,7 @@ public class TambahRole extends Activity {
                         }
                         else {
                             link = "http://ppl-c07.cs.ui.ac.id/connect/createManager/"+uname+"&"+name.replaceAll(" ","%20")+"&"
-                                    +roleValues.replaceAll(" ","%20");
+                                    +roleValues.replaceAll(" ","%20")+"&"+no_hp;
                             new SubmitHelper().execute(link);
                         }
                     }

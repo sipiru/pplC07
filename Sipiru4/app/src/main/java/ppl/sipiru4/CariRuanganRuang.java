@@ -116,7 +116,7 @@ public class CariRuanganRuang extends Fragment {
                 kodeRuangan[i] = ruanganController.getRuangan(i).getKode();
             }
 
-            adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,namaRuangan);
+            adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, namaRuangan);
             spinner.setAdapter(adapter);
             pDialog.dismiss();
         }
@@ -165,7 +165,7 @@ public class CariRuanganRuang extends Fragment {
             adapterList = new JamTersediaAdapter(getActivity(),waktuRuangan);
             lView.setAdapter(adapterList);
             if (waktuRuangan.size()==0) {
-                Toast.makeText(getActivity(), "Ruangan belum pernah dipinjam", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Tidak ada jadwal untuk ruangan " + namaRuangan[posisi], Toast.LENGTH_SHORT).show();
             }
 
             pDialog.dismiss();

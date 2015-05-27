@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/nohp"
             android:hint="nomor HP"
-            android:inputType="numberSigned"
+            android:inputType="phone"
             android:textColor="@color/textblack"
             android:textSize="22dp"
             android:editable="true"
