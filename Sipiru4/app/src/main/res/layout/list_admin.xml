@@ -15,7 +15,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/background_gradient_color"
-        android:dividerHeight="2dp"
+        android:dividerHeight="@dimen/divider"
         android:divider="@color/list_divider"
         android:clickable="true"
         android:layout_above="@+id/btnAdd"
@@ -23,10 +23,11 @@
 
     <Button
         android:id="@+id/btnAdd"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/button_hight"
         android:layout_width="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_background"
-        />
+        android:textColor="@color/text_color_button"
+        android:textSize="@dimen/text_size_medium" />
 </RelativeLayout>

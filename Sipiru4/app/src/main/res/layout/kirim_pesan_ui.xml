@@ -1,103 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linearLayout1"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
+    android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@drawable/background_gradient_color"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:background="@drawable/background_gradient_color">
 
-    <TextView
-        android:id="@+id/textWarning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="*fitur ini menggunakan pulsa Anda"
-        android:textSize="@dimen/text_size2"
-        android:textColor="@color/text_color_wajib"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:id="@+id/textViewPhoneNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nama : "
-        android:textSize="@dimen/text_size_medium2"
-        android:textColor="@color/text_color"
-        android:layout_below="@+id/textWarning"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Spinner
-        android:id="@+id/spinnerPhoneNo"
+    <RelativeLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:popupBackground="@color/popup"
-        android:elevation="@dimen/elevation_size"
-        android:background="@drawable/edit_text_background"
-        android:layout_below="@+id/textViewPhoneNo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
-    </Spinner>
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:clickable="false">
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/abc_spinner_mtrl_am_alpha"
-        android:id="@+id/imageDropDown"
-        android:layout_alignBottom="@+id/spinnerPhoneNo"
-        android:layout_alignRight="@+id/spinnerPhoneNo"
-        android:layout_alignEnd="@+id/spinnerPhoneNo" />
 
-    <TextView
-        android:id="@+id/jabatan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Role"
-        android:textSize="@dimen/text_size_medium2"
-        android:textColor="@color/text_color"
-        android:layout_below="@+id/spinnerPhoneNo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="@dimen/text_margin2"/>
 
-    <TextView
-        android:id="@+id/textViewSMS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pesan : "
-        android:textSize="@dimen/text_size_medium2"
-        android:textColor="@color/text_color"
-        android:layout_below="@+id/jabatan"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/textViewPhoneNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama : "
+            android:textSize="@dimen/text_size_medium2"
+            android:textColor="@color/text_color"
+            android:layout_below="@+id/textWarning"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingLeft="@dimen/text_padding" />
 
-    <EditText
-        android:id="@+id/editTextSMS"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:lines="5"
-        android:gravity="top"
-        android:background="@drawable/edit_text_background"
-        android:textColor="@color/text_color_field"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:layout_below="@+id/textViewSMS"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="@dimen/text_margin"
-        android:padding="@dimen/text_padding"/>
+        <Spinner
+            android:id="@+id/spinnerPhoneNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:popupBackground="@color/popup"
+            android:background="@drawable/edit_text_background"
+            android:layout_below="@+id/textViewPhoneNo"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:padding="@dimen/text_padding">
+        </Spinner>
 
-    <Button
-        android:id="@+id/buttonSend"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:text="Kirim"
-        android:textSize="25dp" android:background="@drawable/button_background"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/text_color_button"
-        android:layout_below="@+id/editTextSMS"
-        android:layout_centerHorizontal="true" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/abc_spinner_mtrl_am_alpha"
+            android:id="@+id/imageDropDown"
+            android:layout_alignTop="@+id/spinnerPhoneNo"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/spinnerPhoneNo" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/jabatan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Role"
+            android:textSize="@dimen/text_size_medium2"
+            android:textColor="@color/text_color"
+            android:layout_below="@+id/spinnerPhoneNo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:paddingLeft="@dimen/text_padding" />
+
+        <TextView
+            android:id="@+id/textViewSMS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pesan : "
+            android:textSize="@dimen/text_size_medium2"
+            android:textColor="@color/text_color"
+            android:layout_below="@+id/jabatan"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingLeft="@dimen/text_padding" />
+
+        <EditText
+            android:id="@+id/editTextSMS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:gravity="top"
+            android:background="@drawable/edit_text_background2"
+            android:textColor="@color/text_color_field"
+            android:paddingLeft="@dimen/text_padding"
+            android:paddingRight="@dimen/text_padding"
+            android:layout_below="@+id/textViewSMS"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:textSize="@dimen/text_size1"
+            android:padding="@dimen/text_padding" />
+
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="@dimen/button_width2"
+            android:layout_height="@dimen/button_hight"
+            android:text="Kirim"
+            android:textSize="@dimen/text_size1" android:background="@drawable/button_background"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/text_color_button"
+            android:layout_below="@+id/editTextSMS"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_top_button" />
+
+
+        <TextView
+            android:id="@+id/textWarning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*fitur ini menggunakan pulsa Anda"
+            android:textSize="@dimen/text_size2"
+            android:textColor="@color/text_color_wajib"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:paddingLeft="@dimen/text_padding" />
+    </RelativeLayout>
+</ScrollView>

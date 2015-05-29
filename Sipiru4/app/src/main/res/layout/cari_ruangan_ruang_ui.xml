@@ -13,11 +13,12 @@
         android:popupBackground="@color/list_spiner"
         android:layout_alignBottom="@+id/search"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="3dp"
-        android:background="@color/field"
+        android:layout_marginTop="@dimen/margin_top"
+        android:background="@drawable/edit_text_background"
         android:layout_toLeftOf="@+id/search"
         android:layout_toStartOf="@+id/search"
-        android:layout_marginLeft="@dimen/text_padding"/>
+        android:layout_marginLeft="@dimen/text_padding"
+        android:layout_marginRight="@dimen/divider" />
 
     <ImageView
         android:layout_width="30dp"
@@ -38,7 +39,7 @@
         android:layout_alignParentEnd="true"
         android:clickable="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="@dimen/margin_top"
         android:background="@drawable/button_background"
         android:layout_marginRight="@dimen/text_padding"/>
 
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:text=" tidak tersedia pada :"
-        android:textSize="20dp"
+        android:textSize="@dimen/text_size_medium"
         android:textColor="@color/text_color"
         android:layout_below="@+id/spinner"
         android:layout_toRightOf="@+id/namaRuangan"
@@ -59,10 +60,11 @@
         android:id="@+id/namaRuangan"
         android:hint="nama"
         android:textColor="@color/text_color"
-        android:textSize="20dp"
+        android:textSize="@dimen/text_size_medium"
         android:layout_alignTop="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/margin_left" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
@@ -71,27 +73,28 @@
         android:layout_height="wrap_content"
         android:weightSum="1"
         android:layout_below="@+id/namaRuangan">
-        <!--  Single List Item Design -->
+
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/mulai"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:padding="10dp"
-            android:textSize="18dp"
+            android:padding="@dimen/text_margin2"
+            android:textSize="@dimen/text_size2"
             android:text="waktu mulai"
             android:textColor="@color/text_color"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="0.39">
+            android:layout_marginLeft="@dimen/text_margin2"
+            android:layout_weight="0.44">
         </TextView>
+
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/selesai"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:padding="10dp"
-            android:textSize="18dp"
+            android:padding="@dimen/text_margin2"
+            android:textSize="@dimen/text_size2"
             android:text="waktu selesai"
             android:textColor="@color/text_color"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/text_margin2"
             android:layout_weight="0.44">
         </TextView>
     </LinearLayout>
@@ -103,11 +106,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="@dimen/margin_top"
         android:background="@drawable/background_gradient_color"
         android:divider="@color/list_divider"
-        android:dividerHeight="2dp"
-        android:clickable="true" />
+        android:dividerHeight="@dimen/divider"
+        android:clickable="true"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -115,6 +118,6 @@
         android:id="@+id/imageView"
         android:layout_alignBottom="@+id/spinner"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

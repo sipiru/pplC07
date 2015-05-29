@@ -15,7 +15,7 @@ android:background="@drawable/background_gradient_color">
     android:layout_alignParentRight="true"
     android:layout_alignParentEnd="true"
     android:background="@drawable/background_gradient_color"
-    android:dividerHeight="2dp"
+    android:dividerHeight="@dimen/divider"
     android:divider="@color/list_divider"
     android:clickable="true"
     />

@@ -18,216 +18,218 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Ruangan"
-            android:textSize="20dp"
+            android:text="Ruangan"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView3"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:paddingLeft="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ruang"
             android:layout_gravity="center_vertical"
-            android:hint="Nama ruangan" android:textSize="25dp"
+            android:hint="Nama ruangan" android:textSize="@dimen/text_size1"
             android:background="@drawable/edit_text"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
             android:textColor="@color/text_color_field"
             android:layout_below="@+id/textView3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Nama"
-            android:textSize="20dp"
+            android:text="Nama"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView2"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/ruang"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:paddingLeft="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/nama"
             android:layout_gravity="center_vertical"
-            android:hint="Nama peminjam" android:textSize="25dp"
+            android:hint="Nama peminjam" android:textSize="@dimen/text_size1"
             android:background="@drawable/edit_text"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
             android:textColor="@color/text_color_field"
             android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Username"
-            android:textSize="20dp"
+            android:text="Username"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView4"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/nama"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:paddingLeft="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/username"
             android:layout_gravity="center_vertical"
-            android:hint="Username" android:textSize="25dp"
+            android:hint="Username" android:textSize="@dimen/text_size1"
             android:background="@drawable/edit_text"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
             android:textColor="@color/text_color_field"
             android:layout_below="@+id/textView4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Perihal"
-            android:textSize="20dp"
+            android:text="Perihal"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView5"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/username"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:paddingLeft="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/prihal"
             android:layout_gravity="center_vertical"
-            android:hint="Perihal" android:textSize="25dp"
+            android:hint="Perihal" android:textSize="@dimen/text_size1"
             android:background="@drawable/edit_text"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
             android:textColor="@color/text_color_field"
             android:layout_below="@+id/textView5"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Kegiatan"
-            android:textSize="20dp"
+            android:text="Kegiatan"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView6"
             android:layout_below="@+id/prihal"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:paddingLeft="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/kegiatan"
             android:layout_gravity="center_vertical"
-            android:hint="Kegiatan" android:textSize="25dp"
+            android:hint="Kegiatan" android:textSize="@dimen/text_size1"
             android:background="@drawable/edit_text"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
             android:textColor="@color/text_color_field"
             android:layout_below="@+id/textView6"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Waktu Mulai"
-            android:textSize="20dp"
+            android:text="Waktu Mulai"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView7"
-            android:layout_marginTop="4dp"
             android:layout_below="@+id/kegiatan"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:paddingLeft="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/waktuMulai"
             android:layout_gravity="center_vertical"
-            android:hint="Mulai" android:textSize="25dp"
+            android:hint="Mulai" android:textSize="@dimen/text_size1"
             android:background="@drawable/edit_text"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
             android:textColor="@color/text_color_field"
             android:layout_below="@+id/textView7"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Waktu Selesai"
-            android:textSize="20dp"
+            android:text="Waktu Selesai"
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView8"
             android:layout_below="@+id/waktuMulai"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:paddingLeft="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/waktuSelesai"
             android:layout_gravity="center_vertical"
-            android:hint="Selesai" android:textSize="25dp"
+            android:hint="Selesai" android:textSize="@dimen/text_size1"
             android:background="@drawable/edit_text"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
             android:paddingLeft="5dp"
             android:textColor="@color/text_color_field"
             android:layout_below="@+id/textView8"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Peralatan "
-            android:textSize="20dp"
+            android:text="Peralatan "
+            android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView9"
             android:layout_below="@+id/waktuSelesai"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="4dp"
             android:autoText="false"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:paddingLeft="@dimen/margin_bottom" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:textSize="@dimen/text_size1"
             android:background="@drawable/edit_text"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="5dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
             android:textColor="@color/text_color_field"
             android:id="@+id/peralatan"
             android:layout_below="@+id/textView9"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_bottom" />
 
 
 
@@ -238,14 +240,14 @@
             android:orientation="horizontal"
             android:layout_below="@+id/peralatan"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="@dimen/margin_top_button">
 
             <Button
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="Teruskan"
                 android:id="@+id/btnTeruskan"
-                android:textSize="18dp"
+                android:textSize="@dimen/text_size_medium"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -258,7 +260,7 @@
                 android:layout_height="50dp"
                 android:text="Tolak"
                 android:id="@+id/btnTolak"
-                android:textSize="18dp"
+                android:textSize="@dimen/text_size_medium"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"

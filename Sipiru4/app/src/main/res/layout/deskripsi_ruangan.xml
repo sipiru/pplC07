@@ -20,7 +20,7 @@
         android:layout_alignParentStart="true"
         android:id="@+id/textView2"
         android:textColor="@color/text_color"
-        android:textSize="22dp" />
+        android:textSize="@dimen/text_size_medium2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,19 +28,19 @@
         android:text="Fasilitas    :"
         android:id="@+id/textView3"
         android:textColor="@color/text_color"
-        android:textSize="22dp"
+        android:textSize="@dimen/text_size_medium2"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="15dp"
+        android:layout_height="wrap_content"
         android:id="@+id/kapasitas"
         android:text="kapasitas"
         android:textColor="@color/text_color"
-        android:textSize="22dp"
-        android:layout_marginLeft="6dp"
+        android:textSize="@dimen/text_size_medium2"
+        android:layout_marginLeft="@dimen/text_margin3"
         android:layout_alignTop="@+id/textView2"
         android:layout_toRightOf="@+id/textView2"
         android:layout_alignBottom="@+id/textView2" />
@@ -51,7 +51,7 @@
         android:id="@+id/fasilitas"
         android:text="fasilitas"
         android:textColor="@color/text_color"
-        android:textSize="22dp"
+        android:textSize="@dimen/text_size_medium2"
         android:layout_below="@+id/kapasitas"
         android:layout_alignLeft="@+id/kapasitas"
         android:layout_alignStart="@+id/kapasitas" />
@@ -62,7 +62,7 @@
         android:text="Tidak tersedia untuk jam :"
         android:id="@+id/textView4"
         android:textColor="@color/text_color"
-        android:textSize="22dp"
+        android:textSize="@dimen/text_size_medium2"
         android:layout_below="@+id/editText1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -75,7 +75,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView4"
         android:longClickable="false"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="@dimen/util_margin1"
         android:nestedScrollingEnabled="false"
         android:clickable="true"
         android:layout_alignParentBottom="false"

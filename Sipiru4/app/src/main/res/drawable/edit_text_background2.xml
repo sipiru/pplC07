@@ -7,8 +7,8 @@
 
 
     <item  android:drawable="@drawable/edit_text2"
-        android:state_focused="true"
-        android:state_pressed="true" />
+    android:state_focused="true"
+    android:state_pressed="true" />
 
 
     <item  android:drawable="@drawable/edit_text2"
@@ -16,6 +16,6 @@
         android:state_pressed="true" />
 
 
-    <item android:drawable="@drawable/edit_text"/>
+    <item android:drawable="@drawable/edit_text2"/>
 
 </selector>

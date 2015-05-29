@@ -153,7 +153,6 @@ public class KirimPesan extends Activity{
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View v = super.getView(position, convertView, parent);
                     ((TextView)v).setTextSize(24);
-                    ((TextView)v).setTextColor(getResources().getColorStateList(R.color.textblack));
 
                     return v;
                 }
