@@ -239,8 +239,8 @@ public class MainActivityA extends FragmentActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    @Override
-    public void onBackPressed() {
-        logout();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        logout();
+//    }
 }

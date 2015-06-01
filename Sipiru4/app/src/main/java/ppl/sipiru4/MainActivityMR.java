@@ -256,9 +256,9 @@ public class MainActivityMR extends FragmentActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    @Override
-    public void onBackPressed() {
-        // saat user menekan tombol back, lakukan konfirmasi logout
-        logout();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        // saat user menekan tombol back, lakukan konfirmasi logout
+//        logout();
+//    }
 }

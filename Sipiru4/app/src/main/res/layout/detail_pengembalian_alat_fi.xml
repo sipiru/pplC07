@@ -239,7 +239,7 @@
             android:padding="@dimen/text_padding" />
 
         <Button
-            android:layout_width="175dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:text="Selesai"
             android:id="@+id/btnSelesai"

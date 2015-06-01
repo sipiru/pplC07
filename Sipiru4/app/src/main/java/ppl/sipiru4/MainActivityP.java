@@ -14,6 +14,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -189,7 +190,9 @@ public class MainActivityP extends FragmentActivity {
 
         if (fragment != null) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.replace(R.id.frame_container, fragment).commit();
 
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
@@ -272,9 +275,18 @@ public class MainActivityP extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+////        if (getFragmentManager().popBackStack())
+//        super.onBackPressed();
+//        Toast.makeText(context, "popup " +getFragmentManager().findFragmentById(R), Toast.LENGTH_SHORT).show();
         // saat user menekan tombol back, lakukan konfirmasi logout
         logout();
     }
+
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//    }
 
     @Override
     protected void onStart() {

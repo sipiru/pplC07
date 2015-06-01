@@ -27,6 +27,9 @@ public class DetailPendingFI extends Activity {
     Bundle b;
     SharedPreferences setting;
     PenggunaController penggunaController;
+    String editAlat;
+    EditText peralatan;
+    String previousAlat;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +73,10 @@ public class DetailPendingFI extends Activity {
             TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
             waktuSelesai.setText(peminjamanController.getPeminjaman().getSelesai());
 
-            final EditText peralatan = (EditText)findViewById(R.id.peralatan);
+            peralatan = (EditText)findViewById(R.id.peralatan);
             peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
+            editAlat = peralatan.getText().toString();
+            previousAlat = editAlat;
 
             Button btnUpdate = (Button)findViewById(R.id.btnUpdate);
             if (peralatan.getText().toString().trim().length()!=0) {
@@ -90,13 +95,15 @@ public class DetailPendingFI extends Activity {
                                     .setMessage("Tekan Ya untuk mengupdate")
                                     .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog,int id) {
-                                            String peralatanModif = peralatan.getText().toString().replaceAll(" ", "%20");
+                                            editAlat = peralatan.getText().toString().replaceAll(" ", "%20");
+                                            previousAlat = editAlat;
                                             new TaskHelper1().execute("http://ppl-c07.cs.ui.ac.id/connect/updatePeralatan/"
-                                                    + peminjamanController.getPeminjaman().getId() + "&" + peralatanModif);
+                                                    + peminjamanController.getPeminjaman().getId() + "&" + editAlat);
                                         }
                                     })
                                     .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog,int id) {
+                                            peralatan.setText(previousAlat);
                                             dialog.cancel();
                                         }
                                     });
@@ -211,6 +218,7 @@ public class DetailPendingFI extends Activity {
             }
             if (notif.trim().equals("\"sukses\"")){
                 Toast.makeText(getApplicationContext(), "sukses", Toast.LENGTH_SHORT).show();
+                peralatan.setText(editAlat);
             }
             else {
                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();

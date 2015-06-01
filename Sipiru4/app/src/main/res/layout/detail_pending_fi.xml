@@ -282,7 +282,7 @@
             android:textSize="@dimen/text_size_medium"
             android:layout_below="@+id/peralatan"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_top_button"
+            android:layout_marginTop="@dimen/margin_bottom"
             android:textColor="@color/text_color_button" />
 
 

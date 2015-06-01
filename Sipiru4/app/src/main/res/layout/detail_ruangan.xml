@@ -132,11 +132,11 @@
             android:padding="@dimen/text_padding" />
 
         <Button
-            android:layout_height="50dp"
+            android:layout_height="@dimen/button_hight"
             android:layout_width="140dp"
             android:id="@+id/buttonPinjam"
             android:text="Pinjam"
-            android:textSize="@dimen/text_size1"
+            android:textSize="@dimen/text_size_medium"
             android:layout_below="@+id/deskripsi"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_top_button"

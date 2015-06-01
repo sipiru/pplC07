@@ -7,7 +7,7 @@
     <dimen name="text_margin">20dp</dimen>
     <dimen name="text_margin2">10dp</dimen>
     <dimen name="text_margin3">6dp</dimen>
-    <dimen name="text_size1">24dp</dimen>
+    <dimen name="text_size1">23dp</dimen>
     <dimen name="text_size2">18dp</dimen>
     <dimen name="text_size_medium">20dp</dimen>
     <dimen name="text_size_medium2">22dp</dimen>
@@ -22,8 +22,8 @@
     <dimen name="margin_bottom">10dp</dimen>
     <dimen name="margin_top_button">30dp</dimen>
     <dimen name="edittext_hight">40dp</dimen>
-    <dimen name="button_width">220dp</dimen>
+    <dimen name="button_width">210dp</dimen>
     <dimen name="button_hight">50dp</dimen>
-    <dimen name="button_width2">120dp</dimen>
+    <dimen name="button_width2">100dp</dimen>
 
 </resources>

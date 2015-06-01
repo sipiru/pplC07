@@ -240,7 +240,7 @@
         <Button
             android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
-            android:text="Simpan Sebagai File .pdf"
+            android:text="Simpan sebagai file .pdf"
             android:id="@+id/download"
             android:background="@drawable/button_background"
             android:textSize="@dimen/text_size_medium"

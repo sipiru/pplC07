@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/ruang"
             android:layout_gravity="center_vertical"
-            android:hint="Nama ruangan" android:textSize="@dimen/text_size1"
+            android:hint="Nama ruangan"
+            android:textSize="@dimen/text_size1"
             android:background="@drawable/edit_text"
             android:layout_marginBottom="@dimen/margin_bottom"
             android:textColor="@color/text_color_field"
@@ -243,8 +244,8 @@
             android:layout_marginTop="@dimen/margin_top_button">
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/button_width2"
+                android:layout_height="@dimen/button_hight"
                 android:text="Teruskan"
                 android:id="@+id/btnTeruskan"
                 android:textSize="@dimen/text_size_medium"
@@ -256,8 +257,8 @@
                 android:textColor="@color/text_color_button" />
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/button_width2"
+                android:layout_height="@dimen/button_hight"
                 android:text="Tolak"
                 android:id="@+id/btnTolak"
                 android:textSize="@dimen/text_size_medium"
