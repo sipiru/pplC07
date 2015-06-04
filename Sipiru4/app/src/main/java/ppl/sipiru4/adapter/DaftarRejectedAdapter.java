@@ -29,6 +29,7 @@ public class DaftarRejectedAdapter extends ArrayAdapter<Peminjaman> {
             viewHolder = new ViewHolder();
             viewHolder.kodeRuangan = (TextView) convertView.findViewById(R.id.nama);
             viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
+            viewHolder.alasan = (TextView) convertView.findViewById(R.id.alasan);
             viewHolder.img = (ImageView) convertView.findViewById(R.id.image);
             convertView.setTag(viewHolder);
         } else {
@@ -40,6 +41,7 @@ public class DaftarRejectedAdapter extends ArrayAdapter<Peminjaman> {
 
         viewHolder.kodeRuangan.setText(item.getKodeRuangan());
         viewHolder.perihal.setText(item.getPerihal());
+        viewHolder.alasan.setText(item.getAlasanDitolak());
 
         return convertView;
     }
@@ -53,6 +55,7 @@ public class DaftarRejectedAdapter extends ArrayAdapter<Peminjaman> {
     private static class ViewHolder {
         TextView kodeRuangan;
         TextView perihal;
+        TextView alasan;
         ImageView img;
     }
 }

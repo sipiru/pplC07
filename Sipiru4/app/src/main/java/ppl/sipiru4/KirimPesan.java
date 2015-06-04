@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +26,7 @@ import ppl.sipiru4.controller.ManajerController;
 
 public class KirimPesan extends Activity{
     Button buttonSend;
+    Button buttonSave;
     Spinner spinner;
     TextView role;
     String[] noHp;
@@ -46,7 +49,6 @@ public class KirimPesan extends Activity{
         // mengakses URL menggunakan AsyncTask class
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showAllManager/");
 
-        buttonSend = (Button) findViewById(R.id.buttonSend);
         textSMS = (EditText) findViewById(R.id.editTextSMS);
         role = (TextView) findViewById(R.id.jabatan);
         spinner = (Spinner) findViewById(R.id.spinnerPhoneNo);
@@ -62,6 +64,23 @@ public class KirimPesan extends Activity{
             }
         });
 
+        buttonSave = (Button) findViewById(R.id.buttonSimpan);
+        buttonSave.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nama = namaManajer[posisi];
+                String phoneNo = noHp[posisi];
+
+                Intent intent = new Intent(Intent.ACTION_INSERT);
+                intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+
+                intent.putExtra(ContactsContract.Intents.Insert.NAME, nama);
+                intent.putExtra(ContactsContract.Intents.Insert.PHONE, phoneNo);
+                startActivityForResult(intent, 1);
+            }
+        });
+
+        buttonSend = (Button) findViewById(R.id.buttonSend);
         buttonSend.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

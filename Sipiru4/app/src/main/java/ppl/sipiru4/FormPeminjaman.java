@@ -117,7 +117,7 @@ public class FormPeminjaman extends Activity {
 
                         new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
                                 + username + "&" + namaP + "&" + statusP + "&" + ruang.getText() + "&"
-                                + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanModif + "&" + alat + "&0/");
+                                + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanModif + "&" + alat);
                     }
                 }
             });

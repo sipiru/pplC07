@@ -47,6 +47,9 @@ public class DetailRejected extends Activity {
 
         TextView peralatan = (TextView)findViewById(R.id.peralatan);
         peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
+
+        TextView alasanDitolak = (TextView)findViewById(R.id.alasan);
+        alasanDitolak.setText(peminjamanController.getPeminjaman().getAlasanDitolak());
     }
 
     @Override

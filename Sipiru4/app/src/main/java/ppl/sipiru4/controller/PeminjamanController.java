@@ -31,8 +31,9 @@ public class PeminjamanController {
                 String selesai = jPeminjaman.getString("waktu_akhir_pinjam");
                 String peralatan = jPeminjaman.getString("peralatan");
                 int status = jPeminjaman.getInt("status");
+                String alasanDitolak = jPeminjaman.getString("alasan_ditolak");
 
-                peminjamans[i] = new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,kegiatan,peralatan,status);
+                peminjamans[i] = new Peminjaman(id,kodeRuangan,usernameP,namaP,statusPeminjam,mulai,selesai,perihal,kegiatan,peralatan,status,alasanDitolak);
                 size++;
             } catch (JSONException e) {
                 e.printStackTrace();

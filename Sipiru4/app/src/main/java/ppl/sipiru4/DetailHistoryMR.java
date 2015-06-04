@@ -40,7 +40,7 @@ public class DetailHistoryMR extends Activity {
     String namaPeminjam = "";
     String ruangDipinjam = "";
     String tglPinjam = "";
-    String peralatan ="";
+    String peralatan2 ="";
     String keperluan="";
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,8 @@ public class DetailHistoryMR extends Activity {
         //untuk bikin file PDF
         namaPeminjam = peminjamanController.getPeminjaman().getNamaP();
         ruangDipinjam = peminjamanController.getPeminjaman().getKodeRuangan();
-        tglPinjam = peminjamanController.getPeminjaman().getMulai() + peminjamanController.getPeminjaman().getSelesai();
-        peralatan = peminjamanController.getPeminjaman().getPeralatan();
+        tglPinjam = peminjamanController.getPeminjaman().getMulai() + " sampai "+ peminjamanController.getPeminjaman().getSelesai();
+        peralatan2 = peminjamanController.getPeminjaman().getPeralatan();
         keperluan = peminjamanController.getPeminjaman().getPerihal() + ", "+ peminjamanController.getPeminjaman().getKegiatan();
 
         TextView ruang = (TextView)findViewById(R.id.ruang);
@@ -129,99 +129,6 @@ public class DetailHistoryMR extends Activity {
         }
     }
 
-//    /**
-//     * Background Async Task to download file
-//     * */
-//    class DownloadFileFromURL extends AsyncTask<String, String, String> {
-//        JSONArray hasil;
-////        JSONObject object;
-//        /**
-//         * Before starting background thread
-//         * Show Progress Bar Dialog
-//         * */
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            showDialog(progress_bar_type);
-////            super.onPreExecute();
-////            pDialog = new ProgressDialog(context);
-////            pDialog.setMessage("Logging in...");
-////            pDialog.setIndeterminate(false);
-////            pDialog.setCancelable(true);
-////            pDialog.show();
-//        }
-//
-//        /**
-//         * Downloading file in background thread
-//         * */
-//        @Override
-//        protected String doInBackground(String... f_url) {
-//            int count;
-//            try {
-//                URL url = new URL(f_url[0]);
-//                URLConnection conection = url.openConnection();
-//                conection.connect();
-//                // this will be useful so that you can show a tipical 0-100% progress bar
-//                int lenghtOfFile = conection.getContentLength();
-//
-//                // download the file
-//                InputStream input = new BufferedInputStream(url.openStream(), 8192);
-//
-//                // Output stream
-//                OutputStream output = new FileOutputStream("/sdcard/downloadedfile.jpg");
-//                hasil = JSONParser.getJSONfromURL("http://ppl-c07.cs.ui.ac.id/connect/peminjaman/");
-//
-//                byte data[] = new byte[1024];
-//
-//                long total = 0;
-//
-//                while ((count = input.read(data)) != -1) {
-//                    total += count;
-//                    // publishing the progress....
-//                    // After this onProgressUpdate will be called
-//                    publishProgress(""+(int)((total*100)/lenghtOfFile));
-//
-//                    // writing data to file
-//                    output.write(data, 0, count);
-//                }
-//
-//                // flushing output
-//                output.flush();
-//
-//                // closing streams
-//                output.close();
-//                input.close();
-//
-//            } catch (Exception e) {
-//                Log.e("Error: ", e.getMessage());
-//            }
-//
-//            return null;
-//        }
-//
-//        /**
-//         * Updating progress bar
-//         * */
-//        protected void onProgressUpdate(String... progress) {
-//            // setting progress percentage
-//            pDialog.setProgress(Integer.parseInt(progress[0]));
-//        }
-//
-//        /**
-//         * After completing background task
-//         * Dismiss the progress dialog
-//         * **/
-//        @Override
-//        protected void onPostExecute(String file_url) {
-////            // dismiss the dialog after the file was downloaded
-////            dismissDialog(progress_bar_type);
-//            pDialog.dismiss();
-//            Toast.makeText(context, hasil.toString(),Toast.LENGTH_SHORT).show();
-////            Intent i = new Intent(context, MainActivityMR.class);
-////            startActivity(i);
-//        }
-//    }
-
     void createPDF()
     {
         Document doc = new Document();
@@ -251,16 +158,17 @@ public class DetailHistoryMR extends Activity {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             Date date = new Date();
             Paragraph tgl = new Paragraph(dateFormat.format(date));
-            Paragraph judul = new Paragraph("BUKTI PEMINJAMAN\n" + "(BARANG & RUANGAN)");
+            Paragraph judul = new Paragraph("BUKTI PEMINJAMAN");
+            Paragraph judul2 = new Paragraph("(BARANG & RUANGAN)");
 
             Font fontjudulP= new Font(Font.HELVETICA);
             fontjudulP.setSize(40);
 
-            Paragraph judulP = new Paragraph("SURAT PERNYATAAN");
-            Paragraph pernyataan = new Paragraph("Dengan surat ini saya mengatakan, untuk menajaga kebersihan dan " +
+            Paragraph judulP = new Paragraph("SURAT PERNYATAAN\n");
+            Paragraph pernyataan = new Paragraph("Dengan surat ini saya mengatakan, untuk menjaga kebersihan dan " +
                     "kerapihan ruangan selama peminjaman. Apabila dikemudian hari " +
                     "saya melanggar, saya akan menerima segala konsekuensinya yang diberikan dari pihak Fakultas. " +
-                    "Demikian surat pernyataan ini saya buat dengan sebaik baiknya. \n\n\n");
+                    "Demikian surat pernyataan ini saya buat dengan sebaik-baiknya. \n\n\n");
             pernyataan.getExtraParagraphSpace();
 
             Font paraFont= new Font(Font.HELVETICA);
@@ -271,19 +179,24 @@ public class DetailHistoryMR extends Activity {
             judul.setAlignment(Paragraph.ALIGN_CENTER);
             judul.setFont(fontjudulP);
 
+            judul2.setAlignment(Paragraph.ALIGN_CENTER);
+            judul2.setFont(fontjudulP);
+
             judulP.setAlignment(Paragraph.ALIGN_CENTER);
             judulP.setFont(fontjudulP);
 
-            pernyataan.setAlignment(Paragraph.ALIGN_LEFT);
+            pernyataan.setAlignment(Paragraph.ALIGN_JUSTIFIED);
             pernyataan.setFont(paraFont);
 
             Table ttd = new Table(2);
             ttd.setAlignment(com.lowagie.text.Element.ALIGN_CENTER);
             ttd.setPadding(5);
-            ttd.addCell("Yang Menerima\n\n\n\n");
-            ttd.addCell("Yang Menyerahkan\n\n\n\n");
+            ttd.addCell("Yang Menerima");
+            ttd.addCell("Yang Menyerahkan");
+            ttd.addCell("\n\n\n\n");
+            ttd.addCell("\n\n\n\n");
             ttd.addCell(namaPeminjam);
-            ttd.addCell("Harry Sunarto");
+            ttd.addCell("HARRY SUNARTO");
 
 //            Paragraph judulttd = new Paragraph("Yang Menerima                                                                                            ");
 //            judulttd.setAlignment(Paragraph.ALIGN_LEFT);
@@ -299,24 +212,25 @@ public class DetailHistoryMR extends Activity {
             Table tabel = new Table(2);
             tabel.setAlignment(Paragraph.ALIGN_MIDDLE);
             tabel.setPadding(5);
-            tabel.addCell("Nama : ");
+            tabel.addCell("Nama :");
             tabel.addCell(namaPeminjam);
             tabel.addCell("Nama Ruangan :");
             tabel.addCell(ruangDipinjam);
-            tabel.addCell("Tgl Peminjaman ");
+            tabel.addCell("Tgl Peminjaman :");
             tabel.addCell(tglPinjam);
             tabel.addCell("Nama Barang :");
-            if(peralatan.equalsIgnoreCase("")){
+            if(peralatan2.equalsIgnoreCase("") || peralatan2 == null){
                 tabel.addCell("-");
             }
             else{
-                tabel.addCell(peralatan);
+                tabel.addCell(peralatan2);
             }
             tabel.addCell("Keperluan :");
             tabel.addCell(keperluan);
 
             doc.add(tgl);
             doc.add(judul);
+            doc.add(judul2);
             doc.add(tabel);
             doc.newPage();
             doc.add(judulP);

@@ -8,9 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
@@ -107,26 +109,52 @@ public class DetailPendingMR extends Activity {
             btnTolak.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                    // set title
-                    alertDialogBuilder.setTitle("Apakah anda yakin untuk menolak permohonan ini?");
-                    // set dialog message
-                    alertDialogBuilder
-                            .setMessage("Tekan Ya untuk menolak")
-                            .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
-                                    new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"
-                                            + peminjamanController.getPeminjaman().getId());
-                                }
-                            })
-                            .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
-                                    dialog.cancel();
-                                }
-                            });
-                    // create alert dialog
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Alasan penolakan");
+
+                    final EditText alasan = new EditText(context);
+
+                    alasan.setInputType(InputType.TYPE_CLASS_TEXT);
+                    builder.setView(alasan);
+
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            final String alasanTolak = alasan.getText().toString();
+                            if (alasanTolak.trim().length()==0) {
+                                Toast.makeText(context, "alasan tidak boleh kosong" , Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                                // set title
+                                alertDialogBuilder.setTitle("Apakah anda yakin untuk menolak permohonan ini?");
+                                // set dialog message
+                                alertDialogBuilder
+                                        .setMessage("Tekan Ya untuk konfirmasi")
+                                        .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,int id) {
+                                                new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"
+                                                        + peminjamanController.getPeminjaman().getId() + "&"+alasanTolak.replaceAll(" ","%20"));
+                                            }
+                                        })
+                                        .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                // create alert dialog
+                                AlertDialog alertDialog = alertDialogBuilder.create();
+                                alertDialog.show();
+                            }
+                        }
+                    });
+                    builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.show();
                 }
             });
         }

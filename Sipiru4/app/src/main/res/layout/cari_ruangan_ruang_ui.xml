@@ -58,7 +58,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/namaRuangan"
-        android:hint="nama"
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_size_medium"
         android:layout_alignTop="@+id/textView"

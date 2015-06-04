@@ -42,7 +42,7 @@
             android:layout_below="@+id/textViewPhoneNo"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="@dimen/margin_bottom"
+            android:layout_marginBottom="@dimen/util_margin1"
             android:padding="@dimen/text_padding">
         </Spinner>
 
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Role"
-            android:textSize="@dimen/text_size_medium2"
+            android:textSize="@dimen/text_size_medium"
             android:textColor="@color/text_color"
             android:layout_below="@+id/spinnerPhoneNo"
             android:layout_alignParentLeft="true"
@@ -99,17 +99,53 @@
             android:textSize="@dimen/text_size1"
             android:padding="@dimen/text_padding" />
 
-        <Button
-            android:id="@+id/buttonSend"
-            android:layout_width="@dimen/button_width2"
-            android:layout_height="@dimen/button_hight"
-            android:text="Kirim"
-            android:textSize="@dimen/text_size1" android:background="@drawable/button_background"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/text_color_button"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_below="@+id/editTextSMS"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_top_button" />
+            android:layout_marginTop="@dimen/text_margin">
+
+            <Button
+                android:layout_width="@dimen/button_width2"
+                android:layout_height="wrap_content"
+                android:text="Kirim pesan"
+                android:id="@+id/buttonSend"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/button_background"
+                android:textColor="@color/text_color_button" />
+
+            <Button
+                android:layout_width="@dimen/button_width2"
+                android:layout_height="wrap_content"
+                android:text="Simpan kontak"
+                android:id="@+id/buttonSimpan"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/button_background"
+                android:textColor="@color/text_color_button" />
+
+        </RelativeLayout>
+
+        <!--<Button-->
+            <!--android:id="@+id/buttonSend"-->
+            <!--android:layout_width="@dimen/button_width2"-->
+            <!--android:layout_height="@dimen/button_hight"-->
+            <!--android:text="Kirim"-->
+            <!--android:textSize="@dimen/text_size1" android:background="@drawable/button_background"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:textColor="@color/text_color_button"-->
+            <!--android:layout_below="@+id/editTextSMS"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="@dimen/margin_top_button" />-->
 
 
         <TextView

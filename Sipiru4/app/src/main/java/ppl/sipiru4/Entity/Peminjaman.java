@@ -15,8 +15,9 @@ public class Peminjaman implements Parcelable{
     private String kegiatan;
     private String peralatan;
     private int status;
+    private String alasanDitolak;
 
-    public Peminjaman(int id,String kodeRuangan, String usernameP, String namaP, boolean statusPeminjam, String mulai, String selesai, String perihal, String kegiatan, String peralatan, int status) {
+    public Peminjaman(int id,String kodeRuangan, String usernameP, String namaP, boolean statusPeminjam, String mulai, String selesai, String perihal, String kegiatan, String peralatan, int status, String alasanDitolak) {
         this.id = id;
         this.kodeRuangan = kodeRuangan;
         this.usernameP = usernameP;
@@ -28,6 +29,7 @@ public class Peminjaman implements Parcelable{
         this.kegiatan = kegiatan;
         this.peralatan = peralatan;
         this.status = status;
+        this.alasanDitolak = alasanDitolak;
     }
 
     public Peminjaman(Parcel source) {
@@ -42,6 +44,7 @@ public class Peminjaman implements Parcelable{
         kegiatan = source.readString();
         peralatan = source.readString();
         status = source.readInt();
+        alasanDitolak = source.readString();
     }
 
     public int getId() {
@@ -88,6 +91,10 @@ public class Peminjaman implements Parcelable{
         return status;
     }
 
+    public String getAlasanDitolak() {
+        return alasanDitolak;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -107,6 +114,7 @@ public class Peminjaman implements Parcelable{
         dest.writeString(kegiatan);
         dest.writeString(peralatan);
         dest.writeInt(status);
+        dest.writeString(alasanDitolak);
     }
 
     public static final Parcelable.Creator<Peminjaman> CREATOR
