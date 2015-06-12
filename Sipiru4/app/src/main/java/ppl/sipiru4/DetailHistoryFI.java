@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.controller.PeminjamanController;
 
@@ -23,6 +28,19 @@ public class DetailHistoryFI extends Activity {
         Log.e("peminjaman", peminjamanController.getPeminjaman().getKodeRuangan() + " " + peminjamanController.getPeminjaman().getNamaP()
                 + " " + peminjamanController.getPeminjaman().getId());
 
+        String date1 = peminjamanController.getPeminjaman().getMulai();
+        String date2 = peminjamanController.getPeminjaman().getSelesai();
+        String dateView1 = null;
+        String dateView2 = null;
+        try {
+            Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
+            dateView1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init1);
+            Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
+            dateView2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         TextView ruang = (TextView)findViewById(R.id.ruang);
         ruang.setText(peminjamanController.getPeminjaman().getKodeRuangan());
 
@@ -39,10 +57,10 @@ public class DetailHistoryFI extends Activity {
         kegiatan.setText(peminjamanController.getPeminjaman().getKegiatan());
 
         TextView mulai = (TextView)findViewById(R.id.waktuMulai);
-        mulai.setText(peminjamanController.getPeminjaman().getMulai());
+        mulai.setText(dateView1);
 
         TextView selesai = (TextView)findViewById(R.id.waktuSelesai);
-        selesai.setText(peminjamanController.getPeminjaman().getSelesai());
+        selesai.setText(dateView2);
 
         TextView peralatan = (TextView)findViewById(R.id.peralatan);
         peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());

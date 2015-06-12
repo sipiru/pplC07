@@ -17,7 +17,12 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.adapter.JamTersediaAdapter;
 import ppl.sipiru4.controller.RuanganController;
@@ -157,7 +162,25 @@ public class CariRuanganRuang extends Fragment {
                 JSONObject jJadwal;
                 try {
                     jJadwal = hasil.getJSONObject(i);
-                    waktuRuangan.add(new JamTersediaItem(jJadwal.getString("waktu_awal_pinjam"),jJadwal.getString("waktu_akhir_pinjam")));
+
+                    String[] input1 = jJadwal.getString("waktu_awal_pinjam").split(" ");
+                    String[] format1 = input1[0].split("-");
+                    String[] input2 = jJadwal.getString("waktu_akhir_pinjam").split(" ");
+                    String[] format2 = input2[0].split("-");
+                    String date1 = format1[2]+"-"+format1[1] + "-" + format1[0] + " " + input1[1];
+                    String date2 = format2[2]+"-"+format2[1] + "-" + format2[0] + " " + input2[1];
+                    String dateView1 = null;
+                    String dateView2 = null;
+                    try {
+                        Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
+                        dateView1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init1);
+                        Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
+                        dateView2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init2);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    waktuRuangan.add(new JamTersediaItem(dateView1,dateView2));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

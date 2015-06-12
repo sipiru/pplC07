@@ -48,7 +48,32 @@
         android:text="Perihal : "
         android:layout_below="@+id/ruangan"
         android:layout_alignLeft="@+id/ruangan"
-        android:layout_alignStart="@+id/ruangan"
+        android:layout_alignStart="@+id/ruangan">
+    </TextView>
+
+    <TextView
+        android:id="@+id/waktu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size2"
+        android:textColor="@color/textlist"
+        android:text="waktu : "
+        android:layout_below="@+id/perihal"
+        android:layout_alignLeft="@+id/perihal"
+        android:layout_alignStart="@+id/perihal"
+        android:paddingBottom="@dimen/text_padding">
+    </TextView>
+
+    <TextView
+        android:id="@+id/waktuPinjam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size2"
+        android:textColor="@color/textlist"
+        android:text="waktu pinjam"
+        android:layout_below="@+id/perihal"
+        android:layout_toRightOf="@+id/waktu"
+        android:layout_toEndOf="@+id/waktu"
         android:paddingBottom="@dimen/text_padding">
     </TextView>
 
@@ -61,8 +86,7 @@
         android:text="perihal apa"
         android:layout_alignTop="@+id/perihal"
         android:layout_toRightOf="@+id/perihal"
-        android:layout_toEndOf="@+id/perihal"
-        android:paddingBottom="@dimen/text_padding">
+        android:layout_toEndOf="@+id/perihal">
     </TextView>
 
 </RelativeLayout>

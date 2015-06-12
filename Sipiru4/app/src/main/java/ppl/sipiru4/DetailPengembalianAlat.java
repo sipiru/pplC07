@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
@@ -48,6 +52,23 @@ public class DetailPengembalianAlat extends Activity {
             Log.e("peminjaman", peminjamanController.getPeminjaman().getKodeRuangan() + " " + peminjamanController.getPeminjaman().getNamaP()
                     + " " + peminjamanController.getPeminjaman().getId());
 
+            String[] input1 = peminjamanController.getPeminjaman().getMulai().split(" ");
+            String[] input2 = peminjamanController.getPeminjaman().getSelesai().split(" ");
+            String[] format1 = input1[0].split("-");
+            String[] format2 = input2[0].split("-");
+            String date1 = format1[2]+"-"+format1[1] + "-" + format1[0] + " " + input1[1];
+            String date2 = format2[2]+"-"+format2[1] + "-" + format2[0] + " " + input2[1];
+            String dateView1 = null;
+            String dateView2 = null;
+            try {
+                Date init1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date1);
+                dateView1 = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss").format(init1);
+                Date init2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date2);
+                dateView2 = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss").format(init2);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             TextView ruang = (TextView)findViewById(R.id.ruang);
             ruang.setText(peminjamanController.getPeminjaman().getKodeRuangan());
 
@@ -64,10 +85,10 @@ public class DetailPengembalianAlat extends Activity {
             kegiatan.setText(peminjamanController.getPeminjaman().getKegiatan());
 
             TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
-            waktuMulai.setText(peminjamanController.getPeminjaman().getMulai());
+            waktuMulai.setText(dateView1);
 
             TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
-            waktuSelesai.setText(peminjamanController.getPeminjaman().getSelesai());
+            waktuSelesai.setText(dateView2);
 
             final TextView peralatan = (TextView)findViewById(R.id.peralatan);
             peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());

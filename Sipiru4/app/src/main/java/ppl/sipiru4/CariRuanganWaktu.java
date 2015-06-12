@@ -34,6 +34,8 @@ public class CariRuanganWaktu extends Fragment {
     static Button tglSelesai;
     static Button jamMulai;
     static Button jamSelesai;
+    static String tanggalMulai;
+    static String tanggalSelesai;
     boolean tglMulaiClicked;
     boolean tglSelesaiClicked;
     boolean jamMulaiClicked;
@@ -95,8 +97,10 @@ public class CariRuanganWaktu extends Fragment {
 
                     SimpleDateFormat formatter = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
                     try {
-                        dateAwal = formatter.parse(tglMulai.getText()+ " " + jamMulai.getText());
-                        dateAkhir = formatter.parse(tglSelesai.getText() + " " + jamSelesai.getText());
+                        dateAwal = formatter.parse(tanggalMulai+ " " + jamMulai.getText());
+                        dateAkhir = formatter.parse(tanggalSelesai + " " + jamSelesai.getText());
+
+//                        Toast.makeText(getActivity().getApplicationContext(), dateAwal + " " + dateAkhir , Toast.LENGTH_LONG).show();
 
                         // pengecekan validasi input tanggal
                         if (dateAkhir.after(dateAwal) && dateAwal.after(now)) {
@@ -107,7 +111,7 @@ public class CariRuanganWaktu extends Fragment {
                             }
                             else {
                                 new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
-                                        + tglMulai.getText() + "%20" + jamMulai.getText() + "&" + tglSelesai.getText() + "%20" + jamSelesai.getText());
+                                        + tanggalMulai + "%20" + jamMulai.getText() + "&" + tanggalSelesai + "%20" + jamSelesai.getText());
                             }
                         }
                         else {
@@ -158,7 +162,17 @@ public class CariRuanganWaktu extends Fragment {
             String dayOutput = ""+day;
             if (month<10) {monthOutput = "0" + month;}
             if (day<10) {dayOutput = "0" + day;}
-            tglMulai.setText(yearOutput + "-" + monthOutput + "-" + dayOutput);
+            tanggalMulai = yearOutput + "-" + monthOutput + "-" + dayOutput;
+
+            String date = dayOutput + "-" + monthOutput + "-" + yearOutput;
+            String dateView = null;
+            try {
+                Date init = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+                dateView = new SimpleDateFormat("dd-MMM-yyyy").format(init);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            tglMulai.setText(dateView);
         }
     }
 
@@ -183,7 +197,17 @@ public class CariRuanganWaktu extends Fragment {
             String dayOutput = ""+day;
             if (month<10) {monthOutput = "0" + month;}
             if (day<10) {dayOutput = "0" + day;}
-            tglSelesai.setText(yearOutput + "-" + monthOutput + "-" + dayOutput);
+            tanggalSelesai = yearOutput + "-" + monthOutput + "-" + dayOutput;
+
+            String date = dayOutput + "-" + monthOutput + "-" + yearOutput;
+            String dateView = null;
+            try {
+                Date init = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+                dateView = new SimpleDateFormat("dd-MMM-yyyy").format(init);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            tglSelesai.setText(dateView);
         }
     }
 
@@ -263,8 +287,8 @@ public class CariRuanganWaktu extends Fragment {
             Intent i = new Intent(getActivity(), DaftarRuangan.class);
             //mengoper JSONArray ruangan ke DaftarRuangan.class
             i.putExtra("daftarRuangan", hasil.toString());
-            i.putExtra("waktuAwal", tglMulai.getText().toString()+" "+jamMulai.getText().toString());
-            i.putExtra("waktuAkhir", tglSelesai.getText().toString()+" "+jamSelesai.getText().toString());
+            i.putExtra("waktuAwal", tanggalMulai+" "+jamMulai.getText().toString());
+            i.putExtra("waktuAkhir", tanggalSelesai+" "+jamSelesai.getText().toString());
             startActivity(i);
             pDialog.dismiss();
         }

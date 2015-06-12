@@ -154,8 +154,9 @@
             android:layout_height="wrap_content"
             android:text="*fitur ini menggunakan pulsa Anda"
             android:textSize="@dimen/text_size2"
-            android:textColor="@color/text_color_wajib"
+            android:textColor="@color/text_color"
             android:layout_marginBottom="@dimen/margin_bottom"
-            android:paddingLeft="@dimen/text_padding" />
+            android:paddingLeft="@dimen/text_padding"
+            android:layout_marginTop="@dimen/margin_top"/>
     </RelativeLayout>
 </ScrollView>

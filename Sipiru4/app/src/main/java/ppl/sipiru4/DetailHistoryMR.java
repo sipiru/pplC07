@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.lowagie.text.Document;
@@ -58,6 +59,19 @@ public class DetailHistoryMR extends Activity {
         Log.e("peminjaman", peminjamanController.getPeminjaman().getKodeRuangan() + " " + peminjamanController.getPeminjaman().getNamaP()
                 + " " + peminjamanController.getPeminjaman().getId());
 
+        String date1 = peminjamanController.getPeminjaman().getMulai();
+        String date2 = peminjamanController.getPeminjaman().getSelesai();
+        String dateView1 = null;
+        String dateView2 = null;
+        try {
+            Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
+            dateView1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init1);
+            Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
+            dateView2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         //untuk bikin file PDF
         namaPeminjam = peminjamanController.getPeminjaman().getNamaP();
         ruangDipinjam = peminjamanController.getPeminjaman().getKodeRuangan();
@@ -81,10 +95,10 @@ public class DetailHistoryMR extends Activity {
         kegiatan.setText(peminjamanController.getPeminjaman().getKegiatan());
 
         TextView waktuMulai = (TextView)findViewById(R.id.waktuMulai);
-        waktuMulai.setText(peminjamanController.getPeminjaman().getMulai());
+        waktuMulai.setText(dateView1);
 
         TextView waktuSelesai = (TextView)findViewById(R.id.waktuSelesai);
-        waktuSelesai.setText(peminjamanController.getPeminjaman().getSelesai());
+        waktuSelesai.setText(dateView2);
 
         TextView peralatan = (TextView)findViewById(R.id.peralatan);
         peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());

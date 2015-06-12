@@ -6,7 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
 
@@ -28,6 +33,7 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
             viewHolder.ruangan = (TextView) convertView.findViewById(R.id.nama);
             viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
             viewHolder.status = (TextView) convertView.findViewById(R.id.status);
+            viewHolder.waktuPinjam = (TextView) convertView.findViewById(R.id.waktuPinjam);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -48,6 +54,17 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
             viewHolder.status.setText("menunggu ITF atau Fasum");
         }
 
+        String[] input = item.getMulai().split(" ");
+        String[] tanggal = input[0].split("-");
+        String date = tanggal[2]+"-"+tanggal[1]+"-"+tanggal[0] + " " + input[1];
+        String dateView = null;
+        try {
+            Date init = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date);
+            dateView = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        viewHolder.waktuPinjam.setText(dateView);
         return convertView;
     }
     /**
@@ -61,5 +78,6 @@ public class DaftarPermohonanAdapterP extends ArrayAdapter<Peminjaman> {
         TextView ruangan;
         TextView perihal;
         TextView status;
+        TextView waktuPinjam;
     }
 }

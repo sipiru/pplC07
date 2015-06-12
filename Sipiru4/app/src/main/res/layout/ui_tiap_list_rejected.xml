@@ -62,7 +62,32 @@
         android:text="alasan : "
         android:layout_below="@+id/deskripsi"
         android:layout_alignLeft="@+id/nama"
-        android:layout_alignStart="@+id/nama"
+        android:layout_alignStart="@+id/nama">
+    </TextView>
+
+    <TextView
+        android:id="@+id/waktu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size2"
+        android:textColor="@color/textlist"
+        android:text="waktu : "
+        android:layout_below="@+id/alasanText"
+        android:layout_alignLeft="@+id/perihal"
+        android:layout_alignStart="@+id/perihal"
+        android:paddingBottom="@dimen/text_padding">
+    </TextView>
+
+    <TextView
+        android:id="@+id/waktuPinjam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size2"
+        android:textColor="@color/textlist"
+        android:text="waktu pinjam"
+        android:layout_below="@+id/alasanText"
+        android:layout_toRightOf="@+id/waktu"
+        android:layout_toEndOf="@+id/waktu"
         android:paddingBottom="@dimen/text_padding">
     </TextView>
 
@@ -76,8 +101,7 @@
         android:textColor="@color/textlist"
         android:layout_alignTop="@+id/alasanText"
         android:layout_toRightOf="@+id/alasanText"
-        android:layout_toEndOf="@+id/alasanText"
-        android:paddingBottom="@dimen/text_padding">
+        android:layout_toEndOf="@+id/alasanText">
     </TextView>
 
 </RelativeLayout>

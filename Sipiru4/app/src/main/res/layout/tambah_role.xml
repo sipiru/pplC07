@@ -127,7 +127,7 @@
             android:layout_alignBottom="@+id/role" />
 
         <EditText
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/edit_text_background2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nohp"

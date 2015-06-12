@@ -2,7 +2,8 @@
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background_gradient_color">
+    android:background="@drawable/background_gradient_color"
+    android:fillViewport="false">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -13,29 +14,18 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.c07ppl2015.sipiru.sipiru.LoginUI"
         android:id="@+id/layoutForm1">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Menambah Ruangan"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            android:id="@+id/textHeader"
-            android:textColor="@color/text_color"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/margin_top_button" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kode Ruangan*"
+            android:text="Kode Ruangan"
             android:textSize="@dimen/text_size_medium"
             android:id="@+id/textView3"
             android:textColor="@color/text_color"
             android:layout_alignRight="@+id/textView4"
             android:layout_alignEnd="@+id/textView4"
-            android:layout_below="@+id/textHeader"
-            android:paddingLeft="@dimen/text_padding" />
+            android:paddingLeft="@dimen/text_padding"
+            android:layout_marginTop="@dimen/margin_top"/>
 
         <EditText
             android:layout_width="match_parent"

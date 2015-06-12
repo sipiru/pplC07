@@ -7,7 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.R;
 
@@ -31,6 +36,7 @@ public class DaftarRejectedAdapter extends ArrayAdapter<Peminjaman> {
             viewHolder.perihal = (TextView) convertView.findViewById(R.id.deskripsi);
             viewHolder.alasan = (TextView) convertView.findViewById(R.id.alasan);
             viewHolder.img = (ImageView) convertView.findViewById(R.id.image);
+            viewHolder.waktuPinjam = (TextView) convertView.findViewById(R.id.waktuPinjam);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -43,6 +49,17 @@ public class DaftarRejectedAdapter extends ArrayAdapter<Peminjaman> {
         viewHolder.perihal.setText(item.getPerihal());
         viewHolder.alasan.setText(item.getAlasanDitolak());
 
+        String[] input = item.getMulai().split(" ");
+        String[] tanggal = input[0].split("-");
+        String date = tanggal[2]+"-"+tanggal[1]+"-"+tanggal[0] + " " + input[1];
+        String dateView = null;
+        try {
+            Date init = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date);
+            dateView = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        viewHolder.waktuPinjam.setText(dateView);
         return convertView;
     }
     /**
@@ -57,5 +74,6 @@ public class DaftarRejectedAdapter extends ArrayAdapter<Peminjaman> {
         TextView perihal;
         TextView alasan;
         ImageView img;
+        TextView waktuPinjam;
     }
 }

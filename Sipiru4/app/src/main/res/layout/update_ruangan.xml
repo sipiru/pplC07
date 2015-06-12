@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="Kode ruangan"
                 android:id="@+id/textView"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/margin_top"
                 android:textSize="@dimen/text_size_medium"
                 android:textColor="@color/text_color"
                 android:paddingLeft="@dimen/text_padding" />

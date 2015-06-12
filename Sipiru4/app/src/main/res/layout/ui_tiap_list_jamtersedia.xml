@@ -23,7 +23,6 @@
         android:textSize="@dimen/text_size2"
         android:text="selesai"
         android:textColor="@color/textlist"
-        android:layout_marginLeft="@dimen/margin_left"
         android:layout_weight="0.44">
     </TextView>
 </LinearLayout>

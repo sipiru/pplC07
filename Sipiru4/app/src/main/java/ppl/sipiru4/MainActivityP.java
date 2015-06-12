@@ -275,13 +275,32 @@ public class MainActivityP extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-////        if (getFragmentManager().popBackStack())
-//        super.onBackPressed();
-//        Toast.makeText(context, "popup " +getFragmentManager().findFragmentById(R), Toast.LENGTH_SHORT).show();
-        // saat user menekan tombol back, lakukan konfirmasi logout
-        logout();
-    }
+//        logout();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        // set title
+        alertDialogBuilder.setTitle("Apakah anda yakin untuk menutup sipiru?");
 
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Tekan Ya untuk konfirmasi")
+                .setCancelable(false)
+                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // pilihan 'ya' akan menghapus semua SharedPreferences yang ada dan mengarahkan ke
+                        // halaman Login dan mengakhiri semua proses yang ada di stack
+                        finish();
+                    }
+                })
+                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // memunculkan alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
 //    @Override
 //    public void onBackPressed() {
