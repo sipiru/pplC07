@@ -61,10 +61,10 @@ public class DetailPengembalianAlat extends Activity {
             String dateView1 = null;
             String dateView2 = null;
             try {
-                Date init1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date1);
-                dateView1 = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss").format(init1);
-                Date init2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date2);
-                dateView2 = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss").format(init2);
+                Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
+                dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
+                Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
+                dateView2 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init2);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

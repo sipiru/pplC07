@@ -29,18 +29,22 @@ public class DetailHistoryP extends Activity {
         Log.e("peminjaman", peminjamanController.getPeminjaman().getKodeRuangan() + " " + peminjamanController.getPeminjaman().getNamaP() + " "
                 + peminjamanController.getPeminjaman().getId());
 
-        String date1 = peminjamanController.getPeminjaman().getMulai();
-        String date2 = peminjamanController.getPeminjaman().getSelesai();
-        String dateView1 = null;
-        String dateView2 = null;
-        try {
-            Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
-            dateView1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init1);
-            Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
-            dateView2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init2);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            String[] input1 = peminjamanController.getPeminjaman().getMulai().split(" ");
+            String[] input2 = peminjamanController.getPeminjaman().getSelesai().split(" ");
+            String[] format1 = input1[0].split("-");
+            String[] format2 = input2[0].split("-");
+            String date1 = format1[2]+"-"+format1[1] + "-" + format1[0] + " " + input1[1];
+            String date2 = format2[2]+"-"+format2[1] + "-" + format2[0] + " " + input2[1];
+            String dateView1 = null;
+            String dateView2 = null;
+            try {
+                Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
+                dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
+                Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
+                dateView2 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init2);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
         TextView ruang = (TextView)findViewById(R.id.ruang);
         ruang.setText(peminjamanController.getPeminjaman().getKodeRuangan());
