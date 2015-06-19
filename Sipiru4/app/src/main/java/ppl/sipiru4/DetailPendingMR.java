@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -111,8 +113,15 @@ public class DetailPendingMR extends Activity {
                             .setMessage("Tekan Ya untuk meneruskan")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
-                                    new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerRuangan/"
-                                            + peminjamanController.getPeminjaman().getId());
+                                    ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                                    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                                    if (networkInfo!=null && networkInfo.isConnected()) {
+                                        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerRuangan/"
+                                                + peminjamanController.getPeminjaman().getId());
+                                    }
+                                    else {
+                                        Toast.makeText(context, "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             })
                             .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
@@ -154,8 +163,15 @@ public class DetailPendingMR extends Activity {
                                         .setMessage("Tekan Ya untuk konfirmasi")
                                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog,int id) {
-                                                new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"
-                                                        + peminjamanController.getPeminjaman().getId() + "&"+alasanTolak.replaceAll(" ","%20"));
+                                                ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                                                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                                                if (networkInfo!=null && networkInfo.isConnected()) {
+                                                    new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"
+                                                            + peminjamanController.getPeminjaman().getId() + "&"+alasanTolak.replaceAll(" ","%20"));
+                                                }
+                                                else {
+                                                    Toast.makeText(context, "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                                                }
                                             }
                                         })
                                         .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {

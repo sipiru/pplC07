@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -77,18 +79,32 @@ public class TambahRole extends Activity {
                 }
                 else {
                     if (roleValues.equals("admin")) {
-                        link = "http://ppl-c07.cs.ui.ac.id/connect/createAdmin/" + uname+"&"+name.replaceAll(" ","%20")
-                                +"&"+roleValues.replaceAll(" ","%20") ;
-                        new SubmitHelper().execute(link);
+                        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                        if (networkInfo!=null && networkInfo.isConnected()) {
+                            link = "http://ppl-c07.cs.ui.ac.id/connect/createAdmin/" + uname+"&"+name.replaceAll(" ","%20")
+                                    +"&"+roleValues.replaceAll(" ","%20") ;
+                            new SubmitHelper().execute(link);
+                        }
+                        else {
+                            Toast.makeText(context, "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else {
                         if (no_hp.trim().length()==0) {
                             Toast.makeText(context, "mohon isi no hp untuk manager", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            link = "http://ppl-c07.cs.ui.ac.id/connect/createManager/"+uname+"&"+name.replaceAll(" ","%20")+"&"
-                                    +roleValues.replaceAll(" ","%20")+"&"+no_hp;
-                            new SubmitHelper().execute(link);
+                            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                            if (networkInfo!=null && networkInfo.isConnected()) {
+                                link = "http://ppl-c07.cs.ui.ac.id/connect/createManager/"+uname+"&"+name.replaceAll(" ","%20")+"&"
+                                        +roleValues.replaceAll(" ","%20")+"&"+no_hp;
+                                new SubmitHelper().execute(link);
+                            }
+                            else {
+                                Toast.makeText(context, "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 }

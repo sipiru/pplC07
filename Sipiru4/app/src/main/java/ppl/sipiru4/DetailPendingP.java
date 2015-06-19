@@ -6,6 +6,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -102,8 +104,16 @@ public class DetailPendingP extends Activity {
                             .setMessage("Tekan Ya untuk membatalkan permohonan")
                             .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/"
-                                            + peminjamanController.getPeminjaman().getId());
+                                    ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                                    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                                    if (networkInfo!=null && networkInfo.isConnected()) {
+                                        new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/"
+                                                + peminjamanController.getPeminjaman().getId());
+                                    }
+                                    else {
+                                        Toast.makeText(context, "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                                    }
+
                                 }
                             })
                             .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {

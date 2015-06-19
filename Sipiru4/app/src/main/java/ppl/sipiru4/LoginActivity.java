@@ -98,7 +98,7 @@ public class LoginActivity extends Activity{
                     }
                 }
                 else {
-                    Toast.makeText(context, "Mohon periksa koneksi internet Anda", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
                 }
             }
         });

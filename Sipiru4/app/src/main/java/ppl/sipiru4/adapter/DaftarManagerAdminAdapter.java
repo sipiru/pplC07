@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,8 +109,16 @@ public class DaftarManagerAdminAdapter extends ArrayAdapter<ManajerAdmin> {
                                                 , Toast.LENGTH_SHORT).show();
                                     }
                                     else {
-                                        new DeleteHelper(parent).execute("http://ppl-c07.cs.ui.ac.id/connect/deleteManager/"
-                                                + viewHolder.username.getText().toString());
+                                        ConnectivityManager connMgr = (ConnectivityManager) parent.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                                        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                                        if (networkInfo!=null && networkInfo.isConnected()) {
+                                            new DeleteHelper(parent).execute("http://ppl-c07.cs.ui.ac.id/connect/deleteManager/"
+                                                    + viewHolder.username.getText().toString());
+                                        }
+                                        else {
+                                            Toast.makeText(parent.getContext(), "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                                        }
+
                                     }
                                 }
                             }

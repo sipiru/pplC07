@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -53,8 +55,15 @@ public class TambahRuangan extends Activity {
                         Toast.makeText(context, "kapasitas terlalu besar.", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/menambahRuangan/"
-                                + kode + "&" + nama + "&" + kap + "&" + desk);
+                        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                        if (networkInfo!=null && networkInfo.isConnected()) {
+                            new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/menambahRuangan/"
+                                    + kode + "&" + nama + "&" + kap + "&" + desk);
+                        }
+                        else {
+                            Toast.makeText(context, "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }

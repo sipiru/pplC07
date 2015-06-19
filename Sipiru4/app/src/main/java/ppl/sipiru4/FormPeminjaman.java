@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -115,9 +117,16 @@ public class FormPeminjaman extends Activity {
                         String alat = peralatan.getText().toString().replaceAll(" ","%20");
                         String kegiatanModif = kegiatanValue.replaceAll(" ", "%20");
 
-                        new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
-                                + username + "&" + namaP + "&" + statusP + "&" + ruang.getText() + "&"
-                                + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanModif + "&" + alat);
+                        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                        if (networkInfo!=null && networkInfo.isConnected()) {
+                            new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
+                                    + username + "&" + namaP + "&" + statusP + "&" + ruang.getText() + "&"
+                                    + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanModif + "&" + alat);
+                        }
+                        else {
+                            Toast.makeText(context, "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });

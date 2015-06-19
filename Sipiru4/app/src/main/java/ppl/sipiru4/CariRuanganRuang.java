@@ -1,6 +1,9 @@
 package ppl.sipiru4;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -67,9 +70,16 @@ public class CariRuanganRuang extends Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // mengakses URL menggunakan AsyncTask class
-                new getJadwalHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/"
-                        + kodeRuangan[posisi]);
+                ConnectivityManager connMgr = (ConnectivityManager) getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                if (networkInfo!=null && networkInfo.isConnected()) {
+                    // mengakses URL menggunakan AsyncTask class
+                    new getJadwalHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/"
+                            + kodeRuangan[posisi]);
+                }
+                else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

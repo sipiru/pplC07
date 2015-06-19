@@ -5,7 +5,10 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -110,8 +113,15 @@ public class CariRuanganWaktu extends Fragment {
                                 Toast.makeText(getActivity(), "Tidak bisa meminjam ruangan dalam waktu lebih dari 2 hari", Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
-                                        + tanggalMulai + "%20" + jamMulai.getText() + "&" + tanggalSelesai + "%20" + jamSelesai.getText());
+                                ConnectivityManager connMgr = (ConnectivityManager) getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                                if (networkInfo!=null && networkInfo.isConnected()) {
+                                    new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
+                                            + tanggalMulai + "%20" + jamMulai.getText() + "&" + tanggalSelesai + "%20" + jamSelesai.getText());
+                                }
+                                else {
+                                    Toast.makeText(getActivity().getApplicationContext(), "Mohon periksa koneksi internet Anda", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                         else {
