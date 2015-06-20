@@ -46,7 +46,7 @@ public class KirimPesan extends Activity{
         setContentView(R.layout.kirim_pesan_ui);
         context = this;
 
-        // mengakses URL menggunakan AsyncTask class
+        // mendapatkan semua informasi manajer-manajer yang terdapat juga nomor hp mereka
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showAllManager/");
 
         textSMS = (EditText) findViewById(R.id.editTextSMS);
@@ -65,6 +65,7 @@ public class KirimPesan extends Activity{
         });
 
         buttonSave = (Button) findViewById(R.id.buttonSimpan);
+		// menyimpan kontak manajer ke handphone 
         buttonSave.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +82,7 @@ public class KirimPesan extends Activity{
         });
 
         buttonSend = (Button) findViewById(R.id.buttonSend);
+		// mengirim pesan yang dibuat
         buttonSend.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -33,9 +33,11 @@ public class DaftarPendingP extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
+		// mendapatkan informasi user dari session manager
         session = new SessionManager(getActivity().getApplicationContext());
         penggunaController = new PenggunaController(session.getUser());
 
+		// mengakses webserver untuk mendapatkan informasi mengenai daftar peminjaman suatu user yang belum disetujui
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/daftarPendingPeminjam/" + penggunaController.getCurrentPengguna().getUsername());
 
         lv = (ListView) rootView.findViewById(R.id.list);
@@ -84,9 +86,8 @@ public class DaftarPendingP extends Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailPendingP.class);
-                    // passing array index
+                    // mengoper informasi suatu peminjaman ke DetailPendingP.class
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }

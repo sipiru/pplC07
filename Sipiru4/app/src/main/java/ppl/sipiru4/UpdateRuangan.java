@@ -38,6 +38,7 @@ public class UpdateRuangan extends Activity {
         final EditText kapasitas = (EditText) findViewById(R.id.kapasitas);
         final EditText deskripsi = (EditText) findViewById(R.id.deskripsi);
 
+		// mendapatkan detail suatu ruangan yang dioper dari kelas sebelumnya
         Bundle b = getIntent().getExtras();
         if (b!=null) {
             Ruangan ruangan = b.getParcelable("ruangan");
@@ -61,9 +62,11 @@ public class UpdateRuangan extends Activity {
                         Toast.makeText(context, "kapasitas terlalu besar.", Toast.LENGTH_SHORT).show();
                     }
                     else {
+						// mengecek koneksi internet
                         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                         if (networkInfo!=null && networkInfo.isConnected()) {
+							// mengubah database menggunakan akses ke webserver
                             new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/updateRuangan/"
                                     + kode + "&" + nama + "&" + kap + "&" + desk);
                         }

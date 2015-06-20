@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
@@ -44,7 +43,8 @@ public class DetailPendingFI extends Activity {
             getActionBar().setTitle("Detail Permohonan Pending");
         }
         setContentView(R.layout.detail_pending_fi);
-
+		
+		// mendapatkan informasi user dari session manager
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
         User user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
                 setting.getString(LoginActivity.KEY_ROLE,null));
@@ -68,6 +68,7 @@ public class DetailPendingFI extends Activity {
             String dateView1 = null;
             String dateView2 = null;
             try {
+				// format tanggal agar lebih mudah dibaca pengguna
                 Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
                 dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
                 Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
@@ -102,6 +103,7 @@ public class DetailPendingFI extends Activity {
             editAlat = peralatan.getText().toString();
             previousAlat = editAlat;
 
+			// button update untuk mengubah peralatan dari suatu peminjaman. jika tidak ada peralatan yang dipinjam peminjam, maka tidak diizinkan diubah.
             Button btnUpdate = (Button)findViewById(R.id.btnUpdate);
             if (peralatan.getText().toString().trim().length()!=0) {
                 btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +126,8 @@ public class DetailPendingFI extends Activity {
                                             ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                                             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                             if (networkInfo!=null && networkInfo.isConnected()) {
+												
+												// mengupdate database menggunakan webserver
                                                 new TaskHelper1().execute("http://ppl-c07.cs.ui.ac.id/connect/updatePeralatan/"
                                                         + peminjamanController.getPeminjaman().getId() + "&" + editAlat);
                                             }
@@ -156,6 +160,7 @@ public class DetailPendingFI extends Activity {
             }
 
             Button btnSetuju = (Button)findViewById(R.id.btnSetuju);
+			// button setuju untuk menyetujui suatu peminjaman
             btnSetuju.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -167,9 +172,11 @@ public class DetailPendingFI extends Activity {
                             .setMessage("Tekan Ya untuk menyetujui")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
+									// memeriksa koneksi internet
                                     ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                                     NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                     if (networkInfo!=null && networkInfo.isConnected()) {
+										// mengupdate database menggunakan webserver
                                         new TaskHelper2().execute("http://ppl-c07.cs.ui.ac.id/connect/acceptByITF/"
                                                 + peminjamanController.getPeminjaman().getId());
                                     }
@@ -190,6 +197,7 @@ public class DetailPendingFI extends Activity {
             });
 
             Button btnTolak = (Button)findViewById(R.id.btnTolak);
+			// button tolak untuk menolak peminjaman. penolak harus memasukkan alasan penolakan agar pengguna tahu alasan peminjaman ditolak.
             btnTolak.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -217,9 +225,11 @@ public class DetailPendingFI extends Activity {
                                         .setMessage("Tekan Ya untuk konfirmasi")
                                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog,int id) {
+												// mengecek koneksi internet
                                                 ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                                                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                                 if (networkInfo!=null && networkInfo.isConnected()) {
+													// mengubah database menggunakan webserver
                                                     new TaskHelper2().execute("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"
                                                             + peminjamanController.getPeminjaman().getId() + "&"+alasanTolak.replaceAll(" ","%20"));
                                                 }

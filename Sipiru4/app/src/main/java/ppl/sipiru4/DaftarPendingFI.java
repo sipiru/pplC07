@@ -27,6 +27,8 @@ public class DaftarPendingFI extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
+		
+		//mengakses webserver untuk mendapatkan semua daftar peminjaman ITF yang belum disetujui
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/displayITF/");
 
         lv = (ListView) rootView.findViewById(R.id.list);
@@ -76,9 +78,8 @@ public class DaftarPendingFI extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v,
                                         int position, long id) {
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailPendingFI.class);
-                    // passing array index
+                    // mengoper informasi suatu peminjaman ke DetailPendingFI.class
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }

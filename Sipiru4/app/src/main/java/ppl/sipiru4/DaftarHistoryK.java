@@ -27,6 +27,8 @@ public class DaftarHistoryK extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
+		
+		// ketika membuka halaman ini, akses webserver dulu untuk mendapat semua history manajer kemahasiswaan
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/historyManajerKemahasiswaan/");
 
         lv = (ListView) rootView.findViewById(R.id.list);
@@ -75,9 +77,8 @@ public class DaftarHistoryK extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v,
                                         int position, long id) {
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailHistoryK.class);
-                    // passing array index
+                    // mengoper informasi peminjaman terpilih ke DetailHistoryK.class
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }

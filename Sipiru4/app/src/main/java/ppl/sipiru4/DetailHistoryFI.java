@@ -22,6 +22,7 @@ public class DetailHistoryFI extends Activity {
         }
         setContentView(R.layout.detail_history_fi);
 
+		// mengambil informasi yang dioper dari kelas sebelumnya
         Bundle b = getIntent().getExtras();
         Peminjaman peminjaman = b.getParcelable("peminjaman");
         peminjamanController = new PeminjamanController(peminjaman);
@@ -37,6 +38,7 @@ public class DetailHistoryFI extends Activity {
             String dateView1 = null;
             String dateView2 = null;
             try {
+				// format tanggal agar lebih mudah dibaca 
                 Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
                 dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
                 Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);

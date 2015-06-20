@@ -31,6 +31,7 @@ public class DaftarRuangan extends Activity {
         setContentView(R.layout.list_daftar_ruangan);
         context = this;
 
+		// mendapatkan JSON yang sudah dioper dari kelas sebelumnya
         Bundle b = getIntent().getExtras();
         if (b!=null) {
             try {
@@ -63,7 +64,7 @@ public class DaftarRuangan extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                     Intent i = new Intent(getApplicationContext(), DetailRuangan.class);
-                    // mengoper ke kelas yang akan dipanggil
+                    // mengoper informasi ruangan, waktu awal dan waktu akhir ke DetailRuangan.class
                     i.putExtra("ruangan", ruanganController.getRuangan(position));
                     i.putExtra("waktuAwal", waktuAwal);
                     i.putExtra("waktuAkhir", waktuAkhir);

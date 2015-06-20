@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
@@ -42,6 +41,7 @@ public class DetailPendingK extends Activity {
         }
         setContentView(R.layout.detail_pending_mk);
 
+		// mendapatkan informasi user dari session manager
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
         User user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
                 setting.getString(LoginActivity.KEY_ROLE,null));
@@ -64,6 +64,7 @@ public class DetailPendingK extends Activity {
             String dateView1 = null;
             String dateView2 = null;
             try {
+				// format tanggal agar lebih mudah dibaca pengguna
                 Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
                 dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
                 Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
@@ -97,6 +98,7 @@ public class DetailPendingK extends Activity {
             peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
 
             Button btnSetuju = (Button)findViewById(R.id.btnSetuju);
+			// button setuu untuk menyetujui peminjaman
             btnSetuju.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -108,9 +110,11 @@ public class DetailPendingK extends Activity {
                             .setMessage("Tekan Ya untuk menyetujui")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
+									// mengecek koneksi internet
                                     ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                                     NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                     if (networkInfo!=null && networkInfo.isConnected()) {
+										// mengubah database menggunakan webserver
                                         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerKemahasiswaan/"
                                                 + peminjamanController.getPeminjaman().getId());
                                     }
@@ -130,6 +134,7 @@ public class DetailPendingK extends Activity {
                 }
             });
             Button btnTolak = (Button)findViewById(R.id.btnTolak);
+			// button tolak untuk menolak peminjaman.
             btnTolak.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -157,9 +162,12 @@ public class DetailPendingK extends Activity {
                                         .setMessage("Tekan Ya untuk konfirmasi")
                                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog,int id) {
+												// memeriksa koneksi internet
                                                 ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                                                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                                 if (networkInfo!=null && networkInfo.isConnected()) {
+													
+													// mengubah database menggunakan webserver
                                                     new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/rejectPeminjaman/"
                                                             + peminjamanController.getPeminjaman().getId() + "&"+alasanTolak.replaceAll(" ","%20"));
                                                 }
@@ -234,6 +242,8 @@ public class DetailPendingK extends Activity {
             else {
                 Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
             }
+			
+			// mengoper informasi ke MainActivityK.class
             Intent i = new Intent(getApplicationContext(),MainActivityK.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             i.putExtra("user",penggunaController.getCurrentPengguna());

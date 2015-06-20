@@ -27,6 +27,8 @@ public class DaftarHistoryFI extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
+		
+		// ketika membuka halaman ini, akses webserver dulu untuk mendapat semua history ITF
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/historyITF/");
 
         lv = (ListView) rootView.findViewById(R.id.list);
@@ -75,9 +77,8 @@ public class DaftarHistoryFI extends Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailHistoryFI.class);
-                    // passing array index
+                    // mengoper informasi peminjaman ke DetailHistoryFI.class
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }

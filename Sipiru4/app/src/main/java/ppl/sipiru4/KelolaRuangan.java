@@ -28,12 +28,14 @@ public class KelolaRuangan extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list_admin, container, false);
+		// ketika membuka halaman ini, akan diambil semua informasi ruangan terlebih dulu
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ruangan/");
 
         lv = (ListView) rootView.findViewById(R.id.list);
 
         Button tambah = (Button) rootView.findViewById(R.id.btnAdd);
         tambah.setText(R.string.button_add_ruangan);
+		// mengarahkan ke halaman tambah ruangan
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

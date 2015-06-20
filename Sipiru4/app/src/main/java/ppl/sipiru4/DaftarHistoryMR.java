@@ -27,6 +27,8 @@ public class DaftarHistoryMR extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
+		
+		// ketika membuka halaman ini, akses webserver dulu untuk mendapat semua history manajer ruangan
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/historyManajerRuangan/");
 
         lv = (ListView) rootView.findViewById(R.id.list);
@@ -75,9 +77,8 @@ public class DaftarHistoryMR extends Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailHistoryMR.class);
-                    // passing array index
+                    // mengoper informasi peminjaman terpilih ke DetailHistoryMR.class
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }

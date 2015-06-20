@@ -29,6 +29,8 @@ public class DaftarPendingMR extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
+		
+		// mengakses webserver menggunakan AsyncTask untuk mendapatkan semua daftar peminjaman manajer ruangan yang belum disetujui
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/displayManajerRuangan/");
 
         lv = (ListView) rootView.findViewById(R.id.list);
@@ -78,9 +80,8 @@ public class DaftarPendingMR extends Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailPendingMR.class);
-                    // passing array index
+                    // mengoper informasi peminjaman tertentu ke DetailPendingMR.class
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }

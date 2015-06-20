@@ -33,10 +33,10 @@ public class DaftarHistoryP extends Fragment {
         session = new SessionManager(getActivity().getApplicationContext());
         penggunaController = new PenggunaController(session.getUser());
 
+		// ketika membuka halaman ini, akses webserver dulu untuk mendapat semua history peminjaman suatu akun.
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/daftarAcceptedPeminjam/" + penggunaController.getCurrentPengguna().getUsername());
 
         lv = (ListView) rootView.findViewById(R.id.list);
-
 
         return rootView;
     }
@@ -82,9 +82,8 @@ public class DaftarHistoryP extends Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailHistoryP.class);
-                    // passing array index
+                    // mengoper informasi peminjaman terpilih ke DetailHistoryP.class
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }

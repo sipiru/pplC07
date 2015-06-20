@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.controller.PeminjamanController;
@@ -56,6 +55,7 @@ public class DetailPendingP extends Activity {
             String dateView1 = null;
             String dateView2 = null;
             try {
+				// format tanggal agar lebih mudah dibaca pengguna
                 Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
                 dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
                 Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
@@ -89,6 +89,7 @@ public class DetailPendingP extends Activity {
             peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
 
             Button batal = (Button)findViewById(R.id.batal);
+			// button batal untuk membatalkan permohonan
             batal.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -104,9 +105,11 @@ public class DetailPendingP extends Activity {
                             .setMessage("Tekan Ya untuk membatalkan permohonan")
                             .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
+									// mengecek koneksi internet
                                     ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                                     NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                     if (networkInfo!=null && networkInfo.isConnected()) {
+										// mengubah database menggunakan akses ke webserver
                                         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/membatalkanPermohonan/"
                                                 + peminjamanController.getPeminjaman().getId());
                                     }
@@ -131,6 +134,7 @@ public class DetailPendingP extends Activity {
             });
 
             Button kirimPesan = (Button)findViewById(R.id.kirimPesan);
+			// masuk ke halaman untuk mengirim pesan
             kirimPesan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

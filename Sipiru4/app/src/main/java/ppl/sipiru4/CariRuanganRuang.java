@@ -45,7 +45,7 @@ public class CariRuanganRuang extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cari_ruangan_ruang_ui, container, false);
 
-        // mengakses URL menggunakan AsyncTask class
+        // mengakses URL webserver menggunakan AsyncTask class
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ruangan/");
 
         final TextView namaR = (TextView) rootView.findViewById(R.id.namaRuangan);
@@ -70,9 +70,12 @@ public class CariRuanganRuang extends Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+				
+				// mengecek apakah perangkat terhubung ke internet
                 ConnectivityManager connMgr = (ConnectivityManager) getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                 if (networkInfo!=null && networkInfo.isConnected()) {
+					
                     // mengakses URL menggunakan AsyncTask class
                     new getJadwalHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/jadwalRuangan/"
                             + kodeRuangan[posisi]);
@@ -182,10 +185,11 @@ public class CariRuanganRuang extends Fragment {
                     String dateView1 = null;
                     String dateView2 = null;
                     try {
+						// melakukan format tanggal agar bisa bisa dibaca lebih mudah
                         Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
-                        dateView1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init1);
+                        dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
                         Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
-                        dateView2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(init2);
+                        dateView2 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init2);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -195,6 +199,7 @@ public class CariRuanganRuang extends Fragment {
                     e.printStackTrace();
                 }
             }
+			// manambahkan waktu ruangan bersangkutan ke suatu adapter dan diintegrasikan ke suatu list agar tampil di halaman
             adapterList = new JamTersediaAdapter(getActivity(),waktuRuangan);
             lView.setAdapter(adapterList);
             if (waktuRuangan.size()==0) {

@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.User;
@@ -40,6 +39,7 @@ public class DetailPengembalianAlat extends Activity {
         }
         setContentView(R.layout.detail_pengembalian_alat_fi);
 
+		// mendapatkan informasi user dari session manager
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
         User user = new User(setting.getString(LoginActivity.KEY_USERNAME,null), setting.getString(LoginActivity.KEY_NAMA,null),
                  setting.getString(LoginActivity.KEY_ROLE,null));
@@ -63,6 +63,7 @@ public class DetailPengembalianAlat extends Activity {
             String dateView1 = null;
             String dateView2 = null;
             try {
+				// format tanggal agar lebih mudah dibaca pengguna
                 Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
                 dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
                 Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
@@ -97,6 +98,7 @@ public class DetailPengembalianAlat extends Activity {
 
 
             Button btnSelesai = (Button)findViewById(R.id.btnSelesai);
+			// untuk mengubah status peminjam yang sudah mengembalikan peralatan
             btnSelesai.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -108,9 +110,11 @@ public class DetailPengembalianAlat extends Activity {
                             .setMessage("Tekan Ya untuk konfirmasi")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
+									// memeriksa koneksi internet
                                     ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                                     NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                     if (networkInfo!=null && networkInfo.isConnected()) {
+										// mengubah database menggunakan akses ke webserver
                                         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/ubahStatusPeminjam/"
                                                 + peminjamanController.getPeminjaman().getId());
                                     }
@@ -176,6 +180,8 @@ public class DetailPengembalianAlat extends Activity {
             else {
                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
             }
+			
+			// mengoper informasi ke MainActivityFI.class
             Intent i = new Intent(getApplicationContext(),MainActivityFI.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             i.putExtra("user",penggunaController.getCurrentPengguna());

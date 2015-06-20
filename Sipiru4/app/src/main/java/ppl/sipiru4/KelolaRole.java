@@ -29,6 +29,7 @@ public class KelolaRole extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list_admin, container, false);
+		// ketika membuka halaman ini, maka akan diambil semua informasi manager dan admin yang ada di database.
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showAllManagerAdmin/");
 
         session = new SessionManager(getActivity().getApplicationContext());
@@ -36,6 +37,7 @@ public class KelolaRole extends Fragment {
 
         Button tambah = (Button) rootView.findViewById(R.id.btnAdd);
         tambah.setText(R.string.button_add_role);
+		// akan mengarahkan ke halaman menambah role
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

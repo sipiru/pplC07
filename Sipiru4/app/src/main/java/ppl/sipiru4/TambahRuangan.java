@@ -33,6 +33,7 @@ public class TambahRuangan extends Activity {
         final EditText deskripsi = (EditText) findViewById(R.id.deskripsi);
 
         Button add = (Button) findViewById(R.id.buttonAdd);
+		// menambah ruangan
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +59,7 @@ public class TambahRuangan extends Activity {
                         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                         if (networkInfo!=null && networkInfo.isConnected()) {
+							// mengupdate database menggunakan akses ke webserver
                             new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/menambahRuangan/"
                                     + kode + "&" + nama + "&" + kap + "&" + desk);
                         }

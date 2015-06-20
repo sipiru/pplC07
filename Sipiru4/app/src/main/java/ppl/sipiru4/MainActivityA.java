@@ -43,7 +43,7 @@ public class MainActivityA extends FragmentActivity {
         mTitle = mDrawerTitle = getTitle();
 
         session = new SessionManager(getApplicationContext());
-        // mendapatkan nilai-nilai yang dioper
+        // mendapatkan nilai-nilai yang dioper untuk menetukan fragment mana yang akan dibuka
         b = getIntent().getExtras();
         if (b!=null){
             navPosition = b.getInt("navPosition");

@@ -30,9 +30,12 @@ public class DaftarRejectedP extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
+		
+		// mengambil informasi suatu user dari session manager
         session = new SessionManager(getActivity().getApplicationContext());
         penggunaController = new PenggunaController(session.getUser());
 
+		// mengakses webserver untuk mendapatkan daftar peminjaman suatu akun yang ditolak
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/daftarRejectedPeminjam/" + penggunaController.getCurrentPengguna().getUsername());
 
         lv = (ListView) rootView.findViewById(R.id.list);
@@ -81,9 +84,8 @@ public class DaftarRejectedP extends Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailRejected.class);
-                    // passing array index
+                    // mengoper suatu peminjaman ke DetailRejected.class
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }

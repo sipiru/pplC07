@@ -24,6 +24,7 @@ public class DetailRuangan extends Activity {
         setContentView(R.layout.detail_ruangan);
         context = this;
 
+		// mendapatkan semua informasi yang dioper dari kelas sebelumnya
         Bundle b = getIntent().getExtras();
         if (b!=null) {
             Ruangan ruangan = b.getParcelable("ruangan");
@@ -49,6 +50,7 @@ public class DetailRuangan extends Activity {
             deskripsi.setText(ruanganController.getRuangan().getDeskripsi());
 
             Button pinjam = (Button) findViewById(R.id.buttonPinjam);
+			// button pinjam akan mengarahkan pengguna ke form peminjaman
             pinjam.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

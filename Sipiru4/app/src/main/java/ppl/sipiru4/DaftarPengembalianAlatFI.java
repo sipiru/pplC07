@@ -27,6 +27,8 @@ public class DaftarPengembalianAlatFI extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.list, container, false);
+		
+		// mengakses webserver untuk mendapatkan informasi daftar peminjaman yang belum mengembalikan alat
         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showNotReturn/");
 
         lv = (ListView) rootView.findViewById(R.id.list);
@@ -75,9 +77,8 @@ public class DaftarPengembalianAlatFI extends Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    // Sending image id to FullScreenActivity
                     Intent i = new Intent(getActivity().getApplicationContext(), DetailPengembalianAlat.class);
-                    // passing array index
+                    // mengoper informasi peminjaman ke DetailPengembalianAlat.class
                     i.putExtra("peminjaman", peminjamanController.getPeminjaman(position));
                     startActivity(i);
                 }

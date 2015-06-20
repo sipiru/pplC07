@@ -53,6 +53,7 @@ public class CariRuanganWaktu extends Fragment {
         tglMulai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+				// memunculkan tampilan memilih tanggal mulai
                 DialogFragment newFragment = new SelectTglMulai();
                 newFragment.show(getFragmentManager(),"");
                 tglMulaiClicked=true;
@@ -63,6 +64,7 @@ public class CariRuanganWaktu extends Fragment {
         tglSelesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+				// memunculkan tampilan memilih tanggal selesai
                 DialogFragment newFragment = new SelectTglSelesai();
                 newFragment.show(getFragmentManager(),"");
                 tglSelesaiClicked=true;
@@ -73,6 +75,7 @@ public class CariRuanganWaktu extends Fragment {
         jamMulai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+				// memunculkan tampilan memilih jam mulai
                 DialogFragment newFragment = new SelectJamMulai();
                 newFragment.show(getFragmentManager(),"");
                 jamMulaiClicked=true;
@@ -83,6 +86,7 @@ public class CariRuanganWaktu extends Fragment {
         jamSelesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+				// memunculkan tampilan memilih jam selesai
                 DialogFragment newFragment = new SelectJamSelesai();
                 newFragment.show(getFragmentManager(),"");
                 jamSelesaiClicked=true;
@@ -109,13 +113,19 @@ public class CariRuanganWaktu extends Fragment {
                         if (dateAkhir.after(dateAwal) && dateAwal.after(now)) {
                             long seconds = dateAkhir.getTime() - dateAwal.getTime();
                             long days = seconds/(24*60*60*1000);
+							
+							// mengecek selisih waktu akhir dan waktu awal
                             if (days > 2) {
                                 Toast.makeText(getActivity(), "Tidak bisa meminjam ruangan dalam waktu lebih dari 2 hari", Toast.LENGTH_SHORT).show();
                             }
                             else {
+								
+								// mengecek apakah perangkat terhubung ke internet
                                 ConnectivityManager connMgr = (ConnectivityManager) getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
                                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                 if (networkInfo!=null && networkInfo.isConnected()) {
+									
+									//mengakses URL webserver menggunakan AsyncTask untuk mendapatkan daftar ruangan tersedias
                                     new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/showDaftarRuangan/"
                                             + tanggalMulai + "%20" + jamMulai.getText() + "&" + tanggalSelesai + "%20" + jamSelesai.getText());
                                 }
@@ -174,6 +184,7 @@ public class CariRuanganWaktu extends Fragment {
             if (day<10) {dayOutput = "0" + day;}
             tanggalMulai = yearOutput + "-" + monthOutput + "-" + dayOutput;
 
+			// tanggal diformat agar tampilannya mudah dibaca
             String date = dayOutput + "-" + monthOutput + "-" + yearOutput;
             String dateView = null;
             try {
@@ -209,6 +220,7 @@ public class CariRuanganWaktu extends Fragment {
             if (day<10) {dayOutput = "0" + day;}
             tanggalSelesai = yearOutput + "-" + monthOutput + "-" + dayOutput;
 
+			// tanggal diformat agar tampilannya mudah dibaca
             String date = dayOutput + "-" + monthOutput + "-" + yearOutput;
             String dateView = null;
             try {

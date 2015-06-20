@@ -36,6 +36,7 @@ public class LoginActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+		// lakukan pengecekan terlebih dulu untuk user yang belum logout agar sessionnya dikembalikan sesuai role
         session = new SessionManager(getApplicationContext());
         context = this;
         if(session.isUserLoggedIn()) {
@@ -71,7 +72,8 @@ public class LoginActivity extends Activity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_ui);
-
+		
+		// menginisialisasi variabel untuk login
         setupVariables();
     }
 
@@ -79,18 +81,21 @@ public class LoginActivity extends Activity{
         uname = (EditText) findViewById(R.id.editText1);
         pass = (EditText) findViewById(R.id.ruang);
         Button login = (Button) findViewById(R.id.buttonLogin);
-
+		// mengecek username dan password apakah terdaftar dalam akun SSO UI
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+				// mengecek koneksi internet
                 ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                 if (networkInfo!=null && networkInfo.isConnected()) {
+					// jika isian ada yang kosong ditampilkan peringatan
                     if (uname.getText().toString().trim().length()==0 || pass.getText().toString().trim().length()==0) {
                         Toast.makeText(context, "Mohon isi username dan password dengan benar", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         try {
+							// jika sudah benar semua lakukan pengecekan ke LDAP yang diberikan
                             authenticateLogin(uname.getText().toString(), pass.getText().toString());
                         } catch (IOException | JSONException e) {
                             e.printStackTrace();
@@ -209,7 +214,9 @@ public class LoginActivity extends Activity{
             }
 
             if (status == 1) {
-                Toast.makeText(context, "kode org : " + kodeOrg.substring(12,14), Toast.LENGTH_SHORT).show();
+				// jika terdaftar sebagai mahasiswa UI dan Fasilkom
+				Toast.makeText(context, "sukses", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "kode org : " + kodeOrg.substring(12,14), Toast.LENGTH_SHORT).show();
                 if (role.equals("mahasiswa")) {
                     penggunaController = new PenggunaController(new User(username,nama,role));
                     session.createLoginSession(penggunaController.getCurrentPengguna());

@@ -68,6 +68,7 @@ public class DetailHistoryMR extends Activity {
             String dateView1 = null;
             String dateView2 = null;
             try {
+				// format tanggal agar lebih mudah dibaca pengguna
                 Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
                 dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
                 Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
@@ -76,7 +77,6 @@ public class DetailHistoryMR extends Activity {
                 e.printStackTrace();
             }
 
-        //untuk bikin file PDF
         namaPeminjam = peminjamanController.getPeminjaman().getNamaP();
         ruangDipinjam = peminjamanController.getPeminjaman().getKodeRuangan();
         tglPinjam = peminjamanController.getPeminjaman().getMulai() + " sampai "+ peminjamanController.getPeminjaman().getSelesai();
@@ -112,6 +112,7 @@ public class DetailHistoryMR extends Activity {
             download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+					// men-generate informasi di aplikasi ke file pdf yang akan dijadikan sebagai bukti peminjaman disetujui dan akhirnya membuka file pdf tersebut
                     createPDF();
                     openPdf();
                 }
@@ -151,6 +152,7 @@ public class DetailHistoryMR extends Activity {
     {
         Document doc = new Document();
         try {
+			// path tempat file akan di-generate, jika belum ada akan dibuat
             String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/BuktiPeminjaman";
 
             File dir = new File(path);
@@ -161,6 +163,7 @@ public class DetailHistoryMR extends Activity {
             Log.d("PDFCreator", "PDF Path: " + path);
 
             File file = new File(dir,  namaPeminjam + "_"+ ruangDipinjam + "_" + ".pdf");
+			// jika file sudah ada, maka akan ditimpa
             if(file.exists()){
                 file.delete();
                 file.createNewFile();

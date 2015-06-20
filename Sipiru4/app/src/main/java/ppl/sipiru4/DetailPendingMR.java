@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import ppl.sipiru4.Entity.JSONParser;
 import ppl.sipiru4.Entity.Peminjaman;
 import ppl.sipiru4.Entity.SessionManager;
@@ -44,6 +43,7 @@ public class DetailPendingMR extends Activity {
         }
         setContentView(R.layout.detail_pending_mr);
 
+		// mendapatkan informasi user dari session manager
         session = new SessionManager(getApplicationContext());
         Log.e("user session", session.getUserDetails()+"");
         setting = getSharedPreferences(LoginActivity.PREFS_NAME,0);
@@ -69,6 +69,7 @@ public class DetailPendingMR extends Activity {
             String dateView1 = null;
             String dateView2 = null;
             try {
+				// format tanggal agar lebih mudah dibaca pengguna
                 Date init1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date1);
                 dateView1 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(init1);
                 Date init2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date2);
@@ -102,6 +103,7 @@ public class DetailPendingMR extends Activity {
             peralatan.setText(peminjamanController.getPeminjaman().getPeralatan());
 
             Button btnTeruskan = (Button)findViewById(R.id.btnTeruskan);
+			// button teruskan untuk meneruskan peminjaman dari manajer ruangan.
             btnTeruskan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -113,9 +115,11 @@ public class DetailPendingMR extends Activity {
                             .setMessage("Tekan Ya untuk meneruskan")
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
+									// memeriksa koneksi internet
                                     ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                                     NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                     if (networkInfo!=null && networkInfo.isConnected()) {
+										// mengubah database menggunakan webserver
                                         new TaskHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/acceptByManajerRuangan/"
                                                 + peminjamanController.getPeminjaman().getId());
                                     }
@@ -136,6 +140,7 @@ public class DetailPendingMR extends Activity {
             });
 
             Button btnTolak = (Button)findViewById(R.id.btnTolak);
+			// button tolak untuk menolak peminjaman. penolak harus memasukkan alasan agar bisa diketahui oleh peminjam mengapa permohonan peminjamannya ditolak
             btnTolak.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -163,6 +168,7 @@ public class DetailPendingMR extends Activity {
                                         .setMessage("Tekan Ya untuk konfirmasi")
                                         .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog,int id) {
+												// memeriksa koneksi internet
                                                 ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                                                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                                                 if (networkInfo!=null && networkInfo.isConnected()) {
@@ -240,6 +246,8 @@ public class DetailPendingMR extends Activity {
             else {
                 Toast.makeText(getApplicationContext(), "Error. Permohonan tidak ada", Toast.LENGTH_SHORT).show();
             }
+			
+			// mengoper informasi ke MainActivityMR.class
             Intent i = new Intent(getApplicationContext(),MainActivityMR.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             i.putExtra("user",penggunaController.getCurrentPengguna());

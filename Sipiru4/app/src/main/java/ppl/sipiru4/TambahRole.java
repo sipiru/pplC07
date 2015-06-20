@@ -67,6 +67,7 @@ public class TambahRole extends Activity {
         role.setAdapter(adapter);
 
         Button update = (Button) findViewById(R.id.buttonAdd);
+		// menambah role
         update.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String roleValues = roleString.get(role.getSelectedItemPosition())+ "";
@@ -79,9 +80,11 @@ public class TambahRole extends Activity {
                 }
                 else {
                     if (roleValues.equals("admin")) {
+						// mengecek koneksi internet
                         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                         if (networkInfo!=null && networkInfo.isConnected()) {
+							// mengupdate database dengan menggunakan akses ke webserver
                             link = "http://ppl-c07.cs.ui.ac.id/connect/createAdmin/" + uname+"&"+name.replaceAll(" ","%20")
                                     +"&"+roleValues.replaceAll(" ","%20") ;
                             new SubmitHelper().execute(link);

@@ -37,6 +37,7 @@ public class FormPeminjaman extends Activity {
         // mendapatkan informasi user
         penggunaController = new PenggunaController(session.getUser());
 
+		// mendapatkan informasi yang dioper dari kelas sebelumnya. gunanya untuk me-auto generate form yang akan diisi
         Bundle b = getIntent().getExtras();
         if (b!=null) {
             String kodeRuangan = b.getString("kodeRuangan");
@@ -86,6 +87,7 @@ public class FormPeminjaman extends Activity {
             final EditText peralatan = (EditText)findViewById(R.id.peralatan);
 
             Button btnSubmit = (Button)findViewById(R.id.submit);
+			// me-submit permohonan
             btnSubmit.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -117,9 +119,11 @@ public class FormPeminjaman extends Activity {
                         String alat = peralatan.getText().toString().replaceAll(" ","%20");
                         String kegiatanModif = kegiatanValue.replaceAll(" ", "%20");
 
+						// mengecek koneksi internet
                         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                         if (networkInfo!=null && networkInfo.isConnected()) {
+							// memasukkan permohonan ke database menggunakan akses webserver
                             new SubmitHelper().execute("http://ppl-c07.cs.ui.ac.id/connect/mengajukanPeminjaman/"
                                     + username + "&" + namaP + "&" + statusP + "&" + ruang.getText() + "&"
                                     + waktuAwal + "&" + waktuAkhir + "&" + perihalValue + "&" + kegiatanModif + "&" + alat);
